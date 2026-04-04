@@ -18,37 +18,47 @@ Esta guía es una referencia completa para el desarrollo de agentes potenciados 
 
 ## Introducción y Conceptos Básicos
 
-En el desarrollo con Inteligencia Artificial, el mayor desafío no es solo escribir un buen *prompt*, sino evitar que la IA "olvide" las reglas a medida que la conversación se extiende. Este fenómeno, conocido como la limitación de la ventana de contexto, se resuelve mediante la **Memoria Persistente**.
+En el ecosistema de agentes de IA, el mayor desafío técnico es la **limitación de la ventana de contexto**. A medida que una conversación progresa, el modelo consume "tokens" (palabras o fragmentos de código). Si las reglas del proyecto no están bien estructuradas, la IA comienza a "olvidar" las instrucciones iniciales, provocando alucinaciones o degradación en la calidad del código. La solución definitiva a esto es la **Memoria Persistente**.
 
-### 1. El Concepto de Memoria Persistente y Alcance (Scope)
+### 1. Memoria Persistente y la Jerarquía de Contexto (Scope)
 
-La memoria persistente permite que el asistente cargue automáticamente un "manual de identidad" antes de procesar tu primera palabra. Esto garantiza que el estilo, las herramientas y las restricciones de seguridad se mantengan constantes.
+La memoria persistente permite inyectar un "manual de identidad" técnico antes de que el modelo procese el primer mensaje del usuario. Esto garantiza consistencia en el estilo de codificación, herramientas autorizadas y restricciones de seguridad.
 
-> [!NOTE]
-> Un **archivo de contexto** (como `AGENTS.md`, `GEMINI.md` o `CLAUDE.md`) es un documento técnico donde se definen las instrucciones de comportamiento de la IA. Se denomina **memoria persistente** porque sobrevive al cierre de una sesión.
-> 
-> **`AGENTS.md` se está convirtiendo en el estándar multiplataforma**, siendo compatible actualmente con la mayoría de las herramientas (Codex, Gemini CLI, Claude Code y recientemente Antigravity).
+Para optimizar el uso de tokens, los agentes modernos utilizan un sistema de **Alcance (Scope)** jerárquico:
 
-Para organizar estas instrucciones de forma eficiente, manejamos tres niveles de **Alcance (Scope)**:
-
-1.  **Alcance Global (Capa de Usuario):** Instrucciones universales que la IA aplica siempre (ej. `~/.gemini/GEMINI.md`).
-2.  **Alcance de Proyecto (Capa de Raíz):** Reglas específicas para un repositorio completo (ej. `AGENTS.md` en la raíz del proyecto).
-3.  **Alcance de Módulo (Capa de Subdirectorio):** Instrucciones quirúrgicas para carpetas específicas (ej. `/src/auth/AGENTS.md`).
+1.  **Alcance Global (Capa de Usuario):**
+    - **Ubicación:** Generalmente en el directorio home del usuario (ej. `~/.gemini/GEMINI.md` o `~/.claude/CLAUDE.md`).
+    - **Propósito:** Define tu "ADN" como desarrollador. Preferencias universales como "Habla siempre en español", "Usa indentación de 2 espacios" o "No uses emojis en comentarios".
+2.  **Alcance de Proyecto (Capa de Raíz):**
+    - **Ubicación:** Raíz del repositorio (donde reside el archivo `.git`).
+    - **Propósito:** Reglas específicas para el equipo o el repo. Estándares como "Usa React con TypeScript", "Tests obligatorios con Vitest" o "Comandos de build: `npm run build`".
+3.  **Alcance de Módulo (Capa de Subdirectorio):**
+    - **Ubicación:** Cualquier subcarpeta dentro del proyecto.
+    - **Propósito:** Instrucciones quirúrgicas. Por ejemplo, en `/src/auth/`, una regla puede prohibir rotar llaves API sin permiso explícito, o en `/legacy/` prohibir refactorizaciones sin una tarea asignada.
 
 ---
 
-### 2. Comparativa de Archivos de Contexto
+### 2. El Estándar Emergente: AGENTS.md
 
-| Herramienta | Archivos Principales | Ubicación Global |
-| :--- | :--- | :--- |
-| **Cursor** | `.cursor/rules/*.mdc` / `AGENTS.md` | Settings > Rules for AI |
-| **Antigravity** | `GEMINI.md` / `AGENTS.md` | `~/.gemini/GEMINI.md` |
-| **Gemini CLI** | `GEMINI.md` / `AGENTS.md` | `~/.gemini/GEMINI.md` |
-| **Claude Code** | `CLAUDE.md` / `AGENTS.md` | `~/.claude/CLAUDE.md` |
-| **Codex CLI** | `AGENTS.md` | `~/.codex/AGENTS.md` |
+Históricamente, cada herramienta tenía su propio archivo (`.cursorrules`, `GEMINI.md`, `CLAUDE.md`). Sin embargo, **`AGENTS.md` se ha consolidado como el estándar multiplataforma**. 
+
+> [!IMPORTANT]
+> **Compatibilidad:** Actualmente es soportado de forma nativa por **Codex**, **Gemini CLI**, **Claude Code** y recientemente se añadió soporte oficial en **Antigravity**. Esto permite mantener una única "fuente de verdad" para las reglas de tu proyecto que funcione en cualquier IDE o CLI.
+
+---
+
+### 3. Comparativa Técnica de Gestión de Contexto
+
+| Herramienta | Archivos Soportados | Lógica de Precedencia | Capacidad de Modularización |
+| :--- | :--- | :--- | :--- |
+| **Cursor** | `.cursor/rules/*.mdc`, `AGENTS.md` | Los archivos `.mdc` se activan por patrones `glob` (archivos específicos). | Alta: Permite reglas granulares por tipo de archivo. |
+| **Antigravity** | `GEMINI.md`, `AGENTS.md` | Combina las reglas globales con las del workspace. | Media: Permite referenciar otros archivos usando `@filename`. |
+| **Gemini CLI** | `GEMINI.md`, `AGENTS.md`, `CONTEXT.md` | Escanea recursivamente hacia arriba hasta la raíz del repo. | Alta: Soporta modularización total con la sintaxis `@./path/to/rules.md`. |
+| **Claude Code** | `CLAUDE.md`, `AGENTS.md` | Detecta e importa automáticamente archivos de subdirectorios. | Alta: Tiene **Auto Memory** (aprende preferencias sin editarlas manualmente). |
+| **Codex CLI** | `AGENTS.md`, `AGENTS.override.md` | Concatenación por líneas en blanco; el contenido final tiene prioridad. | Baja: Se basa principalmente en la jerarquía de carpetas. |
 
 > [!WARNING]
-> **Higiene de Contexto:** No satures cada carpeta con instrucciones. Si las reglas se contradicen en demasiados niveles, el comportamiento de la IA se vuelve errático. Usa siempre `.gitignore` para evitar que la IA lea carpetas innecesarias como `node_modules`.
+> **Contaminación de Contexto:** Evita definir reglas contradictorias en diferentes niveles. Si el global dice "Usa Tabs" y el proyecto dice "Usa Spaces", el modelo puede confundirse y generar código inconsistente. Prioriza siempre el archivo `AGENTS.md` en la raíz para reglas críticas del proyecto.
 
 **Referencias y Documentación:**
 - [Cursor Docs: Rules & AGENTS.md](https://cursor.com/docs/rules#agentsmd)
@@ -59,54 +69,84 @@ Para organizar estas instrucciones de forma eficiente, manejamos tres niveles de
 
 ## Skills (Habilidades)
 
-Las **Skills** representan una experticia específica bajo demanda. A diferencia del contexto general, las habilidades contienen instrucciones, scripts y recursos que el agente solo carga mediante **progressive disclosure** (revelación progresiva) cuando detecta que la tarea actual coincide con la descripción de la skill.
+Las **Skills** son paquetes de **experiencia bajo demanda**. A diferencia del contexto general, las habilidades contienen instrucciones, scripts y recursos que el agente solo carga mediante **progressive disclosure** (revelación progresiva) cuando detecta que la tarea actual coincide con la descripción de la skill. Esto evita saturar la ventana de contexto con información irrelevante.
 
-### 1. ¿Qué podemos lograr con las Skills?
+### 1. Mecanismos de Activación y Revelación Progresiva
 
-- **Definir Roles Técnicos:** Transformar al modelo en un experto de nicho (ej. "Arquitecto de AWS").
-- **Integrar Herramientas:** Enseñar al agente a usar binarios de terminal como `ffmpeg` o `git`.
-- **Estandarizar Formatos:** Asegurar que el output siempre siga un esquema (JSON, ISO, templates).
-- **Reducir Alucinaciones:** Limitar el alcance del conocimiento a los parámetros definidos en la skill.
+Para optimizar el uso de tokens, los agentes siguen un patrón de "Metadata-First":
+1.  **Descubrimiento:** Al iniciar la sesión, solo se inyectan los **nombres y descripciones** de las skills disponibles en el prompt del sistema.
+2.  **Activación:** El contenido completo del archivo `SKILL.md` y sus archivos adjuntos solo se cargan cuando el agente llama a la herramienta `activate_skill` o cuando el usuario invoca el comando explícitamente (ej. `/skill-name`).
 
-### 2. Anatomía de una Skill (SKILL.md)
+---
 
-Cada habilidad reside en una carpeta que **debe** contener un archivo `SKILL.md`. Los metadatos en el frontmatter son cruciales para que el agente sepa cuándo activarla.
+### 2. Anatomía Avanzada de una Skill (SKILL.md)
 
-> [!TIP]
-> **Metadatos Clave:** El campo `description` o `trigger` es el disparador. Debe ser claro sobre *qué* hace la skill y *cuándo* debe usarse.
+El archivo `SKILL.md` es el cerebro de la habilidad. Utiliza metadatos técnicos para controlar el comportamiento del modelo.
 
+#### Metadatos en Frontmatter (Ejemplo Claude/Gemini)
 ```markdown
 ---
-name: nombre-de-la-skill
-description: Úsalo cuando necesites [acción específica].
-trigger: Palabras clave o intención del usuario.
+name: api-auditor
+description: Experto en auditoría de seguridad para APIs REST. Actívalo para buscar vulnerabilidades OWASP.
+trigger: "auditar api", "seguridad endpoint", "revisar vulnerabilidades"
+allowed-tools: ["read_file", "run_shell_command", "grep_search"]
+context: fork
+---
+```
+- **`allowed-tools` (Claude):** Restringe al agente a usar solo ciertas herramientas mientras la skill está activa (Principio de Menor Privilegio).
+- **`context: fork`:** Ejecuta la skill en un subagente aislado para no contaminar el historial principal.
+
 ---
 
-# Goal
-Qué debe lograr el agente.
+### 3. Ejemplos Prácticos de Implementación
 
-# Steps
-1. Paso técnico uno.
-2. Paso técnico dos (ver `scripts/logic.ts`).
+#### Ejemplo A: Skill + Scripts (Ejecución de lógica compleja)
+Ideal cuando la skill necesita procesar datos antes de dar una respuesta.
 
-# Output Format
-Usa el template en `templates/report.md`.
+**Estructura:**
+```text
+skills/video-tool/
+├── SKILL.md
+└── scripts/
+    └── optimizer.js
 ```
 
-### 3. Configuración y Rutas
+**Instrucción en `SKILL.md`:**
+> [!NOTE]
+> Eres un experto en optimización de video. Para procesar archivos, debes ejecutar el script bundleado: `node $SKILL_DIR/scripts/optimizer.js <input>`.
 
-| Herramienta     | Alcance de Proyecto | Alcance Global      |
-| :-------------- | :------------------ | :------------------ |
-| **Antigravity** | `.agent/skills/`    | `~/.agents/skills/` |
-| **Gemini CLI**  | `.gemini/skills/`   | `~/.gemini/skills/` |
-| **Codex**       | `.agents/skills/`   | `~/.agents/skills/` |
+#### Ejemplo B: Skill + Templates (Generación de documentos estructurados)
+Ideal para reportes técnicos, PR summaries o documentación de arquitectura.
 
-### 4. Buenas Prácticas y Metadatos
+**Estructura:**
+```text
+skills/arch-doc/
+├── SKILL.md
+└── templates/
+    └── design-record.md
+```
 
-- **Modularidad:** No crees una skill "sabelotodo". Divide la inteligencia en módulos pequeños.
-- **Uso de Templates:** Define variables con `{{variable}}` en archivos dentro de una carpeta `templates/` para que el agente genere documentos consistentes.
-- **Ejemplos Few-Shot:** Incluye una carpeta `examples/` con inputs y outputs esperados; es más efectivo que las instrucciones largas.
-- **Metadatos de Activación:** Asegúrate de que el `trigger` no sea demasiado genérico para evitar activaciones accidentales que consuman tokens innecesariamente.
+**Instrucción en `SKILL.md`:**
+> [!TIP]
+> Al documentar una decisión de arquitectura, usa SIEMPRE el formato de `templates/design-record.md`. Rellena cada campo marcado con `{{placeholder}}`.
+
+---
+
+### 4. Configuración y Rutas Globales
+
+| Herramienta | Alcance Proyecto | Alcance Global | Comando de Gestión |
+| :--- | :--- | :--- | :--- |
+| **Cursor** | `.cursor/rules/*.mdc` | Settings > Rules | `/migrate-to-skills` |
+| **Antigravity** | `.agent/skills/` | `~/.agents/skills/` | Automático por trigger |
+| **Gemini CLI** | `.gemini/skills/` | `~/.gemini/skills/` | `gemini skills list` |
+| **Claude Code** | `.claude/skills/` | `~/.claude/skills/` | `/skills` |
+| **Codex** | `.agents/skills/` | `~/.agents/skills/` | Automático por triggers |
+
+### 5. Seguridad y Aislamiento (Sandboxing)
+
+- **Permisos de Archivos:** En **Gemini CLI**, al activar una skill, el usuario recibe una solicitud de aprobación para que el agente pueda leer los archivos *dentro* de la carpeta de esa skill específica.
+- **Variables de Entorno:** Puedes usar variables como `$SKILL_DIR` para referenciar scripts locales sin importar la ruta actual del proyecto.
+- **Invocación Implícita vs Explícita:** Para tareas críticas (como despliegues a producción), se recomienda configurar `allow_implicit_invocation: false` (Codex) o `disable-model-invocation: true` (Claude) para que solo el usuario pueda disparar la acción manualmente.
 
 **Referencias y Documentación:**
 - [Cursor: Skills Migration](https://cursor.com/help/customization/skills#how-do-i-migrate-commands-to-skills)

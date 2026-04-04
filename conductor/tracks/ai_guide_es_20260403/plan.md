@@ -2,30 +2,26 @@
 
 ## Phase 1: Setup and Structure Definition [checkpoint: 876eab6]
 - [x] Task: Create the base file `My-AI-Learning-Guide-ES.md`. (803d09e)
-    - [x] Sub-task: Add the main header and introduction sections.
-    - [x] Sub-task: Create placeholders for all major sections (Skills, MCP, Hooks, Subagents, Model Evaluation).
-- [x] Task: Conductor - User Manual Verification 'Phase 1: Setup and Structure Definition' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1'
 
-## Phase 2: Content Migration - Core Concepts [checkpoint: c424267]
-- [x] Task: Migrate and translate persistent memory concepts. (21844bc)
-    - [x] Sub-task: Add content for `AGENTS.md` and `GEMINI.md` scoping.
-    - [x] Sub-task: Format with Obsidian callouts.
-- [x] Task: Migrate and expand the Skills documentation. (fbe0509)
-    - [x] Sub-task: Add definitions, best practices, and template examples in Spanish.
-- [x] Task: Conductor - User Manual Verification 'Phase 2: Content Migration - Core Concepts' (Protocol in workflow.md)
+## Phase 2: Deep Dive Content Migration - Core Concepts & Skills [checkpoint: c5d94b7]
+- [x] Task: Expand and refine Core Concepts. (bf4bda8)
+    - [x] Sub-task: Detail AGENTS.md cross-platform standards and specific scoping rules.
+- [x] Task: Expand and refine Skills documentation (Deep Dive). (8111b3f)
+    - [x] Sub-task: Include progressive disclosure, advanced metadata, and environment variables.
+    - [x] Sub-task: Create actual code examples for Skill + Scripts and Skill + Templates in the guide.
+    - [x] Sub-task: Create the `template/skills/` directory with multiple structure examples (*.md).
+- [x] Task: Conductor - User Manual Verification 'Phase 2'
 
-## Phase 3: Content Migration - Advanced Features
-- [x] Task: Document Model Context Protocol (MCP). (165214b)
-    - [x] Sub-task: Add configurations, security tips, and tool exclusion strategies for each CLI.
-- [x] Task: Document Hooks and Subagents. (8111b3f)
-    - [x] Sub-task: Detail setups, configuration paths, and use-cases.
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Content Migration - Advanced Features' (Protocol in workflow.md)
+## Phase 3: Deep Dive Content Migration - MCP & Advanced Features
+- [ ] Task: Expand and refine MCP documentation.
+    - [ ] Sub-task: Detail security sandboxing, tool exclusion patterns, and specific Docker/OAuth troubleshooting for all agents.
+- [ ] Task: Expand and refine Hooks and Subagents.
+    - [ ] Sub-task: Detail JSON stdin/stdout protocols for Gemini CLI hooks and subagent team architectures.
+- [ ] Task: Conductor - User Manual Verification 'Phase 3'
 
 ## Phase 4: Model Evaluation and Finalization
-- [ ] Task: Draft Model Evaluation section.
-    - [ ] Sub-task: Add comparative analysis for Gemini, Anthropic, and OpenAI models.
+- [ ] Task: Research and Draft Comprehensive Model Evaluation.
+    - [ ] Sub-task: Add data-driven comparative analysis for Gemini 3.1, Claude 4.6, and GPT-5.3 models across specific tasks (coding, MCP, context).
 - [ ] Task: Final Review and Refinement.
-    - [ ] Sub-task: Verify all Spanish grammar and conversational tone.
-    - [ ] Sub-task: Check that all code comments and technical terms are in English.
-    - [ ] Sub-task: Validate markdown formatting and external reference links.
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Model Evaluation and Finalization' (Protocol in workflow.md)
+- [ ] Task: Conductor - User Manual Verification 'Phase 4'
