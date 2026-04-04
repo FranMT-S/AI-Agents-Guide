@@ -351,21 +351,26 @@ Pensados para lectura de archivos, resúmenes rápidos, consultar MCP (solo lect
 
 ---
 
-### Tabla Comparativa de Puntuación (1-5)
+### Tabla Comparativa de Idoneidad
 
-La siguiente tabla resume el rendimiento de cada modelo (1 = Pobre, 5 = Excelente) para facilitar la elección según la tarea técnica.
+La siguiente tabla resume qué tan adecuado es cada modelo para diferentes tareas técnicas.
 
 | Categoría Técnica | Gemini Pro | Claude Opus | GPT Codex | Claude Sonnet | GPT-4o | Gemini Flash | Claude Haiku |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Generación de código** | 4 | 5 | 5 | 5 | 4 | 3 | 3 |
-| **Lectura de archivos** | 5 | 3 | 4 | 4 | 4 | 5 | 5 |
-| **Generación de informes** | 5 | 5 | 2 | 4 | 4 | 5 | 4 |
-| **Generar documentación** | 4 | 5 | 2 | 4 | 3 | 4 | 3 |
-| **Generar JSON / Estructuras** | 3 | 4 | 4 | 4 | 5 | 3 | 4 |
-| **Consultar APIs** | 4 | 4 | 5 | 5 | 4 | 4 | 4 |
-| **Consultar MCP** | 5 | 4 | 5 | 5 | 4 | 4 | 4 |
-| **Leer skills** | 4 | 5 | 4 | 5 | 4 | 3 | 4 |
-| **Entender contexto de código** | 5 | 5 | 4 | 4 | 3 | 4 | 3 |
+| **Generación de código** | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
+| **Lectura de archivos** | ✅ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ |
+| **Generación de informes** | ✅ | ✅ | ❌ | ⚠️ | ⚠️ | ✅ | ⚠️ |
+| **Generar documentación** | ⚠️ | ✅ | ❌ | ⚠️ | ⚠️ | ⚠️ | ❌ |
+| **Generar JSON / Estructuras** | ❌ | ⚠️ | ⚠️ | ⚠️ | ✅ | ❌ | ⚠️ |
+| **Consultar APIs** | ⚠️ | ⚠️ | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ |
+| **Consultar MCP** | ✅ | ⚠️ | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ |
+| **Leer skills** | ⚠️ | ✅ | ⚠️ | ✅ | ⚠️ | ❌ | ⚠️ |
+| **Entender contexto de código** | ✅ | ✅ | ⚠️ | ⚠️ | ❌ | ⚠️ | ❌ |
+
+**Leyenda:**
+- ✅ **Recomendado:** El modelo sobresale, es rápido o está diseñado específicamente para esta tarea.
+- ⚠️ **Posible:** Funciona, pero existen opciones mejores, más eficientes en tokens o más rápidas.
+- ❌ **Evitar:** No usar. Puede fallar, ser muy costoso o tener una latencia que no justifica la tarea.
 
 ---
 *Nota: Todos los términos técnicos y fragmentos de código se mantienen en inglés para mayor precisión técnica.*
