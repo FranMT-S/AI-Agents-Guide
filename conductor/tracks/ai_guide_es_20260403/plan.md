@@ -6,13 +6,13 @@
     - [x] Sub-task: Create placeholders for all major sections (Skills, MCP, Hooks, Subagents, Model Evaluation).
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Setup and Structure Definition' (Protocol in workflow.md)
 
-## Phase 2: Content Migration - Core Concepts [checkpoint: 78000ea]
+## Phase 2: Content Migration - Core Concepts [checkpoint: c424267]
 - [x] Task: Migrate and translate persistent memory concepts. (21844bc)
     - [x] Sub-task: Add content for `AGENTS.md` and `GEMINI.md` scoping.
     - [x] Sub-task: Format with Obsidian callouts.
 - [x] Task: Migrate and expand the Skills documentation. (fbe0509)
     - [x] Sub-task: Add definitions, best practices, and template examples in Spanish.
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Content Migration - Core Concepts' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Content Migration - Core Concepts' (Protocol in workflow.md)
 
 ## Phase 3: Content Migration - Advanced Features
 - [ ] Task: Document Model Context Protocol (MCP).
