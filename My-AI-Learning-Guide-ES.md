@@ -298,45 +298,44 @@ Ejecutar un agente de forma programática requiere flags específicos para evita
 - [Codex CLI: Non-interactive Usage](https://developers.openai.com/codex/noninteractive)
 - [Claude: Scheduled Tasks](https://code.claude.com/docs/en/scheduled-tasks)
 
-## Evaluación de Modelos (Early 2026)
+## Evaluación de Modelos
 
-En el contexto actual, la elección del modelo depende del volumen de datos, la complejidad de la arquitectura y la necesidad de ejecución en tiempo real.
+En el ecosistema actual, no existe un modelo único para todas las tareas. La arquitectura de los agentes requiere el uso de diferentes modelos según el volumen de datos, la complejidad del razonamiento o la velocidad necesaria.
 
-### 1. Comparativa Técnica (Benchmarks)
+A continuación, se categorizan los modelos principales por su idoneidad en tareas específicas:
 
-| Métrica | **Gemini 3.1 Pro** | **Claude 4.6 Sonnet** | **GPT-5.3 Codex** |
-| :--- | :--- | :--- | :--- |
-| **SWE-bench Verified** | 80.6% | 79.6% | 80.0% |
-| **Terminal-Bench 2.0** | 68.5% | 65.4% | **77.3%** |
-| **Context Window** | **1M - 10M** | 1M (Beta) | 400K |
-| **Arquitectura** | Mixture-of-Experts | Adaptive Thinking | Agentic Tokenization |
+### 1. Modelos de Razonamiento Profundo y Arquitectura (Los Pesos Pesados)
+Diseñados para **generación de código complejo**, **entender el contexto de código a gran escala** y **orquestar MCPs** con instrucciones ambiguas.
 
----
+*   **Gemini 3.1 PRO / Gemini 3.0 Pro**
+    *   **Destacan en:** Análisis multi-repo, ingesta masiva de contexto (ventana de 1M-10M tokens), entender contexto de código a gran escala, y encontrar dependencias ocultas (RAG interno).
+    *   **Evitar en:** Generación de estructuras como JSON simples o consultas aisladas de API, debido al mayor tiempo de inferencia comparado con modelos más pequeños.
+*   **Claude Opus 4.6**
+    *   **Destaca en:** Tareas de arquitectura complejas, diseño de sistemas y redacción de documentación extensa y muy estructurada. Su razonamiento lógico profundo es superior en la planificación.
+    *   **Evitar en:** Lectura rápida de archivos o ejecución de comandos repetitivos.
+*   **GPT-5.3 Codex**
+    *   **Destaca en:** Ejecución autónoma de comandos de terminal, refactorización masiva (generación de código puro), integración avanzada de MCPs que requieran acciones de escritura y scripts.
+    *   **Evitar en:** Tareas puramente semánticas o generación de informes largos de negocio.
 
-### 2. Capacidades Específicas por Modelo
+### 2. Modelos de Flujo de Trabajo Diario (El Equilibrio)
+Optimizados para **desarrollo interactivo**, **generación de código del día a día** y **consultar APIs**.
 
-#### Gemini 3.1 Pro
-- **Ingesta de Datos:** Capacidad nativa para procesar repositorios monolíticos completos (1M+ tokens) sin necesidad de fragmentación excesiva.
-- **Búsqueda de Dependencias:** Alta precisión en la recuperación de información (RAG interno) en contextos largos, ideal para encontrar relaciones entre archivos distantes.
-- **Costo Operativo:** Menor costo por token en tareas de análisis masivo ($2/$12 por M tokens).
+*   **Claude Sonnet 4.6**
+    *   **Destaca en:** Refactorización de UI/Frontend, **consultar APIs**, desarrollo iterativo y estructurar respuestas con **Adaptive Thinking**. Es excelente para **leer skills** y aplicar plantillas de forma estricta.
+    *   **Evitar en:** Ingesta de bases de código completas de millones de líneas, donde la ventana de contexto de Gemini Pro escala mejor.
+*   **GPT-4o**
+    *   **Destaca en:** Tareas multimodales, generación de código de uso general, y **generar estructuras como JSON** de forma predecible y consistente.
+    *   **Evitar en:** Proyectos masivos que superen su ventana de contexto si no se utiliza compactación de historial.
 
-#### Claude 4.6 Sonnet
-- **Razonamiento Arquitectónico:** Superior en la comprensión de flujos lógicos complejos y dependencias de diseño.
-- **Gestión de Contexto:** Utiliza **Context Compaction**, resumiendo automáticamente partes irrelevantes del historial para mantener la coherencia en sesiones largas.
-- **Frontend y UI:** Mayor precisión en la generación de código para interfaces visuales y reconstrucción de componentes a partir de imágenes o descripciones.
+### 3. Modelos Rápidos y de Soporte (Los Especialistas en Lectura y Extracción)
+Pensados para **lectura de archivos**, **generar documentación** rápida, **consultar MCP** (solo lectura) y extracción de datos.
 
-#### GPT-5.3 Codex
-- **Operaciones de Terminal:** Optimizado para la ejecución de comandos `bash` y manipulación del sistema de archivos con menor tasa de error en la sintaxis.
-- **Latencia:** Menor tiempo de respuesta (TTFT) en tareas de scripting y refactorización rápida.
-- **Eficiencia de Inferencia:** Su sistema de tokenización está diseñado para tareas agenticas, utilizando menos tokens para describir acciones de herramientas en comparación con modelos generales.
-
----
-
-### 3. Casos de Uso Recomendados
-
-- **Gemini 3.1 Pro:** Auditorías de seguridad completas, documentación de código legacy masivo y análisis de impacto en cambios estructurales de grandes repositorios.
-- **Claude 4.6 Sonnet:** Desarrollo interactivo de nuevas funcionalidades, refactorización lógica de componentes UI y planificación de migraciones tecnológicas.
-- **GPT-5.3 Codex:** Automatización de flujos CI/CD, mantenimiento preventivo vía scripts y tareas repetitivas de terminal que requieren alta velocidad.
+*   **Gemini 3.1 Flash / Gemini 3.0 Flash**
+    *   **Destacan en:** **Lectura de archivos** a altísima velocidad, procesamiento rápido de grandes volúmenes de texto para la **generación de informes**, tareas de "aguja en el pajar" y extracción veloz de datos desde recursos MCP.
+    *   **Evitar en:** Generación de código arquitectónico complejo o resolución de bugs lógicos de alta dificultad.
+*   **Claude Haiku 4.6**
+    *   **Destaca en:** Análisis ultra-rápido de logs, **consultar MCP** para obtener contexto rápidamente, generar resúmenes y **generar estructuras como JSON** basándose en texto plano.
+    *   **Evitar en:** Tareas que requieran mantener un contexto de código enorme o generar scripts desde cero con dependencias complejas.
 
 ---
 *Nota: Todos los términos técnicos y fragmentos de código se mantienen en inglés para mayor precisión técnica.*
