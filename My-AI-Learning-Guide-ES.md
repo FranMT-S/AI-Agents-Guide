@@ -41,7 +41,7 @@ Para organizar estas instrucciones de forma eficiente, manejamos tres niveles de
 
 | Herramienta | Archivos Principales | Ubicación Global |
 | :--- | :--- | :--- |
-| **Cursor** | `.cursorrules` / `.cursor/rules/*.mdc` | Settings > Rules for AI |
+| **Cursor** | `.cursor/rules/*.mdc` / `AGENTS.md` | Settings > Rules for AI |
 | **Antigravity** | `GEMINI.md` / `AGENTS.md` | `~/.gemini/GEMINI.md` |
 | **Gemini CLI** | `GEMINI.md` / `AGENTS.md` | `~/.gemini/GEMINI.md` |
 | **Claude Code** | `CLAUDE.md` / `AGENTS.md` | `~/.claude/CLAUDE.md` |
@@ -51,7 +51,7 @@ Para organizar estas instrucciones de forma eficiente, manejamos tres niveles de
 > **Higiene de Contexto:** No satures cada carpeta con instrucciones. Si las reglas se contradicen en demasiados niveles, el comportamiento de la IA se vuelve errático. Usa siempre `.gitignore` para evitar que la IA lea carpetas innecesarias como `node_modules`.
 
 **Referencias y Documentación:**
-- [Cursor Docs: Rules](https://cursor.com/docs/rules)
+- [Cursor Docs: Rules & AGENTS.md](https://cursor.com/docs/rules#agentsmd)
 - [Antigravity Docs: Rules & Workflows](https://antigravity.google/docs/rules-workflows)
 - [Gemini CLI: Memory Management](https://geminicli.com/docs/cli/tutorials/memory-management/)
 - [Claude Code: Memory & Agents.md](https://code.claude.com/docs/en/memory#agents-md)
