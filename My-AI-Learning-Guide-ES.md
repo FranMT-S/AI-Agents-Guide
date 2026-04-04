@@ -74,151 +74,16 @@ Históricamente, cada herramienta tenía su propio archivo (`.cursorrules`, `GEM
 
 ## Skills (Habilidades)
 
-Las **Skills** son paquetes de **experiencia bajo demanda**. A diferencia del contexto general (`AGENTS.md`) que siempre está activo, las habilidades contienen instrucciones, scripts auxiliares, plantillas (templates) y recursos que el agente solo carga mediante **progressive disclosure** (revelación progresiva). 
+Dado que las **Skills** son un componente central y extenso (con reglas avanzadas de metadatos, evaluación y plantillas), hemos dedicado un documento completo para explicarlas a fondo.
 
-¿Qué significa esto? El agente solo inyectará esta información en su contexto cuando detecte que la tarea actual coincide con la descripción de la skill. Esto evita saturar la memoria con información irrelevante y permite dotar al agente de roles técnicos muy específicos.
+👉 **[Ver Guía Completa de Skills (Habilidades)](./skills.md)**
 
-### 1. Consejos: Cómo Construir Skills Correctamente
-
-Para que una skill sea efectiva, debe estar diseñada con precisión:
-- **Un solo propósito:** Una skill debe resolver un solo problema (ej. "Revisar código de Python", no "Revisar código y hacer despliegues").
-- **Metadata clara:** El agente decide usar la skill basándose *exclusivamente* en la descripción y los "triggers" (disparadores). Si son vagos, el agente nunca la usará o la usará mal.
-- **Usa el principio de Caja Negra (Black-Box):** Si necesitas procesar datos complejos, no le pidas al agente que escriba un script al vuelo. Crea un script en Python o Node, guárdalo dentro de la carpeta de la skill, y dile al agente: *"Ejecuta este script y usa el resultado"*.
-
----
-
-### 2. Metadatos de una Skill (Frontmatter en `SKILL.md`)
-
-El archivo `SKILL.md` es el cerebro de la habilidad. Utiliza un bloque de metadatos (YAML frontmatter) en la parte superior para controlar el comportamiento y descubrimiento del modelo. 
-
-Aquí tienes un **desglose exhaustivo** de los metadatos disponibles (combinando estándares de Claude, OpenCode, Codex y Gemini):
-
-- `name` *(Requerido)*: Identificador único. Debe ser corto, en minúsculas y sin espacios (ej. `api-auditor`).
-- `description` *(Requerido)*: Explicación detallada de lo que hace la skill. Es la señal principal que usa la IA para decidir si debe activarla.
-- `trigger`: Palabras clave o frases exactas que le dicen al agente cuándo activarla (ej. `"auditar api"`, `"seguridad endpoint"`).
-- `allowed-tools` (Claude): Lista estricta de herramientas permitidas mientras la skill está activa (ej. `["read_file", "run_shell_command"]`). Bloquea el resto por seguridad.
-- `context` (Claude): Puede configurarse como `fork` para aislar la ejecución de la skill en un subagente, protegiendo la memoria principal de logs basura.
-- `dependencies` (Codex): Servidores MCP que deben estar activos obligatoriamente para poder usar la skill (ej. `["github-mcp"]`).
-- `metadata` (OpenCode): Diccionario libre para atributos personalizados (ej. `metadata: { "audience": "maintainers", "tier": "backend" }`).
-- `disable-model-invocation` / `allow_implicit_invocation`: Si se configuran, la IA no puede invocar la skill por su cuenta; el usuario debe pedirlo explícitamente con un comando (ej. `/auditar`).
-
-**Ejemplo completo de Frontmatter Avanzado:**
-```yaml
----
-name: auditor-seguridad
-description: Experto en auditoría de seguridad para APIs REST. Actívalo para buscar vulnerabilidades OWASP.
-trigger: "auditar api", "seguridad endpoint", "revisar vulnerabilidades"
-allowed-tools: ["read_file", "run_shell_command"]
-context: fork
-dependencies: ["github-mcp"]
-allow_implicit_invocation: false
----
-```
-
----
-
-### 3. Árbol de Ejemplos: Estructuras y Templates
-
-Una de las mejores prácticas es tener una carpeta de referencia (como `template/skills/`) en tu proyecto para estandarizar la creación de skills. A continuación, mostramos cómo se ve un árbol de directorios avanzado con múltiples tipos de skills:
-
-```text
-📁 mi-proyecto/
-├── 📁 .agents/                 (O .gemini/ o .claude/)
-│   └── 📁 skills/
-│       ├── 📁 python-reviewer/ (Skill Simple)
-│       │   └── 📄 SKILL.md
-│       │
-│       ├── 📁 video-optimizer/ (Skill + Scripts)
-│       │   ├── 📄 SKILL.md
-│       │   └── 📁 scripts/
-│       │       ├── 📄 optimizer.js
-│       │       └── 📄 validate.py
-│       │
-│       └── 📁 tech-reporter/   (Skill + Templates)
-│           ├── 📄 SKILL.md
-│           └── 📁 templates/
-│               └── 📄 design-record.md
-│
-└── 📁 template/                (Carpeta de plantillas generadas para ti)
-    └── 📁 skills/
-        ├── 📄 basic-skill.md
-        ├── 📄 skill-with-scripts.md
-        └── 📄 skill-with-templates.md
-```
-
-#### Ejemplo Interno A: Skill + Scripts (Lógica Compleja)
-Ideal cuando la skill necesita procesar datos antes de dar una respuesta.
-**Instrucción Clave dentro de `video-optimizer/SKILL.md`:**
-> [!NOTE]
-> Para optimizar archivos de video, debes ejecutar el script adjunto: `node $SKILL_DIR/scripts/optimizer.js <input>`. No intentes escribir el comando `ffmpeg` tú mismo. Analiza el `stdout` del script para dar la respuesta final.
-
-#### Ejemplo Interno B: Skill + Templates (Generación de Documentos)
-Ideal para asegurar que el agente siempre responda con un formato estandarizado.
-
-**Contenido del archivo `templates/design-record.md`:**
-```markdown
-# Reporte de Arquitectura: {{title}}
-**Fecha:** {{date}}
-**Autor:** AI Agent
-
-## Hallazgos
-{{findings}}
-```
-
-**Instrucción Clave dentro de `tech-reporter/SKILL.md`:**
-> [!TIP]
-> Al generar el reporte, debes leer obligatoriamente el archivo `$SKILL_DIR/templates/design-record.md`. Copia su estructura exacta y rellena las variables `{{title}}`, `{{date}}` y `{{findings}}`. Nunca inventes un formato nuevo.
-
----
-
-### 4. Mejores Prácticas y Reglas Oficiales (AgentSkills.io)
-
-Basado en la especificación oficial de AgentSkills, aquí tienes las reglas de oro para crear skills robustas:
-
-#### Optimización de Descripciones (Triggers)
-La descripción es el **único** mecanismo para que el agente descubra la skill.
-- ✅ **Fraseo Imperativo:** Usa `"Úsalo cuando..."` o `"Usa esta skill para..."` en lugar de descripciones pasivas como `"Esta skill hace..."`.
-- ✅ **Enfoque en la Intención:** Describe qué quiere lograr el usuario, no los mecanismos internos.
-- ✅ **Sé Asertivo ("Pushy"):** Lista contextos explícitos incluso si el usuario no usa palabras clave exactas (ej. *"incluso si no mencionan la palabra CSV"*).
-- ❌ **Triggers Genéricos:** Evita `"ayuda"`, `"código"` o `"revisar"`. Usa Evals (ver abajo) para crear un ratio 60/40 de queries que *deben* activarlo vs queries que *no deben* activarlo (near-misses).
-
-#### Creación de Instrucciones (SKILL.md)
-- **"Añade lo que el agente no sabe, omite lo que ya sabe":** No le enseñes cómo funciona HTTP. Enfócate en las convenciones únicas de tu proyecto.
-- **Gotchas y Checklists:** Usa listas explícitas para hechos que el modelo suele ignorar (ej. *"La tabla users usa soft deletes, NUNCA hagas DELETE FROM"*). Para procesos largos, obliga al agente a seguir un checklist paso a paso.
-- **Loops de Validación:** Instruye al agente a ejecutar un script de test/linting y arreglar los errores en un bucle hasta que pase (ej. `Plan-Validate-Execute`).
-
-#### Uso de Scripts en Skills
-- **Dependencias al vuelo:** Usa `uvx`, `npx` o `bunx` para ejecutar scripts sin necesidad de instalaciones manuales previas (ej. `npx eslint@9`).
-- **Scripts Autocontenidos:** Para Python, usa la sintaxis PEP 723 (`# /// script`) para incrustar las dependencias dentro del mismo archivo.
-- **Diseño para Agentes:** Los scripts **NO deben ser interactivos** (nada de prompts tipo "Presiona Y para continuar"). Deben emitir mensajes de error muy claros explicando al agente cómo solucionarlo y usar salidas estructuradas (JSON/CSV) preferiblemente.
-
-#### Evaluación de Calidad (Evals)
-Nunca lances una skill sin probarla. Usa herramientas de evaluación para medir el **Delta** (lo que cuesta ejecutar la skill en tokens/tiempo vs lo que aporta).
-- **Test Cases:** Deben incluir el Prompt, Output Esperado y Archivos de Entrada.
-- **Aserciones Verificables:** No uses métricas vagas como *"El output es bueno"*. Usa aserciones medibles como *"El archivo final es un JSON válido"*.
-- **Rastreo:** Revisa las transcripciones de ejecución para entender *por qué* el agente ignoró una regla y ajusta el `SKILL.md` en consecuencia.
-
----
-
-### 5. Configuración y Rutas Globales (Scopes)
-
-| Herramienta | Alcance Proyecto | Alcance Global | Comando de Gestión |
-| :--- | :--- | :--- | :--- |
-| **Cursor** | `.cursor/rules/*.mdc` | Settings > Rules | `/migrate-to-skills` |
-| **Antigravity** | `.agent/skills/` | `~/.agents/skills/` | Automático por trigger |
-| **Gemini CLI** | `.gemini/skills/` | `~/.gemini/skills/` | `gemini skills list` |
-| **Claude Code** | `.claude/skills/` | `~/.claude/skills/` | `/skills` |
-| **Codex** | `.agents/skills/` | `~/.agents/skills/` | Automático por triggers |
-| **OpenCode** | `.opencode/skills/` | `~/.config/opencode/skills/` | Automático por triggers |
-
-> [!NOTE]
-> Para conocer metadatos específicos, control de permisos y características avanzadas de las skills en cada herramienta, consulta su archivo específico: [Cursor](./cursor.md) | [Antigravity](./antigravity.md) | [Gemini CLI](./gemini-cli.md) | [OpenCode](./openCode.md) | [Claude Code](./claude-code.md) | [Codex CLI](./codex-cli.md).
-
-### 6. Seguridad y Aislamiento (Sandboxing)
-
-- **Permisos de Archivos:** En **Gemini CLI**, al activar una skill, el usuario recibe una solicitud de aprobación para que el agente pueda leer los archivos *dentro* de la carpeta de esa skill específica.
-- **Variables de Entorno:** Puedes usar variables como `$SKILL_DIR` (o `${CLAUDE_SKILL_DIR}`) para referenciar scripts locales sin importar la ruta actual del proyecto.
-- **Invocación Implícita vs Explícita:** Para tareas críticas (como despliegues a producción), se recomienda configurar `allow_implicit_invocation: false` (Codex) o `disable-model-invocation: true` (Claude) para que solo el usuario pueda disparar la acción manualmente.
+Aquí encontrarás:
+- Mecanismos de Activación y Metadatos YAML.
+- Árboles de estructura (Scripts, Templates, Monorepos).
+- Reglas oficiales de **AgentSkills.io** (Optimización de Triggers, Evals, Scripts sin instalación).
+- Recomendaciones de integración (ej. ClickUp, Vercel).
+- Tablas de configuración global por herramienta.
 
 ## MCP (Model Context Protocol)
 
