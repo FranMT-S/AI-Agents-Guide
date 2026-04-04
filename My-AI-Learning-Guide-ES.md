@@ -48,6 +48,13 @@ Para organizar estas instrucciones de forma eficiente, manejamos tres niveles de
 > [!WARNING]
 > **Higiene de Contexto:** No satures cada carpeta con instrucciones. Si las reglas se contradicen en demasiados niveles, el comportamiento de la IA se vuelve errático. Usa siempre `.gitignore` para evitar que la IA lea carpetas innecesarias como `node_modules`.
 
+**Referencias y Documentación:**
+- [Cursor Docs: Rules](https://cursor.com/docs/rules)
+- [Antigravity Docs: Rules & Workflows](https://antigravity.google/docs/rules-workflows)
+- [Gemini CLI: Memory Management](https://geminicli.com/docs/cli/tutorials/memory-management/)
+- [Claude Code: Memory & Agents.md](https://code.claude.com/docs/en/memory#agents-md)
+- [Codex CLI: Agents.md Guides](https://developers.openai.com/codex/guides/agents-md)
+
 ## Skills (Habilidades)
 
 Las **Skills** representan una experticia específica bajo demanda. A diferencia del contexto general, las habilidades contienen instrucciones, scripts y recursos que el agente solo carga mediante **progressive disclosure** (revelación progresiva) cuando detecta que la tarea actual coincide con la descripción de la skill.
@@ -98,6 +105,14 @@ Usa el template en `templates/report.md`.
 - **Uso de Templates:** Define variables con `{{variable}}` en archivos dentro de una carpeta `templates/` para que el agente genere documentos consistentes.
 - **Ejemplos Few-Shot:** Incluye una carpeta `examples/` con inputs y outputs esperados; es más efectivo que las instrucciones largas.
 - **Metadatos de Activación:** Asegúrate de que el `trigger` no sea demasiado genérico para evitar activaciones accidentales que consuman tokens innecesariamente.
+
+**Referencias y Documentación:**
+- [Cursor: Skills Migration](https://cursor.com/help/customization/skills#how-do-i-migrate-commands-to-skills)
+- [Antigravity: Skills Docs](https://antigravity.google/docs/skills)
+- [Gemini CLI: Skills Getting Started](https://geminicli.com/docs/cli/tutorials/skills-getting-started/)
+- [OpenCode: Skills Docs](https://opencode.ai/docs/skills/)
+- [Claude: Skills Guide](https://code.claude.com/docs/en/skills)
+- [Codex: Developers Skills](https://developers.openai.com/codex/skills)
 
 ## MCP (Model Context Protocol)
 Placeholder: Configuración, seguridad y herramientas para cada CLI.
