@@ -16,9 +16,9 @@
 ## Phase 3: Deep Dive Content Migration - MCP & Advanced Features
 - [x] Task: Expand and refine MCP documentation. (22fd4ba)
     - [x] Sub-task: Detail security sandboxing, tool exclusion patterns, and specific Docker/OAuth troubleshooting for all agents.
-- [~] Task: Expand and refine Hooks and Subagents.
-    - [ ] Sub-task: Detail JSON stdin/stdout protocols for Gemini CLI hooks and subagent team architectures.
-- [ ] Task: Conductor - User Manual Verification 'Phase 3'
+- [x] Task: Expand and refine Hooks and Subagents. (45d17d7)
+    - [x] Sub-task: Detail JSON stdin/stdout protocols for Gemini CLI hooks and subagent team architectures.
+- [~] Task: Conductor - User Manual Verification 'Phase 3'
 
 ## Phase 4: Model Evaluation and Finalization
 - [ ] Task: Research and Draft Comprehensive Model Evaluation.
