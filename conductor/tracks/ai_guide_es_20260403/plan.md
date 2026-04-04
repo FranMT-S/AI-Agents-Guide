@@ -17,8 +17,8 @@
 ## Phase 3: Content Migration - Advanced Features
 - [x] Task: Document Model Context Protocol (MCP). (165214b)
     - [x] Sub-task: Add configurations, security tips, and tool exclusion strategies for each CLI.
-- [ ] Task: Document Hooks and Subagents.
-    - [ ] Sub-task: Detail setups, configuration paths, and use-cases.
+- [x] Task: Document Hooks and Subagents. (8111b3f)
+    - [x] Sub-task: Detail setups, configuration paths, and use-cases.
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Content Migration - Advanced Features' (Protocol in workflow.md)
 
 ## Phase 4: Model Evaluation and Finalization
