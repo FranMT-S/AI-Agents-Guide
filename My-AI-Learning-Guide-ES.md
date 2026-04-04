@@ -64,6 +64,14 @@ Históricamente, cada herramienta tenía su propio archivo (`.cursorrules`, `GEM
 > [!NOTE]
 > Para conocer aspectos únicos y configuraciones avanzadas de cada herramienta, consulta su archivo específico: [Cursor](./cursor.md) | [Antigravity](./antigravity.md) | [Gemini CLI](./gemini-cli.md) | [OpenCode](./openCode.md) | [Claude Code](./claude-code.md) | [Codex CLI](./codex-cli.md).
 
+**Referencias y Documentación Oficial:**
+- [Cursor: Rules](https://cursor.com/docs/rules)
+- [Antigravity: Rules & Workflows](https://antigravity.google/docs/rules-workflows)
+- [Gemini CLI: Memory Management](https://geminicli.com/docs/cli/tutorials/memory-management/)
+- [OpenCode: Rules](https://opencode.ai/docs/rules/)
+- [Claude: Memory & Agents.md](https://code.claude.com/docs/en/memory#agents-md)
+- [Codex: Agents.md Guides](https://developers.openai.com/codex/guides/agents-md)
+
 ## Skills (Habilidades)
 
 Las **Skills** son paquetes de **experiencia bajo demanda**. A diferencia del contexto general, las habilidades contienen instrucciones, scripts y recursos que el agente solo carga mediante **progressive disclosure** (revelación progresiva) cuando detecta que la tarea actual coincide con la descripción de la skill. Esto evita saturar la ventana de contexto con información irrelevante.
@@ -196,6 +204,12 @@ Las extensiones permiten añadir funcionalidades específicas a los agentes, com
 
 > [!NOTE]
 > Para detalles sobre desarrollo, eventos y arquitecturas de plugins específicos por herramienta, consulta su archivo específico: [Cursor](./cursor.md) | [Antigravity](./antigravity.md) | [Gemini CLI](./gemini-cli.md) | [OpenCode](./openCode.md) | [Claude Code](./claude-code.md) | [Codex CLI](./codex-cli.md).
+
+**Referencias y Documentación Oficial:**
+- [Cursor: Plugins](https://cursor.com/docs/plugins)
+- [Gemini CLI: Extensions Guide](https://geminicli.com/docs/extensions/) | [Writing](https://geminicli.com/docs/extensions/writing-extensions/) | [Best Practices](https://geminicli.com/docs/extensions/best-practices/) | [Reference](https://geminicli.com/docs/extensions/reference/)
+- [OpenCode: Plugins](https://opencode.ai/docs/es/plugins/) | [Ecosystem](https://opencode.ai/docs/es/ecosystem/)
+- [Claude: Discover Plugins](https://code.claude.com/docs/en/discover-plugins) | [Plugins Guide](https://code.claude.com/docs/en/plugins)
 
 ## Hooks (Disparadores)
 
