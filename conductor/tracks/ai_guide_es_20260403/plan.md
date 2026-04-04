@@ -14,9 +14,9 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2'
 
 ## Phase 3: Deep Dive Content Migration - MCP & Advanced Features
-- [ ] Task: Expand and refine MCP documentation.
-    - [ ] Sub-task: Detail security sandboxing, tool exclusion patterns, and specific Docker/OAuth troubleshooting for all agents.
-- [ ] Task: Expand and refine Hooks and Subagents.
+- [x] Task: Expand and refine MCP documentation. (22fd4ba)
+    - [x] Sub-task: Detail security sandboxing, tool exclusion patterns, and specific Docker/OAuth troubleshooting for all agents.
+- [~] Task: Expand and refine Hooks and Subagents.
     - [ ] Sub-task: Detail JSON stdin/stdout protocols for Gemini CLI hooks and subagent team architectures.
 - [ ] Task: Conductor - User Manual Verification 'Phase 3'
 
