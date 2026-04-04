@@ -7,9 +7,9 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Setup and Structure Definition' (Protocol in workflow.md)
 
 ## Phase 2: Content Migration - Core Concepts
-- [ ] Task: Migrate and translate persistent memory concepts.
-    - [ ] Sub-task: Add content for `AGENTS.md` and `GEMINI.md` scoping.
-    - [ ] Sub-task: Format with Obsidian callouts.
+- [x] Task: Migrate and translate persistent memory concepts. (21844bc)
+    - [x] Sub-task: Add content for `AGENTS.md` and `GEMINI.md` scoping.
+    - [x] Sub-task: Format with Obsidian callouts.
 - [ ] Task: Migrate and expand the Skills documentation.
     - [ ] Sub-task: Add definitions, best practices, and template examples in Spanish.
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Content Migration - Core Concepts' (Protocol in workflow.md)
