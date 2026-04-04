@@ -6,12 +6,12 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Preparation and Link Extraction' (Protocol in workflow.md)
 
 ## Phase 2: Core Concepts Review and Update
-- [~] Task: Review and update Agents.md/Context documentation.
-    - [ ] Sub-task: Analyze links for Cursor Rules, Antigravity Workflows, Gemini CLI Memory, OpenCode Rules, Claude Agents.md, and Codex Agents.md.
-    - [ ] Sub-task: Create dedicated summaries and correct existing explanations in `My-AI-Learning-Guide-ES.md`.
-- [ ] Task: Review and update Skills documentation.
-    - [ ] Sub-task: Analyze links for Cursor Skills Migration, Antigravity Skills, Gemini CLI Skills, OpenCode Skills, Claude Skills, and Codex Skills.
-    - [ ] Sub-task: Create dedicated summaries and correct existing explanations in `My-AI-Learning-Guide-ES.md`.
+- [x] Task: Review and update Agents.md/Context documentation. (ef3a0c3)
+    - [x] Sub-task: Analyze links for Cursor Rules, Antigravity Workflows, Gemini CLI Memory, OpenCode Rules, Claude Agents.md, and Codex Agents.md.
+    - [x] Sub-task: Create dedicated summaries and correct existing explanations in `My-AI-Learning-Guide-ES.md`.
+- [x] Task: Review and update Skills documentation. (ef3a0c3)
+    - [x] Sub-task: Analyze links for Cursor Skills Migration, Antigravity Skills, Gemini CLI Skills, OpenCode Skills, Claude Skills, and Codex Skills.
+    - [x] Sub-task: Create dedicated summaries and correct existing explanations in `My-AI-Learning-Guide-ES.md`.
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Core Concepts Review and Update' (Protocol in workflow.md)
 
 ## Phase 3: Advanced Features Review and Update
