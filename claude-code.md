@@ -22,3 +22,8 @@ Esta guía detalla las características exclusivas de Claude Code en cuanto a la
 *   **Fuentes:** [Claude Code: Discover Plugins](https://code.claude.com/docs/en/discover-plugins), [Claude Code: Plugins](https://code.claude.com/docs/en/plugins)
 *   **Arquitectura:** Los plugins pueden agrupar skills, agentes, hooks y servidores MCP o LSP. Se definen mediante `.claude-plugin/plugin.json`.
 *   **Características Únicas:** Soporta la inyección de **Servidores LSP (Language Server Protocol)** para proveer diagnósticos en tiempo real e inteligencia de código estilo IDE directamente en la terminal. Incorpora un sistema de "Output Styles" que altera cómo se comunica Claude (ej. "modo explicativo" vs "modo aprendizaje").
+
+## Automatización y Tareas Programadas
+*   **Fuentes:** [Claude Code: Headless Mode](https://code.claude.com/docs/en/headless), [Scheduled Tasks](https://code.claude.com/docs/en/scheduled-tasks)
+*   **Comandos:** `claude -p "prompt"` o `/loop [interval] [prompt]`.
+*   **Características Únicas:** El flag `--bare` omite la carga automática de hooks y configuración global, ideal para aislar procesos en CI. Soporta `--allowedTools` para aprobar herramientas sin intervención humana. Puedes forzar que el output final cumpla con un esquema JSON usando `--json-schema`. Además, permite programar tareas periódicas (`/loop`) usando sintaxis CRON estándar.

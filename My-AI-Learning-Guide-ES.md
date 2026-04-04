@@ -254,23 +254,28 @@ Para proyectos complejos, herramientas como **Claude Code** permiten crear equip
 
 ## Automatización y Scripting
 
-El modo **Headless** (sin interfaz) permite integrar agentes en flujos de CI/CD o ejecutar tareas programadas.
+El modo **Headless** (sin interfaz) permite integrar agentes en flujos de CI/CD, tareas programadas o scripts donde no hay un usuario humano para interactuar con la terminal.
 
-### 1. Headless Mode y No-Interactivo
-Ejecutar un agente de forma programática requiere flags específicos para evitar solicitudes de aprobación constantes.
+### 1. Tabla Comparativa de Automatización
 
-- **Gemini CLI:** `gemini --yolo` o `--approval-mode auto_edit`.
-- **Claude Code:** `claude -p "prompt"` para ejecuciones únicas.
-- **Codex CLI:** Soporta modo no interactivo para scripts de migración masiva.
+Ejecutar un agente de forma programática requiere comandos y flags específicos para evitar solicitudes de aprobación constantes y estructurar la salida (ej. a JSON).
+
+| Agente | Comando Principal | Enfoque Principal |
+| :--- | :--- | :--- |
+| **Gemini CLI** | `gemini -p "query"` | Retorna texto o JSON estructurado para scripts. Usa la herramienta nativa en entornos no TTY. |
+| **Claude Code** | `claude -p "prompt"` | Soporta `Agent SDK` y ejecución mediante `--bare` para aislar contextos en CI. |
+| **Codex CLI** | `codex exec "prompt"` | Ejecución robusta en pipelines con `--full-auto` y validación de schemas JSON. |
 
 > [!WARNING]
-> El modo **YOLO** debe usarse con extrema precaución. Asegúrate de tener guardrails definidos en los **Hooks** para evitar que el agente ejecute comandos destructivos como `rm -rf /` sin supervisión.
+> El modo automatizado debe usarse con extrema precaución. Asegúrate de tener guardrails definidos en los **Hooks** o usar modos de *sandboxing* estrictos (como `--sandbox` en Codex o `--allowedTools` en Claude) para evitar que el agente ejecute comandos destructivos sin supervisión.
 
-**Referencias y Documentación:**
-- [Claude: Headless Mode](https://code.claude.com/docs/en/headless)
+> [!NOTE]
+> Para detalles sobre códigos de salida, comandos específicos, formatos JSON y tareas programadas (CRON), consulta el archivo específico de cada herramienta: [Gemini CLI](./gemini-cli.md) | [Claude Code](./claude-code.md) | [Codex CLI](./codex-cli.md).
+
+**Referencias y Documentación Oficial:**
 - [Gemini CLI: Headless Tutorial](https://geminicli.com/docs/cli/headless/)
-- [Codex CLI: Non-interactive Usage](https://developers.openai.com/codex/noninteractive)
-- [Claude: Scheduled Tasks](https://code.claude.com/docs/en/scheduled-tasks)
+- [Claude: Headless Mode](https://code.claude.com/docs/en/headless) | [Scheduled Tasks](https://code.claude.com/docs/en/scheduled-tasks)
+- [Codex: Non-interactive Usage](https://developers.openai.com/codex/noninteractive)
 
 ## Evaluación de Modelos
 

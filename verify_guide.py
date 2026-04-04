@@ -78,7 +78,7 @@ def test_hooks_subagents_deep_dive():
         "determinista",
         "aislado",
         "Agent Teams",
-        "headless"
+        "Headless"
     ]
     for keyword in required_keywords:
         assert keyword in content, f"Error: Deep-dive keyword '{keyword}' not found in Hooks/Subagents section."

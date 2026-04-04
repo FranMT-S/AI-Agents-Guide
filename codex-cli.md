@@ -17,3 +17,8 @@ Esta guía detalla las características exclusivas de Codex CLI en cuanto a la g
 *   **Características Técnicas:** Soporta **Stdio** y **Streamable HTTP**. Configuración compartida entre la extensión del IDE y la CLI.
 *   **Archivos:** Configuración en `~/.codex/config.toml` (global) o `.codex/config.toml` (proyecto, requiere aprobación de confianza).
 *   **Características Únicas:** Posee una TUI dedicada activada por el comando `/mcp`. Permite controlar explícitamente timeouts (`startup_timeout_sec` y `tool_timeout_sec`). Facilita integraciones en entornos remotos devbox al permitir sobrescribir los callbacks OAuth mediante `mcp_oauth_callback_url`. Gestiona exclusiones con `enabled_tools` y `disabled_tools`.
+
+## Automatización y Scripting (Non-interactive Mode)
+*   **Fuente:** [Codex: Non-interactive Usage](https://developers.openai.com/codex/noninteractive)
+*   **Comandos:** `codex exec "prompt"`.
+*   **Características Únicas:** Soporta el flag `--full-auto` para permitir ediciones automáticas de archivos sin confirmación, ideal para CI/CD. Utiliza `--sandbox <mode>` para restringir agresivamente permisos (ej. `workspace-write`). Soporta `--output-schema` para validación estricta de JSON en la respuesta, y permite el streaming de eventos en formato JSONL.

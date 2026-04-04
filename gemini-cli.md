@@ -22,3 +22,8 @@ Esta guía detalla las características exclusivas de Gemini CLI en cuanto a la 
 *   **Fuentes:** [Gemini CLI: Extensions Guide](https://geminicli.com/docs/extensions/), [Writing Extensions](https://geminicli.com/docs/extensions/writing-extensions/), [Best Practices](https://geminicli.com/docs/extensions/best-practices/), [Reference](https://geminicli.com/docs/extensions/reference/)
 *   **Arquitectura:** Las extensiones expanden el CLI mediante un manifiesto `gemini-extension.json` y se instalan directamente desde URLs de GitHub (`gemini extensions install <URL>`).
 *   **Características Únicas:** Pueden inyectar comandos personalizados (archivos TOML en la carpeta `commands/`), habilidades (Skills) e incluso aportar "Tier 2 security rules" al motor de políticas (Policy Engine) del agente. Soporta la gestión segura de credenciales en el keychain del sistema. Permite desarrollo iterativo mediante enlaces simbólicos con `gemini extensions link`.
+
+## Automatización y Scripting (Headless Mode)
+*   **Fuente:** [Gemini CLI: Headless Tutorial](https://geminicli.com/docs/cli/headless/)
+*   **Comandos:** `gemini -p "query"` o `gemini --prompt "query"`.
+*   **Características Únicas:** Retorna texto o JSON estructurado (`--output-format json` o `stream-json`) para scripts. Se activa automáticamente en entornos no-TTY. Genera eventos de salida específicos (`init`, `message`, `tool_use`, `tool_result`, `error`, `result`) y códigos de salida detallados (ej. `42` para errores de input, `53` para límite de turnos superado).
