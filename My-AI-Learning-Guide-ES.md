@@ -49,7 +49,55 @@ Para organizar estas instrucciones de forma eficiente, manejamos tres niveles de
 > **Higiene de Contexto:** No satures cada carpeta con instrucciones. Si las reglas se contradicen en demasiados niveles, el comportamiento de la IA se vuelve errático. Usa siempre `.gitignore` para evitar que la IA lea carpetas innecesarias como `node_modules`.
 
 ## Skills (Habilidades)
-Placeholder: Qué son las skills, consejos de construcción y metadatos.
+
+Las **Skills** representan una experticia específica bajo demanda. A diferencia del contexto general, las habilidades contienen instrucciones, scripts y recursos que el agente solo carga mediante **progressive disclosure** (revelación progresiva) cuando detecta que la tarea actual coincide con la descripción de la skill.
+
+### 1. ¿Qué podemos lograr con las Skills?
+
+- **Definir Roles Técnicos:** Transformar al modelo en un experto de nicho (ej. "Arquitecto de AWS").
+- **Integrar Herramientas:** Enseñar al agente a usar binarios de terminal como `ffmpeg` o `git`.
+- **Estandarizar Formatos:** Asegurar que el output siempre siga un esquema (JSON, ISO, templates).
+- **Reducir Alucinaciones:** Limitar el alcance del conocimiento a los parámetros definidos en la skill.
+
+### 2. Anatomía de una Skill (SKILL.md)
+
+Cada habilidad reside en una carpeta que **debe** contener un archivo `SKILL.md`. Los metadatos en el frontmatter son cruciales para que el agente sepa cuándo activarla.
+
+> [!TIP]
+> **Metadatos Clave:** El campo `description` o `trigger` es el disparador. Debe ser claro sobre *qué* hace la skill y *cuándo* debe usarse.
+
+```markdown
+---
+name: nombre-de-la-skill
+description: Úsalo cuando necesites [acción específica].
+trigger: Palabras clave o intención del usuario.
+---
+
+# Goal
+Qué debe lograr el agente.
+
+# Steps
+1. Paso técnico uno.
+2. Paso técnico dos (ver `scripts/logic.ts`).
+
+# Output Format
+Usa el template en `templates/report.md`.
+```
+
+### 3. Configuración y Rutas
+
+| Herramienta | Alcance de Proyecto | Alcance Global |
+| :--- | :--- | :--- |
+| **Antigravity** | `.agent/skills/` | `~/.agents/skills/` |
+| **Gemini CLI** | `.gemini/skills/` | `~/.gemini/skills/` |
+| **Codex** | `.agents/skills/` | `~/.agents/skills/` |
+
+### 4. Buenas Prácticas y Metadatos
+
+- **Modularidad:** No crees una skill "sabelotodo". Divide la inteligencia en módulos pequeños.
+- **Uso de Templates:** Define variables con `{{variable}}` en archivos dentro de una carpeta `templates/` para que el agente genere documentos consistentes.
+- **Ejemplos Few-Shot:** Incluye una carpeta `examples/` con inputs y outputs esperados; es más efectivo que las instrucciones largas.
+- **Metadatos de Activación:** Asegúrate de que el `trigger` no sea demasiado genérico para evitar activaciones accidentales que consuman tokens innecesariamente.
 
 ## MCP (Model Context Protocol)
 Placeholder: Configuración, seguridad y herramientas para cada CLI.
