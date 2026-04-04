@@ -1,0 +1,18 @@
+# Obsidian specific
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.obsidian/indexedDB/
+
+# Plugins and themes (uncomment if you prefer not to sync them)
+.obsidian/plugins/
+.obsidian/themes/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Backup and logs
+*.log
+.obsidian/backups/
