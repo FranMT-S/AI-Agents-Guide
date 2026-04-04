@@ -26,6 +26,8 @@ La memoria persistente permite que el asistente cargue automáticamente un "manu
 
 > [!NOTE]
 > Un **archivo de contexto** (como `AGENTS.md`, `GEMINI.md` o `CLAUDE.md`) es un documento técnico donde se definen las instrucciones de comportamiento de la IA. Se denomina **memoria persistente** porque sobrevive al cierre de una sesión.
+> 
+> **`AGENTS.md` se está convirtiendo en el estándar multiplataforma**, siendo compatible actualmente con la mayoría de las herramientas (Codex, Gemini CLI, Claude Code y recientemente Antigravity).
 
 Para organizar estas instrucciones de forma eficiente, manejamos tres niveles de **Alcance (Scope)**:
 
@@ -37,12 +39,12 @@ Para organizar estas instrucciones de forma eficiente, manejamos tres niveles de
 
 ### 2. Comparativa de Archivos de Contexto
 
-| Herramienta | Archivo Principal | Ubicación Global |
+| Herramienta | Archivos Principales | Ubicación Global |
 | :--- | :--- | :--- |
 | **Cursor** | `.cursorrules` / `.cursor/rules/*.mdc` | Settings > Rules for AI |
-| **Antigravity** | `GEMINI.md` | `~/.gemini/GEMINI.md` |
+| **Antigravity** | `GEMINI.md` / `AGENTS.md` | `~/.gemini/GEMINI.md` |
 | **Gemini CLI** | `GEMINI.md` / `AGENTS.md` | `~/.gemini/GEMINI.md` |
-| **Claude Code** | `CLAUDE.md` | `~/.claude/CLAUDE.md` |
+| **Claude Code** | `CLAUDE.md` / `AGENTS.md` | `~/.claude/CLAUDE.md` |
 | **Codex CLI** | `AGENTS.md` | `~/.codex/AGENTS.md` |
 
 > [!WARNING]
@@ -93,11 +95,11 @@ Usa el template en `templates/report.md`.
 
 ### 3. Configuración y Rutas
 
-| Herramienta | Alcance de Proyecto | Alcance Global |
-| :--- | :--- | :--- |
-| **Antigravity** | `.agent/skills/` | `~/.agents/skills/` |
-| **Gemini CLI** | `.gemini/skills/` | `~/.gemini/skills/` |
-| **Codex** | `.agents/skills/` | `~/.agents/skills/` |
+| Herramienta     | Alcance de Proyecto | Alcance Global      |
+| :-------------- | :------------------ | :------------------ |
+| **Antigravity** | `.agent/skills/`    | `~/.agents/skills/` |
+| **Gemini CLI**  | `.gemini/skills/`   | `~/.gemini/skills/` |
+| **Codex**       | `.agents/skills/`   | `~/.agents/skills/` |
 
 ### 4. Buenas Prácticas y Metadatos
 
