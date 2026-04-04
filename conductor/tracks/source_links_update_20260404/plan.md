@@ -14,23 +14,23 @@
     - [x] Sub-task: Restore general summary tables in `My-AI-Learning-Guide-ES.md` and populate specific `.md` files per tool.
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Core Concepts Review and Update' (Protocol in workflow.md)
 
-## Phase 3: Advanced Features Review and Update
-- [x] Task: Review and update MCP documentation.
+## Phase 3: Advanced Features Review and Update [checkpoint: e8c0ab0]
+- [x] Task: Review and update MCP documentation. (48219dc)
     - [x] Sub-task: Analyze links for Cursor MCP, Antigravity MCP, Gemini CLI MCP, OpenCode MCP, Claude MCP, and Codex MCP. Focus on security and tool exclusion.
     - [x] Sub-task: Update `My-AI-Learning-Guide-ES.md` (general) and individual tool `.md` files (specifics).
-- [x] Task: Review and update Plugins/Extensions documentation.
+- [x] Task: Review and update Plugins/Extensions documentation. (48219dc)
     - [x] Sub-task: Analyze links for Cursor Plugins, Gemini CLI Extensions, OpenCode Plugins/Ecosystem, and Claude Plugins.
     - [x] Sub-task: Update `My-AI-Learning-Guide-ES.md` (general) and individual tool `.md` files (specifics).
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Advanced Features Review and Update' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Advanced Features Review and Update' (Protocol in workflow.md)
 
 ## Phase 4: Lifecycle and Automation Review and Update
-- [ ] Task: Review and update Hooks documentation.
-    - [ ] Sub-task: Analyze links for Cursor Hooks, Gemini CLI Hooks, Claude Hooks, and Codex Hooks.
-    - [ ] Sub-task: Update `My-AI-Learning-Guide-ES.md` (general) and individual tool `.md` files (specifics).
-- [ ] Task: Review and update Subagents documentation.
-    - [ ] Sub-task: Analyze links for Cursor Subagents, Gemini CLI Subagents, OpenCode Agents, Claude Sub-agents/Teams, and Codex Subagents.
-    - [ ] Sub-task: Update `My-AI-Learning-Guide-ES.md` (general) and individual tool `.md` files (specifics).
-- [ ] Task: Review and update Automation/Headless Mode documentation.
-    - [ ] Sub-task: Analyze links for Claude Headless/Scheduled Tasks, Gemini CLI Headless, and Codex Non-interactive.
-    - [ ] Sub-task: Update `My-AI-Learning-Guide-ES.md` (general) and individual tool `.md` files (specifics).
+- [x] Task: Review and update Hooks documentation. (45d17d7)
+    - [x] Sub-task: Analyze links for Cursor Hooks, Gemini CLI Hooks, Claude Hooks, and Codex Hooks.
+    - [x] Sub-task: Update `My-AI-Learning-Guide-ES.md` (general) and individual tool `.md` files (specifics).
+- [x] Task: Review and update Subagents documentation. (45d17d7)
+    - [x] Sub-task: Analyze links for Cursor Subagents, Gemini CLI Subagents, OpenCode Agents, Claude Sub-agents/Teams, and Codex Subagents.
+    - [x] Sub-task: Update `My-AI-Learning-Guide-ES.md` (general) and individual tool `.md` files (specifics).
+- [x] Task: Review and update Automation/Headless Mode documentation. (c6a7d40)
+    - [x] Sub-task: Analyze links for Claude Headless/Scheduled Tasks, Gemini CLI Headless, and Codex Non-interactive.
+    - [x] Sub-task: Update `My-AI-Learning-Guide-ES.md` (general) and individual tool `.md` files (specifics).
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Lifecycle and Automation Review and Update' (Protocol in workflow.md)
