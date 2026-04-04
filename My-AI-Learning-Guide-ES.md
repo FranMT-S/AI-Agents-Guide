@@ -298,8 +298,52 @@ Ejecutar un agente de forma programática requiere flags específicos para evita
 - [Codex CLI: Non-interactive Usage](https://developers.openai.com/codex/noninteractive)
 - [Claude: Scheduled Tasks](https://code.claude.com/docs/en/scheduled-tasks)
 
-## Evaluación de Modelos
-Placeholder: Comparativa entre Gemini, Claude y GPT.
+## Evaluación de Modelos (Early 2026)
+
+En 2026, la métrica de éxito ha pasado de la simple generación de código a la **capacidad agentica**: qué tan bien puede un modelo usar herramientas (MCP), navegar por repositorios masivos y resolver problemas en una terminal real.
+
+### 1. Comparativa de Rendimiento (Benchmarks)
+
+| Métrica | **Gemini 3.1 Pro** | **Claude 4.6 Sonnet** | **GPT-5.3 Codex** |
+| :--- | :--- | :--- | :--- |
+| **SWE-bench Verified** | 80.6% | 79.6% | 80.0% |
+| **Terminal-Bench 2.0** | 68.5% | 65.4% | **77.3%** |
+| **Razonamiento (ARC-AGI-2)** | **77.1%** | 68.8% | 52.9% |
+| **Context Window** | **1M - 10M** | 1M (Beta) | 400K |
+| **Fortaleza Principal** | Análisis multi-repo | UI y Pensamiento Crítico | Ejecución en Terminal |
+
+---
+
+### 2. Análisis por Perfil de Uso
+
+#### Gemini 3.1 Pro: El Rey del Contexto y Valor
+Es el modelo más eficiente para proyectos masivos.
+- **Lo mejor:** Ingesta de monorepos enteros gracias a su ventana de 1M+ tokens. Es imbatible en encontrar "agujas en un pajar" (dependencias ocultas entre archivos).
+- **Costo:** El mejor ratio razonamiento/precio ($2/$12 por M tokens).
+- **Uso ideal:** Refactorización a gran escala, auditorías de seguridad en repositorios gigantes y comprensión de arquitecturas complejas.
+
+#### Claude 4.6 Sonnet: El "Daily Driver"
+Preferido por desarrolladores para el flujo de trabajo diario.
+- **Lo mejor:** **Context Compaction** (compactación automática del historial) y **Adaptive Thinking**. Su capacidad para reconstruir interfaces visuales a partir de descripciones es superior.
+- **Orquestación MCP:** Es el más inteligente decidiendo *cuál* herramienta llamar cuando las instrucciones son ambiguas.
+- **Uso ideal:** Desarrollo de features desde cero, trabajo en Frontend/UI y tareas que requieren un "pensamiento profundo" sobre la arquitectura.
+
+#### GPT-5.3 Codex: El Ejecutor Terminal
+Optimizado para la velocidad y la acción directa.
+- **Lo mejor:** Velocidad extrema (25% más rápido que versiones anteriores) y precisión quirúrgica en comandos de terminal.
+- **Eficiencia de Tokens:** Su tokenización agentica consume entre 2 y 4 veces menos tokens para las mismas tareas que sus rivales.
+- **Uso ideal:** Automatización de CI/CD, batch refactoring, scripting puro y flujos donde necesitas que el modelo "simplemente lo haga" sin explicaciones excesivas.
+
+---
+
+### 3. Veredicto Conductor (2026)
+
+- **Usa Gemini 3.1 Pro** si tu prioridad es el análisis profundo de un codebase que no conoces o el ahorro de costos en ejecuciones masivas.
+- **Usa Claude 4.6 Sonnet** para el desarrollo interactivo donde la precisión de la lógica y la calidad de la UI son críticas.
+- **Usa GPT-5.3 Codex** para tareas repetitivas de terminal y scripts de automatización donde la velocidad es el factor clave.
+
+> [!TIP]
+> **Orquestación Híbrida:** Los arquitectos avanzados utilizan Claude para **planificar** la tarea y luego delegan la **implementación** repetitiva a subagentes corriendo GPT-5.3 Codex para maximizar velocidad y minimizar costos.
 
 ---
 *Nota: Todos los términos técnicos y fragmentos de código se mantienen en inglés para mayor precisión técnica.*

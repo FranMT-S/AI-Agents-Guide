@@ -87,6 +87,22 @@ def test_hooks_subagents_deep_dive():
     for keyword in required_keywords:
         assert keyword in content, f"Error: Deep-dive keyword '{keyword}' not found in Hooks/Subagents section."
 
+def test_model_evaluation_content():
+    with open(GUIDE_PATH, "r", encoding="utf-8") as f:
+        content = f.read()
+    required_keywords = [
+        "Evaluación de Modelos",
+        "Benchmarks",
+        "SWE-bench",
+        "Terminal-Bench 2.0",
+        "Gemini 3.1 Pro",
+        "Claude 4.6 Sonnet",
+        "GPT-5.3 Codex",
+        "Veredicto Conductor"
+    ]
+    for keyword in required_keywords:
+        assert keyword in content, f"Error: Keyword '{keyword}' not found in Model Evaluation section."
+
 if __name__ == "__main__":
     try:
         test_file_exists()
@@ -95,6 +111,7 @@ if __name__ == "__main__":
         test_skills_content()
         test_mcp_advanced_content()
         test_hooks_subagents_deep_dive()
+        test_model_evaluation_content()
         print("Success: All tests passed.")
     except AssertionError as e:
         print(e)
