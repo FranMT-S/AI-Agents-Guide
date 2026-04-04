@@ -167,13 +167,59 @@ Permite gestionar tareas y documentos de ClickUp.
 - [ClickUp MCP Server Docs](https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server-1)
 
 ## Plugins y Extensiones
-Placeholder: Resumen de integración para las distintas herramientas.
+
+Las extensiones permiten añadir funcionalidades específicas a los agentes, como integración con bases de datos, APIs de terceros o capacidades de renderizado.
+
+- **Cursor:** Soporta extensiones de VSCode y plugins específicos de IA.
+- **Gemini CLI:** Utiliza un ecosistema de extensiones instalables vía URL de GitHub.
+- **Claude Code:** Se expande mediante herramientas y hooks configurables.
+
+**Referencias y Documentación:**
+- [Cursor: Plugins](https://cursor.com/docs/plugins)
+- [Gemini CLI: Extensions Guide](https://geminicli.com/docs/extensions/)
+- [OpenCode: Ecosystem (ES)](https://opencode.ai/docs/es/ecosystem/)
+- [Claude Code: Discover Plugins](https://code.claude.com/docs/en/discover-plugins)
 
 ## Hooks (Disparadores)
-Placeholder: Configuraciones y diferencias entre Gemini CLI, Claude Code y otros.
+
+Los **Hooks** son scripts deterministas que se ejecutan automáticamente en respuesta a eventos del ciclo de vida del agente. A diferencia del contexto, los hooks son garantías de ejecución.
+
+### Eventos Comunes
+
+| Evento | Cuándo se dispara | Uso Típico |
+| :--- | :--- | :--- |
+| **PreToolUse** | Antes de ejecutar una herramienta | Validaciones de seguridad, guardrails. |
+| **PostToolUse** | Después de que una herramienta completa | Formateo de código (Prettier), tests. |
+| **BeforeSession** | Al iniciar la sesión | Carga de variables de entorno. |
+
+> [!IMPORTANT]
+> Los hooks deben ser scripts rápidos. Si un hook falla (por ejemplo, con un `exit 2` en Claude Code), puede bloquear la acción del agente para proteger la integridad del sistema.
+
+**Referencias y Documentación:**
+- [Cursor Docs: Hooks](https://cursor.com/docs/hooks)
+- [Gemini CLI: Hooks Reference](https://geminicli.com/docs/hooks/reference/)
+- [Claude Code: Hooks Guide](https://code.claude.com/docs/en/hooks-guide)
+- [Codex CLI: Hooks](https://developers.openai.com/codex/hooks)
 
 ## Subagentes
-Placeholder: Consejos, arquitectura y delegación de tareas.
+
+Un **Subagente** es un agente especializado con su propio contexto aislado y **expertise** definida que el agente principal puede invocar para delegar tareas complejas.
+
+### ¿Cuándo usar un Subagente?
+
+- **Delegación de Expertise:** Cuando necesitas un especialista (ej. un experto en seguridad para auditar código).
+- **Aislamiento de Contexto:** Para evitar que la ventana de contexto del agente principal se sature con detalles irrelevantes de una sub-tarea.
+- **Tareas Paralelas:** Equipos de agentes trabajando en diferentes módulos simultáneamente.
+
+> [!NOTE]
+> En herramientas como **Gemini CLI**, los subagentes se definen en la carpeta `.gemini/agents/` mediante archivos `.md` que describen sus herramientas y rol.
+
+**Referencias y Documentación:**
+- [Cursor Docs: Subagents](https://cursor.com/docs/subagents)
+- [Gemini CLI: Subagents Tutorial](https://geminicli.com/docs/core/subagents/)
+- [OpenCode: Agents (ES)](https://opencode.ai/docs/es/agents/)
+- [Claude Code: Sub-agents & Teams](https://code.claude.com/docs/en/sub-agents)
+- [Codex CLI: Subagents Guide](https://developers.openai.com/codex/subagents)
 
 ## Automatización y Scripting
 Placeholder: Headless mode y automatización de flujos.
