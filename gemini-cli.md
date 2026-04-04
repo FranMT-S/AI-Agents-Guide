@@ -10,6 +10,14 @@ Esta guía detalla las características exclusivas de Gemini CLI en cuanto a la 
 ## Skills (Habilidades)
 *   **Fuentes:** [Gemini CLI: Skills Getting Started](https://geminicli.com/docs/cli/tutorials/skills-getting-started/), [Gemini CLI: Skills](https://geminicli.com/docs/cli/skills/)
 *   **Archivos:** Soporta tres niveles: Workspace (`.gemini/skills/`), User (`~/.gemini/skills/`) y Extension (empaquetado).
+*   **Estructura de Directorio:**
+    ```text
+    mi-proyecto/
+    └── .gemini/
+        └── skills/
+            └── my-skill/
+                └── SKILL.md
+    ```
 *   **Características Únicas:** El orden de precedencia estricto es Workspace > User > Extension. Requiere aprobación manual del usuario (sandboxing) antes de que el agente pueda leer archivos dentro de la carpeta de la skill. Soporta ejecutar binarios empaquetados (ej. `node scripts/audit.js`).
 
 ## MCP (Model Context Protocol)

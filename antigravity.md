@@ -10,6 +10,14 @@ Esta guía detalla las características exclusivas de Google Antigravity en cuan
 ## Skills (Habilidades)
 *   **Fuente:** [Antigravity: Skills Docs](https://antigravity.google/docs/skills)
 *   **Archivos:** Busca skills en `.agents/skills/<name>/` (proyecto) o `~/.gemini/antigravity/skills/<name>/` (global).
+*   **Estructura de Directorio:**
+    ```text
+    mi-proyecto/
+    └── .agents/
+        └── skills/
+            └── my-skill/
+                └── SKILL.md
+    ```
 *   **Características Únicas:** Las skills se activan mediante una herramienta nativa (`skill({ name: "..." })`). Recomienda incluir scripts en una carpeta `/scripts` y pedirle al agente que ejecute el script con `--help` (como "caja negra") en lugar de leer todo el código fuente, ahorrando espacio en la ventana de contexto.
 
 ## MCP (Model Context Protocol)

@@ -10,6 +10,13 @@ Esta guía detalla las características exclusivas de Codex CLI en cuanto a la g
 ## Skills (Habilidades)
 *   **Fuente:** [Codex: Developers Skills](https://developers.openai.com/codex/skills)
 *   **Archivos:** `~/.agents/skills/` y manifiestos `agents/openai.yaml`.
+*   **Estructura de Directorio:**
+    ```text
+    ~/.agents/
+    └── skills/
+        └── my-skill/
+            └── SKILL.md
+    ```
 *   **Características Únicas:** Soporta propiedades de interfaz gráfica (`display_name`, `icon`, `brand_color`). Utiliza la directiva `allow_implicit_invocation: false` para forzar activación manual. Permite definir dependencias (`dependencies`) para requerir servidores MCP específicos antes de poder usar la skill.
 
 ## MCP (Model Context Protocol)

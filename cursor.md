@@ -10,6 +10,13 @@ Esta guía detalla las características exclusivas de Cursor en cuanto a la gest
 ## Skills (Habilidades)
 *   **Fuente:** [Cursor: Skills Migration](https://cursor.com/help/customization/skills#how-do-i-migrate-commands-to-skills)
 *   **Archivos:** Usa `.cursor/rules/*.mdc` y la UI de Settings.
+*   **Estructura de Directorio:**
+    ```text
+    mi-proyecto/
+    └── .cursor/
+        └── rules/
+            └── my-skill.mdc
+    ```
 *   **Características Únicas:** Proporciona el comando `/migrate-to-skills` para convertir "Slash Commands" y reglas dinámicas antiguas (aquellas con `alwaysApply: false`) al nuevo formato de Skills.
 
 ## MCP (Model Context Protocol)

@@ -10,6 +10,14 @@ Esta guía detalla las características exclusivas de OpenCode en cuanto a la ge
 ## Skills (Habilidades)
 *   **Fuente:** [OpenCode: Skills Docs](https://opencode.ai/docs/skills/)
 *   **Archivos:** Escanea hacia arriba buscando `.opencode/skills/`, `.claude/skills/`, y `.agents/skills/`.
+*   **Estructura de Directorio:**
+    ```text
+    mi-proyecto/
+    └── .opencode/
+        └── skills/
+            └── my-skill/
+                └── SKILL.md
+    ```
 *   **Características Únicas:** Ofrece control de permisos granulares en `opencode.json` (ej. `"permission": { "skill": { "internal-*": "deny" } }`). Los permisos se pueden personalizar por agente (ej. un agente "Plan" tiene accesos distintos a un agente "Coder"). Permite metadatos personalizados (`metadata: { "audience": "maintainers" }`).
 
 ## MCP (Model Context Protocol)

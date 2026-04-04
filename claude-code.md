@@ -10,6 +10,14 @@ Esta guía detalla las características exclusivas de Claude Code en cuanto a la
 ## Skills (Habilidades)
 *   **Fuente:** [Claude: Skills Guide](https://code.claude.com/docs/en/skills)
 *   **Archivos:** Jerarquía de descubrimiento: Enterprise > Personal (`~/.claude/skills/`) > Project (`.claude/skills/`).
+*   **Estructura de Directorio:**
+    ```text
+    mi-proyecto/
+    └── .claude/
+        └── skills/
+            └── my-skill/
+                └── SKILL.md
+    ```
 *   **Características Únicas:** Usa metadatos YAML avanzados: `allowed-tools` aísla las herramientas disponibles, `context: fork` ejecuta la skill en un subagente separado, y `disable-model-invocation: true` fuerza invocación manual. Proporciona variables de entorno como `${CLAUDE_SESSION_ID}` y `${CLAUDE_SKILL_DIR}`. Limita el trigger a 250 caracteres.
 
 ## MCP (Model Context Protocol)
