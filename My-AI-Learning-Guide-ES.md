@@ -43,29 +43,44 @@ Para optimizar el uso de tokens, los agentes modernos utilizan un sistema de **A
 Históricamente, cada herramienta tenía su propio archivo (`.cursorrules`, `GEMINI.md`, `CLAUDE.md`). Sin embargo, **`AGENTS.md` se ha consolidado como el estándar multiplataforma**. 
 
 > [!IMPORTANT]
-> **Compatibilidad:** Actualmente es soportado de forma nativa por **Codex**, **Gemini CLI**, **Claude Code** y recientemente se añadió soporte oficial en **Antigravity**. Esto permite mantener una única "fuente de verdad" para las reglas de tu proyecto que funcione en cualquier IDE o CLI.
+> **Compatibilidad:** Actualmente es soportado de forma nativa por **Codex**, **Gemini CLI**, **Claude Code**, **OpenCode** y recientemente se añadió soporte oficial en **Antigravity**. Esto permite mantener una única "fuente de verdad" para las reglas de tu proyecto que funcione en cualquier IDE o CLI.
 
 ---
 
-### 3. Comparativa Técnica de Gestión de Contexto
+### 3. Resumen Detallado por Herramienta (Basado en Documentación Oficial)
 
-| Herramienta | Archivos Soportados | Lógica de Precedencia | Capacidad de Modularización |
-| :--- | :--- | :--- | :--- |
-| **Cursor** | `.cursor/rules/*.mdc`, `AGENTS.md` | Los archivos `.mdc` se activan por patrones `glob` (archivos específicos). | Alta: Permite reglas granulares por tipo de archivo. |
-| **Antigravity** | `GEMINI.md`, `AGENTS.md` | Combina las reglas globales con las del workspace. | Media: Permite referenciar otros archivos usando `@filename`. |
-| **Gemini CLI** | `GEMINI.md`, `AGENTS.md`, `CONTEXT.md` | Escanea recursivamente hacia arriba hasta la raíz del repo. | Alta: Soporta modularización total con la sintaxis `@./path/to/rules.md`. |
-| **Claude Code** | `CLAUDE.md`, `AGENTS.md` | Detecta e importa automáticamente archivos de subdirectorios. | Alta: Tiene **Auto Memory** (aprende preferencias sin editarlas manualmente). |
-| **Codex CLI** | `AGENTS.md`, `AGENTS.override.md` | Concatenación por líneas en blanco; el contenido final tiene prioridad. | Baja: Se basa principalmente en la jerarquía de carpetas. |
+#### Cursor (Rules & AGENTS.md)
+*   **Fuente:** [Cursor Docs: Rules](https://cursor.com/docs/rules)
+*   **Archivos:** Usa `.cursor/rules/*.mdc` para reglas granulares y `AGENTS.md` como alternativa sencilla. Soporta reglas a nivel global, de proyecto y de equipo.
+*   **Características Únicas:** El formato MDC soporta "frontmatter" YAML para definir `globs` (qué archivos activan la regla) y `alwaysApply`. Además, permite sincronizar reglas remotas directamente desde repositorios de GitHub.
+
+#### Google Antigravity (Rules & Workflows)
+*   **Fuente:** [Antigravity Docs: Rules & Workflows](https://antigravity.google/docs/rules-workflows)
+*   **Archivos:** Usa `GEMINI.md` y archivos Markdown en `.agents/rules/` con un límite de 12k caracteres.
+*   **Características Únicas:** Soporta menciones de contexto usando `@filename` dentro de las reglas para inyectar contenido dinámico. Los "Workflows" se definen como secuencias de pasos que se pueden invocar con slash commands (ej. `/deploy`).
+
+#### Gemini CLI (Memory Management)
+*   **Fuente:** [Gemini CLI: Memory Management](https://geminicli.com/docs/cli/tutorials/memory-management/)
+*   **Archivos:** Usa la jerarquía de `GEMINI.md` y `AGENTS.md` (Global → Proyecto → Subdirectorio).
+*   **Características Únicas:** Permite una modularización total escaneando recursivamente. Incluye un sistema de memoria global que se gestiona mediante la herramienta `save_memory` (ej. `/memory show`, `/memory reload`), persistiendo datos sin editar los archivos manualmente.
+
+#### OpenCode (Rules)
+*   **Fuente:** [OpenCode: Rules](https://opencode.ai/docs/rules/)
+*   **Archivos:** Soporta `AGENTS.md` (y su contraparte de Claude, `CLAUDE.md`) junto con un archivo de configuración `opencode.json`.
+*   **Características Únicas:** Ofrece el comando `/init` para escanear el proyecto y generar automáticamente un `AGENTS.md` a medida. Soporta **Lazy Loading** (carga perezosa) de reglas referenciando `@archivos` solo cuando es necesario, y permite definir reglas a partir de URLs en su JSON.
+
+#### Claude Code (Memory & Agents.md)
+*   **Fuente:** [Claude Code: Memory & Agents.md](https://code.claude.com/docs/en/memory#agents-md)
+*   **Archivos:** Principalmente `CLAUDE.md`, `.claude/rules/*.md` y `CLAUDE.local.md` para ignorar en Git.
+*   **Características Únicas:** Destaca por su **Auto Memory**: Claude genera su propio archivo `MEMORY.md` para recordar aprendizajes de depuración y comandos entre sesiones. Usa `paths` en YAML frontmatter para limitar reglas a ciertas carpetas, y admite "symlinks" para compartir reglas entre proyectos.
+
+#### OpenAI Codex (Agents.md Guides)
+*   **Fuente:** [Codex CLI: Agents.md Guides](https://developers.openai.com/codex/guides/agents-md)
+*   **Archivos:** `AGENTS.md` y el archivo de prioridad `AGENTS.override.md`.
+*   **Características Únicas:** Concatena las reglas desde la raíz hasta el directorio actual. Utiliza un límite de 32 KiB (`project_doc_max_bytes`) para la cadena de instrucciones. Permite configurar nombres alternativos para el archivo de reglas mediante `project_doc_fallback_filenames`.
 
 > [!WARNING]
 > **Contaminación de Contexto:** Evita definir reglas contradictorias en diferentes niveles. Si el global dice "Usa Tabs" y el proyecto dice "Usa Spaces", el modelo puede confundirse y generar código inconsistente. Prioriza siempre el archivo `AGENTS.md` en la raíz para reglas críticas del proyecto.
-
-**Referencias y Documentación:**
-- [Cursor Docs: Rules & AGENTS.md](https://cursor.com/docs/rules#agentsmd)
-- [Antigravity Docs: Rules & Workflows](https://antigravity.google/docs/rules-workflows)
-- [Gemini CLI: Memory Management](https://geminicli.com/docs/cli/tutorials/memory-management/)
-- [Claude Code: Memory & Agents.md](https://code.claude.com/docs/en/memory#agents-md)
-- [Codex CLI: Agents.md Guides](https://developers.openai.com/codex/guides/agents-md)
 
 ## Skills (Habilidades)
 
@@ -132,29 +147,43 @@ skills/arch-doc/
 
 ---
 
-### 4. Configuración y Rutas Globales
+### 4. Resumen Detallado por Herramienta (Basado en Documentación Oficial)
 
-| Herramienta | Alcance Proyecto | Alcance Global | Comando de Gestión |
-| :--- | :--- | :--- | :--- |
-| **Cursor** | `.cursor/rules/*.mdc` | Settings > Rules | `/migrate-to-skills` |
-| **Antigravity** | `.agent/skills/` | `~/.agents/skills/` | Automático por trigger |
-| **Gemini CLI** | `.gemini/skills/` | `~/.gemini/skills/` | `gemini skills list` |
-| **Claude Code** | `.claude/skills/` | `~/.claude/skills/` | `/skills` |
-| **Codex** | `.agents/skills/` | `~/.agents/skills/` | Automático por triggers |
+#### Cursor (Skills Migration)
+*   **Fuente:** [Cursor: Skills Migration](https://cursor.com/help/customization/skills#how-do-i-migrate-commands-to-skills)
+*   **Archivos:** Usa `.cursor/rules/*.mdc` y la UI de Settings.
+*   **Características Únicas:** Proporciona el comando `/migrate-to-skills` para convertir "Slash Commands" y reglas dinámicas antiguas (aquellas con `alwaysApply: false`) al nuevo formato de Skills.
+
+#### Google Antigravity (Agent Skills)
+*   **Fuente:** [Antigravity: Skills Docs](https://antigravity.google/docs/skills)
+*   **Archivos:** Busca skills en `.agents/skills/<name>/` (proyecto) o `~/.gemini/antigravity/skills/<name>/` (global).
+*   **Características Únicas:** Las skills se activan mediante una herramienta nativa (`skill({ name: "..." })`). Recomienda incluir scripts en una carpeta `/scripts` y pedirle al agente que ejecute el script con `--help` (como "caja negra") en lugar de leer todo el código fuente, ahorrando espacio en la ventana de contexto.
+
+#### Gemini CLI (Skills Getting Started)
+*   **Fuentes:** [Gemini CLI: Skills Getting Started](https://geminicli.com/docs/cli/tutorials/skills-getting-started/), [Gemini CLI: Skills](https://geminicli.com/docs/cli/skills/)
+*   **Archivos:** Soporta tres niveles: Workspace (`.gemini/skills/`), User (`~/.gemini/skills/`) y Extension (empaquetado).
+*   **Características Únicas:** El orden de precedencia estricto es Workspace > User > Extension. Requiere aprobación manual del usuario (sandboxing) antes de que el agente pueda leer archivos dentro de la carpeta de la skill. Soporta ejecutar binarios empaquetados (ej. `node scripts/audit.js`).
+
+#### OpenCode (Skills)
+*   **Fuente:** [OpenCode: Skills Docs](https://opencode.ai/docs/skills/)
+*   **Archivos:** Escanea hacia arriba buscando `.opencode/skills/`, `.claude/skills/`, y `.agents/skills/`.
+*   **Características Únicas:** Ofrece control de permisos granulares en `opencode.json` (ej. `"permission": { "skill": { "internal-*": "deny" } }`). Los permisos se pueden personalizar por agente (ej. un agente "Plan" tiene accesos distintos a un agente "Coder"). Permite metadatos personalizados (`metadata: { "audience": "maintainers" }`).
+
+#### Claude Code (Skills Guide)
+*   **Fuente:** [Claude: Skills Guide](https://code.claude.com/docs/en/skills)
+*   **Archivos:** Jerarquía de descubrimiento: Enterprise > Personal (`~/.claude/skills/`) > Project (`.claude/skills/`).
+*   **Características Únicas:** Usa metadatos YAML avanzados: `allowed-tools` aísla las herramientas disponibles, `context: fork` ejecuta la skill en un subagente separado, y `disable-model-invocation: true` fuerza invocación manual. Proporciona variables de entorno como `${CLAUDE_SESSION_ID}` y `${CLAUDE_SKILL_DIR}`. Limita el trigger a 250 caracteres.
+
+#### OpenAI Codex (Developers Skills)
+*   **Fuente:** [Codex: Developers Skills](https://developers.openai.com/codex/skills)
+*   **Archivos:** `~/.agents/skills/` y manifiestos `agents/openai.yaml`.
+*   **Características Únicas:** Soporta propiedades de interfaz gráfica (`display_name`, `icon`, `brand_color`). Utiliza la directiva `allow_implicit_invocation: false` para forzar activación manual. Permite definir dependencias (`dependencies`) para requerir servidores MCP específicos antes de poder usar la skill.
 
 ### 5. Seguridad y Aislamiento (Sandboxing)
 
 - **Permisos de Archivos:** En **Gemini CLI**, al activar una skill, el usuario recibe una solicitud de aprobación para que el agente pueda leer los archivos *dentro* de la carpeta de esa skill específica.
-- **Variables de Entorno:** Puedes usar variables como `$SKILL_DIR` para referenciar scripts locales sin importar la ruta actual del proyecto.
+- **Variables de Entorno:** Puedes usar variables como `$SKILL_DIR` (o `${CLAUDE_SKILL_DIR}`) para referenciar scripts locales sin importar la ruta actual del proyecto.
 - **Invocación Implícita vs Explícita:** Para tareas críticas (como despliegues a producción), se recomienda configurar `allow_implicit_invocation: false` (Codex) o `disable-model-invocation: true` (Claude) para que solo el usuario pueda disparar la acción manualmente.
-
-**Referencias y Documentación:**
-- [Cursor: Skills Migration](https://cursor.com/help/customization/skills#how-do-i-migrate-commands-to-skills)
-- [Antigravity: Skills Docs](https://antigravity.google/docs/skills)
-- [Gemini CLI: Skills Getting Started](https://geminicli.com/docs/cli/tutorials/skills-getting-started/)
-- [OpenCode: Skills Docs](https://opencode.ai/docs/skills/)
-- [Claude: Skills Guide](https://code.claude.com/docs/en/skills)
-- [Codex: Developers Skills](https://developers.openai.com/codex/skills)
 
 ## MCP (Model Context Protocol)
 

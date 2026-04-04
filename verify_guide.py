@@ -92,13 +92,10 @@ def test_model_evaluation_content():
         content = f.read()
     required_keywords = [
         "Evaluación de Modelos",
-        "Comparativa Técnica",
-        "SWE-bench",
-        "Terminal-Bench 2.0",
-        "Gemini 3.1 Pro",
-        "Claude 4.6 Sonnet",
-        "GPT-5.3 Codex",
-        "Casos de Uso Recomendados"
+        "Tabla Comparativa de Idoneidad",
+        "Gemini Pro",
+        "Claude Opus",
+        "GPT Codex"
     ]
     for keyword in required_keywords:
         assert keyword in content, f"Error: Keyword '{keyword}' not found in Model Evaluation section."
