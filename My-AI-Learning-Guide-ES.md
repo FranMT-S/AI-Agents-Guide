@@ -305,37 +305,68 @@ En el ecosistema actual, no existe un modelo único para todas las tareas. La ar
 A continuación, se categorizan los modelos principales por su idoneidad en tareas específicas:
 
 ### 1. Modelos de Razonamiento Profundo y Arquitectura (Los Pesos Pesados)
-Diseñados para **generación de código complejo**, **entender el contexto de código a gran escala** y **orquestar MCPs** con instrucciones ambiguas.
+Diseñados para generación de código complejo, entender el contexto de código a gran escala y orquestar MCPs con instrucciones ambiguas.
 
-*   **Gemini 3.1 PRO / Gemini 3.0 Pro**
-    *   **Destacan en:** Análisis multi-repo, ingesta masiva de contexto (ventana de 1M-10M tokens), entender contexto de código a gran escala, y encontrar dependencias ocultas (RAG interno).
-    *   **Evitar en:** Generación de estructuras como JSON simples o consultas aisladas de API, debido al mayor tiempo de inferencia comparado con modelos más pequeños.
-*   **Claude Opus 4.6**
-    *   **Destaca en:** Tareas de arquitectura complejas, diseño de sistemas y redacción de documentación extensa y muy estructurada. Su razonamiento lógico profundo es superior en la planificación.
-    *   **Evitar en:** Lectura rápida de archivos o ejecución de comandos repetitivos.
-*   **GPT-5.3 Codex**
-    *   **Destaca en:** Ejecución autónoma de comandos de terminal, refactorización masiva (generación de código puro), integración avanzada de MCPs que requieran acciones de escritura y scripts.
-    *   **Evitar en:** Tareas puramente semánticas o generación de informes largos de negocio.
+#### Gemini 3.1 PRO / Gemini 3.0 Pro
+- **Análisis multi-repo:** Excelente para la ingesta masiva de contexto (ventana de 1M-10M tokens).
+- **Entender contexto a gran escala:** Imbatible para encontrar dependencias ocultas (RAG interno).
+- **Evitar en:** Generación de JSON simples o consultas aisladas de API, debido al mayor tiempo de inferencia comparado con modelos más pequeños.
+
+#### Claude Opus 4.6
+- **Tareas de arquitectura:** Superior en diseño de sistemas y razonamiento lógico profundo.
+- **Generar documentación:** Destaca redactando manuales técnicos extensos y estructurados.
+- **Evitar en:** Lectura rápida de archivos o ejecución de comandos repetitivos.
+
+#### GPT-5.3 Codex
+- **Ejecución en Terminal:** Excelente para comandos autónomos y refactorización masiva (generación de código puro).
+- **Consultar MCPs avanzados:** Muy efectivo integrando recursos MCP que requieran acciones de escritura y scripts.
+- **Evitar en:** Tareas puramente semánticas o generación de informes largos de negocio.
 
 ### 2. Modelos de Flujo de Trabajo Diario (El Equilibrio)
-Optimizados para **desarrollo interactivo**, **generación de código del día a día** y **consultar APIs**.
+Optimizados para desarrollo interactivo, generación de código del día a día y consultar APIs.
 
-*   **Claude Sonnet 4.6**
-    *   **Destaca en:** Refactorización de UI/Frontend, **consultar APIs**, desarrollo iterativo y estructurar respuestas con **Adaptive Thinking**. Es excelente para **leer skills** y aplicar plantillas de forma estricta.
-    *   **Evitar en:** Ingesta de bases de código completas de millones de líneas, donde la ventana de contexto de Gemini Pro escala mejor.
-*   **GPT-4o**
-    *   **Destaca en:** Tareas multimodales, generación de código de uso general, y **generar estructuras como JSON** de forma predecible y consistente.
-    *   **Evitar en:** Proyectos masivos que superen su ventana de contexto si no se utiliza compactación de historial.
+#### Claude Sonnet 4.6
+- **Refactorización de UI/Frontend:** Gran precisión para el trabajo iterativo de código.
+- **Consultar APIs y MCPs:** Organiza lógicamente las peticiones gracias a su *Adaptive Thinking*.
+- **Leer Skills:** Excelente capacidad de aplicar directivas y plantillas de forma estricta.
+- **Evitar en:** Ingesta de bases de código completas de millones de líneas.
 
-### 3. Modelos Rápidos y de Soporte (Los Especialistas en Lectura y Extracción)
-Pensados para **lectura de archivos**, **generar documentación** rápida, **consultar MCP** (solo lectura) y extracción de datos.
+#### GPT-4o
+- **Generación de código:** Sólido rendimiento de uso general y multimodalidad.
+- **Generar estructuras como JSON:** Muy predecible y consistente para el manejo de esquemas y datos.
+- **Evitar en:** Proyectos masivos que superen su ventana de contexto estándar sin el uso de compactación de historial.
 
-*   **Gemini 3.1 Flash / Gemini 3.0 Flash**
-    *   **Destacan en:** **Lectura de archivos** a altísima velocidad, procesamiento rápido de grandes volúmenes de texto para la **generación de informes**, tareas de "aguja en el pajar" y extracción veloz de datos desde recursos MCP.
-    *   **Evitar en:** Generación de código arquitectónico complejo o resolución de bugs lógicos de alta dificultad.
-*   **Claude Haiku 4.6**
-    *   **Destaca en:** Análisis ultra-rápido de logs, **consultar MCP** para obtener contexto rápidamente, generar resúmenes y **generar estructuras como JSON** basándose en texto plano.
-    *   **Evitar en:** Tareas que requieran mantener un contexto de código enorme o generar scripts desde cero con dependencias complejas.
+### 3. Modelos Rápidos y de Soporte (Los Especialistas)
+Pensados para lectura de archivos, resúmenes rápidos, consultar MCP (solo lectura) y extracción de datos.
+
+#### Gemini 3.1 Flash / Gemini 3.0 Flash
+- **Lectura de archivos:** Procesamiento a altísima velocidad de grandes volúmenes de texto.
+- **Generación de informes:** Eficiente extrayendo datos rápidamente (tareas de aguja en el pajar).
+- **Evitar en:** Generación de código arquitectónico complejo o resolución de bugs lógicos difíciles.
+
+#### Claude Haiku 4.6
+- **Consultar MCP:** Ideal para obtener contexto veloz y ligero.
+- **Análisis de logs:** Extracción rápida de JSON y resúmenes a partir de texto plano o consola.
+- **Evitar en:** Tareas que requieran mantener un contexto de código enorme o generar scripts desde cero.
+
+---
+
+### Tabla Comparativa de Puntuación (1-5)
+
+La siguiente tabla resume el rendimiento de cada modelo (1 = Pobre, 5 = Excelente) para facilitar la elección según la tarea técnica.
+
+| Categoría Técnica | Gemini Pro | Claude Opus | GPT Codex | Claude Sonnet | GPT-4o | Gemini Flash | Claude Haiku |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Generación de código** | 4 | 5 | 5 | 5 | 4 | 3 | 3 |
+| **Lectura de archivos** | 5 | 3 | 4 | 4 | 4 | 5 | 5 |
+| **Generación de informes** | 5 | 5 | 2 | 4 | 4 | 5 | 4 |
+| **Generar documentación** | 4 | 5 | 2 | 4 | 3 | 4 | 3 |
+| **Generar JSON / Estructuras** | 3 | 4 | 4 | 4 | 5 | 3 | 4 |
+| **Consultar APIs** | 4 | 4 | 5 | 5 | 4 | 4 | 4 |
+| **Consultar MCP** | 5 | 4 | 5 | 5 | 4 | 4 | 4 |
+| **Leer skills** | 4 | 5 | 4 | 5 | 4 | 3 | 4 |
+| **Entender contexto de código** | 5 | 5 | 4 | 4 | 3 | 4 | 3 |
 
 ---
 *Nota: Todos los términos técnicos y fragmentos de código se mantienen en inglés para mayor precisión técnica.*
+ 
