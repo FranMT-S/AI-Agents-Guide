@@ -14,8 +14,8 @@
 - [x] Task: Expand and refine Hooks and Subagents. (45d17d7)
 - [x] Task: Conductor - User Manual Verification 'Phase 3'
 
-## Phase 4: Model Evaluation and Finalization
+## Phase 4: Model Evaluation and Finalization [checkpoint: 978a820]
 - [x] Task: Research and Draft Comprehensive Model Evaluation. (ddd666b)
     - [x] Sub-task: Add data-driven comparative analysis for Gemini 3.1, Claude 4.6, and GPT-5.3 models across specific tasks (coding, MCP, context).
-- [~] Task: Final Review and Refinement.
-- [ ] Task: Conductor - User Manual Verification 'Phase 4'
+- [x] Task: Final Review and Refinement. (a9a1535)
+- [x] Task: Conductor - User Manual Verification 'Phase 4'
