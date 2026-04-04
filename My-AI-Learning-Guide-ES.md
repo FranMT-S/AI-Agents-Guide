@@ -300,50 +300,43 @@ Ejecutar un agente de forma programática requiere flags específicos para evita
 
 ## Evaluación de Modelos (Early 2026)
 
-En 2026, la métrica de éxito ha pasado de la simple generación de código a la **capacidad agentica**: qué tan bien puede un modelo usar herramientas (MCP), navegar por repositorios masivos y resolver problemas en una terminal real.
+En el contexto actual, la elección del modelo depende del volumen de datos, la complejidad de la arquitectura y la necesidad de ejecución en tiempo real.
 
-### 1. Comparativa de Rendimiento (Benchmarks)
+### 1. Comparativa Técnica (Benchmarks)
 
 | Métrica | **Gemini 3.1 Pro** | **Claude 4.6 Sonnet** | **GPT-5.3 Codex** |
 | :--- | :--- | :--- | :--- |
 | **SWE-bench Verified** | 80.6% | 79.6% | 80.0% |
 | **Terminal-Bench 2.0** | 68.5% | 65.4% | **77.3%** |
-| **Razonamiento (ARC-AGI-2)** | **77.1%** | 68.8% | 52.9% |
 | **Context Window** | **1M - 10M** | 1M (Beta) | 400K |
-| **Fortaleza Principal** | Análisis multi-repo | UI y Pensamiento Crítico | Ejecución en Terminal |
+| **Arquitectura** | Mixture-of-Experts | Adaptive Thinking | Agentic Tokenization |
 
 ---
 
-### 2. Análisis por Perfil de Uso
+### 2. Capacidades Específicas por Modelo
 
-#### Gemini 3.1 Pro: El Rey del Contexto y Valor
-Es el modelo más eficiente para proyectos masivos.
-- **Lo mejor:** Ingesta de monorepos enteros gracias a su ventana de 1M+ tokens. Es imbatible en encontrar "agujas en un pajar" (dependencias ocultas entre archivos).
-- **Costo:** El mejor ratio razonamiento/precio ($2/$12 por M tokens).
-- **Uso ideal:** Refactorización a gran escala, auditorías de seguridad en repositorios gigantes y comprensión de arquitecturas complejas.
+#### Gemini 3.1 Pro
+- **Ingesta de Datos:** Capacidad nativa para procesar repositorios monolíticos completos (1M+ tokens) sin necesidad de fragmentación excesiva.
+- **Búsqueda de Dependencias:** Alta precisión en la recuperación de información (RAG interno) en contextos largos, ideal para encontrar relaciones entre archivos distantes.
+- **Costo Operativo:** Menor costo por token en tareas de análisis masivo ($2/$12 por M tokens).
 
-#### Claude 4.6 Sonnet: El "Daily Driver"
-Preferido por desarrolladores para el flujo de trabajo diario.
-- **Lo mejor:** **Context Compaction** (compactación automática del historial) y **Adaptive Thinking**. Su capacidad para reconstruir interfaces visuales a partir de descripciones es superior.
-- **Orquestación MCP:** Es el más inteligente decidiendo *cuál* herramienta llamar cuando las instrucciones son ambiguas.
-- **Uso ideal:** Desarrollo de features desde cero, trabajo en Frontend/UI y tareas que requieren un "pensamiento profundo" sobre la arquitectura.
+#### Claude 4.6 Sonnet
+- **Razonamiento Arquitectónico:** Superior en la comprensión de flujos lógicos complejos y dependencias de diseño.
+- **Gestión de Contexto:** Utiliza **Context Compaction**, resumiendo automáticamente partes irrelevantes del historial para mantener la coherencia en sesiones largas.
+- **Frontend y UI:** Mayor precisión en la generación de código para interfaces visuales y reconstrucción de componentes a partir de imágenes o descripciones.
 
-#### GPT-5.3 Codex: El Ejecutor Terminal
-Optimizado para la velocidad y la acción directa.
-- **Lo mejor:** Velocidad extrema (25% más rápido que versiones anteriores) y precisión quirúrgica en comandos de terminal.
-- **Eficiencia de Tokens:** Su tokenización agentica consume entre 2 y 4 veces menos tokens para las mismas tareas que sus rivales.
-- **Uso ideal:** Automatización de CI/CD, batch refactoring, scripting puro y flujos donde necesitas que el modelo "simplemente lo haga" sin explicaciones excesivas.
+#### GPT-5.3 Codex
+- **Operaciones de Terminal:** Optimizado para la ejecución de comandos `bash` y manipulación del sistema de archivos con menor tasa de error en la sintaxis.
+- **Latencia:** Menor tiempo de respuesta (TTFT) en tareas de scripting y refactorización rápida.
+- **Eficiencia de Inferencia:** Su sistema de tokenización está diseñado para tareas agenticas, utilizando menos tokens para describir acciones de herramientas en comparación con modelos generales.
 
 ---
 
-### 3. Veredicto Conductor (2026)
+### 3. Casos de Uso Recomendados
 
-- **Usa Gemini 3.1 Pro** si tu prioridad es el análisis profundo de un codebase que no conoces o el ahorro de costos en ejecuciones masivas.
-- **Usa Claude 4.6 Sonnet** para el desarrollo interactivo donde la precisión de la lógica y la calidad de la UI son críticas.
-- **Usa GPT-5.3 Codex** para tareas repetitivas de terminal y scripts de automatización donde la velocidad es el factor clave.
-
-> [!TIP]
-> **Orquestación Híbrida:** Los arquitectos avanzados utilizan Claude para **planificar** la tarea y luego delegan la **implementación** repetitiva a subagentes corriendo GPT-5.3 Codex para maximizar velocidad y minimizar costos.
+- **Gemini 3.1 Pro:** Auditorías de seguridad completas, documentación de código legacy masivo y análisis de impacto en cambios estructurales de grandes repositorios.
+- **Claude 4.6 Sonnet:** Desarrollo interactivo de nuevas funcionalidades, refactorización lógica de componentes UI y planificación de migraciones tecnológicas.
+- **GPT-5.3 Codex:** Automatización de flujos CI/CD, mantenimiento preventivo vía scripts y tareas repetitivas de terminal que requieren alta velocidad.
 
 ---
 *Nota: Todos los términos técnicos y fragmentos de código se mantienen en inglés para mayor precisión técnica.*
