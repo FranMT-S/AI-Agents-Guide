@@ -62,7 +62,7 @@ Históricamente, cada herramienta tenía su propio archivo (`.cursorrules`, `GEM
 > **Contaminación de Contexto:** Evita definir reglas contradictorias en diferentes niveles. Si el global dice "Usa Tabs" y el proyecto dice "Usa Spaces", el modelo puede confundirse y generar código inconsistente. Prioriza siempre el archivo `AGENTS.md` en la raíz para reglas críticas del proyecto.
 
 > [!NOTE]
-> Para conocer aspectos únicos y configuraciones avanzadas de cada herramienta, consulta su archivo específico: [Cursor](./cursor.md) | [Antigravity](./antigravity.md) | [Gemini CLI](./gemini-cli.md) | [OpenCode](./openCode.md) | [Claude Code](./claude-code.md) | [Codex CLI](./codex-cli.md).
+> Para conocer aspectos únicos y configuraciones avanzadas de cada herramienta, consulta su archivo específico: [Cursor](cursor.md) | [Antigravity](antigravity.md) | [Gemini CLI](gemini-cli.md) | [OpenCode](openCode.md) | [Claude Code](claude-code.md) | [Codex CLI](codex-cli.md).
 
 **Referencias y Documentación Oficial:**
 - [Cursor: Rules](https://cursor.com/docs/rules)
@@ -76,7 +76,7 @@ Históricamente, cada herramienta tenía su propio archivo (`.cursorrules`, `GEM
 
 Dado que las **Skills** son un componente central y extenso (con reglas avanzadas de metadatos, evaluación y plantillas), hemos dedicado un documento completo para explicarlas a fondo.
 
-👉 **[Ver Guía Completa de Skills (Habilidades)](./skills.md)**
+👉 **[Ver Guía Completa de Skills (Habilidades)](skills.md)**
 
 Aquí encontrarás:
 - Mecanismos de Activación y Metadatos YAML.
@@ -115,7 +115,7 @@ Cada agente permite habilitar o deshabilitar herramientas específicas para evit
 | **OpenCode** | `opencode.json` | `"tools": {"*": false}` |
 
 > [!NOTE]
-> Para conocer metadatos específicos, características únicas (como MCP Apps, Auth OAuth) y optimización de Docker por cada herramienta, consulta su archivo específico: [Cursor](./cursor.md) | [Antigravity](./antigravity.md) | [Gemini CLI](./gemini-cli.md) | [OpenCode](./openCode.md) | [Claude Code](./claude-code.md) | [Codex CLI](./codex-cli.md).
+> Para conocer metadatos específicos, características únicas (como MCP Apps, Auth OAuth) y optimización de Docker por cada herramienta, consulta su archivo específico: [Cursor](cursor.md) | [Antigravity](antigravity.md) | [Gemini CLI](gemini-cli.md) | [OpenCode](openCode.md) | [Claude Code](claude-code.md) | [Codex CLI](codex-cli.md).
 
 ## Plugins y Extensiones
 
@@ -131,7 +131,7 @@ Las extensiones permiten añadir funcionalidades específicas a los agentes, com
 | **OpenCode** | Módulos JS/TS (Bun) | `.opencode/plugins/` |
 
 > [!NOTE]
-> Para detalles sobre desarrollo, eventos y arquitecturas de plugins específicos por herramienta, consulta su archivo específico: [Cursor](./cursor.md) | [Antigravity](./antigravity.md) | [Gemini CLI](./gemini-cli.md) | [OpenCode](./openCode.md) | [Claude Code](./claude-code.md) | [Codex CLI](./codex-cli.md).
+> Para detalles sobre desarrollo, eventos y arquitecturas de plugins específicos por herramienta, consulta su archivo específico: [Cursor](cursor.md) | [Antigravity](antigravity.md) | [Gemini CLI](gemini-cli.md) | [OpenCode](openCode.md) | [Claude Code](claude-code.md) | [Codex CLI](codex-cli.md).
 
 **Referencias y Documentación Oficial:**
 - [Cursor: Plugins](https://cursor.com/docs/plugins)
@@ -181,7 +181,7 @@ Para proyectos complejos, el uso de un solo agente genérico suele fallar o cons
 - **Seguridad:** A un agente orquestador se le pueden dar permisos de ejecución de terminal, mientras que al agente programador solo se le da acceso a `edit_file`, limitando el riesgo de comandos maliciosos.
 
 > [!NOTE]
-> Para conocer cómo se configuran estos equipos y ver **ejemplos de subagentes orquestadores** en cada herramienta, consulta su archivo específico: [Cursor](./cursor.md) | [Gemini CLI](./gemini-cli.md) | [OpenCode](./openCode.md) | [Claude Code](./claude-code.md) | [Codex CLI](./codex-cli.md).
+> Para conocer cómo se configuran estos equipos y ver **ejemplos de subagentes orquestadores** en cada herramienta, consulta su archivo específico: [Cursor](cursor.md) | [Gemini CLI](gemini-cli.md) | [OpenCode](openCode.md) | [Claude Code](claude-code.md) | [Codex CLI](codex-cli.md).
 
 ---
 
@@ -203,7 +203,7 @@ Ejecutar un agente de forma programática requiere comandos y flags específicos
 > El modo automatizado debe usarse con extrema precaución. Asegúrate de tener guardrails definidos en los **Hooks** o usar modos de *sandboxing* estrictos (como `--sandbox` en Codex o `--allowedTools` en Claude) para evitar que el agente ejecute comandos destructivos sin supervisión.
 
 > [!NOTE]
-> Para detalles sobre códigos de salida, comandos específicos, formatos JSON y tareas programadas (CRON), consulta el archivo específico de cada herramienta: [Gemini CLI](./gemini-cli.md) | [Claude Code](./claude-code.md) | [Codex CLI](./codex-cli.md).
+> Para detalles sobre códigos de salida, comandos específicos, formatos JSON y tareas programadas (CRON), consulta el archivo específico de cada herramienta: [Gemini CLI](gemini-cli.md) | [Claude Code](claude-code.md) | [Codex CLI](codex-cli.md).
 
 **Referencias y Documentación Oficial:**
 - [Gemini CLI: Headless Tutorial](https://geminicli.com/docs/cli/headless/)

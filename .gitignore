@@ -16,3 +16,10 @@ desktop.ini
 # Backup and logs
 *.log
 .obsidian/backups/
+
+conductor/
+spec/
+.gemini/
+.claude/
+.cursor/
+gemini.md

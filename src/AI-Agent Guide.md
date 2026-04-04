@@ -1182,6 +1182,107 @@ Este workflow extrae el ID del ticket desde el nombre del branch actual y busca 
 
 ---
 
+# Hooks / Disparadores Automáticos
+
+Los hooks son el **enforcement layer determinista** de los agentes de AI. A diferencia del contexto en archivos como `CLAUDE.md` o `AGENTS.md`, que el modelo puede interpretar de forma flexible, los hooks **siempre se ejecutan** porque son scripts del sistema operativo, no instrucciones al LLM.
+
+> [!important] Los Hooks son garantías, no sugerencias. Son la diferencia entre "le pedí al agente que hiciera X" y "X siempre pasa, sin importar lo que responda el agente."
+
+**Documentación oficial:**
+- Claude Code Hooks: [docs.anthropic.com/en/docs/claude-code/hooks](https://docs.anthropic.com/en/docs/claude-code/hooks)
+- Gemini CLI Hooks: [geminicli.com/docs/features/hooks](https://geminicli.com/docs/features/hooks)
+
+## ¿Qué son?
+
+Un hook es un script o comando que se ejecuta automáticamente en respuesta a un **evento del ciclo de vida del agente** (antes/después de usar una herramienta, al iniciar la sesión, etc.).
+
+## Claude Code — Hooks
+
+Se configuran en `.claude/settings.json` dentro del bloque `hooks`.
+
+### Eventos disponibles
+
+| Evento | Cuándo se dispara | Uso típico |
+|---|---|---|
+| `PreToolUse` | Antes de ejecutar cualquier herramienta | Guardrails de seguridad, validaciones |
+| `PostToolUse` | Después de que una herramienta completa | Formateo automático, tests, notificaciones |
+
+### Estructura de configuración
+
+```json
+// .claude/settings.json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash(rm *)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Blocked dangerous rm command' >&2 && exit 2"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx prettier --write ."
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Scopes de settings en Claude Code
+
+| Scope | Archivo | Prioridad |
+|---|---|---|
+| **Managed** (Org/IT) | Sistema | Más alta, no sobreescribible |
+| **Local** (solo tú) | `.claude/settings.local.json` | Alta (git-ignored) |
+| **Project** (equipo) | `.claude/settings.json` | Media (versionado) |
+| **User** (global) | `~/.claude/settings.json` | Base |
+
+> [!tip] Para ver los hooks activos, ejecuta `/hooks` en el CLI de Claude Code. Para debugging usa `claude --debug`. Si quieres **bloquear** una acción, tu script debe salir con `exit 2` y escribir el motivo en `stderr`.
+
+---
+
+## Gemini CLI — Hooks
+
+Se configuran en `settings.json` con mayor granularidad de eventos.
+
+### Eventos disponibles
+
+| Evento | Cuándo se dispara |
+|---|---|
+| `BeforeSession` | Al iniciar la sesión (cargar env vars, configs) |
+| `BeforeModel` | Antes de enviar el prompt al LLM (inyectar contexto) |
+| `BeforeTool` | Antes de ejecutar cualquier tool (guardrails) |
+| `AfterTool` | Después de ejecutar una tool (formateo, tests) |
+| `AfterAgent` | Al completar el ciclo del agente (forzar retries) |
+
+> [!warning] Los scripts de hooks en Gemini CLI comunican via `stdin`/`stdout` usando **JSON estricto**. Cualquier texto no-JSON en `stdout` causa un error de parseo. Usa `stderr` para logs de debugging.
+
+---
+
+## Tabla Comparativa de Hooks
+
+| Feature | Claude Code | Gemini CLI | Antigravity | Cursor | Codex |
+|---|---|---|---|---|---|
+| Soporte de Hooks | Sí | Sí | Sí (via Gemini) | No | No |
+| Bloquear acciones | Sí (`exit 2`) | Sí | Sí | — | — |
+| Config file | `.claude/settings.json` | `settings.json` | `settings.json` | — | — |
+| Antes de tool | `PreToolUse` | `BeforeTool` | `BeforeTtool` | — | — |
+| Después de tool | `PostToolUse` | `AfterTool` | `AfterTool` | — | — |
+| Inicio de sesión | No | `BeforeSession` | `BeforeSession` | — | — |
+
+---
+
 # Skill vs MCP
 
 Los MCP es una forma de extender nuestro agente para usar  <u>herramientas externas</u>, mientras que las skills nos permiten extender nuestro agente con <u>nuestras herramientas</u> --> `pero parte de nuestras herramientas incluyen a los mcp`  entonces los mcp pueden ser parte de la utilidad que las skills pueden manejar ademas de comandos `cli` de nuestras aplicaciones instaladas.
@@ -1192,6 +1293,103 @@ En resumen las Skills le pueden enseñar a nuestro agente como usar el MCP de ma
 
 ---
 # Subagentes
+
+Un subagente es un **agente especializado con contexto aislado** que el agente principal puede invocar para delegar una tarea específica. A diferencia de un Workflow (que es una secuencia de pasos predefinidos), un subagente es un "experto" con su propio contexto, herramientas y restricciones.
+
+**Documentación oficial:**
+- Gemini CLI Subagentes: [geminicli.com/docs/features/subagents](https://geminicli.com/docs/features/subagents)
+- Claude Code Sub-agentes: [docs.anthropic.com/en/docs/claude-code/sub-agents](https://docs.anthropic.com/en/docs/claude-code/sub-agents)
+
+> [!note] Un Workflow describe *cómo* hacer algo paso a paso. Un Subagente es *quién* hace algo — un especialista autónomo con su propio alcance de contexto.
+
+## ¿Cuándo usar un Subagente vs un Workflow?
+
+| Criterio | Workflow | Subagente |
+|---|---|---|
+| La tarea tiene pasos fijos y conocidos | ✅ | ❌ |
+| La tarea requiere razonamiento autónomo | ❌ | ✅ |
+| Quieres reutilizar el mismo "experto" | ❌ | ✅ |
+| El contexto debe estar aislado | ❌ | ✅ |
+| Secuencia de comandos predecible | ✅ | ❌ |
+
+---
+
+## Gemini CLI — Subagentes
+
+### Configuración
+
+Los subagentes de Gemini CLI se definen como archivos `.md` con frontmatter YAML en la carpeta `.gemini/agents/`.
+
+```markdown
+---
+name: security-reviewer
+description: Specialized agent for reviewing code for security vulnerabilities.
+tools:
+  - read_file
+  - run_shell_command
+---
+
+# Security Reviewer
+
+You are a security expert. When invoked, you will:
+1. Analyze the provided code for OWASP Top 10 vulnerabilities.
+2. Check for hardcoded secrets or credentials.
+3. Report findings with severity levels (Critical, High, Medium, Low).
+```
+
+### Comandos de gestión
+
+```shell
+# Dentro de Gemini CLI:
+/agents list           # Lista los subagentes disponibles
+/agents enable <name>  # Activa un subagente especifico
+/agents reload         # Recarga los archivos de configuracion
+```
+
+### Invocación explícita
+
+```
+@security-reviewer Revisa el archivo src/auth/login.ts en busca de vulnerabilidades.
+```
+
+### Rutas de instalación
+
+| Alcance | Ruta |
+|---|---|
+| **Proyecto** | `.gemini/agents/*.md` |
+| **Global** | `~/.gemini/agents/*.md` |
+
+> [!note] Los subagentes en Gemini CLI no pueden crear sus propios subagentes (no hay recursión). Operan en contextos completamente aislados del agente principal.
+
+---
+
+## Claude Code — Subagentes
+
+Claude Code utiliza subagentes de forma más integrada. El agente principal delega automáticamente cuando detecta que una tarea encaja con el rol de un subagente especializado.
+
+### Características
+
+- **Aislamiento**: Cada subagente opera en su propia ventana de contexto con permisos de herramientas acotados.
+- **Delegación automática**: El agente principal decide si delegar basándose en la complejidad y naturaleza de la tarea.
+- **Sin contaminación**: El subagente retorna su output al hilo principal sin contaminar el contexto del agente principal.
+
+### Agent Teams (Equipos)
+
+Para tareas muy complejas, Claude Code soporta **equipos de agentes** trabajando en paralelo en sesiones separadas. Útil para:
+- Code review + feature development simultáneos
+- Testing en paralelo con implementación
+- Exploración de múltiples enfoques de arquitectura al mismo tiempo
+
+---
+
+## Antigravity — Subagentes
+
+Los subagentes de Antigravity siguen la misma convención que Gemini CLI.
+
+| Alcance | Ruta |
+|---|---|
+| **Proyecto** | `.agent/agents/` o `.gemini/agents/` |
+| **Global** | `~/.gemini/antigravity/agents/` |
 
 ---
 
@@ -1275,3 +1473,286 @@ Crear un api key en [en su pagina](https://platform.openai.com/api-keys)
 
 Y usarlo para autentificarse en la extensión de codex en VS Code, Antigravity o cursor.
 
+---
+
+# Claude Code
+
+Claude Code es la herramienta agentica de terminal de Anthropic. Funciona como un agente autónomo de desarrollo con capacidad de leer, editar y ejecutar código directamente en tu sistema de archivos.
+
+**Documentación oficial:**
+- Inicio: [docs.anthropic.com/en/docs/claude-code/overview](https://docs.anthropic.com/en/docs/claude-code/overview)
+- Memoria (`CLAUDE.md`): [docs.anthropic.com/en/docs/claude-code/memory](https://docs.anthropic.com/en/docs/claude-code/memory)
+- Hooks: [docs.anthropic.com/en/docs/claude-code/hooks](https://docs.anthropic.com/en/docs/claude-code/hooks)
+- Sub-agentes: [docs.anthropic.com/en/docs/claude-code/sub-agents](https://docs.anthropic.com/en/docs/claude-code/sub-agents)
+
+## Instalación
+
+```shell
+npm install -g @anthropic-ai/claude-code
+```
+
+Autentificarse con el login de Claude o con una API key de Anthropic. Puedes instalar la extensión directamente desde VS Code, o usar el CLI en terminal.
+
+```shell
+claude
+```
+
+## `CLAUDE.md` — Contexto y Memoria Persistente
+
+El equivalente al `AGENTS.md` de Codex o al `GEMINI.md` de Gemini CLI. Claude lo lee al inicio de cada sesión para comprender el proyecto antes de responder cualquier mensaje.
+
+### Niveles de Alcance
+
+| Nivel | Ubicación | Uso |
+|---|---|---|
+| **Global** | `~/.claude/CLAUDE.md` | Preferencias personales universales |
+| **Proyecto** | `CLAUDE.md` en la raíz del repo | Estándares del proyecto, arquitectura, comandos de build |
+| **Local** | `.claude/CLAUDE.md` | Configuración personal para este proyecto (git-ignored) |
+| **Subdirectorio** | `sub-carpeta/CLAUDE.md` | Instrucciones específicas para módulos o microservicios |
+
+> [!note] Claude detecta e importa `CLAUDE.md` de subdirectorios automáticamente. Útil para monorepos donde cada módulo tiene sus propias convenciones.
+
+### Qué poner en `CLAUDE.md`
+
+```markdown
+# Project: Mi Aplicación
+
+## Stack
+- Framework: NestJS + TypeScript
+- Testing: Jest
+- DB: PostgreSQL con Prisma ORM
+
+## Comandos frecuentes
+- Build: `npm run build`
+- Tests: `npm run test`
+- DB migrations: `npx prisma migrate dev`
+
+## Convenciones
+- Usa kebab-case para nombres de archivos
+- Todos los handlers deben tener manejo de errores con try/catch
+- Los comentarios siempre en ingles
+
+## Restricciones
+- No modificar archivos en /legacy sin permiso explicito
+- No usar `console.log` en produccion, usar el logger propio
+```
+
+---
+
+## Auto Memory
+
+A diferencia de otras herramientas, Claude Code tiene un sistema de **Auto Memory**: aprende y guarda automáticamente patrones, preferencias y decisiones de debugging entre sesiones, sin necesidad de actualizar el `CLAUDE.md` manualmente.
+
+> [!tip] Si Claude aprende que usas `make test` en lugar de `npm test`, lo recordará en futuras sesiones sin que tengas que repetirlo en el `CLAUDE.md`. Puedes ver y editar la memoria con el comando `/memory`.
+
+---
+
+## Hooks en Claude Code
+
+Ver la sección [Hooks / Disparadores Automáticos](#hooks--disparadores-automáticos) para la documentación completa de eventos y configuración.
+
+### Ejemplo práctico — ESLint post-edición
+
+```json
+// .claude/settings.json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx eslint --fix $(git diff --name-only)"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+---
+
+## Comandos útiles
+
+| Comando | Descripción |
+|---|---|
+| `claude` | Inicia el agente en modo interactivo |
+| `claude -p "prompt"` | Ejecuta un prompt en modo no interactivo |
+| `claude --debug` | Modo debug (muestra hooks y razonamiento interno) |
+| `/hooks` | Ver hooks configurados actualmente |
+| `/memory` | Ver y editar la memoria persistente del agente |
+| `/clear` | Limpiar el contexto de la sesión actual |
+| `claude --yolo` | Modo autónomo sin confirmaciones |
+
+> [!warning] Usar `--yolo` con cuidado. Sin confirmaciones, el agente puede ejecutar comandos destructivos si las instrucciones son ambiguas.
+
+---
+
+# Cursor
+
+Cursor es un IDE basado en VSCode con capacidades de AI integradas de forma profunda. Su sistema de reglas permite configurar el comportamiento del agente de forma granular y por áreas del proyecto.
+
+**Documentación oficial:**
+- Reglas del proyecto: [docs.cursor.com/context/rules-for-ai](https://cursor.com/docs/rules)
+- MCP en Cursor: [docs.cursor.com/context/model-context-protocol](https://docs.cursor.com/context/model-context-protocol)
+
+## Sistema de Reglas: `.cursor/rules/`
+
+### Evolución del sistema
+
+| Versión | Archivo | Estado |
+|---|---|---|
+| Legacy | `.cursorrules` (raíz del proyecto) | Soportado pero deprecado |
+| Actual | `.cursor/rules/*.mdc` | Recomendado |
+
+El nuevo sistema permite múltiples archivos de reglas con activación condicional, en lugar de un único archivo monolítico que siempre consume tokens.
+
+---
+
+## Anatomía de una Regla `.mdc`
+
+Los archivos de reglas usan frontmatter YAML para controlar cuándo y cómo se aplican:
+
+```markdown
+---
+description: React component guidelines for this project
+globs: ["src/components/**/*.tsx", "src/pages/**/*.tsx"]
+alwaysApply: false
+---
+
+# React Component Standards
+
+- Use functional components with TypeScript interfaces for props
+- Prefer named exports over default exports
+- Use React.memo() for components that render frequently with same props
+- Keep components under 200 lines; extract sub-components if needed
+
+## File naming convention
+- Component files: PascalCase (UserProfile.tsx)
+- Hook files: camelCase starting with "use" (useAuthState.ts)
+```
+
+---
+
+## 4 Modos de Activación
+
+| Modo | Frontmatter | Comportamiento |
+|---|---|---|
+| **Always Apply** | `alwaysApply: true` | Siempre en contexto. Usar solo para reglas universales del proyecto |
+| **Auto Attached** | `globs: ["src/**/*.ts"]` | Se activa cuando el agente trabaja con archivos que coinciden con el patrón |
+| **Agent Requested** | Solo `description` | El agente decide si es relevante según la descripción |
+| **Manual** | — | Se activa mencionándola en el chat con `@nombre-regla` |
+
+> [!tip] El modo **Auto Attached** es el más eficiente: aplica la regla solo cuando realmente aplica, sin desperdiciar tokens de contexto en conversaciones no relacionadas.
+
+---
+
+## Crear Reglas
+
+### Desde el chat
+
+Escribir `/create-rule` en el chat de Cursor Agent. El agente redactará el archivo `.mdc` con el frontmatter correcto y lo guardará automáticamente en `.cursor/rules/`.
+
+### Desde Settings
+
+`Cursor Settings > Rules` — Permite ver, añadir y editar reglas existentes con una interfaz visual.
+
+### Manual
+
+Crear directamente un archivo `.mdc` en `.cursor/rules/` con cualquier editor.
+
+---
+
+## Reglas Globales
+
+Para preferencias personales que aplican a todos los proyectos (no solo el actual):
+
+`Cursor Settings > General > Rules for AI`
+
+Ejemplos:
+- "Always respond in Spanish"
+- "Prefer functional programming patterns"
+- "Add JSDoc comments to all public functions"
+
+---
+
+## Buenas Prácticas
+
+- **Granularidad**: Un archivo por área (`api-guidelines.mdc`, `react-patterns.mdc`, `testing.mdc`)
+- **Versionar**: Agregar `.cursor/rules/` al git para que todo el equipo comparta las convenciones
+- **Referenciar código real**: Usar `@file` para apuntar a ejemplos existentes en lugar de pegar código dentro de la regla
+- **Límite de tamaño**: Mantener cada archivo bajo 500 líneas
+- **No abusar de `alwaysApply: true`**: Cada regla con `alwaysApply` consume tokens en cada conversación
+
+---
+
+## MCP en Cursor
+
+El archivo de configuración de MCP de Cursor vive en:
+
+```
+~/.cursor/mcp.json   (global)
+.cursor/mcp.json     (proyecto)
+```
+
+Ejemplo de configuración:
+
+```json
+{
+  "mcpServers": {
+    "github-mcp-server": {
+      "command": "docker",
+      "args": [
+        "exec", "-i", "github-mcp",
+        "/server/github-mcp-server", "stdio"
+      ]
+    }
+  }
+}
+```
+
+---
+
+# Tabla Comparativa de Herramientas AI
+
+Referencia rápida para comparar capacidades entre herramientas.
+
+## Contexto y Memoria
+
+| Feature | Antigravity | Gemini CLI | Claude Code | Codex | Cursor |
+|---|---|---|---|---|---|
+| Archivo de contexto | `GEMINI.md` | `GEMINI.md` | `CLAUDE.md` | `AGENTS.md` | `.cursor/rules/*.mdc` |
+| Alcance Global | `~/.gemini/GEMINI.md` | `~/.gemini/GEMINI.md` | `~/.claude/CLAUDE.md` | `~/.codex/AGENTS.md` | Settings > Rules for AI |
+| Alcance Proyecto | `GEMINI.md` en raíz | `GEMINI.md` en raíz | `CLAUDE.md` en raíz | `AGENTS.md` en raíz | `.cursor/rules/*.mdc` |
+| Alcance Módulo | Subdirectorios | Subdirectorios | Subdirectorios | Override files | Globs en frontmatter |
+| Importar archivos | `@archivo.md` | `@archivo.md` | Import en md | Concatenación | `@file` reference |
+| Auto Memory | No | No | **Sí** | No | No |
+
+## Extensibilidad
+
+| Feature | Antigravity | Gemini CLI | Claude Code | Codex | Cursor |
+|---|---|---|---|---|---|
+| Skills | `.agent/skills/` | `.gemini/skills/` | No nativo | `.agents/skills/` | No nativo |
+| Workflows / Commands | `.agent/workflows/` | `.gemini/commands/` | `/project:cmd` | — | `/create-rule` |
+| Hooks | **Sí** | **Sí** | **Sí** | No | No |
+| Subagentes | **Sí** | `.gemini/agents/` | **Sí** | No | No |
+| Plugins / Extensions | **Sí** | Extensions | No | No | Extensions |
+
+## MCP y Herramientas
+
+| Feature | Antigravity | Gemini CLI | Claude Code | Codex | Cursor |
+|---|---|---|---|---|---|
+| MCP Config | `mcp_config.json` | `settings.json` | `settings.json` | `config.toml` | `mcp.json` |
+| MCP Auth OAuth | **Sí** | **Sí** | No | No | No |
+| Deshabilitar Tools | `disabledTools[]` | `excludeTools[]` | — | — | — |
+
+## Tipo de Herramienta
+
+| Feature | Antigravity | Gemini CLI | Claude Code | Codex | Cursor |
+|---|---|---|---|---|---|
+| Tipo | IDE Extension | CLI Terminal | CLI Terminal | IDE Extension | IDE (VSCode fork) |
+| Modo autónomo | `// turbo` | `--yolo` | `--yolo` | — | Agent mode |
+| Open Source | No | **Sí** | No | No | No |
+| Modelo base | Gemini | Gemini | Claude | GPT / o-series | Múltiple (configurable) |

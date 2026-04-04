@@ -84,20 +84,72 @@ mi-plugin/
 └── src/
     └── index.js
 ```
+
+**Ejemplo de Instalación (Comando):**
+Para instalar plugins desde repositorios o el registro oficial, se utiliza la interfaz de comandos interna de Claude:
+```bash
+/plugin install @anthropic/mcp-server-github
+```
 *Fuentes: [Claude Code: Discover Plugins](https://code.claude.com/docs/en/discover-plugins), [Claude Code: Plugins](https://code.claude.com/docs/en/plugins)*
 
 ## Subagentes y Agent Teams
 
 Claude Code permite orquestar múltiples agentes especializados utilizando la arquitectura de **Agent Teams** (Equipos de Agentes).
 
-Los subagentes mantienen su propio contexto aislado y un conjunto de herramientas limitado. Esto es ideal para separar tareas (por ejemplo, un agente que "Planifica" y otro agente que "Escribe Código").
+Los subagentes mantienen su propio contexto aislado y un conjunto de herramientas limitado. Se definen mediante archivos Markdown con `frontmatter` YAML.
 
+**Estructura de Directorio:**
+```text
+mi-proyecto/
+└── .claude/
+    └── agents/
+        └── code-reviewer.md
+```
+
+**Ejemplo de Configuración (`code-reviewer.md`):**
+```yaml
+---
+name: code-reviewer
+description: Reviews code for quality and best practices
+tools: Read, Glob, Grep
+model: sonnet
+memory: project
+---
+You are a code reviewer. When invoked, analyze the code and provide specific, actionable feedback on quality, security, and best practices.
+```
 *Fuente: [Claude Code: Sub-agents & Teams](https://code.claude.com/docs/en/sub-agents)*
 
 ## Hooks (Disparadores)
 
 Los hooks permiten ejecutar scripts en respuesta a eventos del ciclo de vida. En Claude, un aspecto crítico de seguridad es la capacidad de bloqueo: si un hook de validación (por ejemplo, en el evento `PreToolUse`) retorna un código de salida `exit 2`, se aborta la ejecución de la herramienta, protegiendo el sistema. El mensaje de error impreso en `stderr` se envía tanto al usuario como de vuelta al modelo.
 
+**Estructura de Directorio:**
+```text
+mi-proyecto/
+└── .claude/
+    ├── settings.json
+    └── hooks/
+        └── protect-files.sh
+```
+
+**Ejemplo de Configuración (`settings.json`):**
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/protect-files.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 *Fuente: [Claude Code: Hooks Guide](https://code.claude.com/docs/en/hooks-guide)*
 
 ## Automatización y Tareas Programadas (Headless Mode)

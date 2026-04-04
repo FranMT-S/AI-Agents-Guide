@@ -311,7 +311,7 @@ Si falta el `package.json`, puedes definir uno básico (o pedirle a la IA que lo
 | **OpenCode** | `.opencode/skills/` | `~/.config/opencode/skills/` | Automático por triggers |
 
 > [!NOTE]
-> Para conocer metadatos específicos, control de permisos y características avanzadas de las skills en cada herramienta, consulta su archivo específico: [Cursor](./cursor.md) | [Antigravity](./antigravity.md) | [Gemini CLI](./gemini-cli.md) | [OpenCode](./openCode.md) | [Claude Code](./claude-code.md) | [Codex CLI](./codex-cli.md).
+> Para conocer metadatos específicos, control de permisos y características avanzadas de las skills en cada herramienta, consulta su archivo específico: [Cursor](cursor.md) | [Antigravity](antigravity.md) | [Gemini CLI](gemini-cli.md) | [OpenCode](openCode.md) | [Claude Code](claude-code.md) | [Codex CLI](codex-cli.md).
 
 ### Seguridad y Aislamiento (Sandboxing)
 

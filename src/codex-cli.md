@@ -66,12 +66,58 @@ startup_timeout_sec = 30
 
 Codex soporta el uso de hooks para reaccionar a eventos de terminal e intercepciones de modelos, proporcionando una capa de ejecución y seguridad que corre de forma externa al flujo principal de generación.
 
+**Estructura de Directorio:**
+```text
+mi-proyecto/
+└── .codex/
+    ├── hooks.json
+    └── hooks/
+        └── pre_tool_use_policy.py
+```
+
+**Ejemplo de Configuración (`hooks.json`):**
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 \".codex/hooks/pre_tool_use_policy.py\"",
+            "statusMessage": "Checking Bash command"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 *Fuente: [Codex CLI: Hooks](https://developers.openai.com/codex/hooks)*
 
 ## Subagentes
 
-En Codex CLI, se pueden definir subagentes especializados para delegar lógicas complejas de razonamiento o tareas que requieren un enfoque segmentado antes de retornar el output final a la terminal principal.
+En Codex CLI, se pueden definir subagentes especializados para delegar lógicas complejas de razonamiento o tareas que requieren un enfoque segmentado antes de retornar el output final a la terminal principal. Se configuran mediante archivos TOML.
 
+**Estructura de Directorio:**
+```text
+mi-proyecto/
+└── .codex/
+    └── agents/
+        └── reviewer.toml
+```
+
+**Ejemplo de Configuración (`reviewer.toml`):**
+```toml
+name = "reviewer"
+description = "PR reviewer focused on correctness, security, and missing tests."
+model = "gpt-5.4"
+sandbox_mode = "read-only"
+developer_instructions = """
+Review code like an owner. Prioritize correctness, security, behavior regressions, and missing test coverage.
+"""
+```
 *Fuente: [Codex CLI: Subagents Guide](https://developers.openai.com/codex/subagents)*
 
 ## Automatización y Scripting (Non-interactive Mode)
