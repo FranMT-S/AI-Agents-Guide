@@ -22,18 +22,62 @@ def test_spanish_headers():
     with open(GUIDE_PATH, "r", encoding="utf-8") as f:
         content = f.read()
     for header in required_headers:
+        # Using a more flexible check for encoding issues if necessary, 
+        # but let's try direct first with proper encoding.
         assert re.search(header, content, re.IGNORECASE), f"Error: Header '{header}' not found."
 
-def test_obsidian_callouts_placeholders():
+def test_core_concepts_content():
     with open(GUIDE_PATH, "r", encoding="utf-8") as f:
         content = f.read()
-    assert "Placeholder:" in content, "Error: Placeholders not found."
+    required_keywords = [
+        "Memoria Persistente",
+        "AGENTS.md",
+        "GEMINI.md",
+        "CLAUDE.md",
+        "Scope",
+        "Global",
+        "Proyecto",
+        "Subdirectorio"
+    ]
+    for keyword in required_keywords:
+        assert keyword in content, f"Error: Keyword '{keyword}' not found in Core Concepts."
+
+def test_skills_content():
+    with open(GUIDE_PATH, "r", encoding="utf-8") as f:
+        content = f.read()
+    # Check for presence of substrings to avoid encoding issues with 'í' or '¿'
+    required_substrings = [
+        "Skills (Habilidades)",
+        "Metadatos",
+        "templates",
+        "de una Skill", # Anatomy of a Skill
+        "progressive disclosure"
+    ]
+    for substring in required_substrings:
+        assert substring in content, f"Error: Substring '{substring}' not found in Skills section."
+
+def test_mcp_advanced_content():
+    with open(GUIDE_PATH, "r", encoding="utf-8") as f:
+        content = f.read()
+    required_keywords = [
+        "MCP (Model Context Protocol)",
+        "Sandboxing",
+        "docker exec",
+        "disabledTools",
+        "excludeTools",
+        "Reseteo", # Capitalized
+        "settings.json"
+    ]
+    for keyword in required_keywords:
+        assert keyword in content, f"Error: Advanced keyword '{keyword}' not found in MCP section."
 
 if __name__ == "__main__":
     try:
         test_file_exists()
         test_spanish_headers()
-        test_obsidian_callouts_placeholders()
+        test_core_concepts_content()
+        test_skills_content()
+        test_mcp_advanced_content()
         print("Success: All tests passed.")
     except AssertionError as e:
         print(e)

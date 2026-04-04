@@ -158,43 +158,60 @@ skills/arch-doc/
 
 ## MCP (Model Context Protocol)
 
-El **Model Context Protocol (MCP)** es un estándar abierto que permite a los modelos de IA conectarse con herramientas y datos externos de forma segura. Mediante MCP, un agente puede leer tu repositorio de GitHub, consultar tareas en ClickUp o incluso interactuar con el inspector de Google Chrome.
+El **Model Context Protocol (MCP)** es el estándar de comunicación que permite a los modelos de IA interactuar con el mundo real. Actúa como un puente entre la lógica del LLM y herramientas externas (bases de datos, APIs, navegadores).
 
-### 1. Conceptos Fundamentales: Tools y Resources
+### 1. Arquitectura y Componentes
 
-- **Tools (Herramientas):** Son funciones ejecutables que el agente puede invocar (ej. `create_issue`, `read_file`).
-- **Resources (Recursos):** Datos de solo lectura que el servidor MCP expone al modelo (ej. logs, archivos de configuración).
+- **MCP Client:** El agente (Cursor, Gemini CLI, etc.) que consume las herramientas.
+- **MCP Server:** El servidor que expone las funcionalidades.
+- **Tools (Herramientas):** Funciones que el modelo puede "llamar" (ej. `read_github_repo`).
+- **Resources (Recursos):** Datos estáticos o dinámicos que el modelo puede leer (ej. logs en tiempo real).
 
 > [!WARNING]
-> **Seguridad y Exclusión de Tools:** Activa solo las herramientas que realmente necesites. Tener demasiadas herramientas activas aumenta el consumo de tokens y puede causar que el modelo "alucine" al intentar elegir la función correcta.
+> **Sandboxing y Seguridad:** Al usar servidores MCP, el agente obtiene permisos para ejecutar acciones en tu nombre. Siempre revisa el código fuente de los servidores de terceros y utiliza tokens con permisos mínimos (Principio de Menor Privilegio).
 
-### 2. Configuración por Herramienta
+---
 
-La configuración de los servidores MCP varía según el agente:
+### 2. Configuración y Gestión de Herramientas
 
-| Agente | Ruta del Archivo de Configuración |
-| :--- | :--- |
-| **Cursor** | `~/.cursor/mcp.json` |
-| **Antigravity** | `~/.gemini/antigravity/mcp_config.json` |
-| **Gemini CLI** | `~/.gemini/settings.json` |
-| **Claude Code** | `~/.claude/settings.json` |
-| **Codex CLI** | `~/.codex/config.toml` |
+Cada agente permite habilitar o deshabilitar herramientas específicas para evitar la degradación del contexto.
 
-### 3. Servidores MCP Comunes y Docker
+| Agente | Archivo de Configuración | Clave de Exclusión |
+| :--- | :--- | :--- |
+| **Cursor** | `~/.cursor/mcp.json` | N/A (Manual en UI) |
+| **Antigravity** | `mcp_config.json` | `"disabledTools": []` |
+| **Gemini CLI** | `settings.json` | `"excludeTools": []` |
+| **Claude Code** | `settings.json` | `hooks: PreToolUse` |
 
-Muchos servidores MCP (como el de GitHub) se ejecutan mediante **Docker** para garantizar un entorno aislado.
+---
 
-#### GitHub MCP
-Permite al agente gestionar repositorios, issues y pull requests.
-- **Configuración típica:** Requiere un `GITHUB_PERSONAL_ACCESS_TOKEN`.
-- **Tip de Rendimiento:** Si usas Docker, evita usar `--rm` en cada ejecución si abres muchas ventanas del IDE, ya que consume recursos excesivos. Es mejor mantener un contenedor persistente.
+### 3. Deep Dive: GitHub MCP y Docker Optimization
 
-#### ClickUp MCP
-Permite gestionar tareas y documentos de ClickUp.
-- **Autenticación:** Utiliza Oauth. Si el proceso de login se bloquea, intenta resetear los tokens eliminando la carpeta `~/.mcp-auth`.
+Muchos servidores MCP se distribuyen como imágenes de Docker. El error común es levantar una instancia nueva por cada sesión, lo que consume memoria y CPU excesivamente.
 
-> [!TIP]
-> **Reseteo de Oauth:** En Antigravity, si el flujo de autenticación falla, eliminar los archivos en `~/.mcp-auth` suele solucionar el problema.
+#### Optimización con `docker exec`
+En lugar de usar `--rm` y `run` (que crea y destruye contenedores), es más eficiente mantener un contenedor persistente y conectarse vía `exec`.
+
+**Comando para el servidor:**
+```bash
+docker run -d -i --name github-mcp -e GITHUB_PERSONAL_ACCESS_TOKEN=xxx ghcr.io/github/github-mcp-server
+```
+
+**Configuración en `settings.json`:**
+```json
+"github-mcp-server": {
+  "command": "docker",
+  "args": ["exec", "-i", "github-mcp", "/server/github-mcp-server", "stdio"]
+}
+```
+
+---
+
+### 4. Solución de Problemas Comunes
+
+- **Reseteo de Oauth (ClickUp/Figma):** Si la autenticación se corrompe, elimina la carpeta de sesión del MCP. En Antigravity/Gemini suele estar en `~/.mcp-auth`.
+- **Errores de Stdio:** Asegúrate de que el servidor MCP no imprima nada a `stdout` que no sea JSON válido. Usa `stderr` para depuración.
+- **Timeout:** Servidores lentos pueden causar que el agente aborte la tarea. Ajusta los límites de tiempo en la configuración del cliente si el agente lo permite.
 
 **Referencias y Documentación:**
 - [Cursor: MCP Overview](https://cursor.com/docs/mcp)
