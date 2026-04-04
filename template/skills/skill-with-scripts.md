@@ -1,23 +1,23 @@
 ---
 name: video-optimizer
-description: Experto en el uso de FFmpeg para comprimir y convertir videos.
+description: Usa esta skill cuando el usuario necesite comprimir o convertir archivos de video MP4 usando herramientas CLI.
 trigger: "optimizar video", "ffmpeg", "convertir mp4"
 allowed-tools: ["run_shell_command"]
+license: "MIT"
 ---
 
 # Goal
-Generar comandos exactos de FFmpeg y ejecutarlos para cumplir con los requisitos de tamaño del usuario.
+Ejecutar el script de validación incluido para procesar videos según los parámetros del proyecto.
 
 # Logic (Scripts)
-Esta skill depende de scripts externos para validar el bitrate.
+Esta skill depende de un script en Python contenido en la carpeta de la skill. El script utiliza PEP 723 inline metadata para instalar sus dependencias al vuelo usando `uvx`.
 Ruta: `$SKILL_DIR/scripts/validate_bitrate.py`
 
 # Steps
-1. Verificar si `ffmpeg` está instalado: `ffmpeg -version`.
-2. Analizar el archivo de entrada: `ffprobe <input>`.
-3. Ejecutar el script de validación.
-4. Generar y ejecutar el comando de optimización.
+1. **Plan:** Analiza la petición del usuario y determina los parámetros de compresión.
+2. **Validate:** Ejecuta el script de validación usando `uvx`: `uvx run $SKILL_DIR/scripts/validate_bitrate.py <input>`.
+3. **Execute:** Si el script falla (exit code != 0), lee el mensaje de error y ajusta los parámetros en un bucle hasta que pase la validación. NO hagas preguntas interactivas.
 
-# Examples
-Input: "Optimiza video.mp4 para web"
-Output: `ffmpeg -i video.mp4 -vcodec libx264 -crf 28 output.mp4`
+# Constraints
+- Usa SIEMPRE salidas JSON o CSV cuando parsees la respuesta del script.
+- Asegúrate de que tus comandos sean idempotentes (ej. verifica si el archivo de salida ya existe antes de sobreescribirlo).

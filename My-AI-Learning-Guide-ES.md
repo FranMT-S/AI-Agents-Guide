@@ -171,11 +171,32 @@ Ideal para asegurar que el agente siempre responda con un formato estandarizado.
 
 ---
 
-### 4. Malas Prácticas (Qué NO hacer)
+### 4. Mejores Prácticas y Reglas Oficiales (AgentSkills.io)
 
-- ❌ **Triggers Genéricos:** Usar triggers como `"ayuda"`, `"código"` o `"revisar"`. Esto causará que la skill se active accidentalmente en tareas rutinarias, gastando tokens innecesariamente.
-- ❌ **Exceso de Texto en SKILL.md:** Un archivo `SKILL.md` de 1000 líneas anula el propósito de la revelación progresiva. Mantén el archivo corto y delega la lógica pesada a scripts dentro de la carpeta de la skill.
-- ❌ **Reglas Globales en Skills:** No pongas reglas como "Habla en español" o "Usa CamelCase" en una skill. Esas reglas pertenecen al contexto global de `AGENTS.md`.
+Basado en la especificación oficial de AgentSkills, aquí tienes las reglas de oro para crear skills robustas:
+
+#### Optimización de Descripciones (Triggers)
+La descripción es el **único** mecanismo para que el agente descubra la skill.
+- ✅ **Fraseo Imperativo:** Usa `"Úsalo cuando..."` o `"Usa esta skill para..."` en lugar de descripciones pasivas como `"Esta skill hace..."`.
+- ✅ **Enfoque en la Intención:** Describe qué quiere lograr el usuario, no los mecanismos internos.
+- ✅ **Sé Asertivo ("Pushy"):** Lista contextos explícitos incluso si el usuario no usa palabras clave exactas (ej. *"incluso si no mencionan la palabra CSV"*).
+- ❌ **Triggers Genéricos:** Evita `"ayuda"`, `"código"` o `"revisar"`. Usa Evals (ver abajo) para crear un ratio 60/40 de queries que *deben* activarlo vs queries que *no deben* activarlo (near-misses).
+
+#### Creación de Instrucciones (SKILL.md)
+- **"Añade lo que el agente no sabe, omite lo que ya sabe":** No le enseñes cómo funciona HTTP. Enfócate en las convenciones únicas de tu proyecto.
+- **Gotchas y Checklists:** Usa listas explícitas para hechos que el modelo suele ignorar (ej. *"La tabla users usa soft deletes, NUNCA hagas DELETE FROM"*). Para procesos largos, obliga al agente a seguir un checklist paso a paso.
+- **Loops de Validación:** Instruye al agente a ejecutar un script de test/linting y arreglar los errores en un bucle hasta que pase (ej. `Plan-Validate-Execute`).
+
+#### Uso de Scripts en Skills
+- **Dependencias al vuelo:** Usa `uvx`, `npx` o `bunx` para ejecutar scripts sin necesidad de instalaciones manuales previas (ej. `npx eslint@9`).
+- **Scripts Autocontenidos:** Para Python, usa la sintaxis PEP 723 (`# /// script`) para incrustar las dependencias dentro del mismo archivo.
+- **Diseño para Agentes:** Los scripts **NO deben ser interactivos** (nada de prompts tipo "Presiona Y para continuar"). Deben emitir mensajes de error muy claros explicando al agente cómo solucionarlo y usar salidas estructuradas (JSON/CSV) preferiblemente.
+
+#### Evaluación de Calidad (Evals)
+Nunca lances una skill sin probarla. Usa herramientas de evaluación para medir el **Delta** (lo que cuesta ejecutar la skill en tokens/tiempo vs lo que aporta).
+- **Test Cases:** Deben incluir el Prompt, Output Esperado y Archivos de Entrada.
+- **Aserciones Verificables:** No uses métricas vagas como *"El output es bueno"*. Usa aserciones medibles como *"El archivo final es un JSON válido"*.
+- **Rastreo:** Revisa las transcripciones de ejecución para entender *por qué* el agente ignoró una regla y ajusta el `SKILL.md` en consecuencia.
 
 ---
 
