@@ -117,7 +117,54 @@ Usa el template en `templates/report.md`.
 - [Codex: Developers Skills](https://developers.openai.com/codex/skills)
 
 ## MCP (Model Context Protocol)
-Placeholder: Configuración, seguridad y herramientas para cada CLI.
+
+El **Model Context Protocol (MCP)** es un estándar abierto que permite a los modelos de IA conectarse con herramientas y datos externos de forma segura. Mediante MCP, un agente puede leer tu repositorio de GitHub, consultar tareas en ClickUp o incluso interactuar con el inspector de Google Chrome.
+
+### 1. Conceptos Fundamentales: Tools y Resources
+
+- **Tools (Herramientas):** Son funciones ejecutables que el agente puede invocar (ej. `create_issue`, `read_file`).
+- **Resources (Recursos):** Datos de solo lectura que el servidor MCP expone al modelo (ej. logs, archivos de configuración).
+
+> [!WARNING]
+> **Seguridad y Exclusión de Tools:** Activa solo las herramientas que realmente necesites. Tener demasiadas herramientas activas aumenta el consumo de tokens y puede causar que el modelo "alucine" al intentar elegir la función correcta.
+
+### 2. Configuración por Herramienta
+
+La configuración de los servidores MCP varía según el agente:
+
+| Agente | Ruta del Archivo de Configuración |
+| :--- | :--- |
+| **Cursor** | `~/.cursor/mcp.json` |
+| **Antigravity** | `~/.gemini/antigravity/mcp_config.json` |
+| **Gemini CLI** | `~/.gemini/settings.json` |
+| **Claude Code** | `~/.claude/settings.json` |
+| **Codex CLI** | `~/.codex/config.toml` |
+
+### 3. Servidores MCP Comunes y Docker
+
+Muchos servidores MCP (como el de GitHub) se ejecutan mediante **Docker** para garantizar un entorno aislado.
+
+#### GitHub MCP
+Permite al agente gestionar repositorios, issues y pull requests.
+- **Configuración típica:** Requiere un `GITHUB_PERSONAL_ACCESS_TOKEN`.
+- **Tip de Rendimiento:** Si usas Docker, evita usar `--rm` en cada ejecución si abres muchas ventanas del IDE, ya que consume recursos excesivos. Es mejor mantener un contenedor persistente.
+
+#### ClickUp MCP
+Permite gestionar tareas y documentos de ClickUp.
+- **Autenticación:** Utiliza Oauth. Si el proceso de login se bloquea, intenta resetear los tokens eliminando la carpeta `~/.mcp-auth`.
+
+> [!TIP]
+> **Reseteo de Oauth:** En Antigravity, si el flujo de autenticación falla, eliminar los archivos en `~/.mcp-auth` suele solucionar el problema.
+
+**Referencias y Documentación:**
+- [Cursor: MCP Overview](https://cursor.com/docs/mcp)
+- [Antigravity: MCP Docs](https://antigravity.google/docs/mcp)
+- [Gemini CLI: MCP Server Setup](https://geminicli.com/docs/tools/mcp-server/)
+- [OpenCode: Servidores MCP (ES)](https://opencode.ai/docs/es/mcp-servers/)
+- [Claude Code: MCP Guide](https://code.claude.com/docs/en/mcp)
+- [Codex CLI: MCP Developers](https://developers.openai.com/codex/mcp)
+- [GitHub MCP Server Repo](https://github.com/modelcontextprotocol/servers/tree/main/src/github)
+- [ClickUp MCP Server Docs](https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server-1)
 
 ## Plugins y Extensiones
 Placeholder: Resumen de integración para las distintas herramientas.
