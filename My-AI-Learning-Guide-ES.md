@@ -17,7 +17,36 @@ Esta guía es una referencia completa para el desarrollo de agentes potenciados 
 ---
 
 ## Introducción y Conceptos Básicos
-Placeholder: Definiciones sobre memoria persistente y niveles de contexto (AGENTS.md, GEMINI.md, CLAUDE.md).
+
+En el desarrollo con Inteligencia Artificial, el mayor desafío no es solo escribir un buen *prompt*, sino evitar que la IA "olvide" las reglas a medida que la conversación se extiende. Este fenómeno, conocido como la limitación de la ventana de contexto, se resuelve mediante la **Memoria Persistente**.
+
+### 1. El Concepto de Memoria Persistente y Alcance (Scope)
+
+La memoria persistente permite que el asistente cargue automáticamente un "manual de identidad" antes de procesar tu primera palabra. Esto garantiza que el estilo, las herramientas y las restricciones de seguridad se mantengan constantes.
+
+> [!NOTE]
+> Un **archivo de contexto** (como `AGENTS.md`, `GEMINI.md` o `CLAUDE.md`) es un documento técnico donde se definen las instrucciones de comportamiento de la IA. Se denomina **memoria persistente** porque sobrevive al cierre de una sesión.
+
+Para organizar estas instrucciones de forma eficiente, manejamos tres niveles de **Alcance (Scope)**:
+
+1.  **Alcance Global (Capa de Usuario):** Instrucciones universales que la IA aplica siempre (ej. `~/.gemini/GEMINI.md`).
+2.  **Alcance de Proyecto (Capa de Raíz):** Reglas específicas para un repositorio completo (ej. `AGENTS.md` en la raíz del proyecto).
+3.  **Alcance de Módulo (Capa de Subdirectorio):** Instrucciones quirúrgicas para carpetas específicas (ej. `/src/auth/AGENTS.md`).
+
+---
+
+### 2. Comparativa de Archivos de Contexto
+
+| Herramienta | Archivo Principal | Ubicación Global |
+| :--- | :--- | :--- |
+| **Cursor** | `.cursorrules` / `.cursor/rules/*.mdc` | Settings > Rules for AI |
+| **Antigravity** | `GEMINI.md` | `~/.gemini/GEMINI.md` |
+| **Gemini CLI** | `GEMINI.md` / `AGENTS.md` | `~/.gemini/GEMINI.md` |
+| **Claude Code** | `CLAUDE.md` | `~/.claude/CLAUDE.md` |
+| **Codex CLI** | `AGENTS.md` | `~/.codex/AGENTS.md` |
+
+> [!WARNING]
+> **Higiene de Contexto:** No satures cada carpeta con instrucciones. Si las reglas se contradicen en demasiados niveles, el comportamiento de la IA se vuelve errático. Usa siempre `.gitignore` para evitar que la IA lea carpetas innecesarias como `node_modules`.
 
 ## Skills (Habilidades)
 Placeholder: Qué son las skills, consejos de construcción y metadatos.
