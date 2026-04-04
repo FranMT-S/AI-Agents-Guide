@@ -96,8 +96,51 @@ export default {
 ```
 *Fuentes: [OpenCode: Plugins (ES)](https://opencode.ai/docs/es/plugins/), [OpenCode: Ecosystem (ES)](https://opencode.ai/docs/es/ecosystem/)*
 
-## Subagentes
+## Subagentes y Orquestadores
 
-En OpenCode, los subagentes están profundamente integrados en el ecosistema, permitiendo dividir tareas complejas. Tienen la capacidad de utilizar permisos granulares a nivel de agente definidos en `opencode.json`.
+En OpenCode, los subagentes están profundamente integrados en el ecosistema, permitiendo dividir tareas complejas. Tienen la capacidad de utilizar permisos granulares a nivel de agente definidos en `opencode.json` o a través de archivos Markdown.
 
+### Arquitectura de Orquestación (Manager / Coder)
+
+OpenCode soporta nativamente la figura del **Orquestador** (Planner/Manager). El flujo recomendado es tener un agente "Planificador" con herramientas de solo lectura que analiza y delega el trabajo a un agente "Programador" (Coder) con herramientas de escritura.
+
+**Estructura de Directorio:**
+```text
+mi-proyecto/
+├── opencode.json
+└── .opencode/
+    └── agents/
+        ├── manager.md
+        └── coder.md
+```
+
+**Ejemplo de Configuración (`opencode.json`):**
+```json
+{
+  "agent": {
+    "manager": {
+      "description": "Analiza y delega tareas complejas",
+      "mode": "orchestrator",
+      "tools": { "write": false, "edit": false, "coder_agent": true }
+    },
+    "coder": {
+      "description": "Implementa los cambios",
+      "mode": "subagent",
+      "tools": { "write": true, "edit": true }
+    }
+  }
+}
+```
+
+**Ejemplo de Configuración (Frontmatter en `manager.md`):**
+```yaml
+---
+description: Coordina el desarrollo de la aplicación
+mode: orchestrator
+tools:
+  write: false
+  coder_agent: true
+---
+Eres el arquitecto del proyecto. Planifica la estructura y usa la herramienta `coder_agent` para delegar la implementación. No escribas código tú mismo.
+```
 *Fuente: [OpenCode: Agents (ES)](https://opencode.ai/docs/es/agents/)*

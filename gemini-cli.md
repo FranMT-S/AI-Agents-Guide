@@ -76,6 +76,11 @@ mi-extension/
 │   └── custom-cmd.toml
 └── skills/
 ```
+
+**Ejemplo de Instalación (Comando CLI):**
+```bash
+gemini extensions install https://github.com/google/gemini-cli-github-extension
+```
 *Fuentes: [Gemini CLI: Extensions Guide](https://geminicli.com/docs/extensions/), [Writing Extensions](https://geminicli.com/docs/extensions/writing-extensions/), [Best Practices](https://geminicli.com/docs/extensions/best-practices/), [Reference](https://geminicli.com/docs/extensions/reference/)*
 
 ## Hooks (Disparadores)
@@ -116,29 +121,39 @@ mi-proyecto/
 ```
 *Fuente: [Gemini CLI: Hooks Reference](https://geminicli.com/docs/hooks/reference/)*
 
-## Subagentes
+## Subagentes y Orquestadores
 
 Los subagentes en Gemini CLI operan en ventanas de contexto aisladas y se definen mediante archivos Markdown con `frontmatter` YAML.
 
-Los metadatos incluyen `name`, `description`, `kind` (`local` o `remote`), `tools` y `model`. Cuenta con agentes integrados como `codebase_investigator`, `cli_help`, `generalist_agent`, y `browser_agent`. Un aspecto crítico es la `Tool Isolation`: los subagentes solo pueden acceder a las herramientas que se les otorgan explícitamente en el array `tools`. Además, la recursión está protegida; un subagente no puede llamar a otro subagente.
+Los metadatos incluyen `name`, `description`, `kind` (`local` o `remote`), `tools` y `model`. Cuenta con agentes integrados como `codebase_investigator`, `cli_help`, `generalist_agent`, y `browser_agent`. Un aspecto crítico es la `Tool Isolation`: los subagentes solo pueden acceder a las herramientas que se les otorgan explícitamente en el array `tools`. Además, la recursión está protegida; un subagente no puede llamar a otro subagente, excepto si es un orquestador oficial.
 
-**Estructura de Directorio:**
+### Subagentes Orquestadores (Dev Manager Orchestrator)
+
+Gemini CLI incorpora agentes orquestadores integrados (como `dev-manager-orchestrator`) que automatizan el ciclo de desarrollo completo (escribir → revisar → arreglar) delegando tareas a otros subagentes especialistas sin intervención del usuario.
+
+**Estructura de Directorio (Ejemplo Personalizado):**
 ```text
 mi-proyecto/
 └── .gemini/
     └── agents/
-        └── security-auditor.md
+        ├── dev-orchestrator.md
+        ├── code-writer.md
+        └── code-reviewer.md
 ```
 
-**Ejemplo de Configuración (Frontmatter en `.md`):**
+**Ejemplo de Configuración de un Orquestador (`dev-orchestrator.md`):**
 ```markdown
 ---
-name: security-auditor
-description: Finds vulnerabilities.
-tools: [read_file, grep_search]
-model: gemini-3-flash-preview
+name: dev-orchestrator
+description: Coordina el ciclo completo de desarrollo. Delega la escritura y la revisión a subagentes.
+tools: [code-writer, code-reviewer, read_file]
+model: gemini-3-pro
 ---
-System prompt content here...
+Eres el Mánager de Desarrollo. 
+1. Pasa el requerimiento del usuario a la tool `code-writer`.
+2. Una vez que termine, usa la tool `code-reviewer` para auditar el archivo.
+3. Si el reviewer reporta errores, envíalos de vuelta al `code-writer`.
+4. Solo finaliza cuando el `code-reviewer` diga que todo está perfecto. No escribas código tú mismo.
 ```
 *Fuente: [Gemini CLI: Subagents Tutorial](https://geminicli.com/docs/core/subagents/)*
 

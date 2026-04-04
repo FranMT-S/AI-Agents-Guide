@@ -167,16 +167,21 @@ En **Claude Code**, un hook puede abortar una operación si detecta una violaci�
 
 Un **Subagente** no es solo un prompt diferente; es una instancia del modelo con un contexto **aislado** y un conjunto de herramientas limitado para una tarea específica.
 
-### 1. Arquitectura de "Agent Teams"
+### 1. Arquitectura de "Agent Teams" y Orquestadores
 
-Para proyectos complejos, herramientas como **Claude Code** permiten crear equipos de agentes que trabajan en paralelo:
-- **Agente Planificador:** Diseña la estrategia sin tocar código.
-- **Agente Programador:** Implementa cambios quirúrgicos basados en el plan.
-- **Agente de QA:** Ejecuta tests y audita la calidad sin acceso a las herramientas de escritura.
+Para proyectos complejos, el uso de un solo agente genérico suele fallar o consumir demasiados tokens. La solución es la arquitectura de **Equipos de Agentes (Agent Teams)** liderados por un **Subagente Orquestador (Orchestrator Subagent)**:
+
+- **Agente Orquestador (Manager/Planner):** Recibe la petición del usuario, analiza el proyecto y *no escribe código*. En su lugar, delega tareas específicas a otros subagentes y evalúa sus resultados.
+- **Agente Programador (Coder):** Recibe un plan muy específico del orquestador. Implementa los cambios quirúrgicos (con herramientas de escritura) y devuelve el control.
+- **Agente Revisor (QA/Reviewer):** Ejecuta linting, tests y audita la calidad del código escrito por el programador, devolviendo el feedback al orquestador.
 
 ### 2. Ventajas del Aislamiento
 - **Protección de Contexto:** Evita que el historial de chat se llene de logs de tests o búsquedas repetitivas de archivos.
-- **Especialización:** Permite definir un **expertise** único (ej. "Eres un experto en Rust") que no afecte el comportamiento del agente principal en otras áreas del proyecto.
+- **Especialización (Expertise):** Permite definir un rol único (ej. "Eres un auditor de seguridad estricto") que no afecte el comportamiento complaciente del agente principal.
+- **Seguridad:** A un agente orquestador se le pueden dar permisos de ejecución de terminal, mientras que al agente programador solo se le da acceso a `edit_file`, limitando el riesgo de comandos maliciosos.
+
+> [!NOTE]
+> Para conocer cómo se configuran estos equipos y ver **ejemplos de subagentes orquestadores** en cada herramienta, consulta su archivo específico: [Cursor](./cursor.md) | [Gemini CLI](./gemini-cli.md) | [OpenCode](./openCode.md) | [Claude Code](./claude-code.md) | [Codex CLI](./codex-cli.md).
 
 ---
 
