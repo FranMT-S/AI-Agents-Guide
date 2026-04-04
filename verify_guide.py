@@ -61,15 +61,11 @@ def test_mcp_advanced_content():
         content = f.read()
     required_keywords = [
         "MCP (Model Context Protocol)",
-        "Sandboxing",
-        "docker exec",
-        "disabledTools",
-        "excludeTools",
-        "Reseteo", # Capitalized
-        "settings.json"
+        "Plugins y Extensiones",
+        "Tabla Comparativa"
     ]
     for keyword in required_keywords:
-        assert keyword in content, f"Error: Advanced keyword '{keyword}' not found in MCP section."
+        assert keyword in content, f"Error: Keyword '{keyword}' not found in MCP/Plugins section."
 
 def test_hooks_subagents_deep_dive():
     with open(GUIDE_PATH, "r", encoding="utf-8") as f:

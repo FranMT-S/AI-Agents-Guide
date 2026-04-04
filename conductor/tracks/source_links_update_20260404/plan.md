@@ -15,12 +15,12 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Core Concepts Review and Update' (Protocol in workflow.md)
 
 ## Phase 3: Advanced Features Review and Update
-- [~] Task: Review and update MCP documentation.
-    - [ ] Sub-task: Analyze links for Cursor MCP, Antigravity MCP, Gemini CLI MCP, OpenCode MCP, Claude MCP, and Codex MCP. Focus on security and tool exclusion.
-    - [ ] Sub-task: Update `My-AI-Learning-Guide-ES.md` (general) and individual tool `.md` files (specifics).
-- [~] Task: Review and update Plugins/Extensions documentation.
-    - [ ] Sub-task: Analyze links for Cursor Plugins, Gemini CLI Extensions, OpenCode Plugins/Ecosystem, and Claude Plugins.
-    - [ ] Sub-task: Update `My-AI-Learning-Guide-ES.md` (general) and individual tool `.md` files (specifics).
+- [x] Task: Review and update MCP documentation.
+    - [x] Sub-task: Analyze links for Cursor MCP, Antigravity MCP, Gemini CLI MCP, OpenCode MCP, Claude MCP, and Codex MCP. Focus on security and tool exclusion.
+    - [x] Sub-task: Update `My-AI-Learning-Guide-ES.md` (general) and individual tool `.md` files (specifics).
+- [x] Task: Review and update Plugins/Extensions documentation.
+    - [x] Sub-task: Analyze links for Cursor Plugins, Gemini CLI Extensions, OpenCode Plugins/Ecosystem, and Claude Plugins.
+    - [x] Sub-task: Update `My-AI-Learning-Guide-ES.md` (general) and individual tool `.md` files (specifics).
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Advanced Features Review and Update' (Protocol in workflow.md)
 
 ## Phase 4: Lifecycle and Automation Review and Update

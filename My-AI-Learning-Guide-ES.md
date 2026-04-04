@@ -165,7 +165,7 @@ El **Model Context Protocol (MCP)** es el estándar de comunicación que permite
 
 ---
 
-### 2. Configuración y Gestión de Herramientas
+### 2. Tabla Comparativa de Configuración MCP
 
 Cada agente permite habilitar o deshabilitar herramientas específicas para evitar la degradación del contexto.
 
@@ -175,60 +175,27 @@ Cada agente permite habilitar o deshabilitar herramientas específicas para evit
 | **Antigravity** | `mcp_config.json` | `"disabledTools": []` |
 | **Gemini CLI** | `settings.json` | `"excludeTools": []` |
 | **Claude Code** | `settings.json` | `hooks: PreToolUse` |
+| **Codex CLI** | `config.toml` | `disabled_tools` |
+| **OpenCode** | `opencode.json` | `"tools": {"*": false}` |
 
----
-
-### 3. Deep Dive: GitHub MCP y Docker Optimization
-
-Muchos servidores MCP se distribuyen como imágenes de Docker. El error común es levantar una instancia nueva por cada sesión, lo que consume memoria y CPU excesivamente.
-
-#### Optimización con `docker exec`
-En lugar de usar `--rm` y `run` (que crea y destruye contenedores), es más eficiente mantener un contenedor persistente y conectarse vía `exec`.
-
-**Comando para el servidor:**
-```bash
-docker run -d -i --name github-mcp -e GITHUB_PERSONAL_ACCESS_TOKEN=xxx ghcr.io/github/github-mcp-server
-```
-
-**Configuración en `settings.json`:**
-```json
-"github-mcp-server": {
-  "command": "docker",
-  "args": ["exec", "-i", "github-mcp", "/server/github-mcp-server", "stdio"]
-}
-```
-
----
-
-### 4. Solución de Problemas Comunes
-
-- **Reseteo de Oauth (ClickUp/Figma):** Si la autenticación se corrompe, elimina la carpeta de sesión del MCP. En Antigravity/Gemini suele estar en `~/.mcp-auth`.
-- **Errores de Stdio:** Asegúrate de que el servidor MCP no imprima nada a `stdout` que no sea JSON válido. Usa `stderr` para depuración.
-- **Timeout:** Servidores lentos pueden causar que el agente aborte la tarea. Ajusta los límites de tiempo en la configuración del cliente si el agente lo permite.
-
-**Referencias y Documentación:**
-- [Cursor: MCP Overview](https://cursor.com/docs/mcp)
-- [Antigravity: MCP Docs](https://antigravity.google/docs/mcp)
-- [Gemini CLI: MCP Server Setup](https://geminicli.com/docs/tools/mcp-server/)
-- [OpenCode: Servidores MCP (ES)](https://opencode.ai/docs/es/mcp-servers/)
-- [Claude Code: MCP Guide](https://code.claude.com/docs/en/mcp)
-- [Codex CLI: MCP Developers](https://developers.openai.com/codex/mcp)
-- [GitHub MCP Server Repo](https://github.com/modelcontextprotocol/servers/tree/main/src/github)
-- [ClickUp MCP Server Docs](https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server-1)
+> [!NOTE]
+> Para conocer metadatos específicos, características únicas (como MCP Apps, Auth OAuth) y optimización de Docker por cada herramienta, consulta su archivo específico: [Cursor](./cursor.md) | [Antigravity](./antigravity.md) | [Gemini CLI](./gemini-cli.md) | [OpenCode](./openCode.md) | [Claude Code](./claude-code.md) | [Codex CLI](./codex-cli.md).
 
 ## Plugins y Extensiones
 
 Las extensiones permiten añadir funcionalidades específicas a los agentes, como integración con bases de datos, APIs de terceros o capacidades de renderizado.
 
-- **Cursor:** Soporta extensiones de VSCode y plugins específicos de IA.
-- **Gemini CLI:** Utiliza un ecosistema de extensiones instalables vía URL de GitHub.
-- **Claude Code:** Se expande mediante herramientas y hooks configurables.
+### 1. Tabla Comparativa de Ecosistemas
 
-**Referencias y Documentación:**
-- [Cursor: Plugins](https://cursor.com/docs/plugins)
-- [Gemini CLI: Extensions Guide](https://geminicli.com/docs/extensions/)
-- [OpenCode: Ecosystem (ES)](https://opencode.ai/docs/es/ecosystem/)
-- [Claude Code: Discover Plugins](https://code.claude.com/docs/en/discover-plugins)
+| Agente | Arquitectura | Directorio/Comando |
+| :--- | :--- | :--- |
+| **Cursor** | Bundles con reglas, skills, MCP | `cursor.com/marketplace` |
+| **Gemini CLI** | `gemini-extension.json` | `gemini extensions install` |
+| **Claude Code** | `.claude-plugin/plugin.json` | `/plugin install` |
+| **OpenCode** | Módulos JS/TS (Bun) | `.opencode/plugins/` |
+
+> [!NOTE]
+> Para detalles sobre desarrollo, eventos y arquitecturas de plugins específicos por herramienta, consulta su archivo específico: [Cursor](./cursor.md) | [Antigravity](./antigravity.md) | [Gemini CLI](./gemini-cli.md) | [OpenCode](./openCode.md) | [Claude Code](./claude-code.md) | [Codex CLI](./codex-cli.md).
 
 ## Hooks (Disparadores)
 

@@ -11,3 +11,9 @@ Esta guía detalla las características exclusivas de Google Antigravity en cuan
 *   **Fuente:** [Antigravity: Skills Docs](https://antigravity.google/docs/skills)
 *   **Archivos:** Busca skills en `.agents/skills/<name>/` (proyecto) o `~/.gemini/antigravity/skills/<name>/` (global).
 *   **Características Únicas:** Las skills se activan mediante una herramienta nativa (`skill({ name: "..." })`). Recomienda incluir scripts en una carpeta `/scripts` y pedirle al agente que ejecute el script con `--help` (como "caja negra") en lugar de leer todo el código fuente, ahorrando espacio en la ventana de contexto.
+
+## MCP (Model Context Protocol)
+*   **Fuente:** [Antigravity: MCP Docs](https://antigravity.google/docs/mcp)
+*   **Características Técnicas:** Soporta **Stdio** y **Streamable HTTP**. Enfocado primariamente en proveer contexto en tiempo real (schemas, logs).
+*   **Archivos:** Configuración en `~/.gemini/antigravity/mcp_config.json` y tokens OAuth en `~/.gemini/antigravity/mcp_oauth_tokens.json`.
+*   **Características Únicas:** Soporte nativo para **Google Application Default Credentials (ADC)** (`authProviderType: "google_credentials"`). Posee un **MCP Store** integrado para descubrir e instalar servidores populares (ej. Supabase, Linear) con un solo clic. Controla herramientas deshabilitadas mediante la propiedad `"disabledTools": []`.

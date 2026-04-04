@@ -11,3 +11,14 @@ Esta guía detalla las características exclusivas de Gemini CLI en cuanto a la 
 *   **Fuentes:** [Gemini CLI: Skills Getting Started](https://geminicli.com/docs/cli/tutorials/skills-getting-started/), [Gemini CLI: Skills](https://geminicli.com/docs/cli/skills/)
 *   **Archivos:** Soporta tres niveles: Workspace (`.gemini/skills/`), User (`~/.gemini/skills/`) y Extension (empaquetado).
 *   **Características Únicas:** El orden de precedencia estricto es Workspace > User > Extension. Requiere aprobación manual del usuario (sandboxing) antes de que el agente pueda leer archivos dentro de la carpeta de la skill. Soporta ejecutar binarios empaquetados (ej. `node scripts/audit.js`).
+
+## MCP (Model Context Protocol)
+*   **Fuente:** [Gemini CLI: MCP Server Setup](https://geminicli.com/docs/tools/mcp-server/)
+*   **Características Técnicas:** Soporta **Stdio**, **SSE** y **Streamable HTTP**. Implementa Tools, Resources y Prompts (invocados vía slash commands).
+*   **Archivos:** Configuración global en `~/.gemini/settings.json` o local en `.gemini/settings.json`.
+*   **Características Únicas:** **Sanitización de Entorno (Environment Sanitization)** censura automáticamente variables sensibles (ej. las que contienen `*TOKEN*`) por seguridad. Soporta **Service Account Impersonation** para servicios protegidos por IAP. Asigna **Fully Qualified Names (FQN)** a las herramientas automáticamente para evitar colisiones entre servidores MCP. Filtra herramientas usando `includeTools` y `excludeTools`.
+
+## Plugins y Extensiones
+*   **Fuentes:** [Gemini CLI: Extensions Guide](https://geminicli.com/docs/extensions/), [Writing Extensions](https://geminicli.com/docs/extensions/writing-extensions/), [Best Practices](https://geminicli.com/docs/extensions/best-practices/), [Reference](https://geminicli.com/docs/extensions/reference/)
+*   **Arquitectura:** Las extensiones expanden el CLI mediante un manifiesto `gemini-extension.json` y se instalan directamente desde URLs de GitHub (`gemini extensions install <URL>`).
+*   **Características Únicas:** Pueden inyectar comandos personalizados (archivos TOML en la carpeta `commands/`), habilidades (Skills) e incluso aportar "Tier 2 security rules" al motor de políticas (Policy Engine) del agente. Soporta la gestión segura de credenciales en el keychain del sistema. Permite desarrollo iterativo mediante enlaces simbólicos con `gemini extensions link`.

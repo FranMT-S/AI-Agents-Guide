@@ -11,3 +11,9 @@ Esta guía detalla las características exclusivas de Codex CLI en cuanto a la g
 *   **Fuente:** [Codex: Developers Skills](https://developers.openai.com/codex/skills)
 *   **Archivos:** `~/.agents/skills/` y manifiestos `agents/openai.yaml`.
 *   **Características Únicas:** Soporta propiedades de interfaz gráfica (`display_name`, `icon`, `brand_color`). Utiliza la directiva `allow_implicit_invocation: false` para forzar activación manual. Permite definir dependencias (`dependencies`) para requerir servidores MCP específicos antes de poder usar la skill.
+
+## MCP (Model Context Protocol)
+*   **Fuente:** [Codex CLI: MCP Developers](https://developers.openai.com/codex/mcp)
+*   **Características Técnicas:** Soporta **Stdio** y **Streamable HTTP**. Configuración compartida entre la extensión del IDE y la CLI.
+*   **Archivos:** Configuración en `~/.codex/config.toml` (global) o `.codex/config.toml` (proyecto, requiere aprobación de confianza).
+*   **Características Únicas:** Posee una TUI dedicada activada por el comando `/mcp`. Permite controlar explícitamente timeouts (`startup_timeout_sec` y `tool_timeout_sec`). Facilita integraciones en entornos remotos devbox al permitir sobrescribir los callbacks OAuth mediante `mcp_oauth_callback_url`. Gestiona exclusiones con `enabled_tools` y `disabled_tools`.
