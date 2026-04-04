@@ -5,6 +5,22 @@ Esta guía detalla las características exclusivas de OpenCode en cuanto a la ge
 ## Gestión de Contexto (Rules)
 *   **Fuente:** [OpenCode: Rules](https://opencode.ai/docs/rules/)
 *   **Archivos:** Soporta `AGENTS.md` (y su contraparte de Claude, `CLAUDE.md`) junto con un archivo de configuración `opencode.json`.
+*   **Estructura de Directorio:**
+    ```text
+    mi-proyecto/
+    ├── AGENTS.md
+    └── opencode.json
+    ```
+*   **Ejemplo de Configuración (`opencode.json`):**
+    ```json
+    {
+      "rules": [
+        "AGENTS.md",
+        "https://example.com/company-standards.md",
+        "@src/backend"
+      ]
+    }
+    ```
 *   **Características Únicas:** Ofrece el comando `/init` para escanear el proyecto y generar automáticamente un `AGENTS.md` a medida. Soporta **Lazy Loading** (carga perezosa) de reglas referenciando `@archivos` solo cuando es necesario, y permite definir reglas a partir de URLs en su JSON.
 
 ## Skills (Habilidades)
@@ -24,9 +40,39 @@ Esta guía detalla las características exclusivas de OpenCode en cuanto a la ge
 *   **Fuente:** [OpenCode: MCP Servers (ES)](https://opencode.ai/docs/es/mcp-servers/)
 *   **Características Técnicas:** Soporta servidores **Locales (Stdio)** y **Remotos (HTTP/SSE)**.
 *   **Archivos:** Configuración en `opencode.json` o `opencode.jsonc`.
+*   **Ejemplo de Configuración (`opencode.json`):**
+    ```json
+    {
+      "mcp": {
+        "servers": {
+          "clickup": {
+            "url": "https://mcp.clickup.com/sse",
+            "tools": {"*": false, "list_tasks": true}
+          }
+        }
+      }
+    }
+    ```
 *   **Características Únicas:** Resuelve autenticación OAuth automáticamente mediante **Dynamic Client Registration (RFC 7591)**. Almacena los tokens en `~/.local/share/opencode/mcp-auth.json`. Destaca por permitir **Remote Defaults** mediante endpoints `.well-known/opencode`, facilitando que las organizaciones ofrezcan servidores preconfigurados a sus desarrolladores.
 
 ## Plugins y Extensiones
 *   **Fuentes:** [OpenCode: Plugins (ES)](https://opencode.ai/docs/es/plugins/), [OpenCode: Ecosystem (ES)](https://opencode.ai/docs/es/ecosystem/)
 *   **Arquitectura:** Los plugins son módulos TypeScript/JavaScript que exportan funciones. Se ejecutan sobre el entorno **Bun**.
+*   **Estructura de Directorio:**
+    ```text
+    mi-proyecto/
+    └── .opencode/
+        └── plugins/
+            └── my-plugin.ts
+    ```
+*   **Ejemplo de Plugin (TS):**
+    ```typescript
+    export default {
+      on: {
+        "session.compacted": (context) => {
+          console.log("Sesión compactada!");
+        }
+      }
+    }
+    ```
 *   **Características Únicas:** Arquitectura profundamente **Event-Driven**: los plugins se adhieren a eventos internos como `session.compacted` o `tool.execute.before`. Ofrecen **Hooks de Compactación (Compaction Hooks)**, permitiendo a los desarrolladores modificar cómo la IA resume sesiones largas. También soporta integración interactiva en segundo plano vía PTY (`opencode-pty`).

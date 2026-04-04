@@ -5,6 +5,14 @@ Esta guía detalla las características exclusivas de Google Antigravity en cuan
 ## Gestión de Contexto (Rules & Workflows)
 *   **Fuente:** [Antigravity Docs: Rules & Workflows](https://antigravity.google/docs/rules-workflows)
 *   **Archivos:** Usa `GEMINI.md` y archivos Markdown en `.agents/rules/` con un límite de 12k caracteres.
+*   **Estructura de Directorio:**
+    ```text
+    mi-proyecto/
+    ├── GEMINI.md
+    └── .agents/
+        └── rules/
+            └── tech-stack.md
+    ```
 *   **Características Únicas:** Soporta menciones de contexto usando `@filename` dentro de las reglas para inyectar contenido dinámico. Los "Workflows" se definen como secuencias de pasos que se pueden invocar con slash commands (ej. `/deploy`).
 
 ## Skills (Habilidades)
@@ -24,4 +32,17 @@ Esta guía detalla las características exclusivas de Google Antigravity en cuan
 *   **Fuente:** [Antigravity: MCP Docs](https://antigravity.google/docs/mcp)
 *   **Características Técnicas:** Soporta **Stdio** y **Streamable HTTP**. Enfocado primariamente en proveer contexto en tiempo real (schemas, logs).
 *   **Archivos:** Configuración en `~/.gemini/antigravity/mcp_config.json` y tokens OAuth en `~/.gemini/antigravity/mcp_oauth_tokens.json`.
+*   **Ejemplo de Configuración (`mcp_config.json`):**
+    ```json
+    {
+      "mcpServers": {
+        "supabase": {
+          "command": "npx",
+          "args": ["-y", "@supabase/mcp"],
+          "disabledTools": ["delete_table"]
+        }
+      },
+      "authProviderType": "google_credentials"
+    }
+    ```
 *   **Características Únicas:** Soporte nativo para **Google Application Default Credentials (ADC)** (`authProviderType: "google_credentials"`). Posee un **MCP Store** integrado para descubrir e instalar servidores populares (ej. Supabase, Linear) con un solo clic. Controla herramientas deshabilitadas mediante la propiedad `"disabledTools": []`.
