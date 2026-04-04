@@ -71,6 +71,22 @@ def test_mcp_advanced_content():
     for keyword in required_keywords:
         assert keyword in content, f"Error: Advanced keyword '{keyword}' not found in MCP section."
 
+def test_hooks_subagents_deep_dive():
+    with open(GUIDE_PATH, "r", encoding="utf-8") as f:
+        content = f.read()
+    required_keywords = [
+        "Hooks",
+        "Subagentes",
+        "stdin/stdout",
+        "exit 2",
+        "determinista",
+        "aislado",
+        "Agent Teams",
+        "headless"
+    ]
+    for keyword in required_keywords:
+        assert keyword in content, f"Error: Deep-dive keyword '{keyword}' not found in Hooks/Subagents section."
+
 if __name__ == "__main__":
     try:
         test_file_exists()
@@ -78,6 +94,7 @@ if __name__ == "__main__":
         test_core_concepts_content()
         test_skills_content()
         test_mcp_advanced_content()
+        test_hooks_subagents_deep_dive()
         print("Success: All tests passed.")
     except AssertionError as e:
         print(e)

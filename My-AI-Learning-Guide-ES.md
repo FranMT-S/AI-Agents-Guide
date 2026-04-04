@@ -239,47 +239,64 @@ Las extensiones permiten añadir funcionalidades específicas a los agentes, com
 
 ## Hooks (Disparadores)
 
-Los **Hooks** son scripts deterministas que se ejecutan automáticamente en respuesta a eventos del ciclo de vida del agente. A diferencia del contexto, los hooks son garantías de ejecución.
+Los **Hooks** son la capa de ejecución determinista de los agentes. A diferencia de las reglas en `AGENTS.md`, que son sugerencias para el LLM, los hooks son scripts del sistema que **siempre se ejecutan** ante eventos específicos del ciclo de vida.
 
-### Eventos Comunes
+### 1. Protocolos de Comunicación (Gemini CLI)
 
-| Evento | Cuándo se dispara | Uso Típico |
-| :--- | :--- | :--- |
-| **PreToolUse** | Antes de ejecutar una herramienta | Validaciones de seguridad, guardrails. |
-| **PostToolUse** | Después de que una herramienta completa | Formateo de código (Prettier), tests. |
-| **BeforeSession** | Al iniciar la sesión | Carga de variables de entorno. |
+En **Gemini CLI**, los hooks se comunican con el agente principal mediante un protocolo estricto de **stdin/stdout** utilizando JSON.
 
 > [!IMPORTANT]
-> Los hooks deben ser scripts rápidos. Si un hook falla (por ejemplo, con un `exit 2` en Claude Code), puede bloquear la acción del agente para proteger la integridad del sistema.
+> Cualquier texto enviado a `stdout` que no sea un JSON válido provocará un error de parseo. Para logs de depuración, utiliza siempre `stderr`.
 
-**Referencias y Documentación:**
-- [Cursor Docs: Hooks](https://cursor.com/docs/hooks)
-- [Gemini CLI: Hooks Reference](https://geminicli.com/docs/hooks/reference/)
-- [Claude Code: Hooks Guide](https://code.claude.com/docs/en/hooks-guide)
-- [Codex CLI: Hooks](https://developers.openai.com/codex/hooks)
+**Ejemplo de flujo:**
+1. El agente dispara el evento `BeforeTool`.
+2. El hook recibe el contexto de la herramienta por `stdin`.
+3. El hook valida y devuelve un JSON por `stdout` para permitir o modificar la acción.
+
+### 2. Bloqueo de Acciones (Claude Code)
+
+En **Claude Code**, un hook puede abortar una operación si detecta una violación de seguridad o estilo.
+- **Acción:** El script debe salir con un código de salida `exit 2`.
+- **Feedback:** El mensaje de error escrito en `stderr` se mostrará directamente al usuario y al modelo.
+
+---
 
 ## Subagentes
 
-Un **Subagente** es un agente especializado con su propio contexto aislado y **expertise** definida que el agente principal puede invocar para delegar tareas complejas.
+Un **Subagente** no es solo un prompt diferente; es una instancia del modelo con un contexto **aislado** y un conjunto de herramientas limitado para una tarea específica.
 
-### ¿Cuándo usar un Subagente?
+### 1. Arquitectura de "Agent Teams"
 
-- **Delegación de Expertise:** Cuando necesitas un especialista (ej. un experto en seguridad para auditar código).
-- **Aislamiento de Contexto:** Para evitar que la ventana de contexto del agente principal se sature con detalles irrelevantes de una sub-tarea.
-- **Tareas Paralelas:** Equipos de agentes trabajando en diferentes módulos simultáneamente.
+Para proyectos complejos, herramientas como **Claude Code** permiten crear equipos de agentes que trabajan en paralelo:
+- **Agente Planificador:** Diseña la estrategia sin tocar código.
+- **Agente Programador:** Implementa cambios quirúrgicos basados en el plan.
+- **Agente de QA:** Ejecuta tests y audita la calidad sin acceso a las herramientas de escritura.
 
-> [!NOTE]
-> En herramientas como **Gemini CLI**, los subagentes se definen en la carpeta `.gemini/agents/` mediante archivos `.md` que describen sus herramientas y rol.
+### 2. Ventajas del Aislamiento
+- **Protección de Contexto:** Evita que el historial de chat se llene de logs de tests o búsquedas repetitivas de archivos.
+- **Especialización:** Permite definir un **expertise** único (ej. "Eres un experto en Rust") que no afecte el comportamiento del agente principal en otras áreas del proyecto.
 
-**Referencias y Documentación:**
-- [Cursor Docs: Subagents](https://cursor.com/docs/subagents)
-- [Gemini CLI: Subagents Tutorial](https://geminicli.com/docs/core/subagents/)
-- [OpenCode: Agents (ES)](https://opencode.ai/docs/es/agents/)
-- [Claude Code: Sub-agents & Teams](https://code.claude.com/docs/en/sub-agents)
-- [Codex CLI: Subagents Guide](https://developers.openai.com/codex/subagents)
+---
 
 ## Automatización y Scripting
-Placeholder: Headless mode y automatización de flujos.
+
+El modo **Headless** (sin interfaz) permite integrar agentes en flujos de CI/CD o ejecutar tareas programadas.
+
+### 1. Headless Mode y No-Interactivo
+Ejecutar un agente de forma programática requiere flags específicos para evitar solicitudes de aprobación constantes.
+
+- **Gemini CLI:** `gemini --yolo` o `--approval-mode auto_edit`.
+- **Claude Code:** `claude -p "prompt"` para ejecuciones únicas.
+- **Codex CLI:** Soporta modo no interactivo para scripts de migración masiva.
+
+> [!WARNING]
+> El modo **YOLO** debe usarse con extrema precaución. Asegúrate de tener guardrails definidos en los **Hooks** para evitar que el agente ejecute comandos destructivos como `rm -rf /` sin supervisión.
+
+**Referencias y Documentación:**
+- [Claude: Headless Mode](https://code.claude.com/docs/en/headless)
+- [Gemini CLI: Headless Tutorial](https://geminicli.com/docs/cli/headless/)
+- [Codex CLI: Non-interactive Usage](https://developers.openai.com/codex/noninteractive)
+- [Claude: Scheduled Tasks](https://code.claude.com/docs/en/scheduled-tasks)
 
 ## Evaluación de Modelos
 Placeholder: Comparativa entre Gemini, Claude y GPT.
