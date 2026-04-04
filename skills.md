@@ -69,12 +69,46 @@ Una de las mejores prácticas es tener una carpeta de referencia en tu proyecto 
 
 #### Ejemplo Interno A: Skill + Scripts (Lógica Compleja)
 Ideal cuando la skill necesita procesar datos antes de dar una respuesta.
-**Instrucción Clave dentro de `video-optimizer/SKILL.md`:**
-> [!NOTE]
-> Para optimizar archivos de video, debes ejecutar el script adjunto: `node $SKILL_DIR/scripts/optimizer.js <input>`. No intentes escribir el comando `ffmpeg` tú mismo. Analiza el `stdout` del script para dar la respuesta final.
+
+**Estructura:**
+```text
+skills/video-tool/
+├── SKILL.md
+└── scripts/
+    └── optimizer.js
+```
+
+**Contenido completo de `video-tool/SKILL.md`:**
+```markdown
+---
+name: video-optimizer
+description: Usa esta skill cuando el usuario necesite comprimir o convertir archivos de video MP4 usando herramientas CLI.
+trigger: "optimizar video", "ffmpeg", "convertir mp4"
+allowed-tools: ["run_shell_command"]
+---
+
+# Goal
+Ejecutar el script de validación incluido para procesar videos según los parámetros del proyecto.
+
+# Logic (Scripts)
+Para optimizar archivos de video, debes ejecutar el script adjunto: `node $SKILL_DIR/scripts/optimizer.js <input>`. No intentes escribir el comando `ffmpeg` tú mismo.
+
+# Steps
+1. **Plan:** Analiza la petición del usuario y determina los parámetros de compresión.
+2. **Execute:** Ejecuta el script de optimización. Analiza el `stdout` del script para dar la respuesta final.
+3. Si el script falla (exit code != 0), lee el mensaje de error y ajusta los parámetros en un bucle hasta que pase la validación. NO hagas preguntas interactivas.
+```
 
 #### Ejemplo Interno B: Skill + Templates (Generación de Documentos)
 Ideal para asegurar que el agente siempre responda con un formato estandarizado.
+
+**Estructura:**
+```text
+skills/arch-doc/
+├── SKILL.md
+└── templates/
+    └── design-record.md
+```
 
 **Contenido del archivo `templates/design-record.md`:**
 ```markdown
@@ -85,9 +119,45 @@ Ideal para asegurar que el agente siempre responda con un formato estandarizado.
 ## Hallazgos
 {{findings}}
 ```
-**Instrucción Clave dentro de `tech-reporter/SKILL.md`:**
-> [!TIP]
-> Al generar el reporte, debes leer obligatoriamente el archivo `$SKILL_DIR/templates/design-record.md`. Copia su estructura exacta y rellena las variables `{{title}}`, `{{date}}` y `{{findings}}`. Nunca inventes un formato nuevo.
+
+**Contenido completo de `tech-reporter/SKILL.md`:**
+```markdown
+---
+name: tech-reporter
+description: Usa esta skill para generar reportes técnicos estandarizados, resúmenes de PR o informes de arquitectura.
+trigger: "generar reporte", "resumen técnico", "informe de arquitectura"
+---
+
+# Goal
+Crear un documento Markdown siguiendo estrictamente la estructura definida en nuestras plantillas internas.
+
+# Output Format (Templates)
+Al generar el reporte, debes leer obligatoriamente el archivo `$SKILL_DIR/templates/design-record.md`. Copia su estructura exacta y rellena las variables `{{title}}`, `{{date}}` y `{{findings}}`. Nunca inventes un formato nuevo.
+
+# Steps
+1. Recopilar datos del contexto actual usando las herramientas disponibles.
+2. Rellenar el template sin alterar su estructura base.
+3. Guardar el resultado en la carpeta `/reports`.
+```
+
+#### Ejemplo Interno C: Skill llamando a una Tool de MCP
+Para conectar una Skill explícitamente a un servidor MCP, se utiliza la directiva de dependencias o un archivo de configuración adicional (como en Codex `agents/openai.yaml`).
+
+**Contenido de `doc-search/SKILL.md`:**
+```markdown
+---
+name: doc-search-helper
+description: Úsalo para buscar información en la documentación técnica oficial cuando el usuario pregunte sobre APIs.
+dependencies: ["mi-mcp-server"]
+---
+
+# Asistente de Documentación
+
+Utiliza la herramienta disponible del servidor MCP para buscar en la documentación.
+1.  No inventes APIs.
+2.  Usa la herramienta `search_docs` proporcionada por el servidor MCP.
+3.  Cita la URL fuente devuelta por la herramienta.
+```
 
 ### Estructuras Avanzadas
 
@@ -124,6 +194,28 @@ my-project/
 └── README.md
 ```
 **Cuándo usarla:** La skill produce outputs complejos o con formato muy específico. Los ejemplos prácticos (few-shot) son mucho más efectivos que describirlo en palabras.
+
+**Contenido de `skill/SKILL.md` para Few-Shot:**
+```markdown
+---
+name: data-extractor
+description: Usa esta skill para extraer información estructurada (JSON) a partir de logs crudos.
+trigger: "extraer datos", "parsear logs"
+---
+
+# Goal
+Convertir el texto crudo del usuario en un JSON válido según nuestro esquema interno.
+
+# Examples
+Para entender el formato exacto que debes devolver, lee los siguientes ejemplos en la carpeta de la skill:
+- Ejemplo 1: Lee `$SKILL_DIR/examples/input-1.txt` y compáralo con el resultado esperado en `$SKILL_DIR/examples/output-1.txt`.
+- Ejemplo 2: Lee `$SKILL_DIR/examples/input-2.txt` y compáralo con el resultado esperado en `$SKILL_DIR/examples/output-2.txt`.
+
+# Steps
+1. Recibe el texto del usuario.
+2. Basándote ESTRICTAMENTE en los patrones vistos en los archivos `examples/`, genera el JSON.
+3. Devuelve únicamente el JSON, sin texto explicativo adicional.
+```
 
 ---
 
