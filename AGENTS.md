@@ -13,18 +13,38 @@ AI-Agents-Guide/
 ├── AGENTS.md                      <- This file. Rules for all agents.
 ├── .gitignore
 ├── src/                           <- All documentation files live here.
-│   ├── ai-learning-guide-es.md   <- Main guide. Overview tables and concept intro only.
-│   │                                 No dense technical details, no massive JSONs here.
-│   ├── skills.md                  <- Deep-dive: Skills system (all tools).
-│   ├── antigravity.md             <- Deep-dive: Antigravity-specific config.
-│   ├── claude-code.md             <- Deep-dive: Claude Code-specific config.
-│   ├── codex-cli.md               <- Deep-dive: Codex CLI-specific config.
-│   ├── cursor.md                  <- Deep-dive: Cursor-specific config.
-│   ├── gemini-cli.md              <- Deep-dive: Gemini CLI-specific config.
-│   ├── openCode.md                <- Deep-dive: OpenCode-specific config.
-│   ├── attachments/               <- Images embedded in docs.
-│   ├── brain/                     <- Agent session notes. Do not edit manually.
-│   └── template/                  <- File templates for new tool docs.
+│   ├── es/                        <- Spanish documentation.
+│   │   ├── ai-learning-guide.md   <- Main guide. Overview tables and concept intro only.
+│   │   │                                 No dense technical details, no massive JSONs here.
+│   │   ├── concepts/                  <- Core infrastructure (Shared).
+│   │   │   ├── mcp.md                 <- Architecture, best practices, and configs.
+│   │   │   └── skills.md              <- Skills system (all tools) & SKILL.md.
+│   │   ├── tools/                     <- Individual Agent deep-dives.
+│   │   │   ├── antigravity.md         <- VSCode integration & workflows.
+│   │   │   ├── claude-code.md         <- CLAUDE.md & Subagents.
+│   │   │   ├── codex-cli.md           <- config.toml & Headless mode.
+│   │   │   ├── cursor.md              <- .mdc rules & MCP Apps.
+│   │   │   ├── gemini-cli.md          <- GEMINI.md & Extensions.
+│   │   │   └── opencode.md            <- opencode.json & Lazy loading.
+│   │   └── attachments/               <- Localized images (Spanish).
+│   ├── templates/                 <- Neutral file templates (shared across languages).
+│   │   ├── skills/                <- Skill file templates.
+│   │   └── agents/
+│   │       ├── monolith/
+│   │       │   └── AGENTS.md      <- Single-file AGENTS.md template (small/medium projects).
+│   │       └── progressive/
+│   │           ├── AGENTS.md      <- Root file: minimal + pointers to secondary docs.
+│   │           ├── packages/
+│   │           │   └── api/
+│   │               └── AGENTS.md      <- Package-level AGENTS.md example (monorepo).
+│   │           └── docs/          <- Secondary docs loaded on demand (all lowercase).
+│   │               ├── typescript.md
+│   │               ├── testing.md
+│   │               ├── components.md
+│   │               ├── styles.md
+│   │               ├── architecture.md
+│   │               └── tech-stack.md
+│   └── brain/                     <- Agent session notes. Do not edit manually.
 ├── conductor/                     <- PERSONAL ONLY. Workflow notes and product specs.
 │                                     Git-ignored. Do not reference or modify in PRs.
 └── spec/                          <- PERSONAL ONLY. Style guides and technical specs.
@@ -32,7 +52,7 @@ AI-Agents-Guide/
 ```
 
 > [!IMPORTANT]
-> Never add dense technical content to `src/ai-learning-guide-es.md`. That file only contains summary tables and links to specific tool files in `src/`. All detailed configurations go in the tool-specific file.
+> Never add dense technical content to `src/es/ai-learning-guide.md`. That file only contains summary tables and links to specific tool files in `src/es/`. All detailed configurations go in the tool-specific file.
 
 > [!WARNING]
 > The `conductor/` and `spec/` folders are **personal working directories** excluded from version control via `.gitignore`. They exist only on the local machine for the owner's reference.
@@ -84,14 +104,14 @@ Use **Comparative Tables** to show differences between agents or models. Example
 
 ### Role of the Main Guide vs. Tool Files
 
-- `src/ai-learning-guide-es.md` → Only overview tables, concept explanations, and links to tool files.
-- `src/<tool>.md` → All detailed config structures, directory trees, JSON examples, and sources.
+- `src/es/ai-learning-guide.md` → Only overview tables, concept explanations, and links to tool files.
+- `src/es/<tool>.md` → All detailed config structures, directory trees, JSON examples, and sources.
 
 ---
 
 ## 3. Standards for Tool Technical Documentation
 
-When modifying or creating any file in `src/` (e.g., `src/gemini-cli.md`, `src/claude-code.md`), **every concept section** (Context, Skills, MCP, Plugins, Hooks, Subagents, Automation) MUST follow this exact pattern:
+When modifying or creating any file in `src/es/` (e.g., `src/es/gemini-cli.md`, `src/es/claude-code.md`), **every concept section** (Context, Skills, MCP, Plugins, Hooks, Subagents, Automation) MUST follow this exact pattern:
 
 ### Pattern: Text → Directory Tree → Config Block → Source
 
@@ -175,17 +195,34 @@ mi-proyecto/
 
 ## 4. File-to-Tool Mapping
 
-Each tool has a dedicated file in `src/`. Never duplicate content across files. If a concept is shared (e.g., the AGENTS.md standard), document it in `src/ai-learning-guide-es.md` and link to it from the tool file.
+Each tool has a dedicated file in `src/es/`. Never duplicate content across files. If a concept is shared (e.g., the AGENTS.md standard), document it in `src/es/ai-learning-guide.md` and link to it from the tool file.
 
-| Tool File                   | Covers                                                      |
-| :-------------------------- | :---------------------------------------------------------- |
-| `src/antigravity.md`        | Antigravity (Gemini in VSCode): Rules, Workflows, Plugins   |
-| `src/claude-code.md`        | Claude Code CLI: CLAUDE.md, Hooks, Sub-agents, Headless     |
-| `src/codex-cli.md`          | Codex CLI: AGENTS.md, `config.toml`, `--full-auto`          |
-| `src/cursor.md`             | Cursor IDE: `.mdc` rules, MCP Apps, Hooks, Subagents        |
-| `src/gemini-cli.md`         | Gemini CLI: GEMINI.md, Extensions, Hooks, Orchestrators     |
-| `src/openCode.md`           | OpenCode: `opencode.json`, Lazy Loading, `@file` refs       |
-| `src/skills.md`             | Skills system (all tools): SKILL.md anatomy, templates      |
+| File                        | Covers                                                       |
+| :-------------------------- | :----------------------------------------------------------- |
+| `src/es/tools/antigravity.md` | Antigravity (Gemini in VSCode): Rules, Workflows, Plugins    |
+| `src/es/tools/claude-code.md` | Claude Code CLI: CLAUDE.md, Hooks, Sub-agents, Headless      |
+| `src/es/tools/codex-cli.md`   | Codex CLI: AGENTS.md, `config.toml`, `--full-auto`           |
+| `src/es/tools/cursor.md`      | Cursor IDE: `.mdc` rules, MCP Apps, Hooks, Subagents         |
+| `src/es/tools/gemini-cli.md`  | Gemini CLI: GEMINI.md, Extensions, Hooks, Orchestrators      |
+| `src/es/tools/opencode.md`    | OpenCode: `opencode.json`, Lazy Loading, `@file` refs        |
+| `src/es/concepts/mcp.md`      | MCP architecture, best practices, and curated configs.       |
+| `src/es/concepts/skills.md`   | Skills system (all tools): SKILL.md anatomy, templates       |
+
+### Template Files
+
+Templates live in `src/templates/agents/`. Secondary doc files (inside `docs/`) use **lowercase kebab-case**. Only root agent instructions (`AGENTS.md`, `CLAUDE.md`) use uppercase.
+
+| Template                                          | Purpose                                                           |
+| :------------------------------------------------ | :---------------------------------------------------------------- |
+| `src/templates/agents/monolith/AGENTS.md`         | Single-file layout for small/medium projects                      |
+| `src/templates/agents/progressive/AGENTS.md`      | Root file (minimal) for projects using Progressive Disclosure     |
+| `src/templates/agents/progressive/packages/api/AGENTS.md` | Package-level AGENTS.md in a monorepo                         |
+| `src/templates/agents/progressive/docs/typescript.md`  | TypeScript conventions (loaded on demand)                        |
+| `src/templates/agents/progressive/docs/testing.md`     | Testing strategy and commands (loaded on demand)                  |
+| `src/templates/agents/progressive/docs/components.md`  | React component structure and rules (loaded on demand)            |
+| `src/templates/agents/progressive/docs/styles.md`      | CSS Modules, design tokens, dark mode (loaded on demand)          |
+| `src/templates/agents/progressive/docs/architecture.md`| System architecture and directory tree (loaded on demand)         |
+| `src/templates/agents/progressive/docs/tech-stack.md`  | Tech stack, versions, dependency policy (loaded on demand)        |
 
 ---
 
