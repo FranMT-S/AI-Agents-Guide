@@ -1,0 +1,49 @@
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.spin {
+	animation: spin 2s linear infinite;
+}
+
+.operation-container {
+	position: relative;
+	border-top: var(--border-width) solid var(--background-modifier-border);
+	padding-top: var(--font-ui-medium);
+	padding-bottom: var(--font-ui-medium);
+	padding-right: var(--size-4-12);
+	padding-left: 0px;
+}
+
+.operation-container:first-of-type {
+	border-top: none;
+}
+
+.operation-container p {
+	margin: 0;
+	overflow-wrap: break-word;
+}
+
+.operation-container div {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.operation-container button {
+	width: var(--icon-xl);
+	height: var(--icon-xl);
+	padding: var(--size-2-2) !important;
+}
+
+.operation-file {
+	overflow-wrap: break-word;
+}

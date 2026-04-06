@@ -1,0 +1,252 @@
+{
+  "main": {
+    "id": "4cafa4f7f261b16d",
+    "type": "split",
+    "children": [
+      {
+        "id": "78985c0f546b3cd1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "35eccdec5589fc3a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "src/ai-learning-guide-es.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "ai-learning-guide-es"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b3ed264502b9480c",
+    "type": "split",
+    "children": [
+      {
+        "id": "aae3ae5f659213a5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e5bcabed73d56733",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "648fb0e0c29193bc",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "^codex-path",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "58c231efa1376f51",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          },
+          {
+            "id": "d320de7a870fe036",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "src/ai-learning-guide-es.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of ai-learning-guide-es"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 247.5
+  },
+  "right": {
+    "id": "2d24f0acb8cc777a",
+    "type": "split",
+    "children": [
+      {
+        "id": "c0236deb2e58e161",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "18d4ef9671bcbe22",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "src/ai-learning-guide-es.md",
+                "collapseAll": true,
+                "extraContext": true,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for ai-learning-guide-es"
+            }
+          },
+          {
+            "id": "b721ea06907533fd",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "src/ai-learning-guide-es.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from ai-learning-guide-es"
+            }
+          },
+          {
+            "id": "5f58be6a97e8725d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "src/ai-learning-guide-es.md",
+                "followCursor": false,
+                "showSearch": true,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of ai-learning-guide-es"
+            }
+          },
+          {
+            "id": "216abba04e9f743a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "f7df81be5dff19ea",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 384.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "35eccdec5589fc3a",
+  "lastOpenFiles": [
+    "src/template/agents/progressive/docs/tech-stack.md",
+    "src/template/agents/progressive/docs/architecture.md",
+    "src/template/agents/progressive/docs/styles.md",
+    "src/template/agents/progressive/docs/components.md",
+    "src/template/agents/progressive/docs/testing.md",
+    "src/template/agents/progressive/docs/typescript.md",
+    "src/template/agents/progressive/docs/TECH_STACK.md",
+    "src/template/agents/progressive/docs/ARCHITECTURE.md",
+    "src/template/agents/progressive/docs/STYLES.md",
+    "src/template/agents/progressive/docs/COMPONENTS.md",
+    "src/template/agents/progressive/docs/TESTING.md",
+    "src/template/agents/progressive/docs/TYPESCRIPT.md",
+    "src/ai-learning-guide-es.md",
+    "src/template/agents/progressive/AGENTS.md",
+    "template/agents 1.md",
+    "template/agents.md",
+    "template",
+    "src/AI-Agent Guide.md",
+    "src/cursor.md",
+    "src/claude-code.md",
+    "src/antigravity.md",
+    "(docs/TYPESCRIPT.md).md",
+    "(docs",
+    "src/template/agents/progressive/packages/api/AGENTS.md",
+    "src/template/agents/progressive/packages/api",
+    "src/template/agents/progressive/packages",
+    "src/template/agents/progressive/docs",
+    "src/template/agents/monolith/AGENTS.md",
+    "src/template/agents/progressive",
+    "src/template/agents/monolith",
+    "src/template/agents",
+    "src/template/agents.md/progressive/packages/api/AGENTS.md",
+    "src/template/agents.md/progressive/packages/api",
+    "src/template/agents.md/progressive/docs/TYPESCRIPT.md",
+    "src/template/agents.md/progressive/docs/TESTING.md",
+    "src/template/agents.md/progressive/packages",
+    "Untitled 1.canvas",
+    "Untitled.canvas",
+    "src/attachments/code-git-hub-02.png",
+    "src/attachments/dockerhub.png",
+    "src/attachments/mcp_02.jpg",
+    "src/attachments/summary-skill.png",
+    "src/attachments/skillsh.png",
+    "src/attachments/summary_memo.png",
+    "src/attachments/summary_03.png",
+    "src/attachments/summary_02.png",
+    "src/attachments/work-flow-01.png",
+    "src/attachments/clickup_gemini_01.png"
+  ]
+}
