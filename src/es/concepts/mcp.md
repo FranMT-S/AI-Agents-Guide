@@ -223,13 +223,13 @@ Alternativa community al MCP oficial de Figma. Se comunica con Figma Desktop a t
 
 **Configuración con Access Token:**
 
-#### Ejemplo: Configuración Figma Console (JSON)
+##### Ejemplo: Configuración Figma Console (JSON)
 ```json
 {
   "mcpServers": {
     "figma-console": {
       "command": "npx",
-      "args": ["-y", "figma-console-mcp@latest"],
+      "args": ["-y", "figma-console-mcp@1.22.1"],
       "env": {
         "FIGMA_ACCESS_TOKEN": "figd_TOKEN",
         "ENABLE_MCP_APPS": "true"
@@ -237,6 +237,122 @@ Alternativa community al MCP oficial de Figma. Se comunica con Figma Desktop a t
     }
   }
 }
+```
+
+Para usar la version mas reciente:
+
+`figma-console-mcp@latest`
+
+##### White List
+
+```json
+ // gemini-cli
+ "includeTools": [
+  "figma_add_component_property",
+    "figma_add_mode",
+    "figma_analyze_component_set",
+    "figma_arrange_component_set",
+    "figma_audit_component_accessibility",
+    "figma_batch_create_variables",
+    "figma_batch_update_variables",
+    "figma_capture_screenshot",
+    "figma_clone_node",
+    "figma_create_child",
+    "figma_create_variable",
+    "figma_create_variable_collection",
+    "figma_delete_component_property",
+    "figma_delete_node",
+    "figma_delete_variable",
+    "figma_delete_variable_collection",
+    "figma_edit_component_property",
+    "figma_execute",
+    "figma_generate_component_doc",
+    "figma_get_annotation_categories",
+    "figma_get_annotations",
+    "figma_get_component",
+    "figma_get_component_details",
+    "figma_get_component_for_development",
+    "figma_get_component_for_development_deep",
+    "figma_get_component_image",
+    "figma_get_design_changes",
+    "figma_get_design_system_kit",
+    "figma_get_design_system_summary",
+    "figma_get_file_data",
+    "figma_get_file_for_plugin",
+    "figma_get_library_components",
+    "figma_get_selection",
+    "figma_get_status",
+    "figma_get_styles",
+    "figma_get_text_styles",
+    "figma_get_token_values",
+    "figma_get_variables",
+    "figma_instantiate_component",
+    "figma_lint_design",
+    "figma_list_open_files",
+    "figma_move_node",
+    "figma_navigate",
+    "figma_reconnect",
+    "figma_reload_plugin",
+    "figma_rename_mode",
+    "figma_rename_node",
+    "figma_rename_variable",
+    "figma_resize_node",
+    "figma_search_components",
+    "figma_set_annotations",
+    "figma_set_description",
+    "figma_set_fills",
+    "figma_set_image_fill",
+    "figma_set_instance_properties",
+    "figma_set_strokes",
+    "figma_set_text",
+    "figma_setup_design_tokens",
+    "figma_take_screenshot",
+    "figma_update_variable"
+  ]
+```
+
+#####  Black List
+
+Lista de tools que no son para Developers, ni Designers.
+
+```json
+  // gemini-cli
+  "excludeTools": [
+    "figjam_auto_arrange",
+    "figjam_create_code_block",
+    "figjam_create_connector",
+    "figjam_create_section",
+    "figjam_create_shape_with_text",
+    "figjam_create_stickies",
+    "figjam_create_sticky",
+    "figjam_create_table",
+    "figjam_get_board_contents",
+    "figjam_get_connections",
+    "figma_add_shape_to_slide",
+    "figma_add_text_to_slide",
+    "figma_check_design_parity",
+    "figma_clear_console",
+    "figma_create_slide",
+    "figma_delete_comment",
+    "figma_delete_slide",
+    "figma_duplicate_slide",
+    "figma_focus_slide",
+    "figma_get_comments",
+    "figma_get_console_logs",
+    "figma_get_focused_slide",
+    "figma_get_slide_content",
+    "figma_get_slide_grid",
+    "figma_get_slide_transition",
+    "figma_list_slides",
+    "figma_post_comment",
+    "figma_reorder_slides",
+    "figma_scan_code_accessibility",
+    "figma_set_slide_background",
+    "figma_set_slide_transition",
+    "figma_set_slides_view_mode",
+    "figma_skip_slide",
+    "figma_watch_console"
+  ]
 ```
 
 ---
