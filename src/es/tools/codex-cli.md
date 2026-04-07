@@ -51,10 +51,22 @@ dependencies: ["local-linter-mcp"]
 ## MCP (Model Context Protocol)
 
 ### Configuración Compartida (CLI/IDE)
-Utiliza transportes `Stdio` y `Streamable HTTP`. La configuración se sincroniza automáticamente entre el IDE y la terminal.
+Codex sincroniza sus servidores MCP entre la terminal (CLI) y la extensión del IDE mediante un archivo `config.toml`. Soporta transportes **STDIO** (procesos locales) y **Streamable HTTP** (servidores remotos).
 
-### TUI y Timeouts
-Ofrece una interfaz visual (`/mcp`) para gestionar servidores. Permite ajustar `startup_timeout_sec` y callbacks OAuth remotos.
+### Gestión de Servidores
+Puedes gestionar servidores mediante comandos (`codex mcp add`) o editando directamente el archivo de configuración. Soporta autenticación mediante **Bearer Tokens** y flujos **OAuth** nativos (`codex mcp login`).
+
+### Opciones de Configuración
+Dentro de `[mcp_servers.<alias>]`, se aceptan los siguientes parámetros:
+
+- **Para STDIO:** `command` (requerido), `args`, `cwd` y `env` (mapa de variables).
+- **Para HTTP:** `url` (requerido), `bearer_token_env_var`, `http_headers` (estáticos) y `env_http_headers` (mapeo a variables de entorno).
+- **Control de Ejecución:**
+  - `enabled`: Permite desactivar un servidor sin borrarlo.
+  - `required`: Si es `true`, Codex fallará al arrancar si el servidor no inicializa.
+  - `enabled_tools`: Allowlist de herramientas.
+  - `disabled_tools`: Denylist de herramientas (se aplica después del allowlist).
+  - `startup_timeout_sec` (Default: 10) y `tool_timeout_sec` (Default: 60).
 
 ### Estructura de Directorio
 ```text
@@ -62,13 +74,22 @@ Ofrece una interfaz visual (`/mcp`) para gestionar servidores. Permite ajustar `
 └── config.toml
 ```
 
+> [!NOTE]
+> En entornos **Windows**, la inyección de variables de entorno en los comandos o configuraciones debe usar la sintaxis `%VAR_NAME%`.
+
 #### Ejemplo de Configuración (`config.toml`)
 ```toml
-[mcp.servers.local_tools]
-command = "python"
-args = ["-m", "mcp_server"]
-disabled_tools = ["delete_all"]
-startup_timeout_sec = 30
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+[mcp_servers.context7.env]
+MY_API_KEY = "%CONTEXT7_TOKEN%"
+
+[mcp_servers.figma-remote]
+url = "https://mcp.figma.com/mcp"
+bearer_token_env_var = "FIGMA_OAUTH_TOKEN"
+enabled_tools = ["get_file", "get_comments"]
+tool_timeout_sec = 45
 ```
 
 ![[../attachments/clickup-codex-01.0.png]]

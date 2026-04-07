@@ -93,10 +93,26 @@ mi-proyecto/
 ## MCP (Model Context Protocol)
 
 ### Protocolos y Transportes
-Soporta `Stdio`, `SSE` y `Streamable HTTP`. Implementa `Tools`, `Resources` y `Prompts` (slash commands).
+Soporta `Stdio`, `SSE` (usando `url`) y `Streamable HTTP` (usando `httpUrl`). Implementa `Tools`, `Resources` y `Prompts` (slash commands).
+Al configurar la conexión, el orden de precedencia (si se definen múltiples) es: `httpUrl` > `url` > `command`.
 
-### Seguridad y Sanitización
-Censura automáticamente variables sensibles (`*TOKEN*`). Soporta `Service Account Impersonation` y asigna `Fully Qualified Names (FQN)` para evitar colisiones.
+### Seguridad, Nombres y Sanitización
+Censura automáticamente variables sensibles (`*TOKEN*`). Soporta `Service Account Impersonation` y asigna `Fully Qualified Names (FQN)` para evitar colisiones. Toda herramienta descubierta usa el formato `mcp_{alias}_{toolName}`.
+
+> [!WARNING]
+> Nunca utilices guiones bajos (`_`) en los alias de tus servidores MCP (usa `mi-servidor`, no `mi_servidor`). El Custom Policy Engine separa el FQN usando el primer guion bajo después del prefijo `mcp_`. Un `_` adicional romperá el parseo y las políticas fallarán silenciosamente.
+
+### Opciones de Configuración por Servidor
+Dentro de `mcpServers`, cada servidor acepta los siguientes campos:
+
+- **Conexión Local (Stdio):** `command`, `args` (arreglo de argumentos), `cwd` (directorio de trabajo), y `env` (variables de entorno).
+- **Conexión Remota:** `url` (SSE), `httpUrl` (HTTP Stream), `headers` (cabeceras HTTP) y `timeout` (milisegundos).
+- **Seguridad:**
+  - `trust` (boolean): Confía plenamente en el servidor y omite los prompts de confirmación al ejecutar herramientas.
+- **Filtro de Herramientas:**
+  - `includeTools` (array): Lista estricta de nombres de herramientas permitidas (allowlist). Solo se habilitarán estas.
+  - `excludeTools` (array): Lista de herramientas excluidas (denylist). **Tiene prioridad sobre `includeTools`**.
+- **Metadatos:** `description` (breve resumen para visualización).
 
 ### Estructura de Directorio
 ```text
@@ -105,14 +121,34 @@ mi-proyecto/
     └── settings.json
 ```
 
-**Ejemplo de Configuración (`settings.json`):**
+### Inyección de Variables de Entorno
+Los valores en la configuración pueden inyectar secretos usando `$VAR_NAME`, `${VAR_NAME}`, o con defaults `${VAR_NAME:-default_value}`. 
+
+> [!NOTE]
+> En entornos **Windows**, actualmente solo se soporta la sintaxis `%VAR_NAME%`.
+
+**Ejemplo de Configuración Avanzada (`settings.json`):**
 ```json
 {
   "mcpServers": {
     "local-db": {
       "command": "node",
       "args": ["/path/to/server.js"],
+      "cwd": "./scripts/db",
+      "env": {
+        "DB_PASS": "${DATABASE_PASSWORD}",
+        "DB_HOST": "${DATABASE_HOST:-localhost}"
+      },
+      "trust": true,
       "excludeTools": ["drop_table", "truncate_db"]
+    },
+    "remote-api": {
+      "httpUrl": "https://api.empresa.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${API_TOKEN}"
+      },
+      "timeout": 5000,
+      "includeTools": ["fetch_data"]
     }
   }
 }
@@ -120,7 +156,7 @@ mi-proyecto/
 
 ![[../attachments/clickup_gemini_01.png]]
 
-*Fuente: [Gemini CLI: MCP Server Setup](https://geminicli.com/docs/tools/mcp-server/)*
+*Fuentes: [Gemini CLI: MCP Server Setup](https://geminicli.com/docs/tools/mcp-server/) | [Configuration Reference](https://geminicli.com/docs/reference/configuration/#mcpservers)*
 
 ## Custom Commands
 
@@ -319,17 +355,20 @@ mi-proyecto/
 
 ### Schema del Frontmatter
 
-| Campo | Descripcion | Valores |
-|---|---|---|
-| `name` | Identificador unico del subagente | string |
-| `description` | Cuando invocarlo (el agente principal lo lee para decidir) | string |
-| `kind` | Tipo de agente | `local` (default) / `remote` (Agent2Agent via A2A) |
-| `tools` | Lista de tools permitidas (allowlist). Soporta wildcards. | lista o wildcard |
-| `mcpServers` | Servidores MCP exclusivos de este agente (inline en el frontmatter) | objeto `{comando, args}` |
-| `model` | Modelo a usar | ID completo o `inherit` |
-| `temperature` | Aleatoriedad del modelo (0.0 - 1.0) | numero |
-| `max_turns` | Maximo de iteraciones del agente (default: 30) | numero |
-| `timeout_mins` | Timeout total en minutos (default: 10) | numero |
+| Campo          | Descripcion                                                         | Valores                                            |
+| -------------- | ------------------------------------------------------------------- | -------------------------------------------------- |
+| `name`         | Identificador unico del subagente                                   | string                                             |
+| `description`  | Cuando invocarlo (el agente principal lo lee para decidir)          | string                                             |
+| `kind`         | Tipo de agente                                                      | `local` (default) / `remote` (Agent2Agent via A2A) |
+| `tools`        | Lista de tools permitidas (allowlist). Soporta wildcards.           | lista o wildcard                                   |
+| `mcpServers`   | Servidores MCP exclusivos de este agente (inline en el frontmatter) | objeto `{comando, args}`                           |
+| `model`        | Modelo a usar                                                       | ID completo o `inherit`                            |
+| `temperature`  | Controla la creatividad y predictibilidad. **0.0** es ideal para lógica, código y tareas técnicas (determinista). **2.0** es el máximo nivel de creatividad/aleatoriedad. | número (0.0 - 2.0) |
+| `max_turns`    | Máximo de iteraciones que el agente puede realizar antes de detenerse (default: 30). | número |
+| `timeout_mins` | Límite de tiempo total en minutos para que el agente complete la tarea (default: 10). | número |
+
+> [!TIP]
+> Para la mayoría de las tareas de programación y refactorización, se recomienda mantener la `temperature` entre **0.0** y **0.2** para asegurar que el modelo siga estrictamente las instrucciones y los estándares del proyecto.
 
 ### Wildcards de Tools
 
