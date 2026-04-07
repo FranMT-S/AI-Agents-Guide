@@ -1,7 +1,7 @@
 ---
 name: figma-console-code-reader
 description: Reads project documentation, folder structure, and coding standards from the current working directory. Returns tech stack, patterns, naming conventions, and code examples. Use before generating code or creating Figma mockups to understand the project's conventions.
-model: gemini-3.1-flash-preview
+model: gemini-3.1-flash-lite-preview
 tools: [read_file, glob, grep_search]
 temperature: 0.0
 max_turns: 20

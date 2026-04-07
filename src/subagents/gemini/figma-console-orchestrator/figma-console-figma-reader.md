@@ -1,7 +1,7 @@
 ---
 name: figma-console-figma-reader
 description: Reads Figma designs and captures screenshots. Strictly read-only — never creates, modifies, or deletes anything in Figma. Use when extracting design data (colors, typography, spacing, layout, components) from a Figma file or node.
-model: gemini-3.1-flash-preview
+model: gemini-3.1-flash-lite-preview
 tools: [mcp_figma-console_*]
 temperature: 0.0
 max_turns: 20
