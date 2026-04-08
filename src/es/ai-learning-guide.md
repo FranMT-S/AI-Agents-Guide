@@ -18,7 +18,7 @@ Esta guía es una referencia completa para el desarrollo de agentes potenciados 
 
 ## Introducción y Conceptos Básicos
 
-En el ecosistema de agentes de IA, el mayor desafío técnico es la **limitación de la ventana de contexto**. A medida que una conversación progresa, el modelo consume "tokens" (palabras o fragmentos de código). Si las reglas del proyecto no están bien estructuradas, la IA comienza a "olvidar" las instrucciones iniciales, provocando alucinaciones o degradación en la calidad del código. La solución definitiva a esto es la **Memoria Persistente mediante `AGENTS.md`**.
+En el ecosistema de agentes de IA, el mayor desafío técnico es la **limitación de la ventana de contexto**. A medida que una conversación progresa, el modelo (como Claude 4.5 Haiku o GPT-5.4) consume "tokens" (palabras o fragmentos de código). Si las reglas del proyecto no están bien estructuradas, la IA comienza a "olvidar" las instrucciones iniciales, provocando alucinaciones o degradación en la calidad del código. La solución definitiva a esto es la **Memoria Persistente mediante `AGENTS.md`**.
 
 ---
 
@@ -315,10 +315,29 @@ Mecanismos para abortar operaciones automáticas ante fallos de validación.
 ## Subagentes
 
 ### Arquitecturas de Equipos (Orquestadores)
-Uso de agentes especializados (Manager, Coder, QA) para tareas complejas.
+Uso de agentes especializados (Manager, Coder, QA) para tareas complejas. Dividir tareas permite ahorrar contexto, pero requiere coordinación rigurosa.
+
+### Patrones Avanzados Multi-Agente
+
+Basado en la evolución de flujos orquestados en producción, se han consolidado cinco mejores prácticas para asegurar robustez al trabajar con múltiples subagentes:
+
+1. **El Principio de "Housekeeping" (Limpieza Obligatoria):**
+   Los subagentes que modifican estados (como escritura de código o manipulación en herramientas de diseño) deben ser instruidos expresamente para limpiar sus propios artefactos parciales si la tarea falla o necesita iterar. Esto evita los "cementerios de código" o estados rotos.
+2. **Scripts Deterministas vs. Subagentes (LLMs):**
+   Evita desperdiciar ciclos de inferencia asignando tareas puramente algorítmicas o de sistema a un subagente (ej. matar un puerto, hacer pull, mover carpetas). El orquestador debe usar directamente invocaciones de terminal a scripts locales (`.sh` o `.ps1`), reservando la invocación de subagentes exclusivamente para tareas cognitivas, argumentales o creativas.
+3. **Contratos de Datos Estrictos (Patrón de Reportes Estáticos):**
+   La comunicación entre subagentes no debe ser conversacional. Usa contratos estrictos (ej. bloques inmutables de TOML, JSON o Markdown estructurado). El orquestador actúa como transportista: capta el bloque del Lector y se lo pega íntegro en el prompt del Escritor, evitando tergiversaciones del lenguaje natural.
+   > [!TIP]
+   > **Estrategia de Modelos SOTA:** Utiliza modelos **Rápidos/Ligeros** (ej. Claude 4.5 Haiku, GPT-5.4 mini o Gemini 3.1 Flash) para estas tareas de formateo e invocación de MCP/APIs. Son más consistentes siguiendo esquemas JSON rígidos que los modelos de razonamiento pesado.
+
+4. **Orquestadores con Rutinas de Recuperación (Fallbacks Automáticos):**
+   Los flujos multi-agentes en cadena son frágiles por naturaleza. El orquestador debe poseer instrucciones claras de contingencia. (ej. "Si el Subagente X fracasa con un error de WebSocket ocupado, no te detengas; invoca el script de limpieza rápida y aplica un único reintento automatizado antes de rendirte y consultar al usuario").
+
+5. **Lecturas Paralelas, Escrituras Secuenciales:**
+   Minimiza la latencia despachando subagentes de sólo lectura de forma simultánea (ej. un *code-reader* inspeccionando arquitectura mientras un *design-reader* escanea mockups). Sin embargo, las fases destructivas o constructivas de los subagentes *writers* siempre deben ejecutarse lineal y rigurosamente.
 
 ### Beneficios del Aislamiento
-Protección de tokens y especialización de roles técnicos.
+Protección de tokens, prevención de alucinaciones por contexto cruzado y especialización de conocimientos técnicos.
 
 > [!NOTE]
 > Para conocer cómo se configuran estos equipos y ver **ejemplos de subagentes orquestadores** en cada herramienta, consulta su sección específica: [Cursor](tools/cursor.md#subagentes) | [Gemini CLI](tools/gemini-cli.md#subagentes) | [OpenCode](tools/opencode.md#subagentes) | [Claude Code](tools/claude-code.md#subagentes) | [Codex CLI](tools/codex-cli.md#subagentes).
@@ -339,42 +358,70 @@ Límites de aprobación y políticas de sandboxing.
 **Referencias y Documentación Oficial:**
 - [Gemini CLI: Headless Tutorial](https://geminicli.com/docs/cli/headless/)
 - [Claude: Headless Mode](https://code.claude.com/docs/en/headless) | [Scheduled Tasks](https://code.claude.com/docs/en/scheduled-tasks)
-- [Codex: Non-interactive Usage](https://developers.openai.com/codex/noninteractive)
 
 ## Evaluación de Modelos (Benchmarks y Casos de Uso)
 
-### Modelos de Razonamiento y Arquitectura
-Optimizado para diseño de sistemas y multi-repo (Gemini Pro, Claude Opus, GPT Codex).
+### Glosario de Términos para Humanos
+*   **SOTA (State of the Art):** Se refiere a lo último en tecnología, los modelos que están en la "vanguardia" y lideran las capacidades actuales de la industria.
+*   **NIAH (Needle In A Haystack):** Literalmente "aguja en un pajar". Es una prueba de estrés que mide la capacidad de un modelo para encontrar un dato específico dentro de una ventana de contexto masiva (ej. 1 millón de tokens).
 
-### Modelos de Flujo de Trabajo Diario
-Equilibrio entre velocidad y precisión para codificación (Sonnet, GPT-4o).
+### Tabla Comparativa de Idoneidad SOTA (Abril 2026)
 
-### Modelos Rápidos y Especialistas
-Lectura masiva de archivos y resúmenes rápidos (Flash, Haiku).
+La siguiente tabla resume el rendimiento de los modelos actuales de vanguardia.
+
+| Familia | Modelo | Tipo / Velocidad | Razonamiento | Contexto (NIAH) | Tools / MCP | Mejor para... |
+| :--- | :--- | :--- | :---: | :---: | :---: | :--- |
+| **OpenAI** | **GPT-5.4 Thinking** | Pesado (Razonativo) | ✅ | ✅ (1M+) | ⚠️ | Arquitectura y Computer Use |
+| **OpenAI** | **GPT-5.3-Codex** | Pesado (Razonativo) | ✅ | ⚠️ (256K) | ✅ | Especialista en Código / Terminal |
+| **Google** | **Gemini 3.1 Pro** | Pesado (Razonativo) | ✅ | ✅ (1M+) | ⚠️ | Arquitectura y Big Context |
+| **Anthropic** | **Claude 5 Sonnet** | Equilibrado | ✅ | ⚠️ (200K) | ✅ | Desarrollo ágil y Production Code |
+| **Anthropic** | **Claude 4.6 Opus** | Pesado (Razonativo) | ✅ | ⚠️ (200K) | ⚠️ | Lógica compleja multinivel |
+| **OpenAI** | **GPT-5.4 mini** | Rápido (Ligero) | ✅ | ⚠️ (128K) | ✅ | **Consultas MCP**, JSON, Scripts |
+| **Google** | **Gemini 3.1 Flash** | Rápido (Ligero) | ⚠️ | ✅ (1M+) | ✅ | **Búsqueda**, Lectura rápida |
+| **Anthropic** | **Claude 4.5 Haiku** | Rápido (Ligero) | ⚠️ | ⚠️ (200K) | ✅ | **Subagentes de Búsqueda** |
+
+> [!TIP]
+> **Estrategia Pro:** Los modelos **Rápidos/Ligeros** (ej. GPT-5.4 mini, Gemini 3.1 Flash, Claude 4.5 Haiku) son excepcionales para subagentes de búsqueda, consultar MCPs y transformar salidas de APIs en formatos estructurados (JSON). Son más económicos y consistentes en tareas de formateo repetitivo.
 
 ---
 
-### Tabla Comparativa de Idoneidad
+### Guía de Perfiles: ¿Cuándo usar cada nivel?
 
-La siguiente tabla resume qué tan adecuado es cada modelo para diferentes tareas técnicas.
+La eficiencia de un agente depende de elegir el "combustible" adecuado para la tarea:
 
-| Categoría Técnica | Gemini Pro | Claude Opus | GPT Codex | Claude Sonnet | GPT-4o | Gemini Flash | Claude Haiku |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Generación de código** | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| **Lectura de archivos** | ✅ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ |
-| **Generación de informes** | ✅ | ✅ | ❌ | ⚠️ | ⚠️ | ✅ | ⚠️ |
-| **Generar documentación** | ⚠️ | ✅ | ❌ | ⚠️ | ⚠️ | ⚠️ | ❌ |
-| **Generar JSON / Estructuras** | ❌ | ⚠️ | ⚠️ | ⚠️ | ✅ | ❌ | ⚠️ |
-| **Consultar APIs** | ⚠️ | ⚠️ | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ |
-| **Consultar MCP** | ✅ | ⚠️ | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ |
-| **Leer skills** | ⚠️ | ✅ | ⚠️ | ✅ | ⚠️ | ❌ | ⚠️ |
-| **Entender contexto de código** | ✅ | ✅ | ⚠️ | ⚠️ | ❌ | ⚠️ | ❌ |
+#### 1. Perfil "High Reasoning / MAX Effort"
+*   **Modelos:** GPT-5.4 Thinking, GPT-5.3-Codex, Gemini 3.1 Pro, Claude 4.6 Opus.
+*   **Cuándo conviene:** Cambios estructurales en la arquitectura, resolución de bugs complejos en múltiples archivos, o creación de planes iniciales.
 
-**Leyenda:**
-- ✅ **Recomendado:** El modelo sobresale, es rápido o está diseñado específicamente para esta tarea.
-- ⚠️ **Posible:** Funciona, pero existen opciones mejores, más eficientes en tokens o más rápidas.
-- ❌ **Evitar:** No usar. Puede fallar, ser muy costoso o tener una latencia que no justifica la tarea.
+#### 2. Perfil "Balanced / Logic-Efficient"
+*   **Modelos:** Claude 5 Sonnet, GPT-5.4 Pro.
+*   **Cuándo conviene:** Estándar para el desarrollo activo diario.
+
+#### 3. Perfil "Utility / Low Effort / Search"
+*   **Modelos:** GPT-5.4 mini, Gemini 3.1 Flash, Claude 4.5 Haiku.
+*   **Cuándo conviene:** Subagentes de búsqueda, lectura de archivos masivos sin edición, generación de JSDoc, unit testing y mapeo de MCP/APIs a JSON.
+
+---
+
+### Advertencias sobre Modelos Legados (Deprecated)
+
+Modelos que aún aparecen en configuraciones pero que **no se recomiendan** para uso profesional en 2026:
+
+> [!WARNING]
+> **Gemini 3.0 Pro:** Se ha observado un índice de **alucinación** significativamente mayor en comparación con la versión 3.1. Tiende a inventar rutas de archivos o herramientas inexistentes. Se recomienda migrar a **Gemini 3.1 Pro** inmediatamente.
+
+> [!NOTE]
+> **Gemini 3.0 Flash:** Aunque ya existe la versión 3.1, la 3.0 sigue siendo aceptable únicamente para **búsquedas muy rápidas** de texto plano o pre-procesamiento de datos no críticos. No se recomienda para codificación activa.
+
+> [!CAUTION]
+> **GPT-3.5-Turbo y Legacy Codex (code-davinci):** Estos modelos están técnicamente obsoletos para el desarrollo agentic moderno. 
+> 
+> **GPT-5.2 Thinking:** Aunque potente en su lanzamiento, OpenAI ha programado su **retiro para Junio de 2026**. Se recomienda migrar a la serie GPT-5.4 inmediatamente para evitar interrupciones.
+
+#### Fuentes de Datos (Benchmarks 2026)
+*   **Coding & Reasoning:** [LiveCodeBench](https://livecodebench.github.io/leaderboard.html)
+*   **Real-World Software Engineering:** [SWE-bench Verified (Official)](https://www.swebench.com/)
+*   **Tool Use Proficiency:** [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html)
 
 ---
 *Nota: Todos los términos técnicos y fragmentos de código se mantienen en inglés para mayor precisión técnica.*
- 

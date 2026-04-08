@@ -133,6 +133,9 @@ mi-proyecto/
 
 ## Subagentes
 
+> [!TIP]
+> Antes de diseñar complejos ecosistemas de orquestación en Codex CLI, consulta los **[Patrones Avanzados Multi-Agente](../ai-learning-guide.md#patrones-avanzados-multi-agente)** en la guía principal. Incluye estrategias clave como Contratos de Datos estrictos, Housekeeping, y cuándo preferir Scripts deterministas sobre LLMs.
+
 ### Delegación en TOML
 Define agentes especializados que operan de forma aislada. El orquestador puede spawnear múltiples subagentes según la tarea.
 

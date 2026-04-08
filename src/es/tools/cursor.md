@@ -121,6 +121,9 @@ Eventos como `sessionStart`, `preToolUse` y `beforeShellExecution`. El código `
 
 ## Subagentes
 
+> [!TIP]
+> Antes de diseñar complejos ecosistemas de orquestación en Cursor, consulta los **[Patrones Avanzados Multi-Agente](../ai-learning-guide.md#patrones-avanzados-multi-agente)** en la guía principal. Incluye estrategias clave como Contratos de Datos estrictos, Housekeeping, y cuándo preferir Scripts deterministas sobre LLMs.
+
 ### Aislamiento y Delegación
 Asistentes especializados en contextos aislados. El agente principal los invoca automáticamente o vía `@nombre`.
 

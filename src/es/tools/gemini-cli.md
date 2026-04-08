@@ -316,6 +316,9 @@ mi-proyecto/
 
 ## Subagentes y Orquestadores
 
+> [!TIP]
+> Antes de diseñar complejos ecosistemas de orquestación en Gemini CLI, consulta los **[Patrones Avanzados Multi-Agente](../ai-learning-guide.md#patrones-avanzados-multi-agente)** en la guía principal. Incluye estrategias clave como Contratos de Datos estrictos, Housekeeping, y cuándo preferir Scripts deterministas sobre LLMs.
+
 ### Concepto de Especialistas
 Operan en loops independientes ahorrando tokens. Tienen system prompts y tools aisladas del agente principal.
 

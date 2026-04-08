@@ -104,6 +104,9 @@ mi-plugin/
 
 ## Sub-agentes (Subagents)
 
+> [!TIP]
+> Antes de diseñar complejos ecosistemas de orquestación en Claude Code, consulta los **[Patrones Avanzados Multi-Agente](../ai-learning-guide.md#patrones-avanzados-multi-agente)** en la guía principal. Incluye estrategias clave como Contratos de Datos estrictos, Housekeeping, y cuándo preferir Scripts deterministas sobre LLMs.
+
 Los sub-agentes son agentes especializados que operan en **ventanas de contexto aisladas** dentro de la misma sesión de Claude Code. El orquestador principal les delega tareas basándose en su `description`, y pueden ejecutarse en primer plano (bloqueante) o en segundo plano (concurrente con `Ctrl+B`).
 
 ### Capacidades Clave
@@ -138,6 +141,9 @@ mi-proyecto/
 
 > [!TIP]
 > La estructura por subdirectorios agrupa al sub-agente con sus archivos de apoyo. El `.md` cuyo nombre coincide con el directorio padre define al sub-agente; el resto son recursos de contexto inyectados automáticamente.
+
+> [!IMPORTANT]
+> **Estrategia de Modelos en Orquestación:** Al configurar subagentes en OpenCode, utiliza modelos **Ligeros** (Haiku 4.5 o GPT-5.4 mini) para las fases de descubrimiento y lectura. Reserva los modelos **Pesados** (Sonnet o GPT-5.3-Codex) exclusivamente para el agente `coder` final.
 
 ### Campos del Frontmatter (Sub-agentes)
 

@@ -103,6 +103,9 @@ export default {
 
 OpenCode distingue dos tipos de agentes que operan en distintos roles. Los agentes primarios son los que el usuario controla directamente; los subagentes son especializados e invocados automáticamente o por mención `@nombre`.
 
+> [!TIP]
+> Antes de diseñar complejos ecosistemas de agentes en OpenCode, consulta los **[Patrones Avanzados Multi-Agente](../ai-learning-guide.md#patrones-avanzados-multi-agente)** en la guía principal. Incluye estrategias clave como Contratos de Datos estrictos, Housekeeping, y cuándo preferir Scripts deterministas sobre LLMs.
+
 ### Tipos de Agentes
 
 #### Agentes Primarios (Primary Agents)
