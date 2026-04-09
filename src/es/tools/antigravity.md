@@ -21,11 +21,11 @@ mi-proyecto/
 
 ## Workflows (Flujos de Trabajo)
 
-Los **Workflows** permiten automatizar tareas repetitivas mediante secuencias de prompts preguardados. Se invocan mediante slash commands (ej. `/deploy`) y se estructuran como archivos Markdown (.md) que combinan instrucciones con ejecución de herramientas.
+Los **Workflows** permiten automatizar tareas repetitivas mediante secuencias de prompts preguardados. Se invocan mediante slash commands (ej. `/deploy`) y se estructuran como archivos Markdown (`.md`) que combinan instrucciones con ejecución de herramientas.
 
 **Estructura de Directorios:**
 ```text
-~/.gemini/antigravity/global_workflows/ (Global — disponibles en todos los proyectos)
+`~/.gemini/antigravity/global_workflows/` (Global — disponibles en todos los proyectos)
     └── my-command.md
 mi-proyecto/
 └── .agents/

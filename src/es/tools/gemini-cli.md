@@ -88,7 +88,7 @@ mi-proyecto/
         └── my-skill/
             └── SKILL.md
 ```
-*Fuentes: [Gemini CLI: Skills Getting Started](https://geminicli.com/docs/cli/tutorials/skills-getting-started/), [Gemini CLI: Skills](https://geminicli.com/docs/cli/skills/)*
+*Fuentes: [Gemini CLI: Skills Getting Started](https://geminicli.com/docs/cli/tutorials/skills-getting-started/) | [Gemini CLI: Skills](https://geminicli.com/docs/cli/skills/)*
 
 ## MCP (Model Context Protocol)
 
@@ -272,7 +272,7 @@ mi-extension/
 ```bash
 gemini extensions install https://github.com/google/gemini-cli-github-extension
 ```
-*Fuentes: [Gemini CLI: Extensions Guide](https://geminicli.com/docs/extensions/), [Writing Extensions](https://geminicli.com/docs/extensions/writing-extensions/), [Best Practices](https://geminicli.com/docs/extensions/best-practices/), [Reference](https://geminicli.com/docs/extensions/reference/)*
+*Fuentes: [Gemini CLI: Extensions Guide](https://geminicli.com/docs/extensions/) | [Writing Extensions](https://geminicli.com/docs/extensions/writing-extensions/) | [Best Practices](https://geminicli.com/docs/extensions/best-practices/) | [Reference](https://geminicli.com/docs/extensions/reference/)*
 
 ## Hooks (Disparadores)
 

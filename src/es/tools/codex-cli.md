@@ -32,10 +32,10 @@ Usa `dependencies` para obligar a que ciertos servidores estén activos. La dire
 
 ### Estructura de Directorio
 ```text
-~/.agents/
-└── skills/
-    └── my-skill/
-        └── SKILL.md
+~/.agents/skills/my-skill/SKILL.md (Cuchilla de la habilidad)
+mi-proyecto/
+└── agents/
+    └── openai.yaml                 (Manifiesto de habilidades del proyecto)
 ```
 
 #### Ejemplo: Manifiesto de Skill (`agents/openai.yaml`)
@@ -105,9 +105,9 @@ Scripts externos para reaccionar a eventos de terminal o interceptar llamadas a 
 ```text
 mi-proyecto/
 └── .codex/
-    ├── hooks.json
+    ├── hooks.json                  (Configuración de hooks)
     └── hooks/
-        └── pre_tool_use_policy.py
+        └── pre_tool_use_policy.py  (Script de intercepción)
 ```
 
 #### Ejemplo: Política Pre-Ejecución (`hooks.json`)

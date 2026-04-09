@@ -97,7 +97,7 @@ export default {
   }
 }
 ```
-*Fuentes: [OpenCode: Plugins (ES)](https://opencode.ai/docs/es/plugins/), [OpenCode: Ecosystem (ES)](https://opencode.ai/docs/es/ecosystem/)*
+*Fuentes: [OpenCode: Plugins (ES)](https://opencode.ai/docs/es/plugins/) | [OpenCode: Ecosystem (ES)](https://opencode.ai/docs/es/ecosystem/)*
 
 ## Subagentes y Orquestadores
 

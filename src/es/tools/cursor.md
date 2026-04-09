@@ -8,7 +8,7 @@ Esta guía detalla las características exclusivas de Cursor en cuanto a la gest
 Cursor gestiona su contexto mediante reglas granulares `.mdc` y el estándar universal `AGENTS.md`.
 
 ### Activación por Glob Patterns
-El formato `MDC` usa YAML frontmatter para definir `globs` y la propiedad `alwaysApply`. Permite sincronizar reglas remotas desde GitHub.
+El formato `MDC` usa YAML frontmatter para definir `globs` y la propiedad `alwaysApply`. Permite sincronizar reglas remotas desde GitHub (ej. `.cursor/rules/tech-stack.mdc`).
 
 ### Estructura de Directorios
 ```text
@@ -33,7 +33,7 @@ alwaysApply: false
 ## Skills (Habilidades)
 
 ### Migración de Comandos
-Las habilidades se manejan vía reglas `.mdc`. El comando `/migrate-to-skills` convierte antiguos comandos y reglas dinámicas al nuevo formato optimizado.
+Las habilidades se manejan vía reglas `.mdc`. El comando `/migrate-to-skills` convierte antiguos comandos y reglas dinámicas al nuevo formato optimizado guardándolas en `.cursor/rules/`.
 
 ### Estructura de Directorio
 ```text

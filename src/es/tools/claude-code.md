@@ -100,7 +100,7 @@ mi-plugin/
 ```bash
 /plugin install @anthropic/mcp-server-github
 ```
-*Fuentes: [Claude Code: Discover Plugins](https://code.claude.com/docs/en/discover-plugins), [Claude Code: Plugins](https://code.claude.com/docs/en/plugins)*
+*Fuentes: [Claude Code: Discover Plugins](https://code.claude.com/docs/en/discover-plugins) | [Claude Code: Plugins](https://code.claude.com/docs/en/plugins)*
 
 ## Sub-agentes (Subagents)
 
@@ -247,6 +247,7 @@ Los Agent Teams coordinan **múltiples sesiones independientes de Claude Code** 
 | **Estado**           | Estable                              | Experimental                         |
 
 ### Activación
+Solo el Lead puede crear/destruir teammates. Las configuraciones persistentes se guardan en `.claude/settings.json`.
 
 ```json
 {
@@ -336,4 +337,4 @@ Ideal para pipelines sin intervención humana. Se controla mediante flags espec�
 ```bash
 claude -p "Revisa este PR" --bare --allowedTools read_file,run_shell_command
 ```
-*Fuentes: [Claude Code: Headless Mode](https://code.claude.com/docs/en/headless), [Scheduled Tasks](https://code.claude.com/docs/en/scheduled-tasks)*
+*Fuentes: [Claude Code: Headless Mode](https://code.claude.com/docs/en/headless) | [Scheduled Tasks](https://code.claude.com/docs/en/scheduled-tasks)*
