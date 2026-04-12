@@ -34,21 +34,65 @@ paths: ["src/backend/**"]
 
 ## Skills (Habilidades)
 
-### Jerarquía de Descubrimiento
-Las skills se descubren siguiendo la jerarquía: `Enterprise` > `Personal` (`~/.claude/skills/`) > `Project` (`.claude/skills/`).
+Claude Code implementa el sistema de Skills con una jerarquía de tres niveles: **Enterprise** (distribuidas por la organización), **Personal** (`~/.claude/skills/`) y **Project** (`.claude/skills/`). Lo que distingue a Claude Code del resto es la riqueza de sus metadatos YAML: permite controlar el aislamiento de ejecución, las herramientas disponibles para la skill, y si el modelo puede autoinvocarla.
 
-### Metadatos y Aislamiento de Contexto
-Usa metadatos YAML avanzados en `SKILL.md`. La propiedad `allowed-tools` restringe herramientas; `context: fork` obliga a ejecutar la skill en un subagente separado; y `disable-model-invocation: true` para invovación manual. Inyecta variables como `${CLAUDE_SESSION_ID}`.
+La propiedad más poderosa y única en el ecosistema es **`context: fork`**: cuando está activa, la skill se ejecuta en un subagente separado con su propio contexto aislado. Esto es ideal para skills que necesitan leer grandes cantidades de código sin contaminar la ventana de atención del agente principal. Al terminar, el subagente retorna solo el resultado al coordinador, descartando el contexto temporal.
 
 ### Estructura de Directorios
+
 ```text
+~/.claude/skills/
+└── personal-conventions/
+    └── SKILL.md              (Personal — disponible en todos los proyectos)
+
 mi-proyecto/
 └── .claude/
     └── skills/
-        └── my-skill/
-            └── SKILL.md
+        └── api-security-audit/   (Proyecto — específico de este repositorio)
+            ├── SKILL.md
+            └── checklist.md
 ```
+
+### Propiedades YAML Avanzadas
+
+| Propiedad | Descripción |
+| :--- | :--- |
+| `allowed-tools` | Lista de herramientas permitidas para esta skill (allowlist). |
+| `context: fork` | Ejecuta la skill en un subagente aislado para proteger el contexto principal. |
+| `disable-model-invocation: true` | Impide que el agente invoque la skill automáticamente; solo activación manual. |
+
+### Ejemplo: Skill de Auditoría de Seguridad (`SKILL.md`)
+
+```markdown
+---
+name: api-security-audit
+description: Audits REST API endpoints for security vulnerabilities. Use before merging API changes.
+allowed-tools:
+  - read_file
+  - grep_search
+context: fork
+disable-model-invocation: false
+---
+# API Security Audit
+
+Review all files provided for these critical vulnerabilities:
+
+1. SQL Injection: look for raw string concatenation in queries
+2. Missing input validation: check all route handlers for Zod/Joi schemas
+3. Auth bypass: verify that all protected routes check the session token
+4. Secrets in code: grep for hardcoded API keys or passwords
+
+For each issue found, report: file path, line number, severity (critical/high/medium), and remediation.
+
+Reference the accepted patterns in {file:./checklist.md}
+```
+
+> [!TIP]
+> La variable `${CLAUDE_SESSION_ID}` es inyectada automáticamente en el contexto de cualquier skill. Úsala en scripts de logging para correlacionar la actividad de la skill con la sesión del agente sin necesidad de configuración adicional.
+
 *Fuente: [Claude: Skills Guide](https://code.claude.com/docs/en/skills)*
+
+
 
 ## MCP (Model Context Protocol)
 
@@ -81,31 +125,74 @@ mi-proyecto/
 
 ## Plugins y Extensiones
 
-### Arquitectura de Plugins
-La arquitectura es modular; los plugins agrupan skills, agentes, hooks y servidores (MCP/LSP) mediante `.claude-plugin/plugin.json`.
+> [!TIP]
+> Consulta **[Plugins y Extensiones: Guía Técnica](../concepts/plugins.md)** para la comparativa completa entre sistemas, schemas y ejemplos de producción.
 
-### Inteligencia vía LSP y Output Styles
-Soporta inyección de **Servidores LSP**, proveyendo diagnósticos e inteligencia de código en terminal. Los "Output Styles" alteran estructuralmente la comunicación del agente.
+En Claude Code, un plugin es una **estructura de directorios con convención de carpetas**. Claude Code detecta y carga automáticamente los componentes según el directorio en el que estén: skills desde `skills/`, subagentes desde `agents/`, hooks desde `hooks/hooks.json`, MCP desde `.mcp.json` y servidores LSP desde `.lsp.json`. El archivo `plugin.json` solo declara metadata de identificación — no lista los componentes.
 
 ### Estructura de Directorio
+
 ```text
 mi-plugin/
 ├── .claude-plugin/
-│   └── plugin.json
-└── src/
-    └── index.js
+│   └── plugin.json          (Solo metadata: name, version, description, author)
+├── skills/
+│   └── code-review/
+│       └── SKILL.md         (Cargada por convención de directorio)
+├── agents/
+│   └── reviewer.md          (Cargado por convención de directorio)
+├── hooks/
+│   └── hooks.json           (Cargado por convención de directorio)
+├── .mcp.json                (Servidores MCP del plugin)
+└── .lsp.json                (Servidores LSP para code intelligence)
 ```
 
-### Gestión de Plugins (Terminal)
-```bash
-/plugin install @anthropic/mcp-server-github
+### `plugin.json` — Metadata y Rutas (Component Path Fields)
+
+El plugin funciona por convención (carpetas default), pero puede sobreescribir las rutas explícitamente en el manifiesto con punteros a directorios o archivos:
+
+```json
+{
+  "name": "typescript-plugin",
+  "version": "1.0.0",
+  "description": "Fullstack TS context",
+  "skills": "./custom/skills/",
+  "agents": "./custom/agents/",
+  "hooks": "./config/hooks.json",
+  "mcpServers": "./mcp-config.json",
+  "lspServers": "./.lsp.json"
+}
 ```
-*Fuentes: [Claude Code: Discover Plugins](https://code.claude.com/docs/en/discover-plugins) | [Claude Code: Plugins](https://code.claude.com/docs/en/plugins)*
+
+### Comandos de Gestión
+
+```bash
+# Añadir marketplace (GitHub)
+/plugin marketplace add anthropics/claude-code
+
+# Instalar plugin desde marketplace
+/plugin install commit-commands@anthropics-claude-code
+
+# Desarrollo local — cargar sin instalar
+claude --plugin-dir ./mi-plugin
+
+# Recargar plugins sin reiniciar
+/reload-plugins
+
+# Deshabilitar / habilitar / desinstalar
+/plugin disable plugin-name@marketplace-name
+/plugin enable plugin-name@marketplace-name
+/plugin uninstall plugin-name@marketplace-name
+```
+
+*Fuentes: [Claude Code: Create Plugins](https://code.claude.com/docs/en/plugins) | [Claude Code: Discover Plugins](https://code.claude.com/docs/en/discover-plugins) | [Plugins Reference](https://code.claude.com/docs/en/plugins-reference)*
+
 
 ## Sub-agentes (Subagents)
 
 > [!TIP]
-> Antes de diseñar complejos ecosistemas de orquestación en Claude Code, consulta los **[Patrones Avanzados Multi-Agente](../ai-learning-guide.md#patrones-avanzados-multi-agente)** en la guía principal. Incluye estrategias clave como Contratos de Datos estrictos, Housekeeping, y cuándo preferir Scripts deterministas sobre LLMs.
+> Consulta **[Subagentes: Arquitectura y Patrones](../concepts/subagentes.md)** para estrategias generales de orquestación, contratos de datos entre agentes y housekeeping antes de diseñar tu sistema.
+
 
 Los sub-agentes son agentes especializados que operan en **ventanas de contexto aisladas** dentro de la misma sesión de Claude Code. El orquestador principal les delega tareas basándose en su `description`, y pueden ejecutarse en primer plano (bloqueante) o en segundo plano (concurrente con `Ctrl+B`).
 
@@ -290,29 +377,57 @@ Have them each review and report findings.
 
 ## Hooks (Disparadores)
 
-### Interceptación y Seguridad
-Los hooks ejecutan scripts ante eventos de ciclo de vida. Un aspecto crítico es el bloqueo si el hook retorna `exit 2` en `PreToolUse`, abortando la herramienta.
+> [!TIP]
+> Consulta **[Hooks: Interceptación Determinista](../concepts/hooks.md)** para la referencia completa de eventos, protocolo stdin/stdout, scripts de producción y anti-patrones.
+
+Los hooks de Claude Code se configuran en `settings.json` bajo el objeto `hooks`. Cada entrada especifica el evento, un `matcher` opcional para filtrar por herramienta específica, y el comando externo a ejecutar. La comunicación ocurre via stdin/stdout en JSON estricto.
+
+### Eventos Disponibles
+
+| Evento | Momento de Disparo |
+| :--- | :--- |
+| `PreToolUse` | Antes de ejecutar cualquier herramienta (con `matcher` opcional por nombre) |
+| `PostToolUse` | Después de que la herramienta retorna su resultado |
+| `UserPromptSubmit` | Cuando el usuario envía un mensaje al agente |
+| `PostResponse` | Cuando el agente termina de generar su respuesta completa |
+| `Stop` | Cuando la sesión finaliza |
 
 ### Estructura de Directorio
+
 ```text
 mi-proyecto/
 └── .claude/
     ├── settings.json
     └── hooks/
-        └── protect-files.sh
+        ├── protect-files.sh
+        └── run-linter.sh
 ```
 
-### Ejemplo: Protección de Archivos Críticos
+### Ejemplo de Configuración (`settings.json`)
+
 ```json
 {
   "hooks": {
     "PreToolUse": [
       {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/protect-files.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
         "matcher": "Edit|Write",
         "hooks": [
           {
             "type": "command",
-            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/protect-files.sh"
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/run-linter.sh",
+            "timeout": 30
           }
         ]
       }
@@ -320,21 +435,128 @@ mi-proyecto/
   }
 }
 ```
+
+### Variables de Entorno Disponibles en Scripts
+
+| Variable | Contenido |
+| :--- | :--- |
+| `$CLAUDE_PROJECT_DIR` | Raíz del directorio del proyecto |
+| `$CLAUDE_TOOL_NAME` | Nombre de la herramienta que disparó el hook |
+| `$CLAUDE_SESSION_ID` | ID de la sesión activa |
+
+### Ejemplo: Protección de Archivos Críticos (`protect-files.sh`)
+
+```bash
+#!/usr/bin/env bash
+# Blocks writes to critical config and secret files.
+
+INPUT=$(cat)
+FILE=$(echo "$INPUT" | jq -r '.tool_input.file_path // ""')
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // ""')
+
+PROTECTED=(".env" ".env.local" ".env.production" "secrets.json" "*.pem")
+
+for PATTERN in "${PROTECTED[@]}"; do
+  if [[ "$FILE" == *"$PATTERN"* ]] || [[ "$COMMAND" =~ rm\ -rf ]]; then
+    echo "BLOCKED: Action on protected resource '$FILE'" >&2
+    exit 2
+  fi
+done
+
+exit 0
+```
+
+> [!IMPORTANT]
+> El código de salida `2` es el mecanismo fail-closed: la herramienta es abortada y el error se retroalimenta al modelo. Usa exit `1` para errores del propio script y `2` únicamente para bloqueos intencionales de política.
+
 *Fuente: [Claude Code: Hooks Guide](https://code.claude.com/docs/en/hooks-guide)*
+
 
 ## Automatización (Headless Mode)
 
-### Modo Desatendido y CI/CD
-Ideal para pipelines sin intervención humana. Se controla mediante flags específicos.
+Claude Code es la herramienta con el modo headless más completo del ecosistema. El flag `-p` convierte al agente en un proceso no interactivo que recibe el prompt por argumento y termina con código de salida `0` (éxito) o `1` (error), integrable en cualquier pipeline de CI/CD.
 
-### Flags y Control de Salida
-- `--bare`: Omite configuración global y hooks para aislamiento en CI.
-- `--allowedTools`: Aprueba herramientas sin interacción.
-- `--json-schema`: Fuerza un esquema de output específico.
-- `/loop`: Tareas programadas vía sintaxis CRON.
+### Flags de Control de Ejecución
 
-### Ejemplo de Uso (Bash CI/CD)
+| Flag | Descripción |
+| :--- | :--- |
+| `-p "prompt"` | Activa modo headless con el prompt especificado |
+| `--allowedTools` | Lista de herramientas aprobadas sin confirmación manual (ej. `Read,Write,Bash`) |
+| `--disallowedTools` | Lista de herramientas bloqueadas |
+| `--bare` | Omite configuración global, hooks y CLAUDE.md. Ideal para aislamiento total en CI |
+| `--max-turns N` | Máximo de iteraciones antes de terminar (previene bucles infinitos) |
+| `--output-format` | Formato de salida: `text` (default), `json`, `stream-json` |
+| `--json-schema` | Fuerza que el output JSON cumpla un esquema específico |
+| `--verbose` | Log detallado de cada acción del agente |
+
+### Formatos de Output
+
 ```bash
-claude -p "Revisa este PR" --bare --allowedTools read_file,run_shell_command
+# Output en JSON estructurado — ideal para procesar con jq en pipelines
+claude -p "Analyze the test failures and return findings" \
+  --output-format json \
+  --allowedTools "Read,Grep,Glob"
+
+# Stream JSON — útil para procesamiento en tiempo real
+claude -p "Generate release notes from git log since last tag" \
+  --output-format stream-json \
+  | jq '.content[] | select(.type=="text") | .text'
 ```
-*Fuentes: [Claude Code: Headless Mode](https://code.claude.com/docs/en/headless) | [Scheduled Tasks](https://code.claude.com/docs/en/scheduled-tasks)*
+
+### Scheduled Tasks (`/loop`)
+
+Claude Code soporta tareas programadas mediante el comando `/loop` con sintaxis CRON. El agente se registra para ejecutarse en el intervalo definido sin necesidad de un cronjob externo.
+
+```text
+/loop 0 8 * * 1-5 "Generate the daily standup report from yesterday's git commits and open issues"
+```
+
+### Ejemplo: CI/CD Reactivo (GitHub Actions)
+
+```yaml
+name: AI Code Review
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  ai-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Review PR with Claude Code
+        run: |
+          git diff origin/${{ github.base_ref }}...HEAD > changes.diff
+          
+          claude -p "
+            Review the attached diff for:
+            1. Security vulnerabilities (injection, auth bypass, secrets)
+            2. Logic errors and unhandled edge cases
+            3. Missing test coverage for new code
+            Apply AGENTS.md conventions. Return a JSON array of findings.
+            $(cat changes.diff)
+          " \
+            --allowedTools "Read,Grep,Glob" \
+            --bare \
+            --max-turns 10 \
+            --output-format json > review.json
+          
+          # Block PR on critical findings
+          CRITICAL=$(jq '[.[] | select(.severity == "critical")] | length' review.json)
+          if [ "$CRITICAL" -gt "0" ]; then
+            echo "Critical issues found:" && jq '.[] | select(.severity=="critical")' review.json
+            exit 1
+          fi
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+```
+
+> [!TIP]
+> Usa `--bare` en pipelines de CI para evitar que configuraciones locales del desarrollador contaminen la ejecución en el servidor. Sin `--bare`, el agente carga el `~/.claude/CLAUDE.md` global del usuario que ejecuta el runner.
+
+*Fuentes: [Claude Code: Headless Mode](https://code.claude.com/docs/en/headless) | [Claude Code: Scheduled Tasks](https://code.claude.com/docs/en/scheduled-tasks)*
+

@@ -74,21 +74,53 @@ mi-proyecto/
 
 ## Skills (Habilidades)
 
-### Niveles de Precedencia
-Soporta tres niveles: `Workspace` (`.gemini/skills/`), `User` (`~/.gemini/skills/`) y `Extension` (empaquetadas).
+Gemini CLI implementa el sistema de Skills con una jerarquía de tres niveles de descubrimiento: **Workspace** (`.gemini/skills/`), **User** (`~/.gemini/skills/`) y **Extension** (empaquetadas en una extensión instalada). Esto permite una composición flexible: las skills corporativas se distribuyen como extensiones, las preferencias personales se guardan en el nivel User, y los comportamientos específicos del repositorio viven en el Workspace.
 
-### Seguridad y Ejecución
-Requiere aprobación manual (sandboxing) antes de leer archivos de la skill. Soporta binarios empaquetados (ej. `node scripts/audit.js`).
+Un aspecto crítico de seguridad exclusivo de Gemini CLI es el **sandboxing obligatorio**: antes de que el agente lea por primera vez los archivos internos de una skill (incluyendo scripts), el sistema solicita aprobación manual del usuario. Esta confirmación no se repite en sesiones posteriores para la misma skill, pero garantiza que ningún contenido malicioso inyectado en un repositorio externo pueda ejecutarse sin consentimiento explícito.
+
+Gemini CLI también soporta skills con **binarios empaquetados**: el `SKILL.md` puede referenciar scripts ejecutables en NodeJS, Python o Shell que el agente invoca como herramientas sin exponerlos al modelo como texto.
 
 ### Estructura de Directorio
+
 ```text
+~/.gemini/skills/
+└── personal-style/
+    └── SKILL.md              (Usuario — disponible en todos los proyectos)
+
 mi-proyecto/
 └── .gemini/
     └── skills/
-        └── my-skill/
-            └── SKILL.md
+        └── db-migration/     (Workspace — específico de este repositorio)
+            ├── SKILL.md
+            └── scripts/
+                └── validate-schema.js
 ```
+
+### Ejemplo: Skill con Script Externo (`SKILL.md`)
+
+```markdown
+---
+name: db-migration
+description: Validates and applies database migrations safely. Use when running Prisma migrations.
+---
+# Database Migration Helper
+
+Before running any migration, always validate the schema first:
+
+```bash
+node {file:./scripts/validate-schema.js} --dry-run
+```
+
+Only proceed with `prisma migrate deploy` if the validation returns exit code 0.
+Never run `prisma migrate reset` in production environments.
+```
+
+> [!TIP]
+> Referencia los scripts con `{file:./ruta}` en lugar de rutas absolutas. Esto hace las skills portables entre máquinas y garantiza que el agente resuelva la ruta relativa correctamente sin importar desde dónde se ejecute Gemini CLI.
+
 *Fuentes: [Gemini CLI: Skills Getting Started](https://geminicli.com/docs/cli/tutorials/skills-getting-started/) | [Gemini CLI: Skills](https://geminicli.com/docs/cli/skills/)*
+
+
 
 ## MCP (Model Context Protocol)
 
@@ -276,54 +308,100 @@ gemini extensions install https://github.com/google/gemini-cli-github-extension
 
 ## Hooks (Disparadores)
 
-### Comunicación JSON (stdin/stdout)
-Protocolo estricto para scripts externos. Se configuran en el objeto `hooks` de `settings.json`.
+> [!TIP]
+> Consulta **[Hooks: Interceptación Determinista](../concepts/hooks.md)** para la referencia completa de eventos, protocolo stdin/stdout, scripts de producción y anti-patrones.
 
-### Eventos Clave y Bloqueo
-Eventos de herramienta, agente, modelo y ciclo de vida. Un código de salida `2` bloquea la acción.
+En Gemini CLI, los hooks se configuran en el objeto `hooks` de `settings.json`. La comunicación es via JSON estricto por stdin; el script puede responder con un JSON en stdout para modificar el contexto o simplemente retornar un exit code para permitir o bloquear.
+
+### Eventos Disponibles
+
+| Evento | Momento de Disparo |
+| :--- | :--- |
+| `BeforeTool` | Antes de ejecutar cualquier herramienta (filtrable por `toolName`) |
+| `AfterTool` | Después de que la herramienta retorna su resultado |
+| `BeforeInput` | Cuando el usuario envía un mensaje al agente |
+| `AfterResponse` | Cuando el agente termina de generar su respuesta |
+| `SessionEnd` | Cuando la sesión finaliza |
 
 ### Estructura de Directorio
+
 ```text
 mi-proyecto/
 └── .gemini/
-    └── settings.json
+    ├── settings.json
+    └── scripts/
+        └── validate-tool.sh
 ```
 
-**Ejemplo de Configuración (`settings.json`):**
+### Ejemplo de Configuración (`settings.json`)
+
 ```json
 {
   "hooks": {
     "BeforeTool": [
       {
-        "command": "./scripts/validate-tool.sh"
+        "command": "./scripts/validate-bash.sh",
+        "timeout": 10,
+        "matcher": {
+          "toolName": ["bash"]
+        }
+      }
+    ],
+    "AfterResponse": [
+      {
+        "command": "./scripts/log-session.sh"
       }
     ]
   }
 }
 ```
 
-#### Ejemplo de Input (stdin)
+### Input Completo via stdin
+
 ```json
 {
-  "session_id": "string",
-  "transcript_path": "string",
-  "cwd": "string",
+  "session_id": "abc-123",
+  "transcript_path": "/tmp/gemini-transcript-abc123.json",
+  "cwd": "/home/user/mi-proyecto",
   "hook_event_name": "BeforeTool",
-  "timestamp": "2026-04-03T12:00:00Z"
+  "tool_name": "bash",
+  "tool_input": {
+    "command": "rm -rf logs/"
+  },
+  "timestamp": "2026-04-11T17:00:00Z"
 }
 ```
+
+### Ejemplo: Bloqueo de Comandos Destructivos (`validate-bash.sh`)
+
+```bash
+#!/usr/bin/env bash
+# Reads the bash command from stdin and blocks destructive patterns.
+
+INPUT=$(cat)
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // ""')
+
+if echo "$COMMAND" | grep -qE "rm\s+-rf|DROP TABLE|git push\s+--force"; then
+  echo "BLOCKED: Destructive command detected: $COMMAND" >&2
+  exit 2
+fi
+
+exit 0
+```
+
+> [!NOTE]
+> El campo `matcher.toolName` acepta array de strings. Si se omite, el hook se dispara para **todas** las tools. Siempre filtra por herramienta específica en hooks de seguridad para evitar overhead innecesario.
+
 *Fuente: [Gemini CLI: Hooks Reference](https://geminicli.com/docs/hooks/reference/)*
+
 
 ## Subagentes y Orquestadores
 
 > [!TIP]
-> Antes de diseñar complejos ecosistemas de orquestación en Gemini CLI, consulta los **[Patrones Avanzados Multi-Agente](../ai-learning-guide.md#patrones-avanzados-multi-agente)** en la guía principal. Incluye estrategias clave como Contratos de Datos estrictos, Housekeeping, y cuándo preferir Scripts deterministas sobre LLMs.
+> Consulta **[Subagentes: Arquitectura y Patrones](../concepts/subagentes.md)** para estrategias generales de orquestación, contratos de datos entre agentes y housekeeping antes de diseñar tu sistema.
 
-### Concepto de Especialistas
-Operan en loops independientes ahorrando tokens. Tienen system prompts y tools aisladas del agente principal.
+En Gemini CLI, los subagentes son archivos `.md` en `.gemini/agents/`. El body completo del archivo es el **system prompt del especialista** — no hay separación entre instrucciones y cuerpo como en otros sistemas. El agente principal decide cuándo invocarlos leyendo su `description` semánticamente, o pueden invocarse directamente con `@nombre`. Un aspecto crítico de seguridad: el `AgentRegistry` oculta todos los demás subagentes por defecto para prevenir recursión no controlada — un subagente solo puede invocar a otro si lo lista explícitamente en su campo `tools`.
 
-### Inyección de System Prompt
-El **body del Markdown es el system prompt**. Se invoca mediante `@nombre` o detección automática de la tarea.
 
 ### Aislamiento y Protección de Recursión
 
@@ -463,7 +541,7 @@ decision = "deny"
 ```
 *Fuentes: [Gemini CLI: Subagents](https://geminicli.com/docs/core/subagents/) | [Policy Engine](https://geminicli.com/docs/reference/policy-engine/)*
 
-## Model Steering (Dirección del Modelo) 🔬
+## Model Steering (Dirección del Modelo)
 
 Model Steering permite proporcionar guías y feedback en tiempo real a Gemini CLI mientras está ejecutando una tarea activa. Esto permite corregir el rumbo, añadir contexto faltante o saltar pasos innecesarios sin tener que detener y reiniciar el agente.
 
@@ -505,14 +583,86 @@ Cuando está activado, cualquier texto escrito mientras el agente trabaja (con e
 
 ## Automatización (Headless Mode)
 
-### Modo Desatendido (no-TTY)
-Se activa en entornos sin terminal interactiva o explícitamente. Retorna JSON estructurado para facilitar scripts.
+Gemini CLI detecta automáticamente cuándo no hay TTY disponible (ej. dentro de un pipeline de GitHub Actions) y entra en modo no interactivo. También puede forzarse explícitamente. En modo headless emite eventos estructurados en lugar de texto conversacional, con códigos de salida específicos que permiten distintos tipos de manejo de errores en scripts.
 
-### Salida y Códigos de Error
-Genera eventos (`message`, `tool_use`, etc.) y códigos de salida detallados (`42` para input, `53` para límites de turnos).
+### Activación
 
-### Ejemplo de Uso (Bash)
 ```bash
-gemini -p "Resume git diff y devuelve JSON" --output-format json > report.json
+# Detección automática — cuando no hay TTY (pipes, CI/CD)
+echo "Generate a dependency audit report" | gemini
+
+# Activación explícita con prompt
+gemini -p "Analyze the performance bottlenecks in src/db/"
+
+# Modo yolo — sin confirmaciones interactivas (todos los permisos son auto-aprobados)
+gemini -p "Refactor all Promise chains to async/await" --yolo
+
+# Output JSON estructurado para procesamiento en pipelines
+gemini -p "Review the failing tests" --output-format json > findings.json
 ```
+
+### Flags de Control
+
+| Flag | Descripción |
+| :--- | :--- |
+| `-p "prompt"` | Prompt inicial en modo headless |
+| `--yolo` | Desactiva todas las confirmaciones interactivas |
+| `--output-format json` | Output como JSON estructurado (eventos tipados) |
+| `--model ID` | Override del modelo para esta ejecución |
+| `--max-turns N` | Límite de iteraciones (default: 30) |
+| `--timeout-mins N` | Tiempo máximo de ejecución en minutos |
+| `--no-color` | Desactiva colores ANSI (recomendado en CI) |
+
+### Tabla de Códigos de Salida
+
+| Código | Significado | Acción en Script |
+| :--- | :--- | :--- |
+| `0` | Éxito — tarea completada | `continue` |
+| `1` | Error genérico | `fail pipeline` |
+| `42` | Input requerido — el agente esperaba confirmación | Reintentar con `--yolo` |
+| `53` | Límite de turnos alcanzado (`max_turns`) | Aumentar límite o revisar prompt |
+
+### Ejemplo: Auditoría Nocturna (Bash + GitHub Actions)
+
+```yaml
+name: Nightly Dependency Audit
+
+on:
+  schedule:
+    - cron: '0 4 * * 1-5'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run dependency audit
+        run: |
+          gemini -p "
+            Audit the package.json dependencies:
+            1. Identify packages with known CVEs using npm audit
+            2. Flag packages more than 2 major versions behind
+            3. Return results as JSON with package, issue, and severity fields
+          " \
+            --yolo \
+            --output-format json \
+            --max-turns 15 \
+            --no-color > audit.json
+          
+          # Post results as PR comment or Slack notification
+          cat audit.json | jq '.findings[] | select(.severity == "critical")'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Notify on critical findings
+        if: failure()
+        run: |
+          curl -X POST ${{ secrets.SLACK_WEBHOOK }} \
+            -d '{"text": "Critical vulnerabilities found in nightly audit. Check GitHub Actions."}'
+```
+
+> [!TIP]
+> El código de salida `42` es exclusivo de Gemini CLI e indica que el agente necesitaba input interactivo para continuar. En pipelines, diseña los prompts para ser completamente autónomos o añade `--yolo` para aprobar automáticamente cualquier confirmación pendiente.
+
 *Fuente: [Gemini CLI: Headless Tutorial](https://geminicli.com/docs/cli/headless/)*

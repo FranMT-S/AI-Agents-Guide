@@ -246,7 +246,7 @@ Evita triggers genéricos como `"ayuda"`, archivos `SKILL.md` excesivamente larg
 
 ---
 
-## 7. Marketplaces y Recomendaciones (Discovery)
+## 7. Colecciones y Recomendaciones (Discovery)
 
 ### Marketplaces (Skills.sh)
 Busca y descarga skills listas para usar. Siempre audita los permisos antes de instalar.

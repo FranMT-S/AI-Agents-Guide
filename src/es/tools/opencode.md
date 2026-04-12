@@ -4,43 +4,168 @@ Esta guía detalla las características exclusivas de OpenCode en cuanto a la ge
 
 ## Gestión de Contexto (Rules)
 
-### Lazy Loading y Referencias (@file)
-Soporta `AGENTS.md` y `opencode.json`. El `Lazy Loading` permite referenciar `@archivos` solo cuando es necesario. Genera reglas automáticamente con `/init`.
+OpenCode carga `AGENTS.md` y `opencode.json` automáticamente al iniciar una sesión. Lo que lo distingue del resto de herramientas es su mecanismo de **Lazy Loading**: en lugar de inyectar toda la documentación del proyecto en el contexto al arranque, el agente carga archivos de reglas adicionales de forma diferida, solo cuando el usuario o la tarea los referencia explícitamente. Esto reduce drásticamente el consumo de tokens en sesiones largas donde solo una fracción del conocimiento del proyecto es relevante.
 
-### Estructura de Directorios
+### Lazy Loading y Referencias (@file)
+
+Cualquier archivo o carpeta puede ser referenciado con la sintaxis `@ruta` directamente desde el chat. OpenCode inyecta el contenido de ese recurso en el contexto solo en el momento de la referencia, manteniendo el resto fuera de la ventana activa hasta que se necesite.
+
+**Ejemplos de referencia:**
+
 ```text
-~/.config/opencode/opencode.json (Global — configuracion global del usuario)
-mi-proyecto/
-├── AGENTS.md                    (Proyecto — reglas del repositorio)
-└── opencode.json                (Proyecto — configuracion y reglas del proyecto)
+@AGENTS.md                     Carga el archivo raíz de reglas
+@src/backend                   Carga todos los archivos del directorio backend
+@docs/api-conventions.md       Documento de convenciones especifico
+@src/**/*.types.ts             Glob — carga todos los archivos de tipos del proyecto
 ```
 
-**Ejemplo de Configuración (`opencode.json`):**
+> [!TIP]
+> Usa `@carpeta/` en lugar de listar archivos individuales. OpenCode recorre el directorio y carga los archivos relevantes según el contexto de la tarea, ahorrando tokens al no tener que listar explícitamente cada archivo.
+
+### Estructura de Directorios
+
+```text
+~/.config/opencode/
+└── opencode.json              (Global — configuracion personal del usuario, todos los proyectos)
+
+mi-proyecto/
+├── AGENTS.md                  (Proyecto — reglas del repositorio, estándar universal)
+└── opencode.json              (Proyecto — configuracion y reglas del proyecto, compartido via git)
+```
+
+### Configuración de Rules (`opencode.json`)
+
+El campo `rules` acepta un arreglo mixto de tres tipos de fuentes: **rutas locales a archivos**, **rutas a carpetas** y **URLs remotas**. OpenCode los carga en el orden en que se declaran.
+
+**Estructura del campo `rules`:**
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "rules": [
+    "AGENTS.md",
+    "docs/TYPESCRIPT.md",
+    "@src/backend",
+    "https://example.com/.well-known/opencode"
+  ]
+}
+```
+
+**Ejemplo completo funcional (`opencode.json`):**
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "rules": [
+    "AGENTS.md",
+    "docs/TYPESCRIPT.md",
+    "docs/TESTING.md",
+    "@src/backend",
+    "https://standards.acme.com/.well-known/opencode"
+  ],
+  "model": "anthropic/claude-sonnet-4-20250514",
+  "autoshare": false
+}
+```
+
+### Remote Rules (.well-known/opencode)
+
+OpenCode permite referenciar **reglas remotas** via URL. Cuando la URL apunta al endpoint `.well-known/opencode` de un servidor, OpenCode fetcha y carga esas reglas como si fueran locales. Esta característica permite que equipos distribuidos gestionen un conjunto centralizado de estándares de codificación sin duplicar archivos en cada repositorio.
+
+**Casos de uso comunes:**
+- Estándares de seguridad corporativos aplicados a todos los proyectos de la organización.
+- Guías de estilo de código actualizadas en tiempo real sin necesidad de commits.
+- Reglas diferenciadas por entorno (`staging` vs `production`) servidas desde el mismo host.
+
+**Ejemplo de endpoint remoto (`opencode.json`):**
 ```json
 {
   "rules": [
     "AGENTS.md",
-    "https://example.com/company-standards.md",
-    "@src/backend"
+    "https://standards.acme.com/.well-known/opencode",
+    "https://security.acme.com/.well-known/opencode"
   ]
 }
 ```
+
+El servidor remoto debe servir un documento Markdown plano en esa ruta. OpenCode lo descargará al inicio de cada sesión, garantizando que los estándares siempre estén actualizados.
+
+**Generación automática con CLI:**
+```bash
+opencode init
+```
+El comando `/init` analiza el repositorio y genera un `AGENTS.md` y `opencode.json` base con las reglas inferidas automáticamente desde el código existente.
+
 *Fuente: [OpenCode: Rules](https://opencode.ai/docs/rules/)*
+
 
 ## Skills (Habilidades)
 
-### Control de Permisos Granulares
-Escanea carpetas `.opencode/skills/`, `.claude/skills/` y `.agents/skills/`. Los permisos se definen en `opencode.json` con niveles `ask/allow/deny`.
+Una de las características más distintivas de OpenCode es que escanea **múltiples directorios de skills en paralelo**: `.opencode/skills/`, `.claude/skills/` y `.agents/skills/`. Esta compatibilidad cruzada permite que un equipo con repositorios que ya usan Claude Code o Antigravity aproveche sus skills existentes sin migración. OpenCode selecciona automáticamente la skill más relevante según la descripción semántica de la tarea.
+
+El control de permisos de las skills es granular y se configura en `opencode.json`. Los tres niveles (`ask`, `allow`, `deny`) permiten definir exactamente qué acciones puede ejecutar una skill: desde pedir confirmación antes de modificar archivos hasta bloquear completamente el acceso a comandos bash destructivos.
 
 ### Estructura de Directorio
+
 ```text
 mi-proyecto/
-└── .opencode/
-    └── skills/
-        └── my-skill/
+├── .opencode/
+│   └── skills/
+│       └── db-helper/          (Específico de OpenCode)
+│           └── SKILL.md
+├── .claude/
+│   └── skills/                 (Skills heredadas de Claude Code)
+│       └── api-reviewer/
+│           └── SKILL.md
+└── .agents/
+    └── skills/                 (Skills del estándar universal)
+        └── git-flow/
             └── SKILL.md
 ```
+
+### Configuración de Permisos (`opencode.json`)
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "skills": {
+    "db-helper": {
+      "permission": {
+        "bash": {
+          "*": "deny",
+          "prisma migrate status": "allow",
+          "prisma migrate deploy": "ask"
+        },
+        "edit": "ask",
+        "webfetch": "deny"
+      }
+    }
+  }
+}
+```
+
+### Ejemplo: Skill de Base de Datos (`db-helper/SKILL.md`)
+
+```markdown
+---
+name: db-helper
+description: Assists with Prisma database migrations and schema management. Use when working with database changes.
+---
+# Database Helper
+
+This skill manages Prisma migrations safely.
+
+Rules:
+- Always run `prisma migrate status` before any migration to check pending changes.
+- Use `prisma migrate deploy` for production. Never use `migrate reset` outside local dev.
+- After schema changes, run `prisma generate` to update the client.
+- All new models require a migration file — never modify the schema without a matching migration.
+```
+
+> [!TIP]
+> OpenCode hereda las skills de directorios `.claude/` y `.agents/` automáticamente. Si tu equipo ya usa Claude Code, no necesitas migrar ni duplicar las skills para que OpenCode las reconozca.
+
 *Fuente: [OpenCode: Skills Docs](https://opencode.ai/docs/skills/)*
+
+
 
 ## MCP (Model Context Protocol)
 
@@ -104,7 +229,8 @@ export default {
 OpenCode distingue dos tipos de agentes que operan en distintos roles. Los agentes primarios son los que el usuario controla directamente; los subagentes son especializados e invocados automáticamente o por mención `@nombre`.
 
 > [!TIP]
-> Antes de diseñar complejos ecosistemas de agentes en OpenCode, consulta los **[Patrones Avanzados Multi-Agente](../ai-learning-guide.md#patrones-avanzados-multi-agente)** en la guía principal. Incluye estrategias clave como Contratos de Datos estrictos, Housekeeping, y cuándo preferir Scripts deterministas sobre LLMs.
+> Consulta **[Subagentes: Arquitectura y Patrones](../concepts/subagentes.md)** para estrategias generales de orquestación, contratos de datos entre agentes y housekeeping antes de diseñar tu sistema.
+
 
 ### Tipos de Agentes
 

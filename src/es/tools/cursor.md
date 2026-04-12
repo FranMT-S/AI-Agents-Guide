@@ -32,17 +32,47 @@ alwaysApply: false
 
 ## Skills (Habilidades)
 
-### Migración de Comandos
-Las habilidades se manejan vía reglas `.mdc`. El comando `/migrate-to-skills` convierte antiguos comandos y reglas dinámicas al nuevo formato optimizado guardándolas en `.cursor/rules/`.
+En Cursor, las Skills no existen como un sistema independiente — se implementan como **reglas `.mdc` con activación condicional**. Una skill en Cursor es un archivo `.mdc` cuyo frontmatter define el `glob` de los archivos que lo activan y el `alwaysApply: false`, garantizando que el contexto solo se inyecta cuando el agente trabaja con los archivos relevantes. Esto aplica el principio de Lazy Loading de forma nativa a nivel de IDE.
+
+La herramienta `/migrate-to-skills` convierte automáticamente los comandos `@` y las reglas dinámicas del formato anterior al estándar `.mdc` actual, migrando el historial de conocimiento acumulado al nuevo sistema de activación por patrones.
 
 ### Estructura de Directorio
+
 ```text
+~/.cursor/rules/
+└── global-conventions.mdc     (Global — aplica a todos los proyectos)
+
 mi-proyecto/
 └── .cursor/
     └── rules/
-        └── my-skill.mdc
+        ├── react-components.mdc   (Proyecto — activada por glob en componentes)
+        ├── api-patterns.mdc       (Proyecto — activada en archivos de rutas)
+        └── always-on.mdc          (Proyecto — alwaysApply: true)
 ```
+
+### Ejemplo: Skill para Componentes React (`.mdc`)
+
+```yaml
+---
+description: Standards for React functional components and hooks.
+globs: src/components/**/*.tsx
+alwaysApply: false
+---
+# React Component Standards
+
+- Use functional components exclusively. No class components.
+- Extract logic into custom hooks under `src/hooks/`.
+- Props interfaces must be named `[ComponentName]Props`.
+- Use named exports. Never use default exports for components.
+- Styling via CSS Modules only (`Component.module.css`).
+```
+
+> [!TIP]
+> Mantén cada `.mdc` enfocado en un único dominio (ej. solo "React", solo "API routing"). Los archivos de reglas que cubren múltiples dominios se activan con más frecuencia de lo necesario, contaminando el contexto en tareas no relacionadas.
+
 *Fuente: [Cursor: Skills Migration](https://cursor.com/help/customization/skills#how-do-i-migrate-commands-to-skills)*
+
+
 
 ## MCP (Model Context Protocol)
 
@@ -90,45 +120,92 @@ mi-proyecto/
 
 ## Hooks (Disparadores)
 
-### Comunicación vía Stdio
-Scripts externos que observan y controlan el bucle del agente mediante JSON.
+> [!TIP]
+> Consulta **[Hooks: Interceptación Determinista](../concepts/hooks.md)** para la referencia completa de eventos, protocolo stdin/stdout, scripts de producción y anti-patrones.
 
-### Eventos y Bloqueo (Fail-Closed)
-Eventos como `sessionStart`, `preToolUse` y `beforeShellExecution`. El código `2` bloquea la acción.
+En Cursor, los hooks se configuran en `.cursor/hooks.json`. A diferencia de otras herramientas, Cursor no usa el field `hooks` anidado dentro de un array de `hooks` — cada evento es una clave directa del objeto raíz con un array de reglas. El script del hook se comunica via stdin JSON y retorna decisiones via exit code.
+
+### Eventos Disponibles
+
+| Evento | Momento de Disparo |
+| :--- | :--- |
+| `sessionStart` | Al iniciar una nueva sesión del agente |
+| `preToolUse` | Antes de ejecutar cualquier herramienta (filtrable por `matcher`) |
+| `postToolUse` | Después de que la herramienta retorna su resultado |
+| `beforeShellExecution` | Antes de ejecutar un comando bash/shell específicamente |
+| `sessionEnd` | Cuando la sesión finaliza |
 
 ### Estructura de Directorio
+
 ```text
 .cursor/
 ├── hooks.json
 └── hooks/
-    └── script.sh
+    ├── audit-network.sh
+    └── protect-env.sh
 ```
 
-#### Ejemplo de Configuración (`hooks.json`)
+### Schema de Reglas (`hooks.json`)
+
+| Campo | Tipo | Descripción |
+| :--- | :--- | :--- |
+| `command` | string | Script o binario a ejecutar |
+| `matcher` | string | Regex para filtrar por nombre de tool o comando |
+| `failClosed` | boolean | Si `true`, bloquea la acción cuando el exit code es `≠0` |
+
+### Ejemplo: Bloqueo de Requests de Red (`hooks.json`)
+
 ```json
 {
   "version": 1,
   "hooks": {
-    "beforeShellExecution": [{
-      "command": "./hooks/audit.sh",
-      "matcher": "curl|wget",
-      "failClosed": true
-    }]
+    "beforeShellExecution": [
+      {
+        "command": "./.cursor/hooks/audit-network.sh",
+        "matcher": "curl|wget|fetch",
+        "failClosed": true
+      }
+    ],
+    "preToolUse": [
+      {
+        "command": "./.cursor/hooks/protect-env.sh",
+        "matcher": "Read"
+      }
+    ]
   }
 }
 ```
+
+### Ejemplo: Bloqueo de Acceso a Archivos Sensibles (`protect-env.sh`)
+
+```bash
+#!/usr/bin/env bash
+# Blocks the agent from reading .env and secret files.
+
+INPUT=$(cat)
+FILE=$(echo "$INPUT" | jq -r '.tool_input.file_path // ""')
+
+if [[ "$FILE" =~ \.(env|pem|key|p12|pfx)$ ]] || [[ "$FILE" == *"secrets"* ]]; then
+  echo "BLOCKED: Access to sensitive file '$FILE' not allowed." >&2
+  exit 2
+fi
+
+exit 0
+```
+
+> [!NOTE]
+> En Cursor, `failClosed: true` en el schema de la regla actúa equivalente al exit code `2`: bloquea la acción si el hook retorna cualquier código de salida distinto de `0`. Permite definir la política de bloqueo a nivel de configuración sin necesidad de codificarla en el script.
+
 *Fuente: [Cursor Docs: Hooks](https://cursor.com/docs/hooks)*
+
 
 ## Subagentes
 
 > [!TIP]
-> Antes de diseñar complejos ecosistemas de orquestación en Cursor, consulta los **[Patrones Avanzados Multi-Agente](../ai-learning-guide.md#patrones-avanzados-multi-agente)** en la guía principal. Incluye estrategias clave como Contratos de Datos estrictos, Housekeeping, y cuándo preferir Scripts deterministas sobre LLMs.
+> Consulta **[Subagentes: Arquitectura y Patrones](../concepts/subagentes.md)** para estrategias generales de orquestación, contratos de datos entre agentes y housekeeping antes de diseñar tu sistema.
 
-### Aislamiento y Delegación
-Asistentes especializados en contextos aislados. El agente principal los invoca automáticamente o vía `@nombre`.
+En Cursor, los subagentes son archivos `.md` con frontmatter YAML ubicados en `.cursor/agents/`. El agente principal detecta cuándo invocarlos leyendo su campo `description` y comparándolo semánticamente con la tarea actual. También pueden invocarse explícitamente con `@nombre` en el chat. Los subagentes heredan automáticamente los servidores MCP globales del proyecto, pero pueden restringir su propio conjunto de herramientas vía `readonly` o configuración de permisos del modelo.
 
-### Herencia y Recursión
-Soportan cadenas de orquestación anidadas. Heredan MCP globales y pueden usar skills locales del proyecto.
 
 ### Agentes Integrados
 

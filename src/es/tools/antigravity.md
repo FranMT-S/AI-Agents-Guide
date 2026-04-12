@@ -51,18 +51,50 @@ Ejecutar el ciclo completo de validación y generación de artefactos.
 
 ## Skills (Habilidades)
 
-### Progressive Disclosure y Scripts
-Las skills se cargan bajo demanda cuando el agente detecta que su descripción coincide con la tarea. Se recomienda tratar los scripts internos como "caja negra" pasándoles el flag `--help` para optimizar el contexto.
+Las Skills de Antigravity se descubren siguiendo una jerarquía de dos niveles: primero las del **Workspace** activo (`.agents/skills/`), y luego las del **Usuario** (`~/.agents/skills/`). El agente evalúa semánticamente la `description` de cada skill al recibir una petición y la activa automáticamente si el contexto coincide. El cuerpo del archivo `SKILL.md` se inyecta en el contexto del agente únicamente cuando la skill es invocada, manteniendo el resto fuera de la ventana activa.
+
+Una característica específica de Antigravity es su integración con el sistema de **Workflows**: una skill puede referenciar workflows internos del agente, permitiendo que una habilidad no solo provea contexto sino que orqueste secuencias de acciones preguardadas.
 
 ### Estructura de Directorio
+
 ```text
+~/.agents/
+└── skills/
+    └── my-global-skill/         (Global — disponible en todos los proyectos)
+        └── SKILL.md
+
 mi-proyecto/
 └── .agents/
     └── skills/
-        └── my-skill/
-            └── SKILL.md
+        └── api-style-guide/     (Proyecto — específico de este repositorio)
+            ├── SKILL.md
+            └── templates/
+                └── endpoint.md
 ```
+
+### Anatomía de SKILL.md
+
+```markdown
+---
+name: api-style-guide
+description: Enforces REST API conventions. Use when creating or modifying API endpoints.
+---
+# API Style Guide
+
+All endpoints must follow these conventions:
+- Use kebab-case for URL paths: `/user-profiles`, not `/userProfiles`
+- Return standard error objects: `{ error: string, code: number }`
+- Version prefix required: `/api/v1/`
+
+For new endpoint templates, see {file:./templates/endpoint.md}
+```
+
+> [!TIP]
+> Trata los scripts internos de la skill como "cajas negras". Si la skill invoca un binario externo, pásale el flag `--help` en el prompt de la skill para que el agente sepa qué argumentos acepta sin necesidad de inferirlos.
+
 *Fuente: [Antigravity: Skills Docs](https://antigravity.google/docs/skills)*
+
+
 
 ## MCP (Model Context Protocol)
 

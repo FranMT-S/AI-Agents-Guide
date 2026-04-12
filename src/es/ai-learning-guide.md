@@ -1,6 +1,6 @@
 # Mi Guía de Aprendizaje de Agentes de IA
 
-Esta guía es una referencia completa para el desarrollo de agentes potenciados por Inteligencia Artificial. Aquí encontrarás inmersiones profundas en herramientas, mejores prácticas para la gestión de contexto y evaluaciones detalladas de los modelos más avanzados.
+Esta guía es una referencia fundacional y completa para el desarrollo de agentes de software potenciados por Inteligencia Artificial. Aquí encontrarás inmersiones profundas en arquitecturas modernas, mejores prácticas de ingeniería para la gestión de contexto, y evaluaciones objetivas de los modelos (LLMs) más avanzados del mercado.
 
 ---
 
@@ -13,476 +13,326 @@ Esta guía es una referencia completa para el desarrollo de agentes potenciados 
 6. [Hooks (Disparadores)](#hooks-disparadores)
 7. [Subagentes](#subagentes)
 8. [Automatización y Scripting](#automatización-y-scripting)
-9. [Evaluación de Modelos](#evaluación-de-modelos)
+9. [Modelos de IA: Guía Completa](#modelos-de-ia-guía-completa)
 
 ---
 
-## Introducción y Conceptos Básicos
+## 1. Introducción y Conceptos Básicos
 
-En el ecosistema de agentes de IA, el mayor desafío técnico es la **limitación de la ventana de contexto**. A medida que una conversación progresa, el modelo (como Claude 4.5 Haiku o GPT-5.4) consume "tokens" (palabras o fragmentos de código). Si las reglas del proyecto no están bien estructuradas, la IA comienza a "olvidar" las instrucciones iniciales, provocando alucinaciones o degradación en la calidad del código. La solución definitiva a esto es la **Memoria Persistente mediante `AGENTS.md`**.
+En el ecosistema actual de agentes de IA aplicados a la ingeniería de software, el mayor desafío técnico no es la capacidad de código del modelo, sino la **limitación de la ventana de contexto**. 
+
+A medida que una sesión de desarrollo o una conversación progresa, el modelo base (como Claude 4.5 Haiku o GPT-5.4) consume "tokens" (fragmentos semánticos de palabras o código). Si las reglas del proyecto no están estructuradas correctamente desde el inicio, la IA sufre una degradación de atención: comienza a "olvidar" las instrucciones críticas iniciales, provocando **alucinaciones** o generando código que ignora las convenciones del equipo. La solución arquitectónica definitiva a este problema es la implementación de **Memoria Persistente y Direccional** mediante estándares como `AGENTS.md`.
 
 ---
 
-## Gestión de Contexto (AGENTS.md)
+## 2. Gestión de Contexto (AGENTS.md)
 
-### ¿Qué es `AGENTS.md`?
-`AGENTS.md` es el estándar multiplataforma de facto para gestionar el contexto y guiar el comportamiento de los agentes de IA dentro de un repositorio. Funciona conceptualmente como un `README` exclusivo para la IA: un documento predecible que el orquestador lee e inyecta automáticamente en el *system prompt* al inicio de cada sesión, garantizando que el modelo entienda las reglas del proyecto antes de procesar el primer mensaje del usuario.
+A medida que una sesión de desarrollo avanza, el modelo base consume tokens para procesar el historial de conversación. Sin una fuente de verdad externa, el agente comienza cada sesión sin saber en qué proyecto trabaja, qué stack tecnológico usa el equipo, ni cómo compilar o testear la aplicación. La solución arquitectónica es `AGENTS.md`: un archivo Markdown que el orquestador lee e inyecta automáticamente en su *system prompt* al inicio de cada sesión, garantizando que el modelo opere con las convenciones del equipo antes de procesar el primer mensaje del usuario.
 
-### ¿Por qué es importante?
-En el desarrollo de software moderno con IA, depender de que el modelo adivine la arquitectura, el stack tecnológico o las reglas de linting consume tokens innecesarios y genera código propenso a errores (alucinaciones). `AGENTS.md` centraliza este conocimiento crítico. Al mantener una única fuente de verdad:
-- **Reduces el coste de inferencia:** El modelo no tiene que explorar el repositorio a ciegas para entender cómo compilar o testear la aplicación.
-- **Evitas alucinaciones de contexto:** Obligas al agente a seguir la convención exacta de tu equipo frente a respuestas genéricas del modelo base.
-- **Mantienes portabilidad:** Un desarrollador puede usar Cursor y otro Claude Code, pero ambos agentes respetarán las mismas directrices de diseño del repositorio.
+Su importancia va más allá de la comodidad. Los agentes sin contexto estructurado toman decisiones arquitectónicas incorrectas, generan código que viola las convenciones del proyecto e ignoran restricciones de seguridad que el equipo considera como reglas críticas. Un `AGENTS.md` bien redactado elimina esta varianza probabilística, convirtiendo el comportamiento del agente en algo predecible y repetible.
 
-### ¿Cómo se usa correctamente?
-El archivo debe ubicarse en la raíz del repositorio (o en un subdirectorio si se requiere modularidad). No necesitas interactuar manualmente con él; el entorno de la herramienta de IA lo detecta y carga en segundo plano. Su contenido debe ser **directivo y conciso**, proporcionando los comandos exactos de *build/test*, convenciones de nomenclatura arquitectónica y restricciones explícitas. En lugar de documentar para humanos, documenta instrucciones accionables de lectura rápida para máquinas.
+Lo que hace especialmente valioso este estándar es su **compatibilidad multiplataforma**. El mismo archivo que guía a Gemini CLI en la terminal guía a Cursor en el IDE. No necesitas sincronizar reglas entre herramientas; el archivo actúa como árbitro único.
 
-### Aspectos a evitar
-- **Saturación de Contexto (Token Exhaustion):** No utilices este archivo como vertedero para toda la especificación del negocio o descripciones detalladas de endpoints. Si crece demasiado, el agente ignorará las reglas.
-- **Instrucciones Ambiguas:** Las inteligencias artificiales ignoran reglas vagas como "escribe código limpio". Sé quirúrgico: "aplica tipado estricto en TypeScript y bloquea el uso de `any`".
-- **Rutas de archivos rígidas:** Evita apuntar a archivos específicos que podrían ser renombrados. En cambio, describe el mapa funcional (ej. "la lógica de autenticación reside bajo el dominio de usuarios").
+| Herramienta | Archivo Nativo | Soporta `AGENTS.md` |
+| :--- | :--- | :--- |
+| **Codex CLI** | `AGENTS.md` | ✅ Nativo |
+| **Gemini CLI** | `GEMINI.md` | ✅ Sí |
+| **Claude Code** | `CLAUDE.md` | ✅ Sí (alias) |
+| **GitHub Copilot** | `copilot-instructions.md` | ✅ Sí |
+| **OpenCode** | `AGENTS.md` | ✅ Nativo |
+| **Cursor** | `.cursor/rules/` | ✅ Sí |
+| **Antigravity** | `AGENTS.md` | ✅ Nativo |
+
+El archivo sigue una jerarquía de tres niveles (Global → Proyecto → Módulo) donde las instrucciones más específicas tienen prioridad absoluta. Existe además un patrón crítico llamado **Progressive Disclosure**: en lugar de concentrar todas las reglas en un `AGENTS.md` monolítico (lo que provoca que el agente ignore instrucciones aleatoriamente por fatiga de contexto), se distribuye el conocimiento en archivos secundarios referenciados bajo demanda.
 
 > [!IMPORTANT]
-> **Compatibilidad multiplataforma:** Es soportado nativamente por **Codex**, **Gemini CLI**, **Claude Code** (como `CLAUDE.md`), **GitHub Copilot**, **OpenCode**, **Cursor** y **Antigravity**. Una sola fuente de verdad para todas las herramientas.
+> Los LLMs de frontera pueden mantener entre 150 y 200 instrucciones activas. Herramientas como Claude Code consumen ~50 instrucciones base en su *system prompt* interno. Cada regla que añades reduce la fiabilidad de todas las demás.
 
-| Herramienta       | Archivo nativo       | Soporta `AGENTS.md` |
-| :---------------- | :------------------- | :------------------ |
-| **Codex CLI**     | `AGENTS.md`          | ✅ Nativo            |
-| **Gemini CLI**    | `GEMINI.md`          | ✅ Sí                |
-| **Claude Code**   | `CLAUDE.md`          | ✅ Sí (alias)        |
-| **GitHub Copilot**| `copilot-instructions.md` | ✅ Sí           |
-| **OpenCode**      | `AGENTS.md`          | ✅ Nativo            |
-| **Cursor**        | `.cursor/rules/`     | ✅ Sí                |
-| **Antigravity**   | `AGENTS.md`          | ✅ Nativo            |
-
-> [!TIP]
-> Para compatibilidad total, crea `AGENTS.md` en la raíz y crea un symlink: `ln -s AGENTS.md CLAUDE.md`. Esto garantiza que Claude Code y todas las demás herramientas lo lean sin duplicar contenido.
+👉 **[Ver Guía Técnica Completa: AGENTS.md y Gestión de Contexto](concepts/agents.md)** — incluye jerarquía de alcance, secciones recomendadas, tabla de terminología correcta, malas prácticas y ejemplo de producción completo.
 
 ---
 
-### Jerarquía de Alcance (Scope)
-
-Los agentes aplican una jerarquía de tres niveles. Las instrucciones más específicas (subdirectorio) tienen prioridad sobre las más generales (global).
-
-```text
-~/.gemini/GEMINI.md          (Global — preferencias universales del usuario)
-mi-proyecto/
-├── AGENTS.md                (Proyecto — estándares del equipo y repositorio)
-├── src/
-│   └── auth/
-│       └── AGENTS.md        (Módulo — instrucciones quirúrgicas para este modulo)
-└── legacy/
-    └── AGENTS.override.md   (Override — reemplaza TODAS las instrucciones padre, solo Codex)
-```
-
-| Nivel      | Alcance         | Propósito                                      |
-| :--------- | :-------------- | :--------------------------------------------- |
-| Global     | Usuario         | Idioma, estilo base, preferencias universales  |
-| Proyecto   | Repositorio     | Stack, comandos, arquitectura, convenciones    |
-| Módulo     | Subdirectorio   | Reglas específicas de un paquete o servicio    |
-| Override   | Reemplazo total | Monorepos con convenciones radicalmente distintas (solo Codex) |
-
----
-
-### El Presupuesto de Instrucciones
-
-> [!WARNING]
-> **Límite real de instrucciones:** Los LLMs de frontera pueden seguir ~150–200 instrucciones con consistencia razonable. Los modelos no-thinking siguen menos. El system prompt de Claude Code ya consume ~50 instrucciones antes de leer tu `AGENTS.md`. Cada instrucción que añades reduce la fiabilidad de *todas* las demás.
-
-**Consecuencias directas:**
-- Un archivo largo no hace que el agente ignore las instrucciones del final: las ignora de forma *uniforme* en todo el archivo.
-- La documentación de rutas de archivos (`src/auth/handlers.ts`) se vuelve obsoleta cada vez que refactorizas. Prefiere describir *capacidades*, no rutas exactas.
-- El contenido irrelevante para la tarea actual contamina el contexto. Usa **Progressive Disclosure**.
-
----
-
-### Principio de Progressive Disclosure
-
-En lugar de concentrar todo en un solo `AGENTS.md` monolítico, distribuye el conocimiento en archivos secundarios y referencia solo los relevantes.
-
-```text
-mi-proyecto/
-├── AGENTS.md                        (raiz — minimo indispensable + punteros)
-└── docs/
-    ├── TYPESCRIPT.md                (convenciones de TypeScript)
-    ├── TESTING.md                   (estrategia y comandos de test)
-    ├── API_CONVENTIONS.md           (diseño de endpoints)
-    ├── DATABASE_SCHEMA.md           (migraciones y modelos)
-    └── SERVICE_ARCHITECTURE.md     (diagrama de servicios)
-```
-
-El `AGENTS.md` raíz solo referencia:
-
-```markdown
-This is a Node.js GraphQL API using Prisma and TypeScript.
-Use pnpm workspaces. Build: `pnpm build`. Typecheck: `pnpm tsc --noEmit`.
-
-For task-specific guidance, read only what is relevant:
-- TypeScript conventions: docs/TYPESCRIPT.md
-- Testing patterns: docs/TESTING.md
-- API design: docs/API_CONVENTIONS.md
-- Database schema: docs/DATABASE_SCHEMA.md
-```
-
-> [!TIP]
-> Usa referencias conversacionales, no imperativas. En vez de `ALWAYS read docs/TYPESCRIPT.md`, escribe `For TypeScript conventions, see docs/TYPESCRIPT.md`. El agente evaluará si lo necesita y lo leerá solo cuando sea relevante.
-
----
-
-### Estructura y Secciones del Archivo
-
-#### Secciones Recomendadas
-
-Según la especificación oficial de `agentsmd/agents.md`, estas son las secciones estándar:
-
-| Sección                   | Propósito                                                     |
-| :------------------------ | :------------------------------------------------------------ |
-| **Project Overview**      | Una sola frase describiendo qué hace el proyecto              |
-| **Tech Stack**            | Lenguajes, frameworks, gestores de paquetes                   |
-| **Development Setup**     | Comandos de instalación y configuración inicial               |
-| **Build & Test Commands** | Comandos exactos para construir, testear, lint y typecheck    |
-| **Code Style Guidelines** | Convenciones del equipo (si no hay linter que lo maneje)      |
-| **Architecture Notes**    | Estructura de carpetas, patrones de diseño clave              |
-| **Security Practices**    | Variables de entorno, sanitización, autenticación             |
-| **Common Tasks**          | Recetas paso a paso para tareas frecuentes                    |
-
-#### Palabras Correctas para Instrucciones
-
-| ❌ Evitar                                            | ✅ Preferir                                              |
-| :-------------------------------------------------- | :------------------------------------------------------ |
-| `ALWAYS use async/await`                            | `Use async/await over promise chains`                   |
-| `NEVER commit without tests`                        | `Run tests before committing: npm test`                 |
-| `Write clean code`                                  | `Use named exports. Prefer functional components.`      |
-| `Be careful with the database`                      | `Validate all inputs server-side. Use Prisma for queries.` |
-| Listar rutas exactas: `src/auth/handlers.ts`        | Describir capacidades: `Authentication logic lives in the auth module` |
-
----
-
-### Reglas de Formato Markdown
-
-1. **H1 (`#`)** — Solo para el título del archivo. Solo uno por archivo.
-2. **H2 (`##`)** — Secciones principales (Tech Stack, Commands, Architecture).
-3. **H3 (`###`)** — Subsecciones dentro de una sección principal.
-4. **H4 (`####`)** — Ejemplos de código o detalles específicos dentro de una subsección.
-5. **Listas** — Usa listas con guión (`-`) para instrucciones accionables.
-6. **Bloques de código** — Siempre especifica el lenguaje: ` ```bash`, ` ```json`, ` ```text`.
-7. **Negritas** — Para términos clave, nombres de herramientas y valores importantes.
-8. **Sin emojis** en instrucciones técnicas. Solo en tablas ilustrativas si el contexto lo permite.
-
----
-
-### Patrones de Referenciación entre Archivos
-
-#### Referencia Simple (Markdown Link)
-```markdown
-For TypeScript conventions, see [docs/TYPESCRIPT.md](docs/TYPESCRIPT.md).
-```
-
-#### Referencia con Contexto
-```markdown
-Authentication logic is handled by the auth module.
-For OAuth flows and JWT patterns, see [docs/AUTH.md](docs/AUTH.md).
-```
-
-#### Referencia Condicional (más efectiva)
-```markdown
-If working on database migrations, read docs/DATABASE_SCHEMA.md first.
-If working on API endpoints, read docs/API_CONVENTIONS.md.
-```
-
-#### Referencia a Línea Específica en Código
-```markdown
-The base request handler is defined in src/lib/handler.ts:42.
-```
-
-> [!NOTE]
-> Evita copiar snippets de código en el `AGENTS.md`. Los snippets se desactualizan rápidamente. En su lugar, apunta al archivo fuente con una referencia de línea: el agente leerá la versión actual del código directamente.
-
----
-
-### Anti-Patrones a Evitar
-
-| Anti-Patrón                            | Problema                                                     | Solución                                    |
-| :------------------------------------- | :----------------------------------------------------------- | :------------------------------------------ |
-| **Ball of mud** — crecer sin estructura | Cientos de reglas acumuladas que nadie revisa               | Auditoria regular. Si no aplica a TODAS las tareas, muévelo a un archivo secundario |
-| **Auto-generado con `/init`**           | Genera archivos exhaustivos que saturan el contexto          | Escríbelo manualmente, con restraint         |
-| **Reglas de estilo de código**          | El linter ya lo hace. Estos tokens son desperdiciados        | Usa ESLint/Biome con autofix. Usa un Hook para ejecutar el formatter |
-| **Rutas absolutas de archivos**         | Se desactualizan en cada refactor                            | Describe capacidades, no rutas              |
-| **Instrucciones contradictorias**       | Global dice "Tabs", proyecto dice "Spaces" → ruido           | El nivel más específico siempre tiene prioridad: no los mezcles |
-| **Documentar lo obvio**                 | "Write clean code", "Be helpful"                            | Solo instrucciones específicas y accionables |
-
----
-
-### Templates de AGENTS.md
-
-Para facilitar la adopción de estas mejores prácticas, hemos creado una serie de plantillas listas para usar que ilustran tanto el modelo monolítico como el de **Progressive Disclosure**.
-
-#### 1. Template Monolítico
-Ideal para proyectos pequeños o medianos donde todas las reglas caben en un solo archivo sin saturar el presupuesto de instrucciones.
-- 📄 [AGENTS.md Monolítico](../templates/agents/monolith/AGENTS.md)
-
-#### 2. Template de Progressive Disclosure (Recomendado)
-Diseñado para proyectos grandes, monorepos o equipos con múltiples preocupaciones técnicas. Los archivos secundarios pueden cubrir cualquier aspecto del proyecto: TypeScript, Testing, API, DB, estilos, componentes, arquitectura, tech stack, workflows de Deploy, etc. El agente solo lee los que son relevantes para la tarea actual.
-- 📄 [AGENTS.md raíz](../templates/agents/progressive/AGENTS.md) — Mínimo indispensable + punteros
-- 📄 [AGENTS.md de paquete](../templates/agents/progressive/packages/api/AGENTS.md) — Ejemplo de jerarquía en monorepo
-
-  *Docs de Code & Language:*
-  - 📄 [typescript.md](../templates/agents/progressive/docs/typescript.md) — Convenciones de lenguaje
-  - 📄 [testing.md](../templates/agents/progressive/docs/testing.md) — Estrategia y comandos de tests
-
-  *Docs de Frontend & UI:*
-  - 📄 [components.md](../templates/agents/progressive/docs/components.md) — Estructura y reglas de componentes
-  - 📄 [styles.md](../templates/agents/progressive/docs/styles.md) — CSS Modules, design tokens, dark mode
-
-  *Docs de Arquitectura & Stack:*
-  - 📄 [architecture.md](../templates/agents/progressive/docs/architecture.md) — Diagrama de sistema y decisiones de diseño
-  - 📄 [tech-stack.md](../templates/agents/progressive/docs/tech-stack.md) — Stack, versiones y política de dependencias
-
----
-
-### Comparativa de Gestión de Contexto
-
-> [!WARNING]
-> **Contaminación de Contexto:** Evita definir reglas contradictorias en diferentes niveles. El nivel más específico tiene prioridad — pero si ambos niveles definen lo mismo de forma distinta, el modelo puede confundirse e ignorar ambos.
-
-> [!NOTE]
-> Para conocer aspectos únicos y configuraciones avanzadas de cada herramienta, consulta su sección específica: [Cursor](tools/cursor.md#gestión-de-contexto-rules-agentsmd) | [Antigravity](tools/antigravity.md#gestión-de-contexto-rules-workflows) | [Gemini CLI](tools/gemini-cli.md#gestión-de-contexto-memory-management) | [OpenCode](tools/opencode.md#gestión-de-contexto-agentsmd) | [Claude Code](tools/claude-code.md#gestión-de-contexto-memory-agentsmd) | [Codex CLI](tools/codex-cli.md#gestión-de-contexto-agentsmd).
 
 
-**Referencias y Documentación Oficial:**
-- [AGENTS.md — Open Standard Spec](https://github.com/agentsmd/agents.md)
-- [A Complete Guide to AGENTS.md — AIHero](https://www.aihero.dev/a-complete-guide-to-agents-md)
-- [AGENTS.md Deep Dive — PRPM](https://prpm.dev/blog/agents-md-deep-dive)
-- [Writing a Good CLAUDE.md — HumanLayer](https://www.humanlayer.dev/blog/writing-a-good-claude-md)
-- [Cursor: Rules](https://cursor.com/docs/rules)
-- [Gemini CLI: Memory Management](https://geminicli.com/docs/cli/tutorials/memory-management/)
-- [OpenCode: Rules](https://opencode.ai/docs/rules/)
-- [Claude: Memory & Agents.md](https://code.claude.com/docs/en/memory#agents-md)
-- [Codex: Agents.md Guides](https://developers.openai.com/codex/guides/agents-md)
-
-## Skills (Habilidades)
+## 3. Skills (Habilidades)
 
 ### ¿Qué son las Skills?
-Las **Skills** son herramientas o capacidades encapsuladas que extienden drásticamente lo que un agente puede hacer. En lugar de depender de que un LLM "sepa de memoria" cómo construir un diagrama o usar la API de Vercel, una Skill agrupa instrucciones (generalmente en un `SKILL.md`) y scripts auxiliares, dotando al agente conceptualmente de "músculo" especializado bajo demanda.
+Las **Skills** son herramientas modulares o capacidades encapsuladas que extienden drásticamente lo que un agente puede hacer. En lugar de depender de que el modelo base "sepa de memoria" cómo construir un diagrama UML o usar una API propietaria, una Skill agrupa instrucciones específicas y scripts auxiliares, dotando al agente de "músculo" especializado.
 
-### Importancia
-Proveen extensibilidad ilimitada sin comprometer el context window base. Una Skill permanece "dormida" y no satura los límites de tokens, hasta que el agente evalúa su *trigger* (una descripción semántica de activación) y decide que es la herramienta idónea para cumplir el requerimiento del usuario.
+### Beneficios Clave
+Proveen extensibilidad casi ilimitada sin comprometer el *context window* base. Una Skill permanece completamente inactiva y no satura los límites de tokens hasta que el agente evalúa su *trigger* (una descripción semántica de activación) y concluye que es la herramienta idónea para la tarea actual.
 
-> [!TIP]
-> Dado que las **Skills** son el pilar de automatización en esta arquitectura (poseen reglas de indexación de metadatos, ecosistemas de prueba o `Evals`, y plantillas pre-armadas), su especificación pesada fue desplazada a una guía exclusiva en honor al Progressive Disclosure.
+> [!IMPORTANT]
+> Dado que las **Skills** son el pilar de la automatización avanzada (involucrando metadatos complejos, aislamiento en *sandboxes* y sistemas de evaluación o `Evals`), toda la documentación técnica sobre su arquitectura se ha movido a una guía especializada en favor del principio de Revelación Progresiva.
 
-👉 **[Ver Guía Completa de Skills (Habilidades)](concepts/skills.md)**
+👉 **[Ver Guía Técnica Completa de Skills (Habilidades)](concepts/skills.md)**
 
-En ese documento dedicado encontrarás el diseño de arquitecturas (Scripts, Templates, Monorepos), reglas del estándar oficial de **AgentSkills.io** para optimización y evaluación, junto con las configuraciones globales.
+En ese documento dedicado encontrarás el diseño de arquitecturas (Skills Simples, con Scripts, con Templates y *Few-Shot*), junto con las reglas del estándar oficial de **AgentSkills.io**.
 
-## MCP (Model Context Protocol)
+---
 
-### ¿Qué es MCP?
-El **Model Context Protocol (MCP)** es un protocolo asíncrono y universal (creado inicialmente por Anthropic) que estandariza la comunicación bidireccional local/remota entre los modelos de IA (los "clientes") y las fuentes de datos (los "servidores"). 
+## 4. MCP (Model Context Protocol)
+
+### Introducción Técnica
+El **Model Context Protocol (MCP)** es un protocolo asíncrono y universal, creado originalmente por Anthropic, que estandariza la comunicación bidireccional local/remota entre los modelos de IA (los "clientes") y las fuentes de datos (los "servidores"). 
 
 ### Sus Tres Pilares
-1. **Resources (Recursos):** Data de solo lectura expuesta desde el servidor al cliente (ej. la IA solicita leer automáticamente tu base de datos y esquemas para obtener contexto).
-2. **Tools (Herramientas):** Acciones ejecutables con estado que la IA invoca de manera autónoma (ej. un servidor MCP posee herramientas como `fetch_clickup_ticket` o `github_merge_pr`).
-3. **Prompts:** Plantillas de interacción controladas por el servidor para tareas predefinidas y parametrizadas que el LLM puede cargar directamente.
+1.  **Resources (Recursos):** Datos de solo lectura expuestos desde el servidor al cliente (ej. la IA solicita leer tu esquema de base de datos en tiempo real).
+2.  **Tools (Herramientas):** Acciones ejecutables con estado que la IA puede invocar autónomamente (ej. un servidor MCP posee herramientas como `fetch_clickup_ticket` o `github_merge_pr`).
+3.  **Prompts (Plantillas):** Estructuras de interacción controladas por el servidor para tareas parametrizadas que el LLM puede cargar para estandarizar procesos.
 
-### El Impacto Técnico
-Históricamente, integrar Jira a un agente IA exigía un script costumizado por orquestador. MCP cambia este paradigma: al crear o levantar un servidor `mcp-jira-server`, **cualquier** herramienta que cumpla con el estándar (Cursor, Gemini CLI, Claude Code, Antigravity) podrá conectarse y operar instantáneamente (plug-and-play).
+### El Riesgo del Server Sprawl
+> [!WARNING]
+> **Server Sprawl:** Instalar e invitar a múltiples servidores MCP indiscriminadamente contamina la experiencia del agente. Cada herramienta MCP disponible inyecta metadatos y descripciones en el *system prompt* central. Esto eleva dramáticamente el costo de inferencia por mensaje y diluye el raciocinio analítico de tu agente. 
 
-### Aspectos Críticos a Evitar (Server Sprawl)
-Invitar a muchos servidores MCP indiscriminadamente contamina la experiencia del agente (Server Sprawl). Cada herramienta MCP agrega una "advertencia" de metadata en el *system prompt* del servidor, elevando el costo y diluyendo el raciocinio analítico de tu agente. La arquitectura sana dicta invitar solamente servidores relevantes al contexto del proyecto.
+Para mitigar el Server Sprawl, cada agente moderno incorpora un mecanismo de listas blancas y negras que permite deshabilitar comandos específicos.
 
-### Comparativa de Configuración y Exclusión
-Para mitigar el Server Sprawl, cada agente moderno incorpora un mecanismo que permite deshabilitar comandos específicos o bloquear herramientas por seguridad.
-
-Cada agente permite habilitar o deshabilitar herramientas específicas para evitar la degradación del contexto.
-
-| Agente | Archivo de Configuración | Clave de Exclusión |
+| Agente | Archivo de Configuración | Método de Exclusión (Blacklist) |
 | :--- | :--- | :--- |
-| **Cursor** | `~/.cursor/mcp.json` | N/A (Manual en UI) |
-| **Antigravity** | `mcp_config.json` | `"disabledTools": []` |
-| **Gemini CLI** | `settings.json` | `"excludeTools": []` |
-| **Claude Code** | `settings.json` | `hooks: PreToolUse` |
-| **Codex CLI** | `config.toml` | `disabled_tools` |
-| **OpenCode** | `opencode.json` | `"tools": {"*": false}` |
+| **Cursor** | `~/.cursor/mcp.json` | Desactivación Manual vía UI |
+| **Antigravity** | `mcp_config.json` | Clave JSON: `"disabledTools": []` |
+| **Gemini CLI** | `settings.json` | Clave JSON: `"excludeTools": []` |
+| **Claude Code** | `settings.json` | Políticas vía `hooks: PreToolUse` |
+| **Codex CLI** | `config.toml` | Variable TOML: `disabled_tools` |
+| **OpenCode** | `opencode.json` | JSON Config: `"tools": {"*": false}` |
 
-> [!NOTE]
-> Para conocer metadatos específicos, características únicas (como MCP Apps, Auth OAuth) y optimización de Docker por cada herramienta, consulta su sección específica: [Cursor](tools/cursor.md#mcp-model-context-protocol) | [Antigravity](tools/antigravity.md#mcp-model-context-protocol) | [Gemini CLI](tools/gemini-cli.md#mcp-model-context-protocol) | [OpenCode](tools/opencode.md#mcp-model-context-protocol) | [Claude Code](tools/claude-code.md#mcp-model-context-protocol) | [Codex CLI](tools/codex-cli.md#mcp-model-context-protocol).
+👉 **[Ver Guía Técnica Completa de Configuración MCP](concepts/mcp.md)** (Incluye configuraciones detalladas para GitHub, ClickUp, Figma y Trello).
 
-## Plugins y Extensiones
+---
 
-### ¿Qué es un Plugin en este ecosistema?
-Un **Plugin** es el mecanismo orgánico de empaquetado final. A nivel técnico, es un componente distribuible que condensa un ecosistema funcional: agrupa múltiples *Skills*, configuraciones personalizadas para tu *AGENTS.md*, dependencias de *Hooks* e integraciones nativas *MCP* requeridas bajo una sola instalación cohesiva.
+## 5. Plugins y Extensiones
 
-### ¿Por qué usarlos?
-Abrazan el principio "DRY" en el entorno Agentic. Elimina la necesidad de clonar diez repositorios y copiar JSON fragmentados; por ejemplo, en vez de levantar de forna ad-hoc manual tu ambiente para Next.js en cada máquina, compilas o instalas el Plugin estandarizado del proveedor, montando todo el entorno con un solo comando.
+Un desarrollador nuevo llega a un equipo. Para tener al agente de IA funcionando con las mismas capacidades que el resto del equipo — las Skills de revisión de API, los Hooks de seguridad, los servidores MCP conectados al gestor de tareas, las reglas de estilo del `AGENTS.md` del proyecto — necesita replicar manualmente toda esa configuración. Clonar repositorios, copiar JSONs de configuración, instalar dependencias de scripts, actualizar rutas. Un proceso frágil que tarda horas y termina inevitablemente en inconsistencias entre máquinas.
 
-### Ecosistemas y Comandos de Instalación
-Los distintos orquestadores aplican formas ligeramente distintas de registro local:
+Los **Plugins** resuelven exactamente esto: empaquetan todo ese ecosistema en una unidad instalable. Un solo comando instala el conjunto completo — Skills, Hooks, servidores MCP, configuración de subagentes, reglas de contexto — sin intervención manual. La analogía directa son las extensiones de VS Code: no configuras cada extensión a mano, las instalas y funcionan.
 
-| Agente | Arquitectura | Directorio/Comando |
+### Qué puede contener un Plugin
+
+Un plugin no tiene un contenido fijo — es un contenedor que agrupa lo que el equipo o el autor del plugin decida distribuir de forma coherente:
+
+- **Skills**: capacidades especializadas (revisor de APIs REST, generador de tests, documentador de funciones)
+- **Hooks**: scripts de seguridad y calidad preconfigurados (protección de archivos, linter automático)
+- **Servidores MCP**: integraciones con servicios externos (GitHub, Jira, Slack, Supabase)
+- **Configuración de subagentes**: roles y permisos predefinidos para un tipo de proyecto
+- **Reglas de contexto**: fragmentos de `AGENTS.md` con convenciones del stack
+
+La diferencia con instalar cada uno por separado es la **cohesión**: el plugin garantiza que todas las piezas son compatibles entre sí, están versionadas juntas y se pueden desinstalar completamente sin dejar fragmentos huérfanos.
+
+### Cuándo tiene sentido crear un Plugin
+
+Un plugin es la elección correcta cuando el conjunto de configuraciones que necesitas es lo suficientemente estable para distribuir y lo suficientemente complejo para que replicarlo manualmente sea un problema real. Para experimentos personales basta con Skills individuales. Un plugin es para equipos, proyectos a largo plazo o para publicar en un marketplace.
+
+### Sistemas por herramienta
+
+Cada orquestador tiene su propio sistema de plugins con arquitecturas técnicas diferentes, pero el propósito es el mismo:
+
+| Herramienta | Arquitectura | Instalación |
 | :--- | :--- | :--- |
-| **Cursor** | Bundles con reglas, skills, MCP | `cursor.com/marketplace` |
-| **Gemini CLI** | `gemini-extension.json` | `gemini extensions install` |
-| **Claude Code** | `.claude-plugin/plugin.json` | `/plugin install` |
-| **OpenCode** | Módulos JS/TS (Bun) | `.opencode/plugins/` |
+| **Cursor** | Bundles con `plugin.json` (reglas + skills + agents + MCP) | Marketplace UI o `cursor.com/marketplace` |
+| **Gemini CLI** | Manifiestos `gemini-extension.json` con comandos TOML y skills | `gemini extensions install <URL>` |
+| **Claude Code** | `.claude-plugin/plugin.json` con skills, subagentes, hooks y MCP | `/plugin install @scope/nombre` |
+| **OpenCode** | Módulos TypeScript nativos ejecutados en Bun con API de eventos | Archivo `.ts` en `.opencode/plugins/` |
 
 > [!NOTE]
-> Para detalles sobre desarrollo, eventos y arquitecturas de plugins específicos por herramienta, consulta su sección específica: [Cursor](tools/cursor.md#plugins-y-extensiones) | [Antigravity](tools/antigravity.md#skills-habilidades) | [Gemini CLI](tools/gemini-cli.md#extensions-extensiones) | [OpenCode](tools/opencode.md#plugins-y-extensiones) | [Claude Code](tools/claude-code.md#plugins-y-extensiones).
+> Antigravity y Codex CLI no tienen un sistema de plugins formal — sus capacidades equivalentes se distribuyen como Skills individuales o configuraciones de Skills con dependencias explícitas.
 
-**Referencias y Documentación Oficial:**
-- [Cursor: Plugins](https://cursor.com/docs/plugins)
-- [Gemini CLI: Extensions Guide](https://geminicli.com/docs/extensions/) | [Writing](https://geminicli.com/docs/extensions/writing-extensions/) | [Best Practices](https://geminicli.com/docs/extensions/best-practices/) | [Reference](https://geminicli.com/docs/extensions/reference/)
-- [OpenCode: Plugins](https://opencode.ai/docs/es/plugins/) | [Ecosystem](https://opencode.ai/docs/es/ecosystem/)
-- [Claude: Discover Plugins](https://code.claude.com/docs/en/discover-plugins) | [Plugins Guide](https://code.claude.com/docs/en/plugins)
-
-## Hooks (Disparadores)
-
-### ¿Qué son los Hooks?
-Los Hooks son mecanismos del ciclo de vida (firewalls o inyecciones) que se interponen en el flujo del orquestador IA. Equivalen conceptualmente a los Hooks de git (ej. `pre-commit`), disparándose en momentos como `PreToolUse`, `PostCheckout`, o `BeforeCommit`. 
-
-### ¿Por qué delegar en Hooks y no en el Agente?
-**Certeza Determinista.** Es económicamente ineficiente y muy propenso a errores confiar en un LLM de billones de parámetros para decir "Recuerda ejecutar eslint". Para tareas robóticas de validación debes aplicar control programático estricto. El Hook automatiza que el linter corra antes de avanzar forzando certidumbre de 100%.
-
-### El Principio Fail-Closed (Seguridad)
-Los agentes se operan en ambientes asíncronos y envían información vía `stdin`/`stdout`. Al implementar **Fail-Closed**, el sistema frena y aborta instantáneamente si el Hook falla o devuelve una validación negativa en formato JSON. El error luego es parseado explícitamente y retroalimentado al modelo para que la contingencia quede visible, proveyendo barandas de seguridad robustas contra acciones erráticas del LLM.
+👉 **[Ver Guía Técnica Completa: Plugins y Extensiones](concepts/plugins.md)** — incluye estructuras de directorios, schemas de `plugin.json`, ejemplos de extensiones para cada herramienta y guía de publicación en marketplace.
 
 ---
 
-## Subagentes
 
-### El Problema de la Capacidad de Abstracción
-Cuando presentas al agente principal la reconstrucción profunda de un monorepo entero desde cero, la atención (`attention mechanism` del LLM) se bifurca intentando mantener presentes todos los esquemas, reglas y módulos, provocando fallas estrepitosas en el razonamiento general. 
 
-### Resolviendo con Orquestación de Agentes
-Un subagente es la instanciación secundaria, aislada y sin estado de un Language Model generada a petición por tu orquestador, incitada con roles (`system prompts`), meta-contexto y herramientas estricta y radicalmente limitadas e independientes de las del agente manager principal.
+## 6. Hooks (Disparadores)
 
-Bajo este marco (*Manager/Coder/QA Arquitecture*):
-1. **Manager (Agente Raíz):** Elabora el análisis heurístico superficial y traza las tareas macroestructurales.
-2. **Coder (Subagente):** El manager instancia un Coder *pasándole proactivamente en su prompt* solo las reglas aisladas del microservicio X y solo con derecho de edición de archivos. Este subagente edita focalizadamente y se auto-termina retornando una respuesta/diff confirmatoria exhaustiva al hilo del manager sin consumir los tokens cognitivos amplios del LLM central.
-3. **QA (Subagente):** Valida formalismos y reglas estructurales. 
+Pedirle a un modelo de lenguaje "no olvides ejecutar el linter antes de hacer commit" es un error arquitectónico. Los LLMs son sistemas probabilísticos — la misma instrucción puede cumplirse, ignorarse o confundirse dependiendo del contexto de la sesión, el orden del historial o la longitud de la ventana. Para las validaciones que no pueden fallar ni una sola vez, la respuesta es **determinismo programático**, no confianza estadística.
 
-### Puntos Débiles Críticos
-- **Dependencia de la Información Entrante (Truncated Handoffs):** Un subagente no detecta mágicamente qué es lo que el Agente Manager sabe o vió en su buffer anterior. Su éxito es directamente proporcional a qué tan exhaustivo y bien digerido fue el prompt inicial enviado por el orquestador (prompt delegation).
-- **Infinite Loops Recursivos:** Debes asignar condicionantes limitantes (ej. máxima regresión = 3 interacciones) para que un subagente y el verificador no entren nunca en ciclos muertos asincrónicos infinitos facturando infinitos tokens al vacío.
+Los **Hooks** son scripts externos que el orquestador ejecuta en momentos exactos del ciclo de vida del agente: antes de usar una herramienta (`PreToolUse`), después de que el agente termina (`PostResponse`), al recibir input del usuario (`UserPromptSubmit`), o antes de ejecutar un comando bash (`beforeShellExecution`). No son sugerencias al modelo — son interrupciones del sistema que ocurren independientemente de lo que el LLM haya decidido hacer.
 
-### Patrones Avanzados Multi-Agente
+### El principio Fail-Closed
 
-Basado en la evolución de flujos orquestados en producción, se han consolidado cinco mejores prácticas para asegurar robustez al trabajar con múltiples subagentes:
+La característica más importante de los Hooks es el comportamiento **fail-closed**: si el script del Hook retorna un código de salida distinto de `0` (o `2` en algunas herramientas), el orquestador **aborta la acción** antes de ejecutarla. El error se retroalimenta al modelo como contexto, pero la acción nunca ocurre. Esto convierte a los Hooks en barandas de seguridad que ninguna instrucción del modelo puede saltarse.
 
-1. **El Principio de "Housekeeping" (Limpieza Obligatoria):**
-   Los subagentes que modifican estados (como escritura de código o manipulación en herramientas de diseño) deben ser instruidos expresamente para limpiar sus propios artefactos parciales si la tarea falla o necesita iterar. Esto evita los "cementerios de código" o estados rotos.
-2. **Scripts Deterministas vs. Subagentes (LLMs):**
-   Evita desperdiciar ciclos de inferencia asignando tareas puramente algorítmicas o de sistema a un subagente (ej. matar un puerto, hacer pull, mover carpetas). El orquestador debe usar directamente invocaciones de terminal a scripts locales (`.sh` o `.ps1`), reservando la invocación de subagentes exclusivamente para tareas cognitivas, argumentales o creativas.
-3. **Contratos de Datos Estrictos (Patrón de Reportes Estáticos):**
-   La comunicación entre subagentes no debe ser conversacional. Usa contratos estrictos (ej. bloques inmutables de TOML, JSON o Markdown estructurado). El orquestador actúa como transportista: capta el bloque del Lector y se lo pega íntegro en el prompt del Escritor, evitando tergiversaciones del lenguaje natural.
-   > [!TIP]
-   > **Estrategia de Modelos SOTA:** Utiliza modelos **Rápidos/Ligeros** (ej. Claude 4.5 Haiku, GPT-5.4 mini o Gemini 3.1 Flash) para estas tareas de formateo e invocación de MCP/APIs. Son más consistentes siguiendo esquemas JSON rígidos que los modelos de razonamiento pesado.
+```text
+Usuario: "Borra todos los logs de errores"
+Agente:   → Intenta ejecutar bash: rm -rf logs/
+Hook:     → pre_bash_execution.sh evalúa el comando
+          → Detecta "rm -rf" sobre path protegido
+          → exit 2 → BLOQUEADO
+Agente:   → Recibe el error, informa al usuario
+```
 
-4. **Orquestadores con Rutinas de Recuperación (Fallbacks Automáticos):**
-   Los flujos multi-agentes en cadena son frágiles por naturaleza. El orquestador debe poseer instrucciones claras de contingencia. (ej. "Si el Subagente X fracasa con un error de WebSocket ocupado, no te detengas; invoca el script de limpieza rápida y aplica un único reintento automatizado antes de rendirte y consultar al usuario").
+### Qué se puede hacer con un Hook
 
-5. **Lecturas Paralelas, Escrituras Secuenciales:**
-   Minimiza la latencia despachando subagentes de sólo lectura de forma simultánea (ej. un *code-reader* inspeccionando arquitectura mientras un *design-reader* escanea mockups). Sin embargo, las fases destructivas o constructivas de los subagentes *writers* siempre deben ejecutarse lineal y rigurosamente.
+Los casos de uso más comunes se dividen en dos categorías:
 
-### Beneficios del Aislamiento
-Protección de tokens, prevención de alucinaciones por contexto cruzado y especialización de conocimientos técnicos.
+**Seguridad y protección**:
+- Bloquear comandos bash destructivos (`rm -rf`, `DROP TABLE`, `git push --force`)
+- Impedir escritura en archivos fuera del workspace del proyecto
+- Detectar y rechazar prompts que contengan credenciales o tokens
 
-> [!NOTE]
-> Para conocer cómo se configuran estos equipos y ver **ejemplos de subagentes orquestadores** en cada herramienta, consulta su sección específica: [Cursor](tools/cursor.md#subagentes) | [Gemini CLI](tools/gemini-cli.md#subagentes) | [OpenCode](tools/opencode.md#subagentes) | [Claude Code](tools/claude-code.md#subagentes) | [Codex CLI](tools/codex-cli.md#subagentes).
+**Calidad y observabilidad**:
+- Ejecutar el linter automáticamente antes de cualquier commit (`PostToolUse: git commit`)
+- Registrar en un log cada herramienta que el agente invoca (auditoría completa)
+- Ejecutar tests unitarios después de cada modificación de archivo, interrumpiendo si fallan
 
----
+### Qué NO son los Hooks
 
-## Automatización y Scripting
-
-### ¿Qué es el Modo Headless?
-La verdadera escalabilidad de un agente ocurre cuando se remueve al humano del bucle iterativo. El modo **Headless** (sin cabeza) permite ejecutar el orquestador en un entorno no interactivo (sin TTY), donde no hay un desarrollador real para presionar "Enter" o aprobar comandos. El agente recibe un prompt inicial, autonomía parametrizada, y se auto-gestiona hasta fallar o triunfar, retornando códigos de salida estándar (ej. `0` para éxito, `1` para error).
-
-### Casos de Uso y Ejemplos Prácticos
-
-**1. CI/CD (Integración y Despliegue Continuo)**
-En lugar de fallar pasivamente una build de GitHub Actions, el agente intercepta el error, analiza los logs del linter o compilador, y somete un Auto-PR solucionando la sintaxis rota o actualizando la versión de la librería deprecada sin tu intervención.
-
-**2. Tareas Programadas (CRON)**
-Puedes configurar un script (`cronjob`) que inicialice a Claude Code o Gemini CLI todas las madrugadas. El agente escanea los tickets en estado "To Do" en Jira (vía MCP), selecciona tareas con etiqueta `good-first-issue`, escribe el código en ramas aisladas y deja los PRs listos cuando el equipo despierta.
-
-### Seguridad Extrema en Modo Automático
-
-Dejar a un modelo correr comandos de bash arbitrarios sin supervisión conlleva riesgos severos (borrado accidental de directorios, commits de secretos al vuelo o consumo infinito de tokens). Obliga a cumplir estas directrices:
-
-- **Sandboxing (Aislamiento):** Ejecuta siempre en contenedores Docker efímeros. Nunca corras modos Headless apuntando a producción o con credenciales de lectura/escritura root en AWS.
-- **Cost Caps (Límites de Presupuesto):** Define arquitecturas de "max iterations" o techos de facturación duros (ej. máximo $2 USD de inferencia) para evitar que una alucinación atrape al agente en un bucle infinito de prueba/error.
-- **Permisos de Herramientas Estrictos:** Bloquea comandos bash destructivos (`rm -rf`, `drop table`, peticiones externas irrestrictas) y fuerza a la IA a cometer solo cambios revisables por git.
-
-> [!NOTE]
-> Para detalles sobre códigos de salida, comandos específicos, formatos JSON y tareas programadas (CRON), consulta la sección de automatización de cada herramienta: [Gemini CLI](tools/gemini-cli.md#automatización-y-scripting) | [Claude Code](tools/claude-code.md#automatización-y-scripting) | [Codex CLI](tools/codex-cli.md#automatización-y-scripting).
-
-**Referencias y Documentación Oficial:**
-- [Gemini CLI: Headless Tutorial](https://geminicli.com/docs/cli/headless/)
-- [Claude: Headless Mode](https://code.claude.com/docs/en/headless) | [Scheduled Tasks](https://code.claude.com/docs/en/scheduled-tasks)
-
-## Evaluación de Modelos (Benchmarks y Casos de Uso)
-
-### Glosario de Términos para Humanos
-*   **SOTA (State of the Art):** Se refiere a lo último en tecnología, los modelos que están en la "vanguardia" y lideran las capacidades actuales de la industria.
-*   **NIAH (Needle In A Haystack):** Literalmente "aguja en un pajar". Es una prueba de estrés que mide la capacidad de un modelo para encontrar un dato específico dentro de una ventana de contexto masiva (ej. 1 millón de tokens).
-
-### Tabla Comparativa de Idoneidad SOTA (Abril 2026)
-
-La siguiente tabla resume el rendimiento de los modelos actuales de vanguardia.
-
-| Familia | Modelo | Tipo / Velocidad | Razonamiento | Contexto (NIAH) | Tools / MCP | Mejor para... |
-| :--- | :--- | :--- | :---: | :---: | :---: | :--- |
-| **OpenAI** | **GPT-5.4 Thinking** | Pesado (Razonativo) | ✅ | ✅ (1M+) | ⚠️ | Arquitectura y Computer Use |
-| **OpenAI** | **GPT-5.3-Codex** | Pesado (Razonativo) | ✅ | ⚠️ (256K) | ✅ | Especialista en Código / Terminal |
-| **Google** | **Gemini 3.1 Pro** | Pesado (Razonativo) | ✅ | ✅ (1M+) | ⚠️ | Arquitectura y Big Context |
-| **Anthropic** | **Claude 5 Sonnet** | Equilibrado | ✅ | ⚠️ (200K) | ✅ | Desarrollo ágil y Production Code |
-| **Anthropic** | **Claude 4.6 Opus** | Pesado (Razonativo) | ✅ | ⚠️ (200K) | ⚠️ | Lógica compleja multinivel |
-| **OpenAI** | **GPT-5.4 mini** | Rápido (Ligero) | ✅ | ⚠️ (128K) | ✅ | **Consultas MCP**, JSON, Scripts |
-| **Google** | **Gemini 3.1 Flash** | Rápido (Ligero) | ⚠️ | ✅ (1M+) | ✅ | **Búsqueda**, Lectura rápida |
-| **Anthropic** | **Claude 4.5 Haiku** | Rápido (Ligero) | ⚠️ | ⚠️ (200K) | ✅ | **Subagentes de Búsqueda** |
-
-> [!TIP]
-> **Estrategia Pro:** Los modelos **Rápidos/Ligeros** (ej. GPT-5.4 mini, Gemini 3.1 Flash, Claude 4.5 Haiku) son excepcionales para subagentes de búsqueda, consultar MCPs y transformar salidas de APIs en formatos estructurados (JSON). Son más económicos y consistentes en tareas de formateo repetitivo.
-
----
-
-### Guía de Perfiles: ¿Cuándo usar cada nivel?
-
-La eficiencia de un agente depende de elegir el "combustible" adecuado para la tarea:
-
-#### 1. Perfil "High Reasoning / MAX Effort"
-*   **Modelos:** GPT-5.4 Thinking, GPT-5.3-Codex, Gemini 3.1 Pro, Claude 4.6 Opus.
-*   **Cuándo conviene:** Cambios estructurales en la arquitectura, resolución de bugs complejos en múltiples archivos, o creación de planes iniciales.
-
-#### 2. Perfil "Balanced / Logic-Efficient"
-*   **Modelos:** Claude 5 Sonnet, GPT-5.4 Pro.
-*   **Cuándo conviene:** Estándar para el desarrollo activo diario.
-
-#### 3. Perfil "Utility / Low Effort / Search"
-*   **Modelos:** GPT-5.4 mini, Gemini 3.1 Flash, Claude 4.5 Haiku.
-*   **Cuándo conviene:** Subagentes de búsqueda, lectura de archivos masivos sin edición, generación de JSDoc, unit testing y mapeo de MCP/APIs a JSON.
-
----
-
-### Advertencias sobre Modelos Legados (Deprecated)
-
-Modelos que aún aparecen en configuraciones pero que **no se recomiendan** para uso profesional en 2026:
+Los Hooks no son subagentes ni Skills. No tienen acceso al LLM ni pueden generar texto. Son scripts de shell, Python o cualquier binario que reciben contexto via stdin y responden via stdout/exit code. Su fortaleza es exactamente esa simplicidad determinista — no fallan por alucinación ni por contexto confuso.
 
 > [!WARNING]
-> **Gemini 3.0 Pro:** Se ha observado un índice de **alucinación** significativamente mayor en comparación con la versión 3.1. Tiende a inventar rutas de archivos o herramientas inexistentes. Se recomienda migrar a **Gemini 3.1 Pro** inmediatamente.
+> Un Hook que consume demasiado tiempo de CPU o que tiene bugs propios puede bloquear el flujo del agente indefinidamente o generar falsos positivos que frustran al desarrollador. Mantén los scripts de Hook simples, rápidos y bien testeados de forma independiente al agente.
 
-> [!NOTE]
-> **Gemini 3.0 Flash:** Aunque ya existe la versión 3.1, la 3.0 sigue siendo aceptable únicamente para **búsquedas muy rápidas** de texto plano o pre-procesamiento de datos no críticos. No se recomienda para codificación activa.
-
-> [!CAUTION]
-> **GPT-3.5-Turbo y Legacy Codex (code-davinci):** Estos modelos están técnicamente obsoletos para el desarrollo agentic moderno. 
-> 
-> **GPT-5.2 Thinking:** Aunque potente en su lanzamiento, OpenAI ha programado su **retiro para Junio de 2026**. Se recomienda migrar a la serie GPT-5.4 inmediatamente para evitar interrupciones.
-
-#### Fuentes de Datos (Benchmarks 2026)
-*   **Coding & Reasoning:** [LiveCodeBench](https://livecodebench.github.io/leaderboard.html)
-*   **Real-World Software Engineering:** [SWE-bench Verified (Official)](https://www.swebench.com/)
-*   **Tool Use Proficiency:** [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html)
+👉 **[Ver Guía Técnica Completa: Hooks](concepts/hooks.md)** — incluye tabla de eventos por herramienta, protocolo stdin/stdout, ejemplos de scripts de protección, auditoría y calidad, y la tabla de códigos de salida.
 
 ---
-*Nota: Todos los términos técnicos y fragmentos de código se mantienen en inglés para mayor precisión técnica.*
+
+
+
+## 7. Subagentes y Orquestación
+
+La imagen del asistente de IA como un único agente resolviendo todo — leyendo el proyecto, diseñando la arquitectura, escribiendo el código, revisando la calidad y ejecutando los tests — es el antipatrón más costoso del ecosistema actual. La orquestación con **Subagentes** invierte ese enfoque: el agente primario actúa como manager y delega cada parte del trabajo a especialistas con roles y permisos acotados. No es un monólogo; es un equipo coordinado.
+
+La analogía es directa: un manager competente no redacta los contratos, implementa el código, audita la seguridad y entrega el proyecto al cliente al mismo tiempo. Convoca al especialista correcto para cada tarea, recibe su output y coordina la síntesis final. Los subagentes funcionan exactamente igual.
+
+### Por qué existen
+
+Cuando un modelo de lenguaje intenta resolver simultáneamente una tarea compleja — diseñar, implementar, revisar y testear una feature — su atención se divide entre contextos que compiten entre sí. El resultado es trabajo de calidad inconsistente: el diseño es sólido pero la implementación omite casos borde, o la revisión es superficial porque el modelo ya está "pensando" en los tests.
+
+La especialización resuelve esto. Un subagente `reviewer` cuyo único contexto activo sea revisar un diff de código específico produce una revisión mucho más profunda que el agente primario que acaba de escribir ese mismo código y ahora intenta autocorregirse. Además, los subagentes permiten **paralelismo real**: mientras `builder` escribe el código, `tester` puede preparar los fixtures y el plan de pruebas de forma simultánea.
+
+### El flujo real
+
+Un usuario pide: *"Crea una API REST para gestionar tareas."* El flujo con subagentes se ve así:
+
+1. **Agente primario** analiza el requerimiento y decide que necesita estructurar el trabajo antes de codificar.
+2. Delega a `architect`: *"Diseña las rutas, modelos y esquema de base de datos para esta API."*
+3. `architect` devuelve: un plan de arquitectura en Markdown con rutas, modelos Prisma y decisiones técnicas justificadas.
+4. Agente primario delega a `builder`: *"Implementa esta API basándote en el plan adjunto."*
+5. `builder` devuelve: los archivos implementados según el plan.
+6. Agente primario delega a `reviewer`: *"Valida la seguridad y calidad de esta implementación."*
+7. `reviewer` devuelve: lista de observaciones con severidad y sugerencias de remediación.
+8. Agente primario consolida todo, aplica feedback crítico y devuelve el resultado al usuario.
+
+El output final no es el producto de un modelo intentando hacer todo a la vez — es el resultado de tres especialistas trabajando en secuencia con contextos limpios.
+
+### Tipos de subagentes
+
+Los subagentes se dividen en tres categorías prácticas:
+
+- **Especializados personalizados**: los que tú creas para tu workflow particular — un auditor de seguridad, un traductor de documentación, un generador de tests unitarios. Tienen el system prompt, modelo y permisos que tú defines.
+- **Integrados (built-in)**: vienen preconfigurados con la herramienta. OpenCode incluye `build`, `plan`, `explore` y `general`. Cursor incluye `Explore` y `Bash`. Gemini CLI incluye `codebase_investigator` y `browser_agent`. Están disponibles sin ninguna configuración adicional.
+- **Híbridos**: subagentes personalizados que extienden el comportamiento de uno built-in, añadiendo instrucciones específicas del proyecto al system prompt base.
+
+### Impacto real: sin vs. con subagentes
+
+| Escenario | Sin subagentes | Con subagentes |
+| :--- | :--- | :--- |
+| "Crea una feature completa" | El agente intenta todo a la vez | Architect diseña → Builder implementa → Reviewer valida |
+| Calidad del output | Inconsistente (contexto dividido) | Consistente (especialización por rol) |
+| Permisos en acción | El agente tiene acceso completo a todo | Cada subagente solo accede a lo que necesita |
+| Tiempo total | Rápido pero impredecible | A veces mayor (coordinación), mejor en paralelo |
+| Confiabilidad | Variable | Alta (cada especialista falla en su dominio acotado) |
+
+### La configuración varía, el concepto no
+
+El concepto de subagente es universal, pero cada herramienta tiene su sintaxis propia. El mismo `code-reviewer` se define de estas formas:
+
+| Herramienta | Formato | Directorio |
+| :--- | :--- | :--- |
+| **OpenCode** | JSON en `opencode.json` o archivo `.md` | `.opencode/agents/` |
+| **Cursor** | Archivo `.md` con frontmatter YAML | `.cursor/agents/` |
+| **Codex CLI** | Archivo `.toml` | `.codex/agents/` |
+| **Gemini CLI** | Archivo `.md` con frontmatter YAML | `.gemini/agents/` |
+| **Claude Code** | Archivo `.md` con frontmatter YAML | `.claude/agents/` |
+
+### Control de acceso granular
+
+Los subagentes no son simplemente "copias" del agente principal con un nombre diferente — tienen permisos propios que limitan exactamente qué pueden hacer:
+
+- **`reviewer`**: lectura únicamente. No puede modificar archivos, solo leerlos y reportar.
+- **`builder`**: lectura y escritura. Puede crear y editar archivos, pero no ejecutar comandos de red.
+- **`tester`**: ejecución de comandos bash limitada y lectura. Puede correr `npm test`, no puede modificar código.
+
+Este modelo de permisos proporciona una protección real: si un subagente recibe instrucciones maliciosas o alucina de forma destructiva, el daño queda contenido a su dominio de permisos. Un `reviewer` que alucina no puede borrar archivos aunque lo intente.
+
+### Cuándo crear un subagente (y cuándo no)
+
+**Crea un subagente si:**
+- La tarea requiere especialización real que justifique tener un modelo con contexto aislado.
+- Necesitas restringir los permisos de una fase del trabajo (auditoría de solo lectura, revisión sin escritura).
+- El modelo del subagente debe ser diferente al principal (usar Haiku para búsqueda, Sonnet para codificación).
+
+**No crees un subagente si:**
+- El beneficio de la especialización no supera el overhead de comunicación entre agentes.
+- La tarea es simple y el agente principal puede resolverla en una sola respuesta.
+- Estarías creando un subagente que simplemente "ayuda a pensar" — eso ya lo hace el agente principal.
+
+La regla práctica: si no puedes describir en una frase clara y restrictiva qué hace el subagente y qué NO hace, probablemente no necesitas crearlo.
+
+### Anti-patrones comunes
+
+- **Subagente para todo**: no todo problema se resuelve con más agentes. El overhead de coordinación tiene un coste real en tokens y tiempo.
+- **System prompts vagos**: un `description` que dice "helps with coding" no le dice al orquestador cuándo invocar al subagente ni qué esperar de él.
+- **Sin límite de iteraciones**: los flujos multi-agente pueden entrar en bucles recursivos infinitamente costosos si no se define un `max_turns` o `steps` explícito.
+- **Escrituras paralelas**: múltiples subagentes escribiendo en los mismos archivos sin coordinación secuencial genera condiciones de carrera y código corrupto.
+
+👉 **[Ver Configuración Técnica, Patrones y Ejemplos de Subagentes](concepts/subagentes.md)**
+Para configuraciones específicas por herramienta, consulta **[Cursor](tools/cursor.md)** | **[Gemini CLI](tools/gemini-cli.md)** | **[OpenCode](tools/opencode.md)** | **[Claude Code](tools/claude-code.md)** | **[Codex CLI](tools/codex-cli.md)**
+
+---
+
+
+## 8. Automatización y Scripting
+
+Los agentes de IA no están limitados a responder en un chat. Cuando se elimina al humano del bucle interactivo, el agente se convierte en un proceso autónomo: recibe un prompt inicial, ejecuta herramientas, toma decisiones y termina retornando un código de salida estándar (`0` éxito, `1+` error). Este es el **modo headless** — el mismo agente que usas en el IDE corriendo desatendido en un servidor, un pipeline de CI/CD o un cronjob nocturno.
+
+El cambio de paradigma es significativo. En modo interactivo el humano supervisa cada acción. En modo headless el agente opera en ciclos completos sin intervención: lee los logs de un pipeline fallido, entiende el error, escribe el fix, abre el Pull Request y notifica por Slack — todo mientras el equipo duerme. La diferencia entre "asistente de código" y "colaborador autónomo" es exactamente esta capacidad.
+
+### Cuándo tiene sentido automatizar
+
+No toda tarea justifica un flujo headless. Los casos donde aporta valor real son aquellos con tres características: son repetitivos, tienen criterios de éxito medibles y no requieren juicio humano en cada iteración.
+
+**CI/CD reactivo**: en lugar de que un pipeline falle pasivamente y el desarrollador reciba una notificación de error a revisar manualmente, el agente intercepta el output del compilador o los tests fallidos, analiza la causa raíz, aplica el fix en una rama aislada y abre un PR con la corrección y una explicación. El humano solo aprueba; no diagnostica.
+
+**Cron jobs cognitivos**: un cronjob que se ejecuta cada madrugada puede invocar al agente para que escanee los tickets `good-first-issue` en Jira, seleccione los más urgentes, codifique en ramas independientes, ejecute los tests y deje los PRs listos para revisión a primera hora. Las tareas que antes tomaban horas de ramp-up de un contribuidor ocurren mientras el equipo no está trabajando.
+
+**Pre-merge automatizado**: antes de que cualquier rama llegue a `main`, un agente puede ejecutar una suite de auditoría — revisión de seguridad, validación de contratos de API, verificación de cobertura de tests — y bloquear el merge si detecta problemas críticos, sin intervención humana en el proceso de validación.
+
+### El riesgo que no es opcional ignorar
+
+Un agente en modo headless con permisos de escritura irrestrictos sobre un repositorio de producción es un riesgo arquitectónico severo. Los tres vectores de fallo más comunes son:
+
+- **Bucle de facturación infinita**: el agente no converge en una solución, reintenta indefinidamente y consume miles de dólares en llamadas a la API sin producir output útil.
+- **Borrado accidental de estado**: un `rm -rf` hallucinated en el contexto equivocado, ejecutado sin sandbox, puede ser irreversible.
+- **Filtración de secretos**: el agente lee un `.env` con credenciales y las incluye en un log, un PR o un mensaje de Slack.
+
+La respuesta no es evitar la automatización — es implementarla con los controles correctos: sandboxing en contenedores efímeros, `max_turns` explícitos, permisos de bash con allowlists, y variables de entorno nunca en el contexto del agente.
+
+> [!IMPORTANT]
+> Nunca ejecutes modo headless contra producción directamente. Usa contenedores Docker efímeros, permisos de solo lectura para las fases de análisis, y aprobación humana obligatoria para writes que afecten ramas protegidas.
+
+👉 **[Ver Guía Técnica Completa: Automatización y Headless Mode](concepts/automatizacion.md)** — incluye comandos por herramienta, ejemplos reales de GitHub Actions, configuración de sandboxing, cost caps y patrones de integración CI/CD.
+
+---
+
+
+
+## 9. Modelos de IA: Guía Completa
+
+Elegir el modelo incorrecto no solo desperdicia presupuesto — produce outputs de baja calidad, latencias inaceptables o facturas inesperadas. Un desarrollador que usa `claude-opus-4-6` para parsear 10,000 archivos de JSON está pagando el precio de un neurocirujano para hacer trabajo de administrativo. Un desarrollador que usa `gpt-5.4-nano` para diseñar la arquitectura de un sistema distribuido está confiando ese diseño al asistente más económico del equipo.
+
+La diferencia entre un workflow de agentes eficiente y uno costoso no suele ser el código — suele ser el modelo asignado a cada paso.
+
+Esta sección tiene dos propósitos: primero, darte el vocabulario completo para entender cualquier tabla de modelos que encuentres (tokens, context window, temperatura, thinking, naming de versiones). Segundo, organizar el catálogo actual de los tres proveedores principales por caso de uso real, no por familia de marketing.
+
+| Concepto | Qué aprenderás |
+| :--- | :--- |
+| **Tokens** | La moneda de cambio de los LLMs — qué son, cómo se cuentan, por qué importan al costo |
+| **Context Window** | Cuánta información puede ver el modelo simultáneamente y qué cambia con 1M tokens |
+| **Temperatura** | Cómo controlar la aleatoriedad de las respuestas en tareas de código vs. creativas |
+| **Thinking / Reasoning** | Qué significa activar el razonamiento profundo y cuándo tiene sentido pagarlo |
+| **Naming** | Qué significan Pro, Flash, mini, nano, Lite, Haiku, Sonnet, Codex y todos los demás sufijos |
+| **Catálogo por proveedor** | Los modelos activos de OpenAI, Anthropic y Google con sus context windows confirmados |
+| **Modelos por caso de uso** | Qué modelo usar para arquitectura, codificación, subagentes, investigación y documentos masivos |
+
+👉 **[Ver Guía Completa de Modelos de IA](concepts/models.md)** — incluye glosario técnico, nomenclatura de versiones, catálogo de modelos activos por proveedor, categorías de uso, guía de selección rápida y advertencias sobre modelos deprecados.
