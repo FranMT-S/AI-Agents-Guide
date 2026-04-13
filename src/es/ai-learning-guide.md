@@ -336,3 +336,10 @@ Esta sección tiene dos propósitos: primero, darte el vocabulario completo para
 | **Modelos por caso de uso** | Qué modelo usar para arquitectura, codificación, subagentes, investigación y documentos masivos |
 
 👉 **[Ver Guía Completa de Modelos de IA](concepts/models.md)** — incluye glosario técnico, nomenclatura de versiones, catálogo de modelos activos por proveedor, categorías de uso, guía de selección rápida y advertencias sobre modelos deprecados.
+
+---
+## 10. Metodologías de trabajo con AI
+
+En esta sección exploramos cómo estructurar el desarrollo de software cuando se integra IA, pasando de la experimentación aleatoria a flujos de trabajo deterministas y escalables.
+
+👉 **[Ver Guía Técnica Completa: Metodologías de trabajo con AI](Metodologías%20de%20Ingeniería%20AI-Native.md)** — incluye comparativas entre SDD, CDD, TDD+AI y workflows de agentes.
