@@ -1,7 +1,7 @@
 site_name: Guía Completa de Agentes de IA
 site_description: Documentación y metodologías para el desarrollo de agentes de software AI-Native.
-site_author: Fran
-
+site_author: FranMT-S
+site_url: "https://FranMT-S.github.io/AI-Agents-Guide/"
 theme:
   name: material
   language: es
@@ -52,7 +52,7 @@ plugins:
   - callouts
 
 nav:
-  - Inicio: ai-learning-guide.md
+  - Inicio: index.md
   - Concepts:
     - Gestión de Contexto: concepts/agents.md
     - MCP: concepts/mcp.md

@@ -33,7 +33,7 @@ I am actively expanding this repository. Soon I will be adding:
 ## 📖 Where to start?
 
 The main entry point for the Spanish-language theoretical concepts and high-level overviews is located here:
-👉 [`src/es/ai-learning-guide.md`](src/es/ai-learning-guide.md)
+👉 [`src/es/index.md`](src/es/index.md)
 
 For strict repository rules on how agents must operate within this guide, see:
 👉 [`AGENTS.md`](AGENTS.md)
