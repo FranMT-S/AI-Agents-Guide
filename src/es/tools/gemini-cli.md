@@ -1,4 +1,4 @@
-# Gemini CLI: Aspectos Únicos y Configuraciones
+# Gemini CLI
 
 Esta guía detalla las características exclusivas de Gemini CLI en cuanto a la gestión de contexto, habilidades, automatización y más.
 
@@ -186,7 +186,7 @@ Los valores en la configuración pueden inyectar secretos usando `$VAR_NAME`, `$
 }
 ```
 
-![[../attachments/clickup_gemini_01.png]]
+![Gemini Clickup MCP](../attachments/clickup_gemini_01.png)
 
 *Fuentes: [Gemini CLI: MCP Server Setup](https://geminicli.com/docs/tools/mcp-server/) | [Configuration Reference](https://geminicli.com/docs/reference/configuration/#mcpservers)*
 
@@ -534,10 +534,9 @@ Workflow:
 #### Políticas por Subagente (`policy.toml`)
 ```toml
 # This rule only applies when the security-auditor subagent is active.
-[[rules]]
-subagent = "security-auditor"
-tool_pattern = "write_file"
-decision = "deny"
+rules = [
+  { subagent = "security-auditor", tool_pattern = "write_file", decision = "deny" }
+]
 ```
 *Fuentes: [Gemini CLI: Subagents](https://geminicli.com/docs/core/subagents/) | [Policy Engine](https://geminicli.com/docs/reference/policy-engine/)*
 

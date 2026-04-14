@@ -1,4 +1,4 @@
-# OpenCode: Aspectos Únicos y Configuraciones
+# OpenCode
 
 Esta guía detalla las características exclusivas de OpenCode en cuanto a la gestión de contexto, habilidades y plugins.
 

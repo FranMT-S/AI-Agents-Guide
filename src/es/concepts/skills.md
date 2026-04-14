@@ -1,6 +1,6 @@
 # Skills (Habilidades)
 
-![[../attachments/skillsh.png]]
+![Skills Header](../attachments/skillsh.png)
 
 Las **Skills** son paquetes de **experiencia bajo demanda**. A diferencia del contexto general (`AGENTS.md`) que siempre está activo, las habilidades contienen instrucciones, scripts auxiliares, plantillas (templates) y recursos que el agente solo carga mediante **progressive disclosure** (revelación progresiva). 
 
@@ -224,29 +224,70 @@ Para entender el formato exacto que debes devolver, lee los siguientes ejemplos 
 
 ---
 
-## 5. Mejores Prácticas (AgentSkills.io)
+## 5. Mejores Prácticas (Estándar AgentSkills.io)
 
-### Optimización de Triggers
-La descripción es el motor de descubrimiento. Usa frases imperativas y evita términos genéricos.
+El diseño de una Skill determina directamente su tasa de éxito y eficiencia en costos. Siguiendo las normativas del estándar AgentSkills, aquí tienes las heurísticas de diseño para una arquitectura robusta:
 
-### Diseño de Instrucciones
-Añade contexto único del proyecto. Usa checklists para procesos complejos y obliga al ciclo `Plan-Validate-Execute`.
+### 5.1. Optimización del Motor de Descubrimiento (Triggers)
+El atributo `description` y los `triggers` no son comentarios pasivos; representan el **motor semántico** mediante el cual un orquestador decide inyectar o ignorar la habilidad en su contexto.
 
-### Evaluación de Calidad (Evals)
-Usa aserciones medibles (ej. "JSON válido") en lugar de métricas subjetivas.
-Nunca lances una skill sin probarla. Usa herramientas de evaluación para medir el **Delta** (lo que cuesta ejecutar la skill en tokens/tiempo vs lo que aporta).
-- **Test Cases:** Deben incluir el Prompt, Output Esperado y Archivos de Entrada.
-- **Aserciones Verificables:** No uses métricas vagas como *"El output es bueno"*. Usa aserciones medibles como *"El archivo final es un JSON válido"*.
-- **Rastreo:** Revisa las transcripciones de ejecución para entender *por qué* el agente ignoró una regla y ajusta el `SKILL.md` en consecuencia.
+- **Firma Accionable:** Utiliza verbos imperativos exactos (ej. "Valida", "Transforma", "Despliega") en lugar de sustantivos abstractos.
+- **Señales Negativas:** Especifica explícitamente **cuándo NO** usar la skill dentro de la propia descripción (ej. *"No la actives para revisiones de sintaxis frontend"*). Esto previene que el agente se distraiga en tareas superpuestas.
+
+### 5.2. Diseño de Instrucciones Resilientes
+Los modelos de lenguaje son sistemas probabilísticos. Para forzar resultados deterministas dentro de tu Skill, debes guiar su raciocinio algorítmicamente.
+
+- **Control de Flujo Numérico:** Para procesos delicados (ej. publicación de paquetes NPM, migraciones de base de datos), desglosa las acciones en checklists secuenciales estrictos.
+- **El Bucle Plan-Validate-Execute:** Obliga al agente a documentar su plan, validarlo contra una regla de negocio y solo entonces ejecutar comandos potencialmente destructivos o escrituras finales.
+
+### 5.3. Sistema de Evaluación Integral (Evals)
+Nunca distribuyas una Skill para tu equipo sin probarla en múltiples escenarios. Desarrollar Skills es desarrollo de software; el *System Prompt* es código compilado por redes neuronales.
+
+> [!TIP]
+> **Metodología Delta de Eficiencia:** Evalúa estrictamente la diferencia en tokens y tiempo de CPU que emplea el agente al resolver un problema **sin la skill** versus **con la skill activada**. Si el modelo tarda más turnos de iteración usando la skill, el diseño de la misma es deficiente y debe ser reescrito.
+
+Para integrar pruebas robustas (Testing AI), diseña casos de prueba que contengan:
+1. **Entornos Aislados (Fixtures):** Un directorio con archivos de código falsos y un *prompt* base que imite al humano al hacer la petición en la terminal.
+2. **Aserciones Categóricas:** Aléjate de evaluaciones difusas y relativas. Aplica aserciones binarias inmutables: *"¿El compilador arroja exit 0?"*, *"¿El archivo final está estructurado estrictamente en JSON válido?"*.
+3. **Traza Cognitiva (Traceability):** Revisa las transcripciones del razonamiento (lo que el modelo "piensa" antes de usar la herramienta) para descubrir la línea exacta donde ignoró tu `SKILL.md` y recalibra la instrucción o el script subyacente.
 
 ---
 
 ## 6. Errores Comunes (Antipatrones)
-Evita triggers genéricos como `"ayuda"`, archivos `SKILL.md` excesivamente largos y reglas globales que pertenecen a `AGENTS.md`.
 
+La creación de Skills puede fallar si no se respeta el diseño de **Revelación Progresiva (Progressive Disclosure)** o si se confunde el propósito de una Skill con el contexto global de todo el repositorio. Evita los siguientes antipatrones críticos para mantener a tus agentes rápidos y eficaces:
+
+### 1. Triggers Genéricos o Ambiguos
+Configurar triggers demasiado comunes provoca **falsos positivos** (la skill se inyecta en la memoria del agente cuando no hace falta, consumiendo valiosos tokens de contexto y robando la atención del modelo).
+* **Incorrecto:** `trigger: "ayuda", "revisar código", "json"`
+* **Correcto:** `trigger: "auditar api rest", "generar reporte arquitectura", "análisis owasp"`
+
+### 2. El `SKILL.md` Monolítico
+Una skill nunca debe contener 500 líneas de reglas ni enormes JSONs incrustados en su archivo principal. Si obligas al agente a leer todo eso, se quedará sin ventana de contexto antes de empezar.
+* **La Solución:** Utiliza estructuras multi-archivo. Si requieres que el agente entienda una gran estructura de datos, usa referencias: *"Lee estrictamente el esquema de referencia ubicado en `$SKILL_DIR/templates/schema.json` y basa tu trabajo en él"*.
+
+### 3. Reglas Globales dentro de una Skill
+Una skill no es el lugar para definir el stack tecnológico de todo el equipo. 
+* **Incorrecto:** Escribir en un `SKILL.md`: *"En este proyecto programamos usando TypeScript Estricto y TailwindCSS"*.
+* **La Solución:** Las directrices a nivel repositorio pertenecen única y exclusivamente al archivo `AGENTS.md`. Las Skills son herramientas especializadas; su función es ejecutar tareas, no definir el marco de desarrollo.
+
+> [!WARNING]
+> **Consecuencia letal:** Si pones la regla de usar TypeScript dentro de la skill `"auditar api"`, el agente perderá esa instrucción y volverá a escribir código inseguro en cuanto la skill se descargue de su memoria activa al terminar la auditoría.
+
+### 4. Automatización Crítica sin Manejo de Errores (Infinite Loops)
+Dejar que el agente ejecute un script (ej. `$SKILL_DIR/scripts/deploy.js`) sin darle instrucciones de qué hacer si falla, provoca un antipatrón donde el agente entra en pánico y reintenta la orden en bucle hasta agotar sus *max turns* o el saldo de la API.
+* **La Solución:** Instruye resiliencia determinista: *"Si el script falla (exit code != 0), lee los errores de `stdout`, diseña una propuesta de solución y **ESPERA** confirmación humana antes de volver a ejecutarlo"*.
 ---
 
 ## 7. Colecciones y Recomendaciones (Discovery)
+
+### Colección Personal (FranMT-S)
+Estoy creando una coleccion personal para diferentes propositos, si deseas verla puede servirte de guia para crear los tuyos propios. la  iré actualizando periódicamente, puedes visitar los siguientes enlaces:
+
+> [!NOTE]
+> Colección de directorios en el repositorio:
+> - 🧩 **[Directorio de Skills](https://github.com/FranMT-S/AI-Agents-Guide/tree/main/src/skills/)**
+> - 📋 **[Templates para Skills](https://github.com/FranMT-S/AI-Agents-Guide/tree/main/src/templates/skills)**
 
 ### Marketplaces (Skills.sh)
 Busca y descarga skills listas para usar. Siempre audita los permisos antes de instalar.
@@ -286,7 +327,15 @@ Si falta el `package.json`, puedes definir uno básico (o pedirle a la IA que lo
 ## 8. Rutas Globales y Scopes
 
 ### Tabla de Rutas por Herramienta
-Define dónde buscar las skills según el agente utilizado.
+A continuación se detalla dónde cada agente busca y descubre las skills instaladas, tanto a nivel global (disponibles en cualquier terminal/proyecto) como a nivel local (restringidas al repositorio actual).
+
+| Herramienta | Ruta Global (Usuario) | Ruta Local (Proyecto) | Notas |
+| :--- | :--- | :--- | :--- |
+| **Antigravity** | `~/.agents/skills/` | `.agents/skills/` | Usa el directorio estándar `.agents` (agnóstico). |
+| **Claude Code** | `~/.claude/skills/` | `.claude/skills/` | Soporta configuración a nivel *Enterprise* vía entorno. |
+| **Codex CLI** | `~/.agents/skills/` | `.agents/skills/` | Requiere manifiesto `openai.yaml` además del directorio. |
+| **Gemini CLI** | `~/.gemini/skills/` | `.gemini/skills/` | Soporta skills empaquetadas en extensiones NPM/GitHub. |
+| **OpenCode** | `~/.opencode/skills/` | `.opencode/skills/` | Escanea automáticamente `.claude/` y `.agents/` heredando sus skills. |
 
 ### Seguridad y Sandboxing
 Protege el contexto mediante aislamiento de variables (`$SKILL_DIR`) e invocaciones explícitas para tareas críticas.

@@ -27,6 +27,12 @@ Cada delegación incluye únicamente el contexto necesario para esa fase. El `ar
 
 ---
 
+> [!NOTE]
+> **Mi Colección Personal:** Estoy organizando una colección de subagentes para diferentes propósitos. Si deseas verlos como guía para estructurar a tu equipo delegativo, puedes visitar:
+> 🤖 **[Directorio de Subagentes (GitHub)](https://github.com/FranMT-S/AI-Agents-Guide/tree/main/src/subagents)**
+
+---
+
 ## Tipos de Subagentes
 
 ### Especializados personalizados

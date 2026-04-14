@@ -1,0 +1,72 @@
+site_name: Guía Completa de Agentes de IA
+site_description: Documentación y metodologías para el desarrollo de agentes de software AI-Native.
+site_author: Fran
+
+theme:
+  name: material
+  language: es
+  palette:
+    # Modo Claro
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    # Modo Oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+docs_dir: src/es
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+plugins:
+  - search
+  - roamlinks
+  - callouts
+
+nav:
+  - Inicio: ai-learning-guide.md
+  - Concepts:
+    - Gestión de Contexto: concepts/agents.md
+    - MCP: concepts/mcp.md
+    - Skills: concepts/skills.md
+    - Subagentes: concepts/subagentes.md
+    - Hooks: concepts/hooks.md
+    - Modelos de IA: concepts/models.md
+    - Automatización Headless: concepts/automatizacion.md
+    - Plugins y Extensiones: concepts/plugins.md
+    - Metodologías de Ingeniería AI-Native: "concepts/Metodologías de Ingeniería AI-Native.md"
+  - Tools:
+    - Cursor: tools/cursor.md
+    - Claude Code: tools/claude-code.md
+    - Gemini CLI: tools/gemini-cli.md
+    - Antigravity: tools/antigravity.md
+    - OpenCode: tools/opencode.md
+    - Codex CLI: tools/codex-cli.md

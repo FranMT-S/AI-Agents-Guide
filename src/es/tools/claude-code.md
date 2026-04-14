@@ -1,8 +1,8 @@
-# Claude Code: Aspectos Únicos y Configuraciones
+# Claude Code
 
 Esta guía detalla las características exclusivas de Claude Code en cuanto a la gestión de contexto, habilidades, automatización, sub-agentes y Agent Teams.
 
-![[../attachments/session-agent.png]]
+![Claude Session](../attachments/session-agent.png)
 
 ## Gestión de Contexto (Memory & Agents.md)
 
@@ -457,7 +457,7 @@ COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // ""')
 PROTECTED=(".env" ".env.local" ".env.production" "secrets.json" "*.pem")
 
 for PATTERN in "${PROTECTED[@]}"; do
-  if [[ "$FILE" == *"$PATTERN"* ]] || [[ "$COMMAND" =~ rm\ -rf ]]; then
+  if echo "$FILE" | grep -q "$PATTERN" || echo "$COMMAND" | grep -q 'rm -rf'; then
     echo "BLOCKED: Action on protected resource '$FILE'" >&2
     exit 2
   fi
