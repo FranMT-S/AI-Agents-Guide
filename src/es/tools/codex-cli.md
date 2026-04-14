@@ -1,4 +1,4 @@
-# OpenAI Codex CLI: Aspectos Únicos y Configuraciones
+# OpenAI Codex CLI
 
 Esta guía detalla las características exclusivas de Codex CLI en cuanto a la gestión de contexto, habilidades, subagentes y automatización.
 
@@ -117,7 +117,7 @@ enabled_tools = ["get_file", "get_comments"]
 tool_timeout_sec = 45
 ```
 
-![[../attachments/clickup-codex-01.0.png]]
+![Codex ClickUp MCP](../attachments/clickup-codex-01.0.png)
 
 *Fuente: [Codex CLI: MCP Developers](https://developers.openai.com/codex/mcp)*
 
@@ -395,7 +395,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-![[../attachments/clickup-codex-02.jpg]]
+![Codex Refactor Auto](../attachments/clickup-codex-02.jpg)
 
 *Fuente: [Codex: Non-interactive Usage](https://developers.openai.com/codex/noninteractive)*
 

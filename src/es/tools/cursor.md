@@ -1,4 +1,4 @@
-# Cursor: Aspectos Únicos y Configuraciones
+# Cursor
 
 Esta guía detalla las características exclusivas de Cursor en cuanto a la gestión de contexto, habilidades, subagentes, y más.
 
@@ -185,7 +185,7 @@ En Cursor, los hooks se configuran en `.cursor/hooks.json`. A diferencia de otra
 INPUT=$(cat)
 FILE=$(echo "$INPUT" | jq -r '.tool_input.file_path // ""')
 
-if [[ "$FILE" =~ \.(env|pem|key|p12|pfx)$ ]] || [[ "$FILE" == *"secrets"* ]]; then
+  if echo "$FILE" | grep -qE '\.(env|pem|key|p12|pfx)$' || echo "$FILE" | grep -q "secrets"; then
   echo "BLOCKED: Access to sensitive file '$FILE' not allowed." >&2
   exit 2
 fi

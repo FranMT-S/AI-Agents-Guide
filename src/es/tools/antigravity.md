@@ -1,4 +1,4 @@
-# Google Antigravity: Aspectos Únicos y Configuraciones
+# Google Antigravity
 
 Esta guía detalla las características exclusivas de Google Antigravity en cuanto a la gestión de contexto, habilidades y flujos de trabajo (workflows).
 
