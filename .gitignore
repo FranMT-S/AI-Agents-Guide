@@ -23,3 +23,6 @@ spec/
 .claude/
 .cursor/
 gemini.md
+
+# MkDocs
+site/
