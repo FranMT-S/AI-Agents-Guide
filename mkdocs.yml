@@ -2,6 +2,8 @@ site_name: Guía Completa de Agentes de IA
 site_description: Documentación y metodologías para el desarrollo de agentes de software AI-Native.
 site_author: FranMT-S
 site_url: "https://FranMT-S.github.io/AI-Agents-Guide/"
+repo_name: "FranMT-S/AI-Agents-Guide"
+repo_url: "https://github.com/FranMT-S/AI-Agents-Guide"
 theme:
   name: material
   language: es
