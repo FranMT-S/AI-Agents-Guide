@@ -278,45 +278,48 @@ mi-proyecto/
         └── rdd-compliance.mdc # Regla para forzar el seguimiento del README
 ```
 
-**Esquema de README (`README.md`):**
-```markdown
+**Paso 1: El Contrato (Esquema de `README.md`)**
+Al emplear cuádruple "backtick", el agente entiende que este es el documento primario. Todo el comportamiento público debe ser redactado aquí primero.
+
+````markdown
 # [Nombre de la Librería/Servicio]
+
 ## Instalación
 ```bash
-# Ejemplo de comando de instalación
 npm install my-library
 ```
 
 ## Uso
 ```typescript
-// Ejemplo de uso claro y conciso
 import { myFunction } from 'my-library';
 myFunction('argumento');
 ```
 
 ## API
-### myFunction(param: Type): ReturnType
-Descripción detallada de la función, sus parámetros y su valor de retorno.
-```
+### `myFunction(param: string): void`
+Descripción detallada de la función, sus parámetros y su comportamiento esperado.
+````
 
-**Ejemplo de Regla de Agente (`.agent/rules/rdd-compliance.mdc`):**
+**Paso 2: La Barrera (Regla de Agente)**
+Se configura una regla automática (por ejemplo, en Cursor vía `.mdc` o genérica en `AGENTS.md`) para que el agente nunca ignore el contrato.
+
 ```yaml
 ---
 name: RDD Compliance
 description: Asegura que el código respeta el README.md como contrato de interfaz.
-globs: ["src/**/*.ts"] # Archivos donde se aplicará esta regla
+globs: ["src/**/*.ts"]
 ---
 
 Before implementing any feature or API:
-1. Read `README.md` completely.
-2. Ensure your implementation matches the documented public API in `README.md`.
-3. Forbidden: Inventing APIs or behaviors not documented in `README.md`.
+1. You MUST read `README.md` completely.
+2. Ensure your implementation matches the documented public API in `README.md` exactly.
+3. Forbidden: Inventing APIs, public methods, or behaviors not explicitly documented in the README.
 ```
 
-**Ejemplo de Comando de Trabajo (Agnóstico):**
+**Paso 3: La Delegación (Comando de Trabajo Agnóstico)**
 ```bash
-# Instruir al agente para implementar una característica basándose en el README
-agente-desarrollo -c "Implementa la función 'myFunction' en src/index.ts, siguiendo estrictamente la definición de API en README.md."
+# Instruir al agente para generar el código interno que hace realidad el README
+agente-desarrollo -c "Implementa la lógica interna de 'myFunction' en src/index.ts. Tu única métrica de éxito es que el código finalice compliendo lo que se publicita en el README.md."
 ```
 
 *Fuente: [Readme-driven development](https://bensguide.substack.com/p/readme-driven-development)*

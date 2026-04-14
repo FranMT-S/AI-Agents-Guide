@@ -260,7 +260,7 @@ exit 0
 INPUT=$(cat)
 FILE=$(echo "$INPUT" | jq -r '.tool_input.file_path // ""')
 
-if [[ "$FILE" == *.ts || "$FILE" == *.tsx || "$FILE" == *.js ]]; then
+if echo "$FILE" | grep -qE '\.(ts|tsx|js)$'; then
   npx eslint "$FILE" --fix --quiet
   if [ $? -ne 0 ]; then
     echo "Linting failed on $FILE. Resolve ESLint errors before continuing." >&2
@@ -309,7 +309,7 @@ FILE=$(echo "$INPUT" | jq -r '.tool_input.file_path // ""')
 PROTECTED_FILES=(".env" ".env.local" ".env.production" "*.pem" "*.key" "secrets.json")
 
 for PATTERN in "${PROTECTED_FILES[@]}"; do
-  if [[ "$FILE" == *"$PATTERN"* ]]; then
+  if echo "$FILE" | grep -q "$PATTERN"; then
     echo "BLOCKED: Access to sensitive file '$FILE' is not allowed." >&2
     exit 2
   fi

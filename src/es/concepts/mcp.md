@@ -2,7 +2,7 @@
 
 El **Model Context Protocol (MCP)** es el estándar de comunicación que permite a los modelos de IA interactuar con el mundo real. Actúa como un puente entre la lógica del LLM y herramientas externas: bases de datos, APIs, navegadores, servicios de diseño, gestores de proyectos, etc.
 
-![[../attachments/mcp_01.png]]
+![MCP Arquitectura](../attachments/mcp_01.png)
 
 > [!NOTE]
 > Para ver la configuración MCP específica de cada agente (Gemini CLI, Claude Code, Cursor, etc.), consulta su archivo dedicado en `../tools/`. Esta guía cubre el concepto general, buenas prácticas y las configuraciones de los MCP más utilizados.
@@ -29,7 +29,7 @@ Define cómo se comunican el cliente (IDE) e el servidor:
 | `SSE`             | HTTP con streaming. Para servers remotos o en Docker.            |
 | `Streamable HTTP` | Variante moderna de SSE. Preferida en producción.                |
 
-![[../attachments/mcp_02.jpg]]
+![MCP Transportes](../attachments/mcp_02.jpg)
 
 ---
 
@@ -138,7 +138,7 @@ enabled = true
 GITHUB_PERSONAL_ACCESS_TOKEN = "<YOUR_TOKEN>"
 ```
 
-![[../attachments/git-hub-mcp-01.png]]
+![GitHub MCP](../attachments/git-hub-mcp-01.png)
 
 > [!TIP]
 > Si no tienes Docker, usa `docker run -i --rm` en lugar de `exec -i`. Recuerda que eso levanta un contenedor nuevo por cada IDE abierto.
@@ -175,7 +175,7 @@ Servidor MCP oficial de ClickUp. La autenticación es por **OAuth** — al confi
 /mcp auth clickup
 ```
 
-![[../attachments/clickup-oauth-01.jpg]]
+![ClickUp OAuth](../attachments/clickup-oauth-01.jpg)
 
 **Configuración para Codex CLI (`config.toml`):**
 
