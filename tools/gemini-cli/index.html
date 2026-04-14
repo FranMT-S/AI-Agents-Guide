@@ -1,0 +1,3009 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación y metodologías para el desarrollo de agentes de software AI-Native.">
+      
+      
+        <meta name="author" content="Fran">
+      
+      
+      
+        <link rel="prev" href="../claude-code/">
+      
+      
+        <link rel="next" href="../antigravity/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Gemini CLI - Guía Completa de Agentes de IA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gemini-cli" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Guía Completa de Agentes de IA" class="md-header__button md-logo" aria-label="Guía Completa de Agentes de IA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guía Completa de Agentes de IA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Gemini CLI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guía Completa de Agentes de IA" class="md-nav__button md-logo" aria-label="Guía Completa de Agentes de IA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guía Completa de Agentes de IA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai-learning-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gestión de Contexto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/subagentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subagentes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/hooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelos de IA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/automatizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automatización Headless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/plugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugins y Extensiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/Metodolog%C3%ADas%20de%20Ingenier%C3%ADa%20AI-Native/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metodologías de Ingeniería AI-Native
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cursor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cursor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../claude-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini CLI
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gestion-de-contexto-memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestión de Contexto (Memory Management)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestión de Contexto (Memory Management)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jerarquia-de-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jerarquía de Archivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sistema-de-memoria-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sistema de Memoria Global
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkpointing-puntos-de-restauracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpointing (Puntos de Restauración)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Checkpointing (Puntos de Restauración)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#razon-de-desactivacion-por-defecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Razón de Desactivación por Defecto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activacion-y-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activación y Configuración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comandos-de-restauracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comandos de Restauración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-checkpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos de Checkpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notas-sobre-alucinaciones-y-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notas sobre Alucinaciones y Seguridad
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skills-habilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skills (Habilidades)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Skills (Habilidades)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-skill-con-script-externo-skillmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Skill con Script Externo (SKILL.md)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inyeccion-de-variables-de-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inyección de Variables de Entorno
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubicaciones-y-precedencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubicaciones y Precedencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorios_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formato-toml-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formato TOML (v1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Formato TOML (v1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-comando-basico-refactorpuretoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Comando Básico (refactor/pure.toml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manejo-de-argumentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manejo de Argumentos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manejo de Argumentos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#args-inyeccion-de-argumentos-del-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        {{args}} — Inyección de Argumentos del Usuario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejecucion-de-comandos-shell-e-inyeccion-de-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        !{...} — Ejecución de Comandos Shell e Inyección de Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-handling-sin-args-explicito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Handling — Sin {{args}} Explícito
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugins-y-extensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugins y Extensiones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugins y Extensiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-de-extensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instalación de Extensiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capacidades-extendidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacidades Extendidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorio_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estructura de Directorio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-instalacion-comando-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Instalación (Comando CLI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hooks-disparadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hooks (Disparadores)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hooks (Disparadores)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eventos-disponibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eventos Disponibles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorio_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-configuracion-settingsjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Configuración (settings.json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-completo-via-stdin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Completo via stdin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-bloqueo-de-comandos-destructivos-validate-bashsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Bloqueo de Comandos Destructivos (validate-bash.sh)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subagentes-y-orquestadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subagentes y Orquestadores
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subagentes y Orquestadores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aislamiento-y-proteccion-de-recursion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aislamiento y Protección de Recursión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subagentes-integrados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subagentes Integrados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorios_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-del-frontmatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema del Frontmatter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wildcards-de-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wildcards de Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wildcards de Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-auditor-de-seguridad-mcp-aislado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Auditor de Seguridad (MCP Aislado)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-orquestador-de-desarrollo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Orquestador de Desarrollo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overrides-y-politicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overrides y Políticas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overrides y Políticas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#politicas-por-subagente-policytoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Políticas por Subagente (policy.toml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-steering-direccion-del-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Steering (Dirección del Modelo)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Steering (Dirección del Modelo)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activacion-y-configuracion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activación y Configuración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-en-tiempo-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uso en Tiempo Real
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#casos-de-uso-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Casos de Uso Comunes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automatizacion-headless-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatización (Headless Mode)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Automatización (Headless Mode)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags-de-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags de Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabla-de-codigos-de-salida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla de Códigos de Salida
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-auditoria-nocturna-bash-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Auditoría Nocturna (Bash + GitHub Actions)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../antigravity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Antigravity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opencode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../codex-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Codex CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gestion-de-contexto-memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestión de Contexto (Memory Management)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestión de Contexto (Memory Management)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jerarquia-de-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jerarquía de Archivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sistema-de-memoria-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sistema de Memoria Global
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkpointing-puntos-de-restauracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpointing (Puntos de Restauración)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Checkpointing (Puntos de Restauración)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#razon-de-desactivacion-por-defecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Razón de Desactivación por Defecto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activacion-y-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activación y Configuración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comandos-de-restauracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comandos de Restauración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-checkpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos de Checkpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notas-sobre-alucinaciones-y-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notas sobre Alucinaciones y Seguridad
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skills-habilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skills (Habilidades)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Skills (Habilidades)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-skill-con-script-externo-skillmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Skill con Script Externo (SKILL.md)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inyeccion-de-variables-de-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inyección de Variables de Entorno
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubicaciones-y-precedencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubicaciones y Precedencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorios_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formato-toml-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formato TOML (v1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Formato TOML (v1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-comando-basico-refactorpuretoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Comando Básico (refactor/pure.toml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manejo-de-argumentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manejo de Argumentos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manejo de Argumentos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#args-inyeccion-de-argumentos-del-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        {{args}} — Inyección de Argumentos del Usuario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejecucion-de-comandos-shell-e-inyeccion-de-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        !{...} — Ejecución de Comandos Shell e Inyección de Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-handling-sin-args-explicito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Handling — Sin {{args}} Explícito
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugins-y-extensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugins y Extensiones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugins y Extensiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-de-extensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instalación de Extensiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capacidades-extendidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacidades Extendidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorio_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estructura de Directorio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-instalacion-comando-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Instalación (Comando CLI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hooks-disparadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hooks (Disparadores)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hooks (Disparadores)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eventos-disponibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eventos Disponibles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorio_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-configuracion-settingsjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Configuración (settings.json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-completo-via-stdin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Completo via stdin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-bloqueo-de-comandos-destructivos-validate-bashsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Bloqueo de Comandos Destructivos (validate-bash.sh)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subagentes-y-orquestadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subagentes y Orquestadores
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subagentes y Orquestadores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aislamiento-y-proteccion-de-recursion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aislamiento y Protección de Recursión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subagentes-integrados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subagentes Integrados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorios_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-del-frontmatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema del Frontmatter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wildcards-de-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wildcards de Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wildcards de Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-auditor-de-seguridad-mcp-aislado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Auditor de Seguridad (MCP Aislado)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-orquestador-de-desarrollo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Orquestador de Desarrollo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overrides-y-politicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overrides y Políticas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overrides y Políticas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#politicas-por-subagente-policytoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Políticas por Subagente (policy.toml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-steering-direccion-del-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Steering (Dirección del Modelo)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Steering (Dirección del Modelo)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activacion-y-configuracion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activación y Configuración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-en-tiempo-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uso en Tiempo Real
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#casos-de-uso-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Casos de Uso Comunes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automatizacion-headless-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatización (Headless Mode)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Automatización (Headless Mode)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags-de-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags de Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabla-de-codigos-de-salida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla de Códigos de Salida
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-auditoria-nocturna-bash-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Auditoría Nocturna (Bash + GitHub Actions)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="gemini-cli">Gemini CLI<a class="headerlink" href="#gemini-cli" title="Permanent link">&para;</a></h1>
+<p>Esta guía detalla las características exclusivas de Gemini CLI en cuanto a la gestión de contexto, habilidades, automatización y más.</p>
+<h2 id="gestion-de-contexto-memory-management">Gestión de Contexto (Memory Management)<a class="headerlink" href="#gestion-de-contexto-memory-management" title="Permanent link">&para;</a></h2>
+<h3 id="jerarquia-de-archivos">Jerarquía de Archivos<a class="headerlink" href="#jerarquia-de-archivos" title="Permanent link">&para;</a></h3>
+<p>Opera desde un nivel Global hacia el Proyecto y finalmente al Subdirectorio, usando <code>GEMINI.md</code> y <code>AGENTS.md</code>.</p>
+<h3 id="sistema-de-memoria-global">Sistema de Memoria Global<a class="headerlink" href="#sistema-de-memoria-global" title="Permanent link">&para;</a></h3>
+<p>Permite modularización total escaneando recursivamente el árbol. La memoria global se gestiona con <code>save_memory</code> (ej. <code>/memory show</code>, <code>/memory reload</code>), persistiendo datos sin edición manual.</p>
+<h3 id="estructura-de-directorios">Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios" title="Permanent link">&para;</a></h3>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>~/.gemini/GEMINI.md       (Global)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>mi-proyecto/
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── AGENTS.md             (Proyecto)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>└── src/
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    └── auth/
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        └── AGENTS.md     (Subdirectorio)
+</span></code></pre></div>
+<em>Fuente: <a href="https://geminicli.com/docs/cli/tutorials/memory-management/">Gemini CLI: Memory Management</a></em></p>
+<h2 id="checkpointing-puntos-de-restauracion">Checkpointing (Puntos de Restauración)<a class="headerlink" href="#checkpointing-puntos-de-restauracion" title="Permanent link">&para;</a></h2>
+<p>A partir de la versión <strong>0.11.0</strong>, la función de checkpointing automático está <strong>desactiva por defecto</strong>. Esta característica captura el estado completo de los archivos del proyecto y el historial de la conversación antes y después de cada llamada a herramientas.</p>
+<h3 id="razon-de-desactivacion-por-defecto">Razón de Desactivación por Defecto<a class="headerlink" href="#razon-de-desactivacion-por-defecto" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Seguridad:</strong> Los checkpoints crean instantáneas locales del estado completo del repositorio y logs de conversación, lo que podría exponer datos sensibles.</li>
+<li><strong>Almacenamiento:</strong> El uso de un repositorio "shadow" de Git para guardar estados puede aumentar drásticamente el espacio en disco en proyectos grandes.</li>
+<li><strong>Rendimiento:</strong> El proceso de crear snapshots añade una latencia perceptible en cada interacción, especialmente cuando se barajan múltiples archivos.</li>
+</ul>
+<h3 id="activacion-y-configuracion">Activación y Configuración<a class="headerlink" href="#activacion-y-configuracion" title="Permanent link">&para;</a></h3>
+<p>Los checkpoints se habilitan exclusivamente a través del archivo de configuración global o de proyecto.</p>
+<p><strong>Estructura de Directorio:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mi-proyecto/
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>└── .gemini/
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    └── settings.json
+</span></code></pre></div></p>
+<p><strong>Ejemplo de Configuración (<code>settings.json</code>):</strong>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;general&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">&quot;checkpointing&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">      </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<h3 id="comandos-de-restauracion">Comandos de Restauración<a class="headerlink" href="#comandos-de-restauracion" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Comando</th>
+<th style="text-align: left;">Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>/restore --list</code></td>
+<td style="text-align: left;">Lista todos los checkpoints (IDs y timestamps)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>/restore &lt;id&gt;</code></td>
+<td style="text-align: left;">Revierte el estado de los archivos y la sesión al ID especificado</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tipos-de-checkpoints">Tipos de Checkpoints<a class="headerlink" href="#tipos-de-checkpoints" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Automáticos:</strong> Se disparan antes y después de que el agente use herramientas de edición o terminal. Capturan el repositorio de Git, logs y el historial de sesión. Requiere <code>checkpointing.enabled: true</code>.</li>
+<li><strong>Manuales (Tagging):</strong> Los usuarios pueden marcar puntos específicos de la sesión usando <code>/chat save &lt;nombre&gt;</code>. Esto permite etiquetar hitos importantes independientemente de la ejecución de herramientas.</li>
+</ol>
+<h3 id="notas-sobre-alucinaciones-y-seguridad">Notas sobre Alucinaciones y Seguridad<a class="headerlink" href="#notas-sobre-alucinaciones-y-seguridad" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>El checkpointing <strong>no aumenta las alucinaciones</strong>. Es una herramienta de <strong>seguridad del entorno</strong>. Se recomienda activarla cuando se delega autonomía al agente para editar múltiples archivos, ya que permite revertir errores o alucinaciones del modelo de forma instantánea sin perder el progreso del proyecto.</p>
+</div>
+<p><em>Fuente: <a href="https://geminicli.com/docs/cli/checkpointing/">Gemini CLI: Checkpointing</a></em></p>
+<h2 id="skills-habilidades">Skills (Habilidades)<a class="headerlink" href="#skills-habilidades" title="Permanent link">&para;</a></h2>
+<p>Gemini CLI implementa el sistema de Skills con una jerarquía de tres niveles de descubrimiento: <strong>Workspace</strong> (<code>.gemini/skills/</code>), <strong>User</strong> (<code>~/.gemini/skills/</code>) y <strong>Extension</strong> (empaquetadas en una extensión instalada). Esto permite una composición flexible: las skills corporativas se distribuyen como extensiones, las preferencias personales se guardan en el nivel User, y los comportamientos específicos del repositorio viven en el Workspace.</p>
+<p>Un aspecto crítico de seguridad exclusivo de Gemini CLI es el <strong>sandboxing obligatorio</strong>: antes de que el agente lea por primera vez los archivos internos de una skill (incluyendo scripts), el sistema solicita aprobación manual del usuario. Esta confirmación no se repite en sesiones posteriores para la misma skill, pero garantiza que ningún contenido malicioso inyectado en un repositorio externo pueda ejecutarse sin consentimiento explícito.</p>
+<p>Gemini CLI también soporta skills con <strong>binarios empaquetados</strong>: el <code>SKILL.md</code> puede referenciar scripts ejecutables en NodeJS, Python o Shell que el agente invoca como herramientas sin exponerlos al modelo como texto.</p>
+<h3 id="estructura-de-directorio">Estructura de Directorio<a class="headerlink" href="#estructura-de-directorio" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>~/.gemini/skills/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>└── personal-style/
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    └── SKILL.md              (Usuario — disponible en todos los proyectos)
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>mi-proyecto/
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>└── .gemini/
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    └── skills/
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        └── db-migration/     (Workspace — específico de este repositorio)
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>            ├── SKILL.md
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>            └── scripts/
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>                └── validate-schema.js
+</span></code></pre></div>
+<h3 id="ejemplo-skill-con-script-externo-skillmd">Ejemplo: Skill con Script Externo (<code>SKILL.md</code>)<a class="headerlink" href="#ejemplo-skill-con-script-externo-skillmd" title="Permanent link">&para;</a></h3>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>---
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>name: db-migration
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="gu">description: Validates and applies database migrations safely. Use when running Prisma migrations.</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="gu">---</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="gh"># Database Migration Helper</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>Before running any migration, always validate the schema first:
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>```bash
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>node {file:./scripts/validate-schema.js} --dry-run
+</span></code></pre></div>
+<p>Only proceed with <code>prisma migrate deploy</code> if the validation returns exit code 0.
+Never run <code>prisma migrate reset</code> in production environments.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>!!! tip
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    Referencia los scripts con `{file:./ruta}` en lugar de rutas absolutas. Esto hace las skills portables entre máquinas y garantiza que el agente resuelva la ruta relativa correctamente sin importar desde dónde se ejecute Gemini CLI.
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>*Fuentes: [Gemini CLI: Skills Getting Started](https://geminicli.com/docs/cli/tutorials/skills-getting-started/) | [Gemini CLI: Skills](https://geminicli.com/docs/cli/skills/)*
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>## MCP (Model Context Protocol)
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>### Protocolos y Transportes
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>Soporta `Stdio`, `SSE` (usando `url`) y `Streamable HTTP` (usando `httpUrl`). Implementa `Tools`, `Resources` y `Prompts` (slash commands).
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>Al configurar la conexión, el orden de precedencia (si se definen múltiples) es: `httpUrl` &gt; `url` &gt; `command`.
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>### Seguridad, Nombres y Sanitización
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>Censura automáticamente variables sensibles (`*TOKEN*`). Soporta `Service Account Impersonation` y asigna `Fully Qualified Names (FQN)` para evitar colisiones. Toda herramienta descubierta usa el formato `mcp_{alias}_{toolName}`.
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>!!! warning
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>    Nunca utilices guiones bajos (`_`) en los alias de tus servidores MCP (usa `mi-servidor`, no `mi_servidor`). El Custom Policy Engine separa el FQN usando el primer guion bajo después del prefijo `mcp_`. Un `_` adicional romperá el parseo y las políticas fallarán silenciosamente.
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>### Opciones de Configuración por Servidor
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>Dentro de `mcpServers`, cada servidor acepta los siguientes campos:
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>- **Conexión Local (Stdio):** `command`, `args` (arreglo de argumentos), `cwd` (directorio de trabajo), y `env` (variables de entorno).
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>- **Conexión Remota:** `url` (SSE), `httpUrl` (HTTP Stream), `headers` (cabeceras HTTP) y `timeout` (milisegundos).
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>- **Seguridad:**
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>  - `trust` (boolean): Confía plenamente en el servidor y omite los prompts de confirmación al ejecutar herramientas.
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>- **Filtro de Herramientas:**
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>  - `includeTools` (array): Lista estricta de nombres de herramientas permitidas (allowlist). Solo se habilitarán estas.
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>  - `excludeTools` (array): Lista de herramientas excluidas (denylist). **Tiene prioridad sobre `includeTools`**.
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>- **Metadatos:** `description` (breve resumen para visualización).
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>### Estructura de Directorio
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>```text
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>mi-proyecto/
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>└── .gemini/
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>    └── settings.json
+</span></code></pre></div></p>
+<h3 id="inyeccion-de-variables-de-entorno">Inyección de Variables de Entorno<a class="headerlink" href="#inyeccion-de-variables-de-entorno" title="Permanent link">&para;</a></h3>
+<p>Los valores en la configuración pueden inyectar secretos usando <code>$VAR_NAME</code>, <code>${VAR_NAME}</code>, o con defaults <code>${VAR_NAME:-default_value}</code>. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>En entornos <strong>Windows</strong>, actualmente solo se soporta la sintaxis <code>%VAR_NAME%</code>.</p>
+</div>
+<p><strong>Ejemplo de Configuración Avanzada (<code>settings.json</code>):</strong>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">&quot;mcpServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">&quot;local-db&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;node&quot;</span><span class="p">,</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">      </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/path/to/server.js&quot;</span><span class="p">],</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">      </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./scripts/db&quot;</span><span class="p">,</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">      </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">        </span><span class="nt">&quot;DB_PASS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${DATABASE_PASSWORD}&quot;</span><span class="p">,</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">        </span><span class="nt">&quot;DB_HOST&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${DATABASE_HOST:-localhost}&quot;</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">      </span><span class="nt">&quot;trust&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">      </span><span class="nt">&quot;excludeTools&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;drop_table&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;truncate_db&quot;</span><span class="p">]</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">    </span><span class="nt">&quot;remote-api&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">      </span><span class="nt">&quot;httpUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://api.empresa.com/mcp&quot;</span><span class="p">,</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">      </span><span class="nt">&quot;headers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">        </span><span class="nt">&quot;Authorization&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bearer ${API_TOKEN}&quot;</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">      </span><span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">      </span><span class="nt">&quot;includeTools&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;fetch_data&quot;</span><span class="p">]</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<p><img alt="Gemini Clickup MCP" src="../../attachments/clickup_gemini_01.png" /></p>
+<p><em>Fuentes: <a href="https://geminicli.com/docs/tools/mcp-server/">Gemini CLI: MCP Server Setup</a> | <a href="https://geminicli.com/docs/reference/configuration/#mcpservers">Configuration Reference</a></em></p>
+<h2 id="custom-commands">Custom Commands<a class="headerlink" href="#custom-commands" title="Permanent link">&para;</a></h2>
+<p>Los Custom Commands permiten guardar y reutilizar prompts frecuentes como atajos personales dentro de Gemini CLI. Se invocan con la sintaxis <code>/nombre</code> directamente en el chat.</p>
+<h3 id="ubicaciones-y-precedencia">Ubicaciones y Precedencia<a class="headerlink" href="#ubicaciones-y-precedencia" title="Permanent link">&para;</a></h3>
+<p>Gemini CLI carga comandos desde dos ubicaciones en este orden: primero los globales del usuario, luego los del proyecto. Si un comando de proyecto tiene el mismo nombre que uno global, el de proyecto tiene prioridad.</p>
+<h3 id="estructura-de-directorios_1">Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios_1" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>~/.gemini/commands/              (Global — disponible en cualquier proyecto)
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    └── refactor/
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        └── pure.toml            (invocado como /refactor:pure)
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>mi-proyecto/
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>└── .gemini/
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    └── commands/                (Proyecto — compartido con el equipo via git)
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>        └── git/
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>            └── commit.toml      (invocado como /git:commit)
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Los subdirectorios crean namespaces. El separador <code>/</code> o <code>\</code> se convierte en <code>:</code>. Ejemplo: <code>git/commit.toml</code> → <code>/git:commit</code>. Tras modificar archivos <code>.toml</code>, ejecuta <code>/commands reload</code> para recargar sin reiniciar.</p>
+</div>
+<h3 id="formato-toml-v1">Formato TOML (v1)<a class="headerlink" href="#formato-toml-v1" title="Permanent link">&para;</a></h3>
+<p>Cada comando es un archivo <code>.toml</code> con dos campos: <code>prompt</code> (obligatorio) y <code>description</code> (opcional, se muestra en <code>/help</code>).</p>
+<h4 id="ejemplo-comando-basico-refactorpuretoml">Ejemplo: Comando Básico (<code>refactor/pure.toml</code>)<a class="headerlink" href="#ejemplo-comando-basico-refactorpuretoml" title="Permanent link">&para;</a></h4>
+<div class="language-toml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Invoked via: /refactor:pure</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Refactors the provided code into a pure function.&quot;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">prompt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="s2">Please analyze the code in the current context.</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="s2">Refactor it into a pure function. Your response must include:</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="s2">1. The refactored function code block.</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="s2">2. A brief explanation of the key changes made.</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="s2">&quot;&quot;&quot;</span>
+</span></code></pre></div>
+<h3 id="manejo-de-argumentos">Manejo de Argumentos<a class="headerlink" href="#manejo-de-argumentos" title="Permanent link">&para;</a></h3>
+<p>Los comandos soportan cuatro mecanismos de inyección dinámica:</p>
+<h4 id="args-inyeccion-de-argumentos-del-usuario"><code>{{args}}</code> — Inyección de Argumentos del Usuario<a class="headerlink" href="#args-inyeccion-de-argumentos-del-usuario" title="Permanent link">&para;</a></h4>
+<p>Reemplaza el placeholder <code>{{args}}</code> con el texto escrito después del nombre del comando.</p>
+<div class="language-toml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Invoked via: /git:fix &quot;Button is misaligned&quot;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Generates a fix for a given issue.&quot;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">prompt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Please provide a code fix for the issue described here: {{args}}.&quot;</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Important</p>
+<p>Cuando <code>{{args}}</code> se usa dentro de un bloque <code>!{...}</code> (shell), los argumentos son <strong>auto-escapados</strong> para prevenir inyección de comandos.</p>
+</div>
+<h4 id="ejecucion-de-comandos-shell-e-inyeccion-de-output"><code>!{...}</code> — Ejecución de Comandos Shell e Inyección de Output<a class="headerlink" href="#ejecucion-de-comandos-shell-e-inyeccion-de-output" title="Permanent link">&para;</a></h4>
+<p>Ejecuta un comando de shell y reemplaza el bloque con su output. El CLI solicita confirmación de seguridad antes de ejecutar.</p>
+<p><div class="language-toml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Invoked via: /git:commit</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Generates a Git commit message based on staged changes.&quot;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">prompt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="s2">Please generate a Conventional Commit message based on the following git diff:</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="s2">```diff</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="s2">!{git diff --staged}</span>
+</span></code></pre></div>
+"""
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>#### `@{...}` — Inyección de Contenido de Archivos
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>Reemplaza el bloque con el contenido de un archivo o el listing de un directorio. Soporta imágenes, PDFs y audio (multimodal). Respeta `.gitignore` y `.geminiignore`. Se procesa **antes** de `!{...}` y `{{args}}`.
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>```toml
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a># Invoked via: /review FileCommandLoader.ts
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>description = &quot;Reviews the provided file using a best practice guide.&quot;
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>prompt = &quot;&quot;&quot;
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>You are an expert code reviewer. Review {{args}}.
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>Use the following best practices:
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>@{docs/best-practices.md}
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>&quot;&quot;&quot;
+</span></code></pre></div></p>
+<h4 id="default-handling-sin-args-explicito">Default Handling — Sin <code>{{args}}</code> Explícito<a class="headerlink" href="#default-handling-sin-args-explicito" title="Permanent link">&para;</a></h4>
+<p>Si el prompt no contiene <code>{{args}}</code>, el CLI <strong>añade el comando completo al final del prompt</strong> separado por dos saltos de línea. Útil para comandos conversacionales como <code>/changelog 1.2.0 added "New feature"</code>.</p>
+<p><em>Fuente: <a href="https://geminicli.com/docs/cli/custom-commands">Gemini CLI: Custom Commands</a></em></p>
+<h2 id="plugins-y-extensiones">Plugins y Extensiones<a class="headerlink" href="#plugins-y-extensiones" title="Permanent link">&para;</a></h2>
+<h3 id="instalacion-de-extensiones">Instalación de Extensiones<a class="headerlink" href="#instalacion-de-extensiones" title="Permanent link">&para;</a></h3>
+<p>Expandibles mediante <code>gemini-extension.json</code>. Se instalan desde GitHub con <code>gemini extensions install &lt;URL&gt;</code>.</p>
+<h3 id="capacidades-extendidas">Capacidades Extendidas<a class="headerlink" href="#capacidades-extendidas" title="Permanent link">&para;</a></h3>
+<p>Inyectan comandos (<code>commands/*.toml</code>), habilidades y reglas de seguridad (<code>Policy Engine</code>). Gestionan credenciales en el keychain y desarrollo iterativo con <code>link</code>.</p>
+<h3 id="estructura-de-directorio_1">Estructura de Directorio<a class="headerlink" href="#estructura-de-directorio_1" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>mi-extension/
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>├── gemini-extension.json
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>├── commands/
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>│   └── custom-cmd.toml
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>└── skills/
+</span></code></pre></div>
+<h4 id="ejemplo-de-instalacion-comando-cli">Ejemplo de Instalación (Comando CLI)<a class="headerlink" href="#ejemplo-de-instalacion-comando-cli" title="Permanent link">&para;</a></h4>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>gemini<span class="w"> </span>extensions<span class="w"> </span>install<span class="w"> </span>https://github.com/google/gemini-cli-github-extension
+</span></code></pre></div>
+<em>Fuentes: <a href="https://geminicli.com/docs/extensions/">Gemini CLI: Extensions Guide</a> | <a href="https://geminicli.com/docs/extensions/writing-extensions/">Writing Extensions</a> | <a href="https://geminicli.com/docs/extensions/best-practices/">Best Practices</a> | <a href="https://geminicli.com/docs/extensions/reference/">Reference</a></em></p>
+<h2 id="hooks-disparadores">Hooks (Disparadores)<a class="headerlink" href="#hooks-disparadores" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Consulta <strong><a href="../../concepts/hooks/">Hooks: Interceptación Determinista</a></strong> para la referencia completa de eventos, protocolo stdin/stdout, scripts de producción y anti-patrones.</p>
+</div>
+<p>En Gemini CLI, los hooks se configuran en el objeto <code>hooks</code> de <code>settings.json</code>. La comunicación es via JSON estricto por stdin; el script puede responder con un JSON en stdout para modificar el contexto o simplemente retornar un exit code para permitir o bloquear.</p>
+<h3 id="eventos-disponibles">Eventos Disponibles<a class="headerlink" href="#eventos-disponibles" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Evento</th>
+<th style="text-align: left;">Momento de Disparo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>BeforeTool</code></td>
+<td style="text-align: left;">Antes de ejecutar cualquier herramienta (filtrable por <code>toolName</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>AfterTool</code></td>
+<td style="text-align: left;">Después de que la herramienta retorna su resultado</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>BeforeInput</code></td>
+<td style="text-align: left;">Cuando el usuario envía un mensaje al agente</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>AfterResponse</code></td>
+<td style="text-align: left;">Cuando el agente termina de generar su respuesta</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>SessionEnd</code></td>
+<td style="text-align: left;">Cuando la sesión finaliza</td>
+</tr>
+</tbody>
+</table>
+<h3 id="estructura-de-directorio_2">Estructura de Directorio<a class="headerlink" href="#estructura-de-directorio_2" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>mi-proyecto/
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>└── .gemini/
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    ├── settings.json
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    └── scripts/
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>        └── validate-tool.sh
+</span></code></pre></div>
+<h3 id="ejemplo-de-configuracion-settingsjson">Ejemplo de Configuración (<code>settings.json</code>)<a class="headerlink" href="#ejemplo-de-configuracion-settingsjson" title="Permanent link">&para;</a></h3>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="p">{</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="nt">&quot;hooks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="nt">&quot;BeforeTool&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">      </span><span class="p">{</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">        </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./scripts/validate-bash.sh&quot;</span><span class="p">,</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">        </span><span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">        </span><span class="nt">&quot;matcher&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">          </span><span class="nt">&quot;toolName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;bash&quot;</span><span class="p">]</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">    </span><span class="nt">&quot;AfterResponse&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">      </span><span class="p">{</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">        </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./scripts/log-session.sh&quot;</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">    </span><span class="p">]</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="input-completo-via-stdin">Input Completo via stdin<a class="headerlink" href="#input-completo-via-stdin" title="Permanent link">&para;</a></h3>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="p">{</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span><span class="nt">&quot;session_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abc-123&quot;</span><span class="p">,</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span><span class="nt">&quot;transcript_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/tmp/gemini-transcript-abc123.json&quot;</span><span class="p">,</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/user/mi-proyecto&quot;</span><span class="p">,</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">  </span><span class="nt">&quot;hook_event_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BeforeTool&quot;</span><span class="p">,</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">  </span><span class="nt">&quot;tool_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bash&quot;</span><span class="p">,</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">  </span><span class="nt">&quot;tool_input&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">    </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rm -rf logs/&quot;</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-11T17:00:00Z&quot;</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="ejemplo-bloqueo-de-comandos-destructivos-validate-bashsh">Ejemplo: Bloqueo de Comandos Destructivos (<code>validate-bash.sh</code>)<a class="headerlink" href="#ejemplo-bloqueo-de-comandos-destructivos-validate-bashsh" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="ch">#!/usr/bin/env bash</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1"># Reads the bash command from stdin and blocks destructive patterns.</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="nv">INPUT</span><span class="o">=</span><span class="k">$(</span>cat<span class="k">)</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="nv">COMMAND</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INPUT</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.tool_input.command // &quot;&quot;&#39;</span><span class="k">)</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="k">if</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$COMMAND</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-qE<span class="w"> </span><span class="s2">&quot;rm\s+-rf|DROP TABLE|git push\s+--force&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;BLOCKED: Destructive command detected: </span><span class="nv">$COMMAND</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">2</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="k">fi</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>El campo <code>matcher.toolName</code> acepta array de strings. Si se omite, el hook se dispara para <strong>todas</strong> las tools. Siempre filtra por herramienta específica en hooks de seguridad para evitar overhead innecesario.</p>
+</div>
+<p><em>Fuente: <a href="https://geminicli.com/docs/hooks/reference/">Gemini CLI: Hooks Reference</a></em></p>
+<h2 id="subagentes-y-orquestadores">Subagentes y Orquestadores<a class="headerlink" href="#subagentes-y-orquestadores" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Consulta <strong><a href="../../concepts/subagentes/">Subagentes: Arquitectura y Patrones</a></strong> para estrategias generales de orquestación, contratos de datos entre agentes y housekeeping antes de diseñar tu sistema.</p>
+</div>
+<p>En Gemini CLI, los subagentes son archivos <code>.md</code> en <code>.gemini/agents/</code>. El body completo del archivo es el <strong>system prompt del especialista</strong> — no hay separación entre instrucciones y cuerpo como en otros sistemas. El agente principal decide cuándo invocarlos leyendo su <code>description</code> semánticamente, o pueden invocarse directamente con <code>@nombre</code>. Un aspecto crítico de seguridad: el <code>AgentRegistry</code> oculta todos los demás subagentes por defecto para prevenir recursión no controlada — un subagente solo puede invocar a otro si lo lista explícitamente en su campo <code>tools</code>.</p>
+<h3 id="aislamiento-y-proteccion-de-recursion">Aislamiento y Protección de Recursión<a class="headerlink" href="#aislamiento-y-proteccion-de-recursion" title="Permanent link">&para;</a></h3>
+<p>Para prevenir bucles infinitos y consumo excesivo de tokens, el <code>AgentRegistry</code> oculta otros subagentes por defecto.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Un subagente NO puede invocar a otro de forma automática (incluso usando el wildcard <code>*</code>). Para permitir la orquestación, los subagentes deben listarse <strong>explícitamente</strong> por nombre en el campo <code>tools</code>.</p>
+</div>
+<p><em>Fuente: <a href="https://geminicli.com/docs/core/subagents/#isolation-and-recursion-protection">Gemini CLI: Subagents Isolation</a></em></p>
+<h3 id="subagentes-integrados">Subagentes Integrados<a class="headerlink" href="#subagentes-integrados" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Proposito</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>codebase_investigator</code></td>
+<td>Analisis profundo de codigo y dependencias</td>
+<td>Activo por defecto</td>
+</tr>
+<tr>
+<td><code>cli_help</code></td>
+<td>Experto en comandos y configuracion de Gemini CLI</td>
+<td>Activo por defecto</td>
+</tr>
+<tr>
+<td><code>generalist_agent</code></td>
+<td>Enrutador interno de tareas a otros subagentes</td>
+<td>Activo por defecto</td>
+</tr>
+<tr>
+<td><code>browser_agent</code></td>
+<td>Automatizacion de navegador web via Chrome DevTools MCP</td>
+<td><strong>Desactivado por defecto</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="estructura-de-directorios_2">Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios_2" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>~/.gemini/agents/                (Global — personales, no compartidos)
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>    └── security-auditor.md
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>~/.gemini/settings.json          (Global — overrides de subagentes integrados)
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>mi-proyecto/
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>└── .gemini/
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>    └── agents/                  (Proyecto — compartidos con el equipo via git)
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>        ├── dev-orchestrator.md
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>        ├── code-writer.md
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>        └── code-reviewer.md
+</span></code></pre></div>
+<h3 id="schema-del-frontmatter">Schema del Frontmatter<a class="headerlink" href="#schema-del-frontmatter" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descripcion</th>
+<th>Valores</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Identificador unico del subagente</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>Cuando invocarlo (el agente principal lo lee para decidir)</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td>Tipo de agente</td>
+<td><code>local</code> (default) / <code>remote</code> (Agent2Agent via A2A)</td>
+</tr>
+<tr>
+<td><code>tools</code></td>
+<td>Lista de tools permitidas (allowlist). Soporta wildcards.</td>
+<td>lista o wildcard</td>
+</tr>
+<tr>
+<td><code>mcpServers</code></td>
+<td>Servidores MCP exclusivos de este agente (inline en el frontmatter)</td>
+<td>objeto <code>{comando, args}</code></td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>Modelo a usar</td>
+<td>ID completo o <code>inherit</code></td>
+</tr>
+<tr>
+<td><code>temperature</code></td>
+<td>Controla la creatividad y predictibilidad. <strong>0.0</strong> es ideal para lógica, código y tareas técnicas (determinista). <strong>2.0</strong> es el máximo nivel de creatividad/aleatoriedad.</td>
+<td>número (0.0 - 2.0)</td>
+</tr>
+<tr>
+<td><code>max_turns</code></td>
+<td>Máximo de iteraciones que el agente puede realizar antes de detenerse (default: 30).</td>
+<td>número</td>
+</tr>
+<tr>
+<td><code>timeout_mins</code></td>
+<td>Límite de tiempo total en minutos para que el agente complete la tarea (default: 10).</td>
+<td>número</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Para la mayoría de las tareas de programación y refactorización, se recomienda mantener la <code>temperature</code> entre <strong>0.0</strong> y <strong>0.2</strong> para asegurar que el modelo siga estrictamente las instrucciones y los estándares del proyecto.</p>
+</div>
+<h3 id="wildcards-de-tools">Wildcards de Tools<a class="headerlink" href="#wildcards-de-tools" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Wildcard</th>
+<th>Efecto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*</code></td>
+<td>Todas las tools built-in y de MCP conectados (no incluye otros agentes)</td>
+</tr>
+<tr>
+<td><code>mcp_*</code></td>
+<td>Todas las tools de cualquier MCP server activo</td>
+</tr>
+<tr>
+<td><code>mcp_mi-servidor_*</code></td>
+<td>Todas las tools del MCP server especifico <code>mi-servidor</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="ejemplo-auditor-de-seguridad-mcp-aislado">Ejemplo: Auditor de Seguridad (MCP Aislado)<a class="headerlink" href="#ejemplo-auditor-de-seguridad-mcp-aislado" title="Permanent link">&para;</a></h4>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>---
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>name: security-auditor
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>description: Finds security vulnerabilities. Use when reviewing code before merging.
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>kind: local
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>tools:
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>read_file
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>grep_search
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>mcp_github_*
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>mcpServers:
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>  my-sonar:
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>    command: node
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>    args: [./tools/sonar-mcp.js]
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>model: gemini-3-flash-preview
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>temperature: 0.2
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>max_turns: 10
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="gu">timeout_mins: 5</span>
+</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="gu">---</span>
+</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>You are a ruthless Security Auditor. Your ONLY job is to find vulnerabilities.
+</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>
+</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>Focus exclusively on:
+</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="k">1.</span> SQL Injection and command injection
+</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="k">2.</span> Hardcoded credentials and API keys
+</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="k">3.</span> XSS and unsafe file operations
+</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>
+</span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>Apply the rules from the project&#39;s AGENTS.md (already loaded in your context via the CLI).
+</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>Do NOT fix anything. Only report with severity level and suggested remediation.
+</span></code></pre></div>
+<h4 id="ejemplo-orquestador-de-desarrollo">Ejemplo: Orquestador de Desarrollo<a class="headerlink" href="#ejemplo-orquestador-de-desarrollo" title="Permanent link">&para;</a></h4>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>---
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>name: dev-orchestrator
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>description: Manages the full dev cycle. Delegates writing and reviewing to sub-specialists.
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>kind: local
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>tools:
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>read_file
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>code-writer
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>code-reviewer
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>model: gemini-3-pro
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="gu">max_turns: 25</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="gu">---</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>You are the Development Manager. You coordinate, NOT code.
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>Workflow:
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="k">1.</span> Receive the requirement from the user.
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="k">2.</span> Delegate implementation to the <span class="sb">`code-writer`</span> agent.
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="k">3.</span> Once done, delegate validation to <span class="sb">`code-reviewer`</span>.
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="k">4.</span> If <span class="sb">`code-reviewer`</span> reports issues, send them back to <span class="sb">`code-writer`</span>.
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="k">5.</span> Only finalize when <span class="sb">`code-reviewer`</span> approves. Never write code yourself.
+</span></code></pre></div>
+<h3 id="overrides-y-politicas">Overrides y Políticas<a class="headerlink" href="#overrides-y-politicas" title="Permanent link">&para;</a></h3>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="p">{</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span><span class="nt">&quot;agents&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="nt">&quot;overrides&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">      </span><span class="nt">&quot;codebase_investigator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">        </span><span class="nt">&quot;modelConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gemini-3-flash-preview&quot;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">        </span><span class="nt">&quot;runConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;maxTurns&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">      </span><span class="nt">&quot;browser_agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="w">    </span><span class="nt">&quot;browser&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="w">      </span><span class="nt">&quot;sessionMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;persistent&quot;</span><span class="p">,</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="w">      </span><span class="nt">&quot;allowedDomains&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;github.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;internal.company.com&quot;</span><span class="p">]</span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="politicas-por-subagente-policytoml">Políticas por Subagente (<code>policy.toml</code>)<a class="headerlink" href="#politicas-por-subagente-policytoml" title="Permanent link">&para;</a></h4>
+<p><div class="language-toml highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># This rule only applies when the security-auditor subagent is active.</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">rules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">subagent</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;security-auditor&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tool_pattern</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;write_file&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">decision</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;deny&quot;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="p">]</span>
+</span></code></pre></div>
+<em>Fuentes: <a href="https://geminicli.com/docs/core/subagents/">Gemini CLI: Subagents</a> | <a href="https://geminicli.com/docs/reference/policy-engine/">Policy Engine</a></em></p>
+<h2 id="model-steering-direccion-del-modelo">Model Steering (Dirección del Modelo)<a class="headerlink" href="#model-steering-direccion-del-modelo" title="Permanent link">&para;</a></h2>
+<p>Model Steering permite proporcionar guías y feedback en tiempo real a Gemini CLI mientras está ejecutando una tarea activa. Esto permite corregir el rumbo, añadir contexto faltante o saltar pasos innecesarios sin tener que detener y reiniciar el agente.</p>
+<h3 id="activacion-y-configuracion_1">Activación y Configuración<a class="headerlink" href="#activacion-y-configuracion_1" title="Permanent link">&para;</a></h3>
+<p>Esta es una funcionalidad <strong>experimental</strong> y está desactivada por defecto. Puede habilitarse mediante el comando <code>/settings</code> o editando el archivo <code>settings.json</code>.</p>
+<p><strong>Estructura de Directorio:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>~/.gemini/
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>└── settings.json
+</span></code></pre></div></p>
+<p><strong>Ejemplo de Configuración (<code>settings.json</code>):</strong>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="p">{</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span><span class="nt">&quot;experimental&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="nt">&quot;modelSteering&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<h3 id="uso-en-tiempo-real">Uso en Tiempo Real<a class="headerlink" href="#uso-en-tiempo-real" title="Permanent link">&para;</a></h3>
+<p>Cuando está activado, cualquier texto escrito mientras el agente trabaja (con el spinner visible) se trata como una sugerencia de dirección (<em>steering hint</em>):</p>
+<ol>
+<li>Se escribe el feedback en la caja de entrada (ej: <em>"En realidad, las utilidades están en src/common/utils"</em>).</li>
+<li>Se presiona <strong>Enter</strong>.</li>
+<li>Gemini CLI confirma la recepción y la inyecta directamente en el contexto del modelo para el siguiente turno.</li>
+</ol>
+<h3 id="casos-de-uso-comunes">Casos de Uso Comunes<a class="headerlink" href="#casos-de-uso-comunes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Corregir rutas:</strong> <em>"Busca las interfaces en /types en lugar de /models"</em>.</li>
+<li><strong>Saltar pasos:</strong> <em>"Salta las pruebas unitarias por ahora y enfócate en la implementación"</em>.</li>
+<li><strong>Añadir contexto:</strong> <em>"El tipo User está definido en packages/core/types.ts"</em>.</li>
+<li><strong>Redirigir el esfuerzo:</strong> <em>"Deja de buscar en el código y empieza a redactar el plan"</em>.</li>
+</ul>
+<p><em>Fuente: <a href="https://geminicli.com/docs/cli/model-steering/">Gemini CLI: Model Steering</a></em></p>
+<h2 id="automatizacion-headless-mode">Automatización (Headless Mode)<a class="headerlink" href="#automatizacion-headless-mode" title="Permanent link">&para;</a></h2>
+<p>Gemini CLI detecta automáticamente cuándo no hay TTY disponible (ej. dentro de un pipeline de GitHub Actions) y entra en modo no interactivo. También puede forzarse explícitamente. En modo headless emite eventos estructurados en lugar de texto conversacional, con códigos de salida específicos que permiten distintos tipos de manejo de errores en scripts.</p>
+<h3 id="activacion">Activación<a class="headerlink" href="#activacion" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Detección automática — cuando no hay TTY (pipes, CI/CD)</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Generate a dependency audit report&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gemini
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1"># Activación explícita con prompt</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>gemini<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Analyze the performance bottlenecks in src/db/&quot;</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="c1"># Modo yolo — sin confirmaciones interactivas (todos los permisos son auto-aprobados)</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>gemini<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Refactor all Promise chains to async/await&quot;</span><span class="w"> </span>--yolo
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="c1"># Output JSON estructurado para procesamiento en pipelines</span>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>gemini<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Review the failing tests&quot;</span><span class="w"> </span>--output-format<span class="w"> </span>json<span class="w"> </span>&gt;<span class="w"> </span>findings.json
+</span></code></pre></div>
+<h3 id="flags-de-control">Flags de Control<a class="headerlink" href="#flags-de-control" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Flag</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>-p "prompt"</code></td>
+<td style="text-align: left;">Prompt inicial en modo headless</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--yolo</code></td>
+<td style="text-align: left;">Desactiva todas las confirmaciones interactivas</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--output-format json</code></td>
+<td style="text-align: left;">Output como JSON estructurado (eventos tipados)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--model ID</code></td>
+<td style="text-align: left;">Override del modelo para esta ejecución</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--max-turns N</code></td>
+<td style="text-align: left;">Límite de iteraciones (default: 30)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--timeout-mins N</code></td>
+<td style="text-align: left;">Tiempo máximo de ejecución en minutos</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--no-color</code></td>
+<td style="text-align: left;">Desactiva colores ANSI (recomendado en CI)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tabla-de-codigos-de-salida">Tabla de Códigos de Salida<a class="headerlink" href="#tabla-de-codigos-de-salida" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Significado</th>
+<th style="text-align: left;">Acción en Script</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>0</code></td>
+<td style="text-align: left;">Éxito — tarea completada</td>
+<td style="text-align: left;"><code>continue</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>1</code></td>
+<td style="text-align: left;">Error genérico</td>
+<td style="text-align: left;"><code>fail pipeline</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>42</code></td>
+<td style="text-align: left;">Input requerido — el agente esperaba confirmación</td>
+<td style="text-align: left;">Reintentar con <code>--yolo</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>53</code></td>
+<td style="text-align: left;">Límite de turnos alcanzado (<code>max_turns</code>)</td>
+<td style="text-align: left;">Aumentar límite o revisar prompt</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ejemplo-auditoria-nocturna-bash-github-actions">Ejemplo: Auditoría Nocturna (Bash + GitHub Actions)<a class="headerlink" href="#ejemplo-auditoria-nocturna-bash-github-actions" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nightly Dependency Audit</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nt">on</span><span class="p">:</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">  </span><span class="nt">schedule</span><span class="p">:</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cron</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0</span><span class="nv"> </span><span class="s">4</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">1-5&#39;</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="nt">jobs</span><span class="p">:</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="w">  </span><span class="nt">audit</span><span class="p">:</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run dependency audit</span>
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-26-15"><a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a><span class="w">          </span><span class="no">gemini -p &quot;</span>
+</span><span id="__span-26-16"><a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a><span class="w">            </span><span class="no">Audit the package.json dependencies:</span>
+</span><span id="__span-26-17"><a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a><span class="w">            </span><span class="no">1. Identify packages with known CVEs using npm audit</span>
+</span><span id="__span-26-18"><a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a><span class="w">            </span><span class="no">2. Flag packages more than 2 major versions behind</span>
+</span><span id="__span-26-19"><a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a><span class="w">            </span><span class="no">3. Return results as JSON with package, issue, and severity fields</span>
+</span><span id="__span-26-20"><a id="__codelineno-26-20" name="__codelineno-26-20" href="#__codelineno-26-20"></a><span class="w">          </span><span class="no">&quot; \</span>
+</span><span id="__span-26-21"><a id="__codelineno-26-21" name="__codelineno-26-21" href="#__codelineno-26-21"></a><span class="w">            </span><span class="no">--yolo \</span>
+</span><span id="__span-26-22"><a id="__codelineno-26-22" name="__codelineno-26-22" href="#__codelineno-26-22"></a><span class="w">            </span><span class="no">--output-format json \</span>
+</span><span id="__span-26-23"><a id="__codelineno-26-23" name="__codelineno-26-23" href="#__codelineno-26-23"></a><span class="w">            </span><span class="no">--max-turns 15 \</span>
+</span><span id="__span-26-24"><a id="__codelineno-26-24" name="__codelineno-26-24" href="#__codelineno-26-24"></a><span class="w">            </span><span class="no">--no-color &gt; audit.json</span>
+</span><span id="__span-26-25"><a id="__codelineno-26-25" name="__codelineno-26-25" href="#__codelineno-26-25"></a>
+</span><span id="__span-26-26"><a id="__codelineno-26-26" name="__codelineno-26-26" href="#__codelineno-26-26"></a><span class="w">          </span><span class="no"># Post results as PR comment or Slack notification</span>
+</span><span id="__span-26-27"><a id="__codelineno-26-27" name="__codelineno-26-27" href="#__codelineno-26-27"></a><span class="w">          </span><span class="no">cat audit.json | jq &#39;.findings[] | select(.severity == &quot;critical&quot;)&#39;</span>
+</span><span id="__span-26-28"><a id="__codelineno-26-28" name="__codelineno-26-28" href="#__codelineno-26-28"></a><span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+</span><span id="__span-26-29"><a id="__codelineno-26-29" name="__codelineno-26-29" href="#__codelineno-26-29"></a><span class="w">          </span><span class="nt">GEMINI_API_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GEMINI_API_KEY }}</span>
+</span><span id="__span-26-30"><a id="__codelineno-26-30" name="__codelineno-26-30" href="#__codelineno-26-30"></a>
+</span><span id="__span-26-31"><a id="__codelineno-26-31" name="__codelineno-26-31" href="#__codelineno-26-31"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Notify on critical findings</span>
+</span><span id="__span-26-32"><a id="__codelineno-26-32" name="__codelineno-26-32" href="#__codelineno-26-32"></a><span class="w">        </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">failure()</span>
+</span><span id="__span-26-33"><a id="__codelineno-26-33" name="__codelineno-26-33" href="#__codelineno-26-33"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-26-34"><a id="__codelineno-26-34" name="__codelineno-26-34" href="#__codelineno-26-34"></a><span class="w">          </span><span class="no">curl -X POST ${{ secrets.SLACK_WEBHOOK }} \</span>
+</span><span id="__span-26-35"><a id="__codelineno-26-35" name="__codelineno-26-35" href="#__codelineno-26-35"></a><span class="w">            </span><span class="no">-d &#39;{&quot;text&quot;: &quot;Critical vulnerabilities found in nightly audit. Check GitHub Actions.&quot;}&#39;</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>El código de salida <code>42</code> es exclusivo de Gemini CLI e indica que el agente necesitaba input interactivo para continuar. En pipelines, diseña los prompts para ser completamente autónomos o añade <code>--yolo</code> para aprobar automáticamente cualquier confirmación pendiente.</p>
+</div>
+<p><em>Fuente: <a href="https://geminicli.com/docs/cli/headless/">Gemini CLI: Headless Tutorial</a></em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

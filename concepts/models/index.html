@@ -1,0 +1,3483 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación y metodologías para el desarrollo de agentes de software AI-Native.">
+      
+      
+        <meta name="author" content="Fran">
+      
+      
+      
+        <link rel="prev" href="../hooks/">
+      
+      
+        <link rel="next" href="../automatizacion/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Modelos de IA - Guía Completa de Agentes de IA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modelos-de-ia-en-agentes-guia-completa" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Guía Completa de Agentes de IA" class="md-header__button md-logo" aria-label="Guía Completa de Agentes de IA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guía Completa de Agentes de IA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modelos de IA
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guía Completa de Agentes de IA" class="md-nav__button md-logo" aria-label="Guía Completa de Agentes de IA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guía Completa de Agentes de IA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai-learning-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gestión de Contexto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subagentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subagentes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelos de IA
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelos de IA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-que-es-un-modelo-de-lenguaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ¿Qué es un modelo de lenguaje?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-conceptos-universales-el-vocabulario-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Conceptos universales: el vocabulario base
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Conceptos universales: el vocabulario base">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tokens
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ventana-de-contexto-context-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventana de contexto (Context Window)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temperatura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Temperatura
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokens-de-razonamiento-thinking-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tokens de razonamiento (Thinking Tokens)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-el-concepto-de-thinking-razonamiento-profundo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. El concepto de "Thinking" (Razonamiento profundo)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. El concepto de &#34;Thinking&#34; (Razonamiento profundo)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-existe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué existe?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#niveles-de-thinking-por-proveedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Niveles de thinking por proveedor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ventana-de-contexto-larga-que-cambia-con-1-millon-de-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Ventana de contexto larga: qué cambia con 1 millón de tokens
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Ventana de contexto larga: qué cambia con 1 millón de tokens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cuando-todavia-necesitas-rag-con-ventanas-grandes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cuándo todavía necesitas RAG con ventanas grandes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-modelos-por-proveedor-catalogo-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Modelos por proveedor: catálogo activo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Modelos por proveedor: catálogo activo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-openai-familia-gpt-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 OpenAI — Familia GPT-5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-anthropic-familia-claude-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Anthropic — Familia Claude 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-google-familia-gemini-25-y-3x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Google — Familia Gemini 2.5 y 3.x
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-que-modelo-usar-segun-tu-tarea-referencia-cruzada-entre-proveedores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Qué modelo usar según tu tarea: referencia cruzada entre proveedores
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Qué modelo usar según tu tarea: referencia cruzada entre proveedores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disenar-arquitectura-y-resolver-bugs-complejos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseñar arquitectura y resolver bugs complejos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codificacion-diaria-de-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codificación diaria de producción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subagentes-de-busqueda-parseo-y-alto-volumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subagentes de búsqueda, parseo y alto volumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigacion-profunda-multi-fuente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Investigación profunda multi-fuente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#procesar-documentos-y-repositorios-masivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procesar documentos y repositorios masivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-generar-y-revisar-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing: generar y revisar tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-guia-de-seleccion-rapida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Guía de selección rápida
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-modelos-que-ya-no-debes-usar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Modelos que ya no debes usar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-benchmarks-y-evaluacion-de-modelos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Benchmarks y Evaluación de Modelos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Benchmarks y Evaluación de Modelos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-comparativa-por-categoria-todos-los-modelos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Comparativa por Categoría (Todos los modelos)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.1 Comparativa por Categoría (Todos los modelos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grupo-a-desarrollo-de-codigo-codigo-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grupo A — Desarrollo de Código (Código · Testing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grupo-b-analisis-e-inteligencia-razonamiento-documentacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grupo B — Análisis e Inteligencia (Razonamiento · Documentación)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grupo-c-datos-e-integracion-de-herramientas-busquedaparseo-tool-use-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grupo C — Datos e Integración de Herramientas (Búsqueda/Parseo · Tool Use / MCP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-comparativa-interna-por-proveedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Comparativa Interna por Proveedor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.2 Comparativa Interna por Proveedor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openai-familia-gpt-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI — Familia GPT-5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anthropic-familia-claude-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anthropic — Familia Claude 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-familia-gemini-25-y-3x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google — Familia Gemini 2.5 y 3.x
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-comparativa-visual-entre-modelos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Comparativa Visual entre Modelos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.3 Comparativa Visual entre Modelos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ligeros-busqueda-subagentes-y-alto-volumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ligeros / Búsqueda (subagentes y alto volumen)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workhorse-dia-a-dia-desarrollo-interactivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workhorse / Día a Día (desarrollo interactivo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maximo-esfuerzo-arquitectura-y-razonamiento-critico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Máximo Esfuerzo (arquitectura y razonamiento crítico)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-benchmarks-por-categoria-especializada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Benchmarks por Categoría Especializada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.4 Benchmarks por Categoría Especializada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agentes-autonomos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agentes Autónomos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escritura-y-seguimiento-de-instrucciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escritura y Seguimiento de Instrucciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multimodalidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multimodalidad
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../automatizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automatización Headless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugins y Extensiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Metodolog%C3%ADas%20de%20Ingenier%C3%ADa%20AI-Native/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metodologías de Ingeniería AI-Native
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/cursor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cursor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/claude-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/gemini-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/antigravity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Antigravity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/opencode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/codex-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Codex CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-que-es-un-modelo-de-lenguaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ¿Qué es un modelo de lenguaje?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-conceptos-universales-el-vocabulario-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Conceptos universales: el vocabulario base
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Conceptos universales: el vocabulario base">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tokens
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ventana-de-contexto-context-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventana de contexto (Context Window)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temperatura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Temperatura
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokens-de-razonamiento-thinking-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tokens de razonamiento (Thinking Tokens)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-el-concepto-de-thinking-razonamiento-profundo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. El concepto de "Thinking" (Razonamiento profundo)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. El concepto de &#34;Thinking&#34; (Razonamiento profundo)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-existe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué existe?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#niveles-de-thinking-por-proveedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Niveles de thinking por proveedor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ventana-de-contexto-larga-que-cambia-con-1-millon-de-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Ventana de contexto larga: qué cambia con 1 millón de tokens
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Ventana de contexto larga: qué cambia con 1 millón de tokens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cuando-todavia-necesitas-rag-con-ventanas-grandes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cuándo todavía necesitas RAG con ventanas grandes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-modelos-por-proveedor-catalogo-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Modelos por proveedor: catálogo activo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Modelos por proveedor: catálogo activo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-openai-familia-gpt-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 OpenAI — Familia GPT-5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-anthropic-familia-claude-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Anthropic — Familia Claude 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-google-familia-gemini-25-y-3x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Google — Familia Gemini 2.5 y 3.x
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-que-modelo-usar-segun-tu-tarea-referencia-cruzada-entre-proveedores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Qué modelo usar según tu tarea: referencia cruzada entre proveedores
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Qué modelo usar según tu tarea: referencia cruzada entre proveedores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disenar-arquitectura-y-resolver-bugs-complejos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseñar arquitectura y resolver bugs complejos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codificacion-diaria-de-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codificación diaria de producción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subagentes-de-busqueda-parseo-y-alto-volumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subagentes de búsqueda, parseo y alto volumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigacion-profunda-multi-fuente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Investigación profunda multi-fuente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#procesar-documentos-y-repositorios-masivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procesar documentos y repositorios masivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-generar-y-revisar-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing: generar y revisar tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-guia-de-seleccion-rapida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Guía de selección rápida
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-modelos-que-ya-no-debes-usar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Modelos que ya no debes usar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-benchmarks-y-evaluacion-de-modelos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Benchmarks y Evaluación de Modelos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Benchmarks y Evaluación de Modelos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-comparativa-por-categoria-todos-los-modelos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Comparativa por Categoría (Todos los modelos)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.1 Comparativa por Categoría (Todos los modelos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grupo-a-desarrollo-de-codigo-codigo-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grupo A — Desarrollo de Código (Código · Testing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grupo-b-analisis-e-inteligencia-razonamiento-documentacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grupo B — Análisis e Inteligencia (Razonamiento · Documentación)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grupo-c-datos-e-integracion-de-herramientas-busquedaparseo-tool-use-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grupo C — Datos e Integración de Herramientas (Búsqueda/Parseo · Tool Use / MCP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-comparativa-interna-por-proveedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Comparativa Interna por Proveedor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.2 Comparativa Interna por Proveedor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openai-familia-gpt-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI — Familia GPT-5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anthropic-familia-claude-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anthropic — Familia Claude 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-familia-gemini-25-y-3x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google — Familia Gemini 2.5 y 3.x
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-comparativa-visual-entre-modelos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Comparativa Visual entre Modelos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.3 Comparativa Visual entre Modelos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ligeros-busqueda-subagentes-y-alto-volumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ligeros / Búsqueda (subagentes y alto volumen)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workhorse-dia-a-dia-desarrollo-interactivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workhorse / Día a Día (desarrollo interactivo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maximo-esfuerzo-arquitectura-y-razonamiento-critico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Máximo Esfuerzo (arquitectura y razonamiento crítico)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-benchmarks-por-categoria-especializada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Benchmarks por Categoría Especializada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.4 Benchmarks por Categoría Especializada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agentes-autonomos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agentes Autónomos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escritura-y-seguimiento-de-instrucciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escritura y Seguimiento de Instrucciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multimodalidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multimodalidad
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="modelos-de-ia-en-agentes-guia-completa">Modelos de IA en Agentes: Guía Completa<a class="headerlink" href="#modelos-de-ia-en-agentes-guia-completa" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Última actualización:</strong> 12 de Abril, 2026</p>
+</blockquote>
+<p>Esta guía explica desde cero qué son los modelos de lenguaje que alimentan a los agentes de IA, cómo se diferencian entre sí, y qué significa cada término técnico que aparece en documentación, configuraciones y marketplaces. El objetivo es que puedas elegir el modelo correcto para cada tarea con criterio técnico, no por inercia.</p>
+<hr />
+<h2 id="1-que-es-un-modelo-de-lenguaje">1. ¿Qué es un modelo de lenguaje?<a class="headerlink" href="#1-que-es-un-modelo-de-lenguaje" title="Permanent link">&para;</a></h2>
+<p>Un modelo de lenguaje (LLM, <em>Large Language Model</em>) es el motor de razonamiento que está detrás del agente. Cuando escribes un prompt y el agente responde, ese procesamiento ocurre dentro del modelo. Los agentes (Claude Code, Gemini CLI, Cursor, etc.) son la interfaz — el modelo es la inteligencia.</p>
+<p>Actualmente los proveedores dominantes en el ecosistema de agentes de software son:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Proveedor</th>
+<th style="text-align: left;">Familia de modelos</th>
+<th style="text-align: left;">Documentación oficial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>OpenAI</strong></td>
+<td style="text-align: left;">GPT-5.x</td>
+<td style="text-align: left;">developers.openai.com</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Anthropic</strong></td>
+<td style="text-align: left;">Claude 4.x</td>
+<td style="text-align: left;">platform.claude.com</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Google</strong></td>
+<td style="text-align: left;">Gemini 2.5.x – 3.x</td>
+<td style="text-align: left;">ai.google.dev</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Esta lista refleja el ecosistema actual (Abril 2026). El mercado evoluciona — nuevos proveedores aparecerán y los existentes lanzarán generaciones más avanzadas. Los conceptos de esta guía aplican independientemente del proveedor.</p>
+</div>
+<hr />
+<h2 id="2-conceptos-universales-el-vocabulario-base">2. Conceptos universales: el vocabulario base<a class="headerlink" href="#2-conceptos-universales-el-vocabulario-base" title="Permanent link">&para;</a></h2>
+<p>Antes de comparar modelos, necesitas entender los términos que aparecen en toda la documentación.</p>
+<h3 id="tokens">Tokens<a class="headerlink" href="#tokens" title="Permanent link">&para;</a></h3>
+<p>Un <strong>token</strong> es la unidad de procesamiento del modelo. No es exactamente una palabra ni un caracter — es un fragmento semántico producido por el tokenizador del modelo.</p>
+<p>Como referencia práctica:
+- ~1 palabra en inglés = ~1.3 tokens
+- ~750 palabras = ~1,000 tokens
+- 1,000 líneas de código Python ≈ 3,000–4,000 tokens</p>
+<p>Los tokens importan por dos razones directas:
+1. <strong>Costo</strong>: se paga por millón de tokens de entrada + por millón de tokens de salida.
+2. <strong>Límite</strong>: el modelo tiene un tope de cuántos puede procesar en un solo intercambio (la <em>ventana de contexto</em>).</p>
+<h3 id="ventana-de-contexto-context-window">Ventana de contexto (<em>Context Window</em>)<a class="headerlink" href="#ventana-de-contexto-context-window" title="Permanent link">&para;</a></h3>
+<p>La ventana de contexto es la cantidad total de tokens que el modelo puede "ver" en un solo intercambio: el system prompt + el historial + los archivos adjuntos + la respuesta que genera.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Evolucion historica de ventanas de contexto:
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>GPT-3.5 (2022)         :  4K tokens   = ~3,000 palabras
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>GPT-4 8K (2023)        :  8K tokens   = ~6,000 palabras
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Claude 1 (2023)        : 100K tokens  = ~75,000 palabras
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Gemini 1.5 Pro (2024)  :   1M tokens  = un monorepo completo
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>GPT-5.4 (2026)         :   1M tokens  = analisis de codebases enteras
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>Gemini 3.1 Pro (2026)  :   1M tokens+ = documentos, video, audio y codigo a la vez
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Important</p>
+<p>No confundas ventana de contexto con memoria persistente. La ventana es temporal — existe solo durante la sesión activa. Sin mecanismos de memoria externa (<code>AGENTS.md</code>, caché), cada nueva sesión comienza desde cero.</p>
+</div>
+<h3 id="temperatura">Temperatura<a class="headerlink" href="#temperatura" title="Permanent link">&para;</a></h3>
+<p>La temperatura controla qué tan predecible o variable es la respuesta del modelo:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>temperatura = 0.0  →  Siempre la misma respuesta para el mismo input (maxima precision)
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>temperatura = 0.7  →  Respuestas naturales, ligera variacion (default habitual)
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>temperatura = 1.5  →  Alta variedad, respuestas mas creativas e inesperadas
+</span></code></pre></div>
+<p>Para tareas de código y agentes, temperatura baja (0.0–0.3) produce resultados predecibles. Para generación de contenido creativo, 0.7–1.2 es el rango habitual.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>En los modelos GPT-5.x con reasoning activado (cualquier nivel distinto de <code>none</code>), el parámetro <code>temperature</code> no está disponible — se reemplaza por <code>reasoning.effort</code>.</p>
+</div>
+<p><em>Fuente: <a href="https://developers.openai.com/api/docs/guides/latest-model#gpt-54-parameter-compatibility">OpenAI: GPT-5.4 Parameter Compatibility</a></em></p>
+<h3 id="tokens-de-razonamiento-thinking-tokens">Tokens de razonamiento (<em>Thinking Tokens</em>)<a class="headerlink" href="#tokens-de-razonamiento-thinking-tokens" title="Permanent link">&para;</a></h3>
+<p>Los modelos modernos generan tokens "internos" antes de producir la respuesta visible. Este proceso — llamado <em>chain of thought</em> (CoT) o <em>thinking</em> — no llega al usuario directamente, pero consume tokens y tiempo de cómputo.</p>
+<p>El beneficio es significativo: el modelo puede descomponer problemas complejos paso a paso antes de responder, produciendo outputs de calidad muy superior en tareas de lógica, código y matemáticas.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Cuando ves <code>thinking_level: "high"</code> o <code>reasoning.effort: "medium"</code> en una configuración, estás activando este proceso. En tareas simples de búsqueda o formateo de JSON, desactivarlo reduce la latencia y el costo sin impactar la calidad.</p>
+</div>
+<hr />
+<h2 id="3-el-concepto-de-thinking-razonamiento-profundo">3. El concepto de "Thinking" (Razonamiento profundo)<a class="headerlink" href="#3-el-concepto-de-thinking-razonamiento-profundo" title="Permanent link">&para;</a></h2>
+<p>El término <em>thinking</em> aparece en la documentación de los principales proveedores y se refiere a distintas implementaciones del mismo principio: darle al modelo tiempo computacional adicional para razonar antes de responder.</p>
+<h3 id="por-que-existe">¿Por qué existe?<a class="headerlink" href="#por-que-existe" title="Permanent link">&para;</a></h3>
+<p>Los LLMs generan tokens de izquierda a derecha, sin anticipar los pasos siguientes. Para problemas que requieren planificación (como debuggear un bug que cruza varios archivos), el modelo sin thinking suele equivocarse porque no tiene un "borrador" del plan. El thinking resuelve esto: el modelo genera un razonamiento interno, lo valida, y luego produce la respuesta visible.</p>
+<h3 id="niveles-de-thinking-por-proveedor">Niveles de thinking por proveedor<a class="headerlink" href="#niveles-de-thinking-por-proveedor" title="Permanent link">&para;</a></h3>
+<p><strong>OpenAI (GPT-5.x) — parámetro <code>reasoning.effort</code>:</strong></p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt-5.4&quot;</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;reasoning&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">&quot;effort&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;medium&quot;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Nivel</th>
+<th style="text-align: left;">Cuándo usarlo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>none</code></td>
+<td style="text-align: left;">Formateo, parsing de datos, respuestas simples y rapidas</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>low</code></td>
+<td style="text-align: left;">Codificacion simple, completar templates predecibles</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>medium</code></td>
+<td style="text-align: left;">Uso general diario: implementar features, revisar PRs (default)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>high</code></td>
+<td style="text-align: left;">Bugs complejos que cruzan multiples archivos, diseño de arquitectura</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>xhigh</code></td>
+<td style="text-align: left;">Solo en GPT-5.3-Codex. Problemas extremadamente complejos</td>
+</tr>
+</tbody>
+</table>
+<p><em>Fuente: <a href="https://developers.openai.com/api/docs/guides/latest-model">OpenAI: Latest Model Guide – Reasoning Effort</a></em></p>
+<p><strong>Google (Gemini 3.x) — parámetro <code>thinking_level</code>:</strong></p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gemini-3.1-pro-preview&quot;</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;generationConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">&quot;thinkingConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="nt">&quot;thinkingLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Nivel</th>
+<th style="text-align: left;">Cuándo usarlo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>minimal</code></td>
+<td style="text-align: left;">Respuestas rapidas, bajo costo, tareas triviales</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>low</code></td>
+<td style="text-align: left;">Consultas simples, resumen de texto corto</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>medium</code></td>
+<td style="text-align: left;">Codificacion general, analisis de documentos</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>high</code></td>
+<td style="text-align: left;">Default de Gemini 3. Razonamiento profundo, agentic workflows</td>
+</tr>
+</tbody>
+</table>
+<p><em>Fuente: <a href="https://ai.google.dev/gemini-api/docs/gemini-3">Google: Gemini 3 Developer Guide – Thinking Level</a></em></p>
+<p><strong>Anthropic (Claude 4.x) — Extended Thinking:</strong></p>
+<p>Claude implementa el razonamiento como <em>extended thinking</em>. Cuando está activo, la respuesta incluye un bloque <code>thinking</code> con el razonamiento generado, además de la respuesta final. La variante <em>adaptive thinking</em> ajusta automáticamente la profundidad según la complejidad de cada prompt.</p>
+<p><em>Fuentes: <a href="https://platform.claude.com/docs/en/build-with-claude/extended-thinking">Anthropic: Extended Thinking</a> | <a href="https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking">Anthropic: Adaptive Thinking</a></em></p>
+<hr />
+<h2 id="4-ventana-de-contexto-larga-que-cambia-con-1-millon-de-tokens">4. Ventana de contexto larga: qué cambia con 1 millón de tokens<a class="headerlink" href="#4-ventana-de-contexto-larga-que-cambia-con-1-millon-de-tokens" title="Permanent link">&para;</a></h2>
+<p>Con ventanas pequeñas, los agentes necesitaban técnicas como RAG (<em>Retrieval Augmented Generation</em>) para procesar documentos grandes: el sistema buscaba los fragmentos relevantes y los inyectaba en el prompt. Con ventanas de 1M tokens, ese overhead de arquitectura ya no es obligatorio para muchos casos.</p>
+<p>Qué representa 1 millón de tokens en la práctica:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>1M tokens equivale aproximadamente a:
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  - 50,000 lineas de codigo (80 caracteres por linea)
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  - 8 novelas de extension media en ingles
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  - Transcripciones de 200+ episodios de podcast
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  - El contenido completo de un repositorio mediano con tests y docs
+</span></code></pre></div>
+<p><em>Fuente: <a href="https://ai.google.dev/gemini-api/docs/long-context">Google: Long Context Guide</a></em></p>
+<h3 id="cuando-todavia-necesitas-rag-con-ventanas-grandes">Cuándo todavía necesitas RAG con ventanas grandes<a class="headerlink" href="#cuando-todavia-necesitas-rag-con-ventanas-grandes" title="Permanent link">&para;</a></h3>
+<p>La ventana grande tiene alta precisión para encontrar un dato específico en un texto largo. Pero la precisión baja cuando necesitas recuperar muchos datos simultáneamente. Para consultas de recuperación masiva y paralela (ej. buscar 50 configuraciones diferentes en 1,000 archivos), RAG sigue siendo la arquitectura correcta.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Context Caching</strong> es la optimización económica clave para ventanas largas. Si tienes documentos que reutilizas en muchas consultas (ej. la documentación de un SDK o el <code>AGENTS.md</code> del proyecto), puedes cachear esos tokens y pagar una tarifa de almacenamiento por hora en lugar del costo completo de entrada en cada request. Disponible en los tres proveedores principales bajo distintos nombres: <em>Prompt Caching</em> (OpenAI y Anthropic), <em>Context Caching</em> (Google).</p>
+</div>
+<hr />
+<h2 id="5-modelos-por-proveedor-catalogo-activo">5. Modelos por proveedor: catálogo activo<a class="headerlink" href="#5-modelos-por-proveedor-catalogo-activo" title="Permanent link">&para;</a></h2>
+<h3 id="51-openai-familia-gpt-5">5.1 OpenAI — Familia GPT-5<a class="headerlink" href="#51-openai-familia-gpt-5" title="Permanent link">&para;</a></h3>
+<p>La familia GPT-5 unifica en un solo modelo lo que antes estaba separado entre modelos de chat y modelos de razonamiento (la serie o-series).</p>
+<p><strong>Modelos de texto activos (Abril 2026):</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: left;">Cuándo usarlo</th>
+<th style="text-align: center;">Context Window</th>
+<th style="text-align: left;">Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>gpt-5.4</code></td>
+<td style="text-align: left;">Tu tarea mas importante del dia: codigo complejo, decisiones de arquitectura, analisis</td>
+<td style="text-align: center;">1M tokens</td>
+<td style="text-align: left;">✅ Activo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gpt-5.4-pro</code></td>
+<td style="text-align: left;">Cuando <code>gpt-5.4</code> no es suficiente y necesitas que el modelo piense mas tiempo</td>
+<td style="text-align: center;">1M tokens</td>
+<td style="text-align: left;">✅ Activo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gpt-5.3-codex</code></td>
+<td style="text-align: left;">Terminal, CI/CD, generacion de codigo puro sin contexto de negocio</td>
+<td style="text-align: center;">256K tokens</td>
+<td style="text-align: left;">✅ Activo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gpt-5.4-mini</code></td>
+<td style="text-align: left;">Subagentes, parseo de datos, tareas rapidas de mediana complejidad</td>
+<td style="text-align: center;">128K tokens</td>
+<td style="text-align: left;">✅ Activo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gpt-5.4-nano</code></td>
+<td style="text-align: left;">Tareas repetitivas de muy bajo costo: categorizar, etiquetar, formatear</td>
+<td style="text-align: center;">No publicado</td>
+<td style="text-align: left;">✅ Activo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gpt-5.2</code></td>
+<td style="text-align: left;">Tareas heredadas de generaciones previas</td>
+<td style="text-align: center;">128K tokens</td>
+<td style="text-align: left;">⚠️ <strong>Deprecado</strong> (Junio 2026)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gpt-4.1</code> / <code>o3</code> / <code>o4-mini</code></td>
+<td style="text-align: left;">Alternativas antiguas de razonamiento y uso general</td>
+<td style="text-align: center;">128K tokens</td>
+<td style="text-align: left;">⚠️ <strong>Deprecado</strong> (Reemplazado)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Parámetros clave de GPT-5.4:</strong></p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt-5.4&quot;</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">&quot;reasoning&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;effort&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;medium&quot;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;verbosity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;low&quot;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<ul>
+<li><code>reasoning.effort</code> — profundidad del thinking: <code>none</code>, <code>low</code>, <code>medium</code>, <code>high</code>, <code>xhigh</code></li>
+<li><code>text.verbosity</code> — extension de la respuesta: <code>low</code>, <code>medium</code>, <code>high</code></li>
+<li><code>temperature</code> — solo disponible cuando <code>reasoning.effort = "none"</code></li>
+</ul>
+<p><em>Fuente: <a href="https://developers.openai.com/api/docs/guides/latest-model">OpenAI: GPT-5.4 Guide</a></em></p>
+<p><strong>Modelos especializados de OpenAI:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: left;">Para qué sirve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>gpt-image-1</code></td>
+<td style="text-align: left;">Generar y editar imagenes desde texto</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>whisper-1</code></td>
+<td style="text-align: left;">Convertir audio y voz a texto</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>tts-1</code> / <code>tts-1-hd</code></td>
+<td style="text-align: left;">Convertir texto a voz</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>text-embedding-3-large</code></td>
+<td style="text-align: left;">Busqueda semantica y sistemas RAG</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>omni-moderation-latest</code></td>
+<td style="text-align: left;">Detectar contenido inapropiado en texto e imagenes</td>
+</tr>
+</tbody>
+</table>
+<p><em>Fuente: <a href="https://developers.openai.com/api/docs/models">OpenAI: Models Reference</a></em></p>
+<hr />
+<h3 id="52-anthropic-familia-claude-4">5.2 Anthropic — Familia Claude 4<a class="headerlink" href="#52-anthropic-familia-claude-4" title="Permanent link">&para;</a></h3>
+<p>Anthropic nombra sus modelos con tres rangos: <strong>Haiku</strong> (más rápido y económico) → <strong>Sonnet</strong> (equilibrado) → <strong>Opus</strong> (más capaz). El número después del nombre indica la generación.</p>
+<p><strong>Modelos activos (Abril 2026):</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo (API ID)</th>
+<th style="text-align: left;">Cuándo usarlo</th>
+<th style="text-align: center;">Context Window</th>
+<th style="text-align: left;">Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>claude-opus-4-6</code></td>
+<td style="text-align: left;">Problemas que requieren logica profunda: razonamiento complejo, matematicas, decisiones criticas</td>
+<td style="text-align: center;">200K tokens</td>
+<td style="text-align: left;">✅ Activo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>claude-sonnet-4-5</code></td>
+<td style="text-align: left;">Codificacion de produccion dia a dia, refactorizaciones, revision de PRs</td>
+<td style="text-align: center;">200K tokens</td>
+<td style="text-align: left;">✅ Activo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>claude-haiku-4-5</code></td>
+<td style="text-align: left;">Subagentes de busqueda, generar JSDoc, parsear APIs, respuestas inmediatas</td>
+<td style="text-align: center;">200K tokens</td>
+<td style="text-align: left;">✅ Activo</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Important</p>
+<p>Todos los modelos Claude 4 comparten 200K tokens de ventana. La diferencia entre ellos es la capacidad de razonamiento y el costo de inferencia — no el tamaño de contexto.</p>
+</div>
+<p><strong>Característica distintiva de Claude:</strong> En la Message Batches API, Opus 4.6 y Sonnet 4.5 admiten hasta <strong>300K tokens de salida</strong> usando el header beta <code>output-300k-2026-03-24</code>. Útil cuando necesitas generar documentación extensa o refactorizaciones masivas en un solo request.</p>
+<p><em>Fuente: <a href="https://platform.claude.com/docs/en/about-claude/models/overview">Anthropic: Models Overview</a></em></p>
+<hr />
+<h3 id="53-google-familia-gemini-25-y-3x">5.3 Google — Familia Gemini 2.5 y 3.x<a class="headerlink" href="#53-google-familia-gemini-25-y-3x" title="Permanent link">&para;</a></h3>
+<p>Google tiene la oferta más amplia, con modelos de texto, imagen, video, audio y robótica. Para agentes de software, los modelos de texto son los relevantes.</p>
+<p><strong>Modelos de texto activos (Abril 2026):</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: left;">Cuándo usarlo</th>
+<th style="text-align: center;">Context Window</th>
+<th style="text-align: left;">Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>gemini-3.1-pro-preview</code></td>
+<td style="text-align: left;">Leer repositorios enteros, analizar PDFs y documentos masivos, agentic workflows largos</td>
+<td style="text-align: center;">1M tokens+</td>
+<td style="text-align: left;">✅ Preview</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gemini-3-flash-preview</code></td>
+<td style="text-align: left;">Codificacion y analisis con calidad alta sin pagar el precio del Pro</td>
+<td style="text-align: center;">1M tokens</td>
+<td style="text-align: left;">✅ Preview</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gemini-3.1-flash-lite-preview</code></td>
+<td style="text-align: left;">Tareas de altisimo volumen donde el costo es el factor critico</td>
+<td style="text-align: center;">1M tokens</td>
+<td style="text-align: left;">✅ Preview</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gemini-2.5-pro</code></td>
+<td style="text-align: left;">Produccion estable: razonamiento complejo sin depender de previews</td>
+<td style="text-align: center;">1M tokens</td>
+<td style="text-align: left;">✅ Estable</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gemini-2.5-flash</code></td>
+<td style="text-align: left;">Produccion estable: velocidad y costo balanceados</td>
+<td style="text-align: center;">1M tokens</td>
+<td style="text-align: left;">✅ Estable</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gemini-2.5-flash-lite</code></td>
+<td style="text-align: left;">Produccion estable + maximo ahorro de costo</td>
+<td style="text-align: center;">1M tokens</td>
+<td style="text-align: left;">✅ Estable</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gemini-3-pro-preview</code></td>
+<td style="text-align: left;">Versión previa de razonamiento</td>
+<td style="text-align: center;">1M tokens</td>
+<td style="text-align: left;">❌ <strong>Cerrado</strong> (usa 3.1)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gemini-2.0-flash</code> / <code>flash-lite</code></td>
+<td style="text-align: left;">Generación flash anterior</td>
+<td style="text-align: center;">1M tokens</td>
+<td style="text-align: left;">⚠️ <strong>Deprecado</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ciclos de vida de los modelos Gemini:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Canal</th>
+<th style="text-align: left;">Qué significa</th>
+<th style="text-align: left;">Recomendacion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>stable</code></td>
+<td style="text-align: left;">Version fija, sin cambios inesperados</td>
+<td style="text-align: left;">Usar en produccion</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>preview</code></td>
+<td style="text-align: left;">Funcional, con aviso de 2 semanas antes de cambios</td>
+<td style="text-align: left;">Aceptable en produccion controlada</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>latest</code></td>
+<td style="text-align: left;">Se actualiza automaticamente con cada nueva version</td>
+<td style="text-align: left;">No usar en produccion</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>experimental</code></td>
+<td style="text-align: left;">Acceso anticipado, puede romperse</td>
+<td style="text-align: left;">Solo para pruebas y desarrollo</td>
+</tr>
+</tbody>
+</table>
+<p><em>Fuentes: <a href="https://ai.google.dev/gemini-api/docs/models">Google: All Models Reference</a> | <a href="https://ai.google.dev/gemini-api/docs/gemini-3">Google: Gemini 3 Developer Guide</a></em></p>
+<p><strong>Modelos especializados de Google para agentes:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: left;">Para qué sirve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>gemini-3.1-flash-live-preview</code></td>
+<td style="text-align: left;">Conversacion en tiempo real con voz (Live API)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>deep-research-pro-preview</code></td>
+<td style="text-align: left;">Investigar un tema en cientos de fuentes y generar un reporte citado</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>computer-use-preview</code></td>
+<td style="text-align: left;">Controlar una computadora: hacer click, escribir, navegar en un browser</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gemini-embedding-2-preview</code></td>
+<td style="text-align: left;">Busqueda semantica sobre texto, imagenes, video y audio combinados</td>
+</tr>
+</tbody>
+</table>
+<p><em>Fuente: <a href="https://ai.google.dev/gemini-api/docs/gemini-3">Google: Gemini 3 Developer Guide</a></em></p>
+<hr />
+<h2 id="6-que-modelo-usar-segun-tu-tarea-referencia-cruzada-entre-proveedores">6. Qué modelo usar según tu tarea: referencia cruzada entre proveedores<a class="headerlink" href="#6-que-modelo-usar-segun-tu-tarea-referencia-cruzada-entre-proveedores" title="Permanent link">&para;</a></h2>
+<p>Esta es la sección práctica. Aquí los modelos están agrupados por lo que necesitas hacer, sin importar el proveedor.</p>
+<h3 id="disenar-arquitectura-y-resolver-bugs-complejos">Diseñar arquitectura y resolver bugs complejos<a class="headerlink" href="#disenar-arquitectura-y-resolver-bugs-complejos" title="Permanent link">&para;</a></h3>
+<p>Problemas que involucran múltiples archivos, decisiones de trade-off, o razonamiento en cadena antes de escribir una línea de código.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: left;">Proveedor</th>
+<th style="text-align: left;">Por qué es el indicado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>gpt-5.4</code> / <code>gpt-5.4-pro</code></td>
+<td style="text-align: left;">OpenAI</td>
+<td style="text-align: left;">Reasoning profundo + 1M tokens para leer todo el codebase</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>claude-opus-4-6</code></td>
+<td style="text-align: left;">Anthropic</td>
+<td style="text-align: left;">El mejor de Anthropic para logica formal y decisiones criticas</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gemini-3.1-pro-preview</code></td>
+<td style="text-align: left;">Google</td>
+<td style="text-align: left;">Lee repositorios, PDFs y diagramas juntos en una sola consulta</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="codificacion-diaria-de-produccion">Codificación diaria de producción<a class="headerlink" href="#codificacion-diaria-de-produccion" title="Permanent link">&para;</a></h3>
+<p>Implementar features, refactorizar módulos, escribir tests, resolver bugs acotados, hacer code review.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: left;">Proveedor</th>
+<th style="text-align: left;">Por qué es el indicado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>gpt-5.3-codex</code></td>
+<td style="text-align: left;">OpenAI</td>
+<td style="text-align: left;">Optimizado especificamente para entornos de terminal y agentes de codigo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>claude-sonnet-4-5</code></td>
+<td style="text-align: left;">Anthropic</td>
+<td style="text-align: left;">El mejor balance calidad/costo para codificacion activa dia a dia</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gemini-3-flash-preview</code></td>
+<td style="text-align: left;">Google</td>
+<td style="text-align: left;">Calidad cercana al Pro a precio de modelo rapido</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="subagentes-de-busqueda-parseo-y-alto-volumen">Subagentes de búsqueda, parseo y alto volumen<a class="headerlink" href="#subagentes-de-busqueda-parseo-y-alto-volumen" title="Permanent link">&para;</a></h3>
+<p>Subagentes de solo lectura, parseo de JSON/YAML, búsqueda en logs, generar JSDoc, formatear respuestas de APIs, tareas repetitivas donde el costo por llamada importa.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: left;">Proveedor</th>
+<th style="text-align: left;">Por qué es el indicado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>gpt-5.4-mini</code></td>
+<td style="text-align: left;">OpenAI</td>
+<td style="text-align: left;">Equilibrio economia/capacidad dentro de GPT-5</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gpt-5.4-nano</code></td>
+<td style="text-align: left;">OpenAI</td>
+<td style="text-align: left;">El mas barato de OpenAI para micro-tareas de un solo paso</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>claude-haiku-4-5</code></td>
+<td style="text-align: left;">Anthropic</td>
+<td style="text-align: left;">El mas rapido de Anthropic, excelente en tool use y MCP</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gemini-3.1-flash-lite-preview</code></td>
+<td style="text-align: left;">Google</td>
+<td style="text-align: left;">1M context + minimo costo = ideal para procesar miles de archivos</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="investigacion-profunda-multi-fuente">Investigación profunda multi-fuente<a class="headerlink" href="#investigacion-profunda-multi-fuente" title="Permanent link">&para;</a></h3>
+<p>Investigar un tema técnico en muchos documentos, comparar alternativas, sintetizar información de múltiples fuentes con citas verificables.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: left;">Proveedor</th>
+<th style="text-align: left;">Por qué es el indicado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>deep-research-pro-preview</code></td>
+<td style="text-align: left;">Google</td>
+<td style="text-align: left;">Agente especializado que busca, navega y cita automaticamente</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gpt-5.4</code> con <code>web_search</code> activado</td>
+<td style="text-align: left;">OpenAI</td>
+<td style="text-align: left;">Busqueda iterativa sobre muchas fuentes web en un solo workflow</td>
+</tr>
+</tbody>
+</table>
+<p><em>Fuente: <a href="https://ai.google.dev/gemini-api/docs/deep-research">Google: Deep Research Agent</a></em></p>
+<hr />
+<h3 id="procesar-documentos-y-repositorios-masivos">Procesar documentos y repositorios masivos<a class="headerlink" href="#procesar-documentos-y-repositorios-masivos" title="Permanent link">&para;</a></h3>
+<p>Leer y analizar bases de código completas, suites de documentación, transcripciones, archivos PDF técnicos, o cualquier input cuyo volumen sea el factor dominante.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: left;">Proveedor</th>
+<th style="text-align: left;">Por qué es el indicado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>gemini-3.1-pro-preview</code></td>
+<td style="text-align: left;">Google</td>
+<td style="text-align: left;">1M+ tokens y lee texto, PDF, video y audio en la misma consulta</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gpt-5.4</code></td>
+<td style="text-align: left;">OpenAI</td>
+<td style="text-align: left;">1M tokens con posibilidad de controlar UI via <code>computer_use</code></td>
+</tr>
+</tbody>
+</table>
+<p><em>Fuente: <a href="https://ai.google.dev/gemini-api/docs/long-context">Google: Long Context Guide</a></em></p>
+<hr />
+<h3 id="testing-generar-y-revisar-tests">Testing: generar y revisar tests<a class="headerlink" href="#testing-generar-y-revisar-tests" title="Permanent link">&para;</a></h3>
+<p>Generar suites de tests unitarios, de integración, snapshots, fixtures, y validar cobertura.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: left;">Proveedor</th>
+<th style="text-align: left;">Por qué es el indicado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>claude-sonnet-4-5</code></td>
+<td style="text-align: left;">Anthropic</td>
+<td style="text-align: left;">Entiende el codigo del modulo y genera tests de caja blanca precisos</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gpt-5.3-codex</code></td>
+<td style="text-align: left;">OpenAI</td>
+<td style="text-align: left;">Excelente para generar tests directamente desde el terminal</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>gemini-3-flash-preview</code></td>
+<td style="text-align: left;">Google</td>
+<td style="text-align: left;">Rapido y economico para generar fixtures y datos de prueba en volumen</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-guia-de-seleccion-rapida">7. Guía de selección rápida<a class="headerlink" href="#7-guia-de-seleccion-rapida" title="Permanent link">&para;</a></h2>
+<p>Si no sabes por dónde empezar:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Tengo que disenar algo complejo o resolver un bug dificil
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  -&gt; gpt-5.4-pro / claude-opus-4-6 / gemini-3.1-pro-preview
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Tengo que codificar features o hacer code review
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  -&gt; claude-sonnet-4-5 / gpt-5.3-codex / gemini-3-flash-preview
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Configuro un subagente de busqueda o parseo de datos
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>  -&gt; claude-haiku-4-5 / gemini-3.1-flash-lite-preview / gpt-5.4-mini
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>Necesito analizar un repositorio o una suite de documentos completa
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>  -&gt; gemini-3.1-pro-preview (1M+ tokens, lee texto, PDF, video y audio)
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>Investigo un tema tecnico consultando muchas fuentes
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>  -&gt; deep-research-pro-preview (Google) / gpt-5.4 + web search (OpenAI)
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>Es una tarea repetitiva, trivial y de altisimo volumen
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>  -&gt; gpt-5.4-nano / gemini-3.1-flash-lite-preview
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>Genero o reviso una suite de tests
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>  -&gt; claude-sonnet-4-5 / gpt-5.3-codex
+</span></code></pre></div>
+<hr />
+<h2 id="8-modelos-que-ya-no-debes-usar">8. Modelos que ya no debes usar<a class="headerlink" href="#8-modelos-que-ya-no-debes-usar" title="Permanent link">&para;</a></h2>
+<p>Los siguientes modelos aún aparecen en configuraciones antiguas, scripts de CI/CD o tutoriales desactualizados. Si los ves en tu proyecto, migra antes de que rompan tu pipeline.</p>
+<div class="admonition warning">
+<p class="admonition-title">Caution</p>
+<p><strong>GPT-5.2</strong> — OpenAI ha anunciado el retiro de este modelo para <strong>Junio 2026</strong>. Cualquier pipeline que lo use romperá en esa fecha. Reemplaza con <code>gpt-5.4</code> con la configuración equivalente (<code>reasoning.effort: "none"</code> para paridad con GPT-4.1, <code>"medium"</code> para paridad con o3).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Gemini 3 Pro Preview</strong> (primera versión) — El endpoint <code>gemini-3-pro-preview</code> ya fue cerrado (<em>shut down</em>). El sucesor activo es <code>gemini-3.1-pro-preview</code>. Actualiza cualquier referencia en scripts o configs.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Gemini 2.0 Flash / Flash-Lite</strong> — Marcados como <em>deprecated</em> en la documentación de Google. Reemplaza con <code>gemini-2.5-flash</code> (stable) para producción.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>GPT-4.1 / o3 / o4-mini</strong> — Reemplazados por la familia GPT-5. La guía oficial de OpenAI establece las equivalencias directas: <code>gpt-5.4</code> + <code>effort: "none"</code> reemplaza a <code>gpt-4.1</code>; <code>gpt-5.4-mini</code> reemplaza a <code>o4-mini</code>.</p>
+</div>
+<p><em>Fuentes: <a href="https://developers.openai.com/api/docs/deprecations">OpenAI: Deprecations</a> | <a href="https://ai.google.dev/gemini-api/docs/deprecations">Google: Deprecations</a> | <a href="https://platform.claude.com/docs/en/about-claude/model-deprecations">Anthropic: Model Deprecations</a></em></p>
+<hr />
+<h2 id="9-benchmarks-y-evaluacion-de-modelos">9. Benchmarks y Evaluación de Modelos<a class="headerlink" href="#9-benchmarks-y-evaluacion-de-modelos" title="Permanent link">&para;</a></h2>
+<p>Para facilitar la evaluación de los modelos —indispensable para orquestar agentes que optimicen coste, velocidad y latencia— los dividimos en dos visiones: comparativa cruzada (todos los modelos bajo las mismas categorías de uso) y comparativa interna por proveedor (para cuando necesitas quedarte con una sola familia).</p>
+<p><strong>Leyenda de indicadores:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Indicador</th>
+<th style="text-align: left;">Nivel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: left;">Excelente</td>
+</tr>
+<tr>
+<td style="text-align: center;">🔵</td>
+<td style="text-align: left;">Bueno</td>
+</tr>
+<tr>
+<td style="text-align: center;">🟡</td>
+<td style="text-align: left;">Regular</td>
+</tr>
+<tr>
+<td style="text-align: center;">🔴</td>
+<td style="text-align: left;">Malo</td>
+</tr>
+<tr>
+<td style="text-align: center;">⚫</td>
+<td style="text-align: left;">Muy Malo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="91-comparativa-por-categoria-todos-los-modelos">9.1 Comparativa por Categoría (Todos los modelos)<a class="headerlink" href="#91-comparativa-por-categoria-todos-los-modelos" title="Permanent link">&para;</a></h3>
+<p>Las tablas están divididas por grupo de acción para facilitar la lectura.</p>
+<h4 id="grupo-a-desarrollo-de-codigo-codigo-testing">Grupo A — Desarrollo de Código (Código · Testing)<a class="headerlink" href="#grupo-a-desarrollo-de-codigo-codigo-testing" title="Permanent link">&para;</a></h4>
+<p>Capacidad para generar código, completar funciones, implementar features, y escribir suites de tests unitarios, de integración y snapshots.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: center;">Código</th>
+<th style="text-align: center;">Testing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GPT-5.4 / Pro</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.3-Codex</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.4-mini</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.4-nano</td>
+<td style="text-align: center;">🟡 Regular</td>
+<td style="text-align: center;">🟡 Regular</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Opus 4.6</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Sonnet 4.5</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Haiku 4.5</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3.1 Pro</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3 Flash</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3.1 Flash-Lite</td>
+<td style="text-align: center;">🟡 Regular</td>
+<td style="text-align: center;">🟡 Regular</td>
+</tr>
+</tbody>
+</table>
+<p><em>Fuente: <a href="https://livecodebench.github.io/leaderboard.html">LiveCodeBench</a> | <a href="https://www.swebench.com">SWE-bench Verified</a></em></p>
+<hr />
+<h4 id="grupo-b-analisis-e-inteligencia-razonamiento-documentacion">Grupo B — Análisis e Inteligencia (Razonamiento · Documentación)<a class="headerlink" href="#grupo-b-analisis-e-inteligencia-razonamiento-documentacion" title="Permanent link">&para;</a></h4>
+<p>Razonamiento: decisiones de arquitectura, bugs complejos con múltiples archivos, trade-offs y lógica en cadena.
+Documentación: generación de JSDoc, README, comentarios técnicos, changelogs.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: center;">Razonamiento</th>
+<th style="text-align: center;">Documentación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GPT-5.4 / Pro</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.3-Codex</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.4-mini</td>
+<td style="text-align: center;">🟡 Regular</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.4-nano</td>
+<td style="text-align: center;">🔴 Malo</td>
+<td style="text-align: center;">🟡 Regular</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Opus 4.6</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Sonnet 4.5</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Haiku 4.5</td>
+<td style="text-align: center;">🟡 Regular</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3.1 Pro</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3 Flash</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3.1 Flash-Lite</td>
+<td style="text-align: center;">🔴 Malo</td>
+<td style="text-align: center;">🟡 Regular</td>
+</tr>
+</tbody>
+</table>
+<p><em>Fuente: <a href="https://livecodebench.github.io/leaderboard.html">LiveCodeBench</a> | <a href="https://ai.google.dev/gemini-api/docs/gemini-3">Google: Gemini 3 Developer Guide</a> | <a href="https://platform.claude.com/docs/en/build-with-claude/extended-thinking">Anthropic: Extended Thinking</a></em></p>
+<hr />
+<h4 id="grupo-c-datos-e-integracion-de-herramientas-busquedaparseo-tool-use-mcp">Grupo C — Datos e Integración de Herramientas (Búsqueda/Parseo · Tool Use / MCP)<a class="headerlink" href="#grupo-c-datos-e-integracion-de-herramientas-busquedaparseo-tool-use-mcp" title="Permanent link">&para;</a></h4>
+<p>Búsqueda/Parseo: lectura de logs, transformación de JSON/YAML, consultas a APIs externas.
+Tool Use/MCP: precisión al invocar herramientas, function calling, llamadas encadenadas.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: center;">Búsqueda / Parseo</th>
+<th style="text-align: center;">Tool Use (MCP)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GPT-5.4 / Pro</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.3-Codex</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.4-mini</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.4-nano</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Opus 4.6</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Sonnet 4.5</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Haiku 4.5</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3.1 Pro</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3 Flash</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3.1 Flash-Lite</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Los modelos de maximo razonamiento (Opus, GPT-5.4 con <code>effort: "high"</code>, Gemini 3.1 Pro) obtienen 🔵 Bueno en Tool Use porque el thinking interno aumenta la latencia en cadenas de tool calls encadenadas, no porque fallen en ejecutarlas.</p>
+</div>
+<p><em>Fuente: <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">BFCL – Berkeley Function Calling Leaderboard</a> | <a href="https://developers.openai.com/api/docs/guides/latest-model#gpt-54-parameter-compatibility">OpenAI: GPT-5.4 Parameter Compatibility</a> | <a href="https://platform.claude.com/docs/en/build-with-claude/tool-use">Anthropic: Tool Use Guide</a> | <a href="https://ai.google.dev/gemini-api/docs/function-calling">Google: Function Calling Guide</a></em></p>
+<hr />
+<h3 id="92-comparativa-interna-por-proveedor">9.2 Comparativa Interna por Proveedor<a class="headerlink" href="#92-comparativa-interna-por-proveedor" title="Permanent link">&para;</a></h3>
+<h4 id="openai-familia-gpt-5">OpenAI — Familia GPT-5<a class="headerlink" href="#openai-familia-gpt-5" title="Permanent link">&para;</a></h4>
+<p><strong>Grupo A — Desarrollo de Código</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: center;">Context Window</th>
+<th style="text-align: center;">Código</th>
+<th style="text-align: center;">Testing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GPT-5.4 / Pro</td>
+<td style="text-align: center;">1M</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.3-Codex</td>
+<td style="text-align: center;">256K</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.4-mini</td>
+<td style="text-align: center;">128K</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.4-nano</td>
+<td style="text-align: center;">Sin publicar</td>
+<td style="text-align: center;">🟡 Regular</td>
+<td style="text-align: center;">🟡 Regular</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Grupo B — Análisis e Inteligencia</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: center;">Razonamiento</th>
+<th style="text-align: center;">Documentación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GPT-5.4 / Pro</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.3-Codex</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.4-mini</td>
+<td style="text-align: center;">🟡 Regular</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.4-nano</td>
+<td style="text-align: center;">🔴 Malo</td>
+<td style="text-align: center;">🟡 Regular</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Grupo C — Datos e Integración de Herramientas</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: center;">Búsqueda / Parseo</th>
+<th style="text-align: center;">Tool Use (MCP)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GPT-5.4 / Pro</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.3-Codex</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.4-mini</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.4-nano</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>GPT-5.3-Codex es la mejor opcion para Tool Use dentro de la familia porque no activa reasoning por defecto, manteniendo compatibilidad total con function calling. GPT-5.4 con <code>reasoning.effort: "high"</code> pierde soporte de <code>temperature</code> pero mantiene function calling con mayor latencia.</p>
+</div>
+<p><em>Fuente: <a href="https://developers.openai.com/api/docs/models">OpenAI: Models Reference</a> | <a href="https://developers.openai.com/api/docs/guides/latest-model">OpenAI: GPT-5.4 Guide</a></em></p>
+<hr />
+<h4 id="anthropic-familia-claude-4">Anthropic — Familia Claude 4<a class="headerlink" href="#anthropic-familia-claude-4" title="Permanent link">&para;</a></h4>
+<p><strong>Grupo A — Desarrollo de Código</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: center;">Context Window</th>
+<th style="text-align: center;">Código</th>
+<th style="text-align: center;">Testing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Claude Opus 4.6</td>
+<td style="text-align: center;">200K</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Sonnet 4.5</td>
+<td style="text-align: center;">200K</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Haiku 4.5</td>
+<td style="text-align: center;">200K</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Grupo B — Análisis e Inteligencia</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: center;">Razonamiento</th>
+<th style="text-align: center;">Documentación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Claude Opus 4.6</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Sonnet 4.5</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Haiku 4.5</td>
+<td style="text-align: center;">🟡 Regular</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Grupo C — Datos e Integración de Herramientas</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: center;">Búsqueda / Parseo</th>
+<th style="text-align: center;">Tool Use (MCP)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Claude Opus 4.6</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Sonnet 4.5</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Claude Haiku 4.5</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Todos los modelos Claude 4 comparten la misma ventana de 200K tokens. La documentacion oficial de Anthropic recomienda Haiku para <em>high-volume tasks</em> y subagentes de solo lectura por su velocidad y precision en tool use. Sonnet 4.5 es el modelo por defecto para codificacion activa.</p>
+</div>
+<p><em>Fuente: <a href="https://platform.claude.com/docs/en/about-claude/models/overview">Anthropic: Models Overview</a> | <a href="https://platform.claude.com/docs/en/about-claude/models/choosing-a-model">Anthropic: Choosing a Model</a></em></p>
+<hr />
+<h4 id="google-familia-gemini-25-y-3x">Google — Familia Gemini 2.5 y 3.x<a class="headerlink" href="#google-familia-gemini-25-y-3x" title="Permanent link">&para;</a></h4>
+<p><strong>Grupo A — Desarrollo de Código</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: center;">Context Window</th>
+<th style="text-align: center;">Código</th>
+<th style="text-align: center;">Testing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Gemini 3.1 Pro</td>
+<td style="text-align: center;">1M+</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3 Flash</td>
+<td style="text-align: center;">1M</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3.1 Flash-Lite</td>
+<td style="text-align: center;">1M</td>
+<td style="text-align: center;">🟡 Regular</td>
+<td style="text-align: center;">🟡 Regular</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 2.5 Pro (stable)</td>
+<td style="text-align: center;">1M</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 2.5 Flash (stable)</td>
+<td style="text-align: center;">1M</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Grupo B — Análisis e Inteligencia</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: center;">Razonamiento</th>
+<th style="text-align: center;">Documentación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Gemini 3.1 Pro</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3 Flash</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3.1 Flash-Lite</td>
+<td style="text-align: center;">🔴 Malo</td>
+<td style="text-align: center;">🟡 Regular</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 2.5 Pro (stable)</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 2.5 Flash (stable)</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Grupo C — Datos e Integración de Herramientas</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: center;">Búsqueda / Parseo</th>
+<th style="text-align: center;">Tool Use (MCP)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Gemini 3.1 Pro</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3 Flash</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3.1 Flash-Lite</td>
+<td style="text-align: center;">🔵 Bueno</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 2.5 Pro (stable)</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🔵 Bueno</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 2.5 Flash (stable)</td>
+<td style="text-align: center;">🟢 Excelente</td>
+<td style="text-align: center;">🟢 Excelente</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La ventaja diferencial de Gemini es la combinacion de 1M tokens con multimodalidad nativa: puede leer codigo, PDFs, imagenes y diagramas en la misma consulta. Gemini 3 Flash tiene <em>function calling</em> documentado explicitamente como capacidad de produccion. Gemini 3.1 Pro activa <em>thinking</em> en nivel <code>high</code> por defecto, lo que impacta la velocidad en tool calls encadenadas.</p>
+</div>
+<p><em>Fuente: <a href="https://ai.google.dev/gemini-api/docs/models">Google: All Models Reference</a> | <a href="https://ai.google.dev/gemini-api/docs/function-calling">Google: Function Calling Guide</a> | <a href="https://ai.google.dev/gemini-api/docs/gemini-3">Google: Gemini 3 Developer Guide</a></em></p>
+<hr />
+<h3 id="93-comparativa-visual-entre-modelos">9.3 Comparativa Visual entre Modelos<a class="headerlink" href="#93-comparativa-visual-entre-modelos" title="Permanent link">&para;</a></h3>
+<p>Escala numérica: <strong>1 = Muy Malo · 2 = Malo · 3 = Regular · 4 = Bueno · 5 = Excelente</strong>.
+Los modelos están agrupados por su perfil de uso real — no por proveedor.</p>
+<hr />
+<h4 id="ligeros-busqueda-subagentes-y-alto-volumen">Ligeros / Búsqueda (subagentes y alto volumen)<a class="headerlink" href="#ligeros-busqueda-subagentes-y-alto-volumen" title="Permanent link">&para;</a></h4>
+<p>Optimizados para velocidad y alto volumen: parseo de JSON, llamadas MCP encadenadas, subagentes de solo lectura. Priorizan Tool Use y latencia baja sobre razonamiento profundo.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Sigla</th>
+<th style="text-align: left;">Modelo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GPT mini</td>
+<td style="text-align: left;">GPT-5.4-mini (OpenAI)</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT nano</td>
+<td style="text-align: left;">GPT-5.4-nano (OpenAI)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Haiku 4.5</td>
+<td style="text-align: left;">Claude Haiku 4.5 (Anthropic)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gem 3 Flash</td>
+<td style="text-align: left;">Gemini 3 Flash (Google)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Flash-Lite</td>
+<td style="text-align: left;">Gemini 3.1 Flash-Lite (Google)</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>xychart-beta
+    title "Codigo (barra) vs Razonamiento (linea)"
+    x-axis ["GPT mini", "GPT nano", "Haiku 4.5", "Gem 3 Flash", "Flash-Lite"]
+    y-axis "Nivel" 1 --&gt; 5
+    bar [4, 3, 4, 4, 3]
+    line [3, 2, 3, 4, 2]</code></pre>
+<pre class="mermaid"><code>xychart-beta
+    title "Tool Use / MCP"
+    x-axis ["GPT mini", "GPT nano", "Haiku 4.5", "Gem 3 Flash", "Flash-Lite"]
+    y-axis "Nivel" 1 --&gt; 5
+    bar [5, 4, 5, 5, 4]</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Este es el grupo ideal para subagentes en pipelines: alta precisión en Tool Use a bajo costo. Gem 3 Flash es la excepción con razonamiento de nivel 4, lo que lo hace util en tareas de análisis de documentos largos además de búsquedas.</p>
+</div>
+<hr />
+<h4 id="workhorse-dia-a-dia-desarrollo-interactivo">Workhorse / Día a Día (desarrollo interactivo)<a class="headerlink" href="#workhorse-dia-a-dia-desarrollo-interactivo" title="Permanent link">&para;</a></h4>
+<p>El modelo que mantienes abierto mientras trabajas: refactorización activa, revisión de PRs, implementación de features y pair programming. Balance óptimo entre calidad, velocidad y Tool Use.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Sigla</th>
+<th style="text-align: left;">Modelo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Codex</td>
+<td style="text-align: left;">GPT-5.3-Codex (OpenAI)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sonnet 4.5</td>
+<td style="text-align: left;">Claude Sonnet 4.5 (Anthropic)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gem 3.1 Pro</td>
+<td style="text-align: left;">Gemini 3.1 Pro (Google)</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>xychart-beta
+    title "Codigo (barra) vs Razonamiento (linea)"
+    x-axis ["Codex", "Sonnet 4.5", "Gem 3.1 Pro"]
+    y-axis "Nivel" 1 --&gt; 5
+    bar [5, 5, 5]
+    line [4, 4, 5]</code></pre>
+<pre class="mermaid"><code>xychart-beta
+    title "Tool Use / MCP"
+    x-axis ["Codex", "Sonnet 4.5", "Gem 3.1 Pro"]
+    y-axis "Nivel" 1 --&gt; 5
+    bar [5, 5, 4]</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Sonnet 4.5 es el modelo por defecto recomendado por Anthropic para sesiones de codificacion activa. Codex es la mejor opcion cuando el trabajo es 100% en terminal y CLI. Gem 3.1 Pro destaca cuando el contexto incluye documentos largos o imagenes ademas del codigo.</p>
+</div>
+<hr />
+<h4 id="maximo-esfuerzo-arquitectura-y-razonamiento-critico">Máximo Esfuerzo (arquitectura y razonamiento crítico)<a class="headerlink" href="#maximo-esfuerzo-arquitectura-y-razonamiento-critico" title="Permanent link">&para;</a></h4>
+<p>Se activan cuando el problema lo requiere: decisiones de arquitectura critica, deuda tecnica compleja, diseño de sistemas multi-componente. Maxima calidad, mayor latencia y costo por token.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Sigla</th>
+<th style="text-align: left;">Modelo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GPT-5.4</td>
+<td style="text-align: left;">GPT-5.4 / Pro (OpenAI)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Opus 4.6</td>
+<td style="text-align: left;">Claude Opus 4.6 (Anthropic)</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>xychart-beta
+    title "Codigo (barra) vs Razonamiento (linea)"
+    x-axis ["GPT-5.4", "Opus 4.6"]
+    y-axis "Nivel" 1 --&gt; 5
+    bar [5, 5]
+    line [5, 5]</code></pre>
+<pre class="mermaid"><code>xychart-beta
+    title "Tool Use / MCP"
+    x-axis ["GPT-5.4", "Opus 4.6"]
+    y-axis "Nivel" 1 --&gt; 5
+    bar [4, 4]</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>El Tool Use de nivel 4 (en lugar de 5) en ambos modelos no indica un fallo — es consecuencia directa del <em>thinking</em> interno activo. GPT-5.4 con <code>reasoning.effort: "high"</code> y Claude Opus con <em>extended thinking</em> aumentan la latencia entre tool calls encadenadas. Para pipelines de Tool Use puro, usa el grupo Workhorse.</p>
+</div>
+<p><em>Fuentes de evaluaciones verificadas: <a href="https://llm-stats.com/benchmarks">LLM-Stats Benchmarks</a> | <a href="https://llm-stats.com/benchmarks/swe-bench-verified">SWE-Bench Verified</a> | <a href="https://livecodebench.github.io/leaderboard.html">LiveCodeBench</a> | <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">BFCL</a></em>
+<em>(Investigación y datos actualizados al 12 de Abril, 2026)</em></p>
+<hr />
+<h3 id="94-benchmarks-por-categoria-especializada">9.4 Benchmarks por Categoría Especializada<a class="headerlink" href="#94-benchmarks-por-categoria-especializada" title="Permanent link">&para;</a></h3>
+<p>Esta sección documenta tres capacidades adicionales que no entran en la comparativa de código: <strong>Agentes autónomos</strong>, <strong>Escritura y seguimiento de instrucciones</strong>, y <strong>Multimodalidad</strong>. Incluye los benchmarks verificados y una advertencia explícita sobre cuáles NO son confiables.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Existen docenas de benchmarks con nombres llamativos (MCP Universe, T2-Bench, AgentBench Pro, etc.) publicados por empresas sin revisión académica externa. Estos benchmarks suelen ser diseñados y ejecutados por el mismo proveedor del modelo, lo que introduce sesgo. Solo se documentan aquí benchmarks con <strong>paper publicado en arXiv</strong> y <strong>datos independientes del proveedor evaluado</strong>.</p>
+</div>
+<hr />
+<h4 id="agentes-autonomos">Agentes Autónomos<a class="headerlink" href="#agentes-autonomos" title="Permanent link">&para;</a></h4>
+<p>Capacidad del modelo para actuar de forma autónoma: planificar pasos, usar herramientas de forma encadenada, corregir errores propios y completar tareas sin intervención humana.</p>
+<p><strong>Benchmark de referencia:</strong> <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">BFCL – Berkeley Function Calling Leaderboard</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Aspecto</th>
+<th style="text-align: left;">Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Que mide</strong></td>
+<td style="text-align: left;">Precision al invocar funciones y APIs: tipo de argumentos, orden correcto, manejo de errores</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Metodologia</strong></td>
+<td style="text-align: left;">Problemas reales de GitHub ejecutados en entorno aislado, evaluados por ejecucion correcta</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Validacion academica</strong></td>
+<td style="text-align: left;">Publicado y mantenido por UC Berkeley, independiente de los proveedores evaluados</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Por que es confiable</strong></td>
+<td style="text-align: left;">Ejecuta el codigo realmente — no evalua si el modelo "dice" la respuesta correcta</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Limitacion</strong></td>
+<td style="text-align: left;">Se enfoca en function calling, no en razonamiento multi-paso de alto nivel</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>xychart-beta
+    title "Agentes Autonomos: Tool Use y Planificacion (1-5)"
+    x-axis ["GPT mini", "GPT nano", "Haiku 4.5", "Codex", "Sonnet 4.5", "Gem 3 Flash", "GPT-5.4", "Opus 4.6", "Gem 3.1 Pro"]
+    y-axis "Nivel" 1 --&gt; 5
+    bar [5, 4, 5, 5, 5, 5, 4, 4, 4]</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Los modelos ligeros (Haiku, mini, Flash) lideran en Tool Use per-call porque no activan thinking. Los modelos pesados (GPT-5.4, Opus, Gem 3.1 Pro) son superiores en <strong>planificacion multi-paso</strong> (encadenar 5+ herramientas con contexto compartido), aunque BFCL no mide eso directamente.</p>
+</div>
+<p><em>Fuente: <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">BFCL Leaderboard</a> | <a href="https://llm-stats.com/benchmarks/swe-bench-verified">SWE-Bench Verified</a> — ambos con paper en arXiv verificado</em></p>
+<hr />
+<h4 id="escritura-y-seguimiento-de-instrucciones">Escritura y Seguimiento de Instrucciones<a class="headerlink" href="#escritura-y-seguimiento-de-instrucciones" title="Permanent link">&para;</a></h4>
+<p>Capacidad del modelo para seguir instrucciones complejas con restricciones verificables: formato, longitud, tono, estructura, contenido que debe y debe evitar.</p>
+<p><strong>Benchmark de referencia:</strong> <a href="https://llm-stats.com/benchmarks/ifeval">IFEval – Instruction Following Evaluation</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Aspecto</th>
+<th style="text-align: left;">Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Que mide</strong></td>
+<td style="text-align: left;">Exactitud al cumplir 25 tipos de restricciones verificables en ~500 prompts</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Metodologia</strong></td>
+<td style="text-align: left;">Las restricciones son objetivas: "escribe exactamente 3 parrafos", "no uses la palabra X", "usa formato JSON"</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Validacion academica</strong></td>
+<td style="text-align: left;">Paper: <a href="https://arxiv.org/abs/2311.07911">arXiv:2311.07911</a> — Google DeepMind, independiente</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Por que es confiable</strong></td>
+<td style="text-align: left;">No depende de juicio humano subjetivo: la respuesta cumple o no cumple la restriccion</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Limitacion</strong></td>
+<td style="text-align: left;">No mide calidad narrativa ni creatividad — solo obediencia a reglas explicitas</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>No existe ningun benchmark con validacion academica amplia que mida <strong>calidad creativa de escritura</strong>. Los rankings de "best AI for writing" en sitios de terceros son evaluaciones subjetivas sin metodologia rigurosa. IFEval es el unico con paper peer-reviewed relevante para escritura tecnica y documentacion.</p>
+</div>
+<pre class="mermaid"><code>xychart-beta
+    title "Seguimiento de Instrucciones: IFEval (1-5)"
+    x-axis ["GPT mini", "GPT nano", "Haiku 4.5", "Codex", "Sonnet 4.5", "Gem 3 Flash", "GPT-5.4", "Opus 4.6", "Gem 3.1 Pro"]
+    y-axis "Nivel" 1 --&gt; 5
+    bar [5, 4, 5, 5, 5, 4, 5, 5, 5]</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>IFEval mide precision en instrucciones verificables. Todos los modelos de nivel Sonnet/Pro/Flash en adelante obtienen nivel alto. La diferencia real aparece en instrucciones contradictorias o de muy alta complejidad, donde los modelos de razonamiento pesado (Opus, GPT-5.4) mantienen coherencia durante mas pasos.</p>
+</div>
+<p><em>Fuente: <a href="https://llm-stats.com/benchmarks/ifeval">IFEval Leaderboard</a> | Paper: <a href="https://arxiv.org/abs/2311.07911">arXiv:2311.07911</a> — actualizado al 12 de Abril, 2026</em></p>
+<hr />
+<h4 id="multimodalidad">Multimodalidad<a class="headerlink" href="#multimodalidad" title="Permanent link">&para;</a></h4>
+<p>Capacidad del modelo para procesar y razonar sobre imagenes, diagramas, capturas de pantalla, graficas y documentos visuales junto con texto.</p>
+<p><strong>Benchmark de referencia:</strong> <a href="https://llm-stats.com/benchmarks/mmmu">MMMU – Massive Multi-discipline Multimodal Understanding</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Aspecto</th>
+<th style="text-align: left;">Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Que mide</strong></td>
+<td style="text-align: left;">Razonamiento sobre 11,500 preguntas de examenes universitarios que incluyen imagenes, diagramas, formulas y tablas en 30 disciplinas</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Metodologia</strong></td>
+<td style="text-align: left;">Preguntas de opcion multiple de exámenes reales: Arte, Ciencias, Medicina, Ingenieria, Humanidades</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Validacion academica</strong></td>
+<td style="text-align: left;">Paper: <a href="https://arxiv.org/abs/2311.16502">arXiv:2311.16502</a>, citado por Google, OpenAI y Anthropic en sus propios reportes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Por que es confiable</strong></td>
+<td style="text-align: left;">Preguntas de nivel universitario, sin trampa posible con busqueda web, evaluacion objetiva de opcion multiple</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Limitacion</strong></td>
+<td style="text-align: left;">No mide generacion de imagenes ni video — solo comprension visual</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>xychart-beta
+    title "Multimodalidad: MMMU (1-5)"
+    x-axis ["GPT mini", "GPT nano", "Haiku 4.5", "Codex", "Sonnet 4.5", "Gem 3 Flash", "GPT-5.4", "Opus 4.6", "Gem 3.1 Pro"]
+    y-axis "Nivel" 1 --&gt; 5
+    bar [3, 2, 3, 2, 4, 4, 5, 5, 5]</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Codex y modelos de texto puro obtienen nivel bajo porque no tienen capacidades visuales nativas. Gemini 3 Flash y Sonnet 4.5 tienen multimodalidad integrada pero de menor profundidad que los modelos Pro. Gem 3.1 Pro y GPT-5.4 lideran MMMU segun el ranking verificado de LLM-Stats al 12 de Abril de 2026, donde Gemini 3.1 Pro aparece en el top 2 junto a Claude Mythos en GPQA.</p>
+</div>
+<p><em>Fuente: <a href="https://llm-stats.com/benchmarks/mmmu">MMMU Leaderboard</a> | Paper: <a href="https://arxiv.org/abs/2311.16502">arXiv:2311.16502</a> — actualizado al 12 de Abril, 2026</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

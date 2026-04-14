@@ -1,0 +1,2701 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación y metodologías para el desarrollo de agentes de software AI-Native.">
+      
+      
+        <meta name="author" content="Fran">
+      
+      
+      
+        <link rel="prev" href="../cursor/">
+      
+      
+        <link rel="next" href="../gemini-cli/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Claude Code - Guía Completa de Agentes de IA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#claude-code" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Guía Completa de Agentes de IA" class="md-header__button md-logo" aria-label="Guía Completa de Agentes de IA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guía Completa de Agentes de IA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Claude Code
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guía Completa de Agentes de IA" class="md-nav__button md-logo" aria-label="Guía Completa de Agentes de IA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guía Completa de Agentes de IA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai-learning-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gestión de Contexto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/subagentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subagentes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/hooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelos de IA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/automatizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automatización Headless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/plugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugins y Extensiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/Metodolog%C3%ADas%20de%20Ingenier%C3%ADa%20AI-Native/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metodologías de Ingeniería AI-Native
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cursor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cursor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gestion-de-contexto-memory-agentsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestión de Contexto (Memory &amp; Agents.md)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestión de Contexto (Memory &amp; Agents.md)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auto-memory-y-reglas-de-ruta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto Memory y Reglas de Ruta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-configuracion-frontmatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Configuración (Frontmatter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skills-habilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skills (Habilidades)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Skills (Habilidades)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorios_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propiedades-yaml-avanzadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Propiedades YAML Avanzadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-skill-de-auditoria-de-seguridad-skillmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Skill de Auditoría de Seguridad (SKILL.md)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp-model-context-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP (Model Context Protocol)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MCP (Model Context Protocol)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transportes-y-protocolos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transportes y Protocolos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jerarquia-y-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jerarquía y Seguridad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-configuracion-mcpjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Configuración (.mcp.json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugins-y-extensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugins y Extensiones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugins y Extensiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorio_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pluginjson-metadata-y-rutas-component-path-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plugin.json — Metadata y Rutas (Component Path Fields)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comandos-de-gestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comandos de Gestión
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-agentes-subagents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sub-agentes (Subagents)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sub-agentes (Subagents)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capacidades-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacidades Clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorios_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#campos-del-frontmatter-sub-agentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Campos del Frontmatter (Sub-agentes)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Campos del Frontmatter (Sub-agentes)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#referencia-de-tools-valores-para-tools-y-disallowedtools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencia de Tools (valores para tools y disallowedTools)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-sub-agente-de-api-api-developermd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Sub-agente de API (api-developer.md)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-sub-agente-con-hooks-de-validacion-db-readermd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Sub-agente con Hooks de Validación (db-reader.md)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-teams-equipos-de-agentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent Teams (Equipos de Agentes)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent Teams (Equipos de Agentes)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diferencias-con-los-sub-agentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferencias con los Sub-agentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-funcionan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo Funcionan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modos-de-visualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modos de Visualización
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Uso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hooks-exclusivos-de-agent-teams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hooks Exclusivos de Agent Teams
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hooks-disparadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hooks (Disparadores)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hooks (Disparadores)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eventos-disponibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eventos Disponibles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorio_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-configuracion-settingsjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Configuración (settings.json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables-de-entorno-disponibles-en-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variables de Entorno Disponibles en Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-proteccion-de-archivos-criticos-protect-filessh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Protección de Archivos Críticos (protect-files.sh)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automatizacion-headless-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatización (Headless Mode)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Automatización (Headless Mode)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flags-de-control-de-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags de Control de Ejecución
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formatos-de-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formatos de Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduled-tasks-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduled Tasks (/loop)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-cicd-reactivo-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: CI/CD Reactivo (GitHub Actions)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gemini-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../antigravity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Antigravity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opencode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../codex-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Codex CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gestion-de-contexto-memory-agentsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gestión de Contexto (Memory &amp; Agents.md)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestión de Contexto (Memory &amp; Agents.md)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auto-memory-y-reglas-de-ruta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto Memory y Reglas de Ruta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-configuracion-frontmatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Configuración (Frontmatter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skills-habilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skills (Habilidades)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Skills (Habilidades)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorios_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propiedades-yaml-avanzadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Propiedades YAML Avanzadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-skill-de-auditoria-de-seguridad-skillmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Skill de Auditoría de Seguridad (SKILL.md)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp-model-context-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP (Model Context Protocol)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MCP (Model Context Protocol)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transportes-y-protocolos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transportes y Protocolos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jerarquia-y-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jerarquía y Seguridad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-configuracion-mcpjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Configuración (.mcp.json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugins-y-extensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugins y Extensiones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugins y Extensiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorio_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pluginjson-metadata-y-rutas-component-path-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plugin.json — Metadata y Rutas (Component Path Fields)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comandos-de-gestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comandos de Gestión
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-agentes-subagents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sub-agentes (Subagents)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sub-agentes (Subagents)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capacidades-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacidades Clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorios_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#campos-del-frontmatter-sub-agentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Campos del Frontmatter (Sub-agentes)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Campos del Frontmatter (Sub-agentes)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#referencia-de-tools-valores-para-tools-y-disallowedtools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencia de Tools (valores para tools y disallowedTools)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-sub-agente-de-api-api-developermd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Sub-agente de API (api-developer.md)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-sub-agente-con-hooks-de-validacion-db-readermd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Sub-agente con Hooks de Validación (db-reader.md)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-teams-equipos-de-agentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent Teams (Equipos de Agentes)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent Teams (Equipos de Agentes)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diferencias-con-los-sub-agentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferencias con los Sub-agentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-funcionan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo Funcionan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modos-de-visualizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modos de Visualización
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Uso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hooks-exclusivos-de-agent-teams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hooks Exclusivos de Agent Teams
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hooks-disparadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hooks (Disparadores)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hooks (Disparadores)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eventos-disponibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eventos Disponibles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estructura-de-directorio_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructura de Directorio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-configuracion-settingsjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Configuración (settings.json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables-de-entorno-disponibles-en-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variables de Entorno Disponibles en Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-proteccion-de-archivos-criticos-protect-filessh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Protección de Archivos Críticos (protect-files.sh)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automatizacion-headless-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatización (Headless Mode)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Automatización (Headless Mode)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flags-de-control-de-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags de Control de Ejecución
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formatos-de-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formatos de Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduled-tasks-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduled Tasks (/loop)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-cicd-reactivo-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: CI/CD Reactivo (GitHub Actions)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="claude-code">Claude Code<a class="headerlink" href="#claude-code" title="Permanent link">&para;</a></h1>
+<p>Esta guía detalla las características exclusivas de Claude Code en cuanto a la gestión de contexto, habilidades, automatización, sub-agentes y Agent Teams.</p>
+<p><img alt="Claude Session" src="../../attachments/session-agent.png" /></p>
+<h2 id="gestion-de-contexto-memory-agentsmd">Gestión de Contexto (Memory &amp; Agents.md)<a class="headerlink" href="#gestion-de-contexto-memory-agentsmd" title="Permanent link">&para;</a></h2>
+<p>Claude Code utiliza principalmente los archivos <code>CLAUDE.md</code>, <code>.claude/rules/*.md</code> y <code>CLAUDE.local.md</code>. También soporta el estándar <code>AGENTS.md</code>.</p>
+<h3 id="auto-memory-y-reglas-de-ruta">Auto Memory y Reglas de Ruta<a class="headerlink" href="#auto-memory-y-reglas-de-ruta" title="Permanent link">&para;</a></h3>
+<p>Su característica más destacada es el <strong>Auto Memory</strong>: Claude genera su propio archivo <code>MEMORY.md</code> para recordar aprendizajes de depuración. La propiedad <code>paths</code> permite limitar reglas a carpetas específicas, y admite <code>symlinks</code> para compartir configuraciones.</p>
+<h3 id="estructura-de-directorios">Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>~/.claude/CLAUDE.md              (Global — preferencias universales del usuario)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>mi-proyecto/
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── AGENTS.md                    (Proyecto — reglas del repositorio)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── CLAUDE.md                    (Proyecto — reglas del repositorio)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── CLAUDE.local.md              (Proyecto local — ignorado en Git)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>└── .claude/
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    └── rules/
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        └── testing.md           (Modulo — reglas específicas por contexto)
+</span></code></pre></div>
+<h3 id="ejemplo-de-configuracion-frontmatter">Ejemplo de Configuración (Frontmatter)<a class="headerlink" href="#ejemplo-de-configuracion-frontmatter" title="Permanent link">&para;</a></h3>
+<p><div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nn">---</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reglas para el backend</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;src/backend/**&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nn">---</span>
+</span></code></pre></div>
+<em>Fuente: <a href="https://code.claude.com/docs/en/memory#agents-md">Claude Code: Memory &amp; Agents.md</a></em></p>
+<h2 id="skills-habilidades">Skills (Habilidades)<a class="headerlink" href="#skills-habilidades" title="Permanent link">&para;</a></h2>
+<p>Claude Code implementa el sistema de Skills con una jerarquía de tres niveles: <strong>Enterprise</strong> (distribuidas por la organización), <strong>Personal</strong> (<code>~/.claude/skills/</code>) y <strong>Project</strong> (<code>.claude/skills/</code>). Lo que distingue a Claude Code del resto es la riqueza de sus metadatos YAML: permite controlar el aislamiento de ejecución, las herramientas disponibles para la skill, y si el modelo puede autoinvocarla.</p>
+<p>La propiedad más poderosa y única en el ecosistema es <strong><code>context: fork</code></strong>: cuando está activa, la skill se ejecuta en un subagente separado con su propio contexto aislado. Esto es ideal para skills que necesitan leer grandes cantidades de código sin contaminar la ventana de atención del agente principal. Al terminar, el subagente retorna solo el resultado al coordinador, descartando el contexto temporal.</p>
+<h3 id="estructura-de-directorios_1">Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios_1" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>~/.claude/skills/
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>└── personal-conventions/
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    └── SKILL.md              (Personal — disponible en todos los proyectos)
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>mi-proyecto/
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>└── .claude/
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    └── skills/
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        └── api-security-audit/   (Proyecto — específico de este repositorio)
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            ├── SKILL.md
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            └── checklist.md
+</span></code></pre></div>
+<h3 id="propiedades-yaml-avanzadas">Propiedades YAML Avanzadas<a class="headerlink" href="#propiedades-yaml-avanzadas" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Propiedad</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>allowed-tools</code></td>
+<td style="text-align: left;">Lista de herramientas permitidas para esta skill (allowlist).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>context: fork</code></td>
+<td style="text-align: left;">Ejecuta la skill en un subagente aislado para proteger el contexto principal.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>disable-model-invocation: true</code></td>
+<td style="text-align: left;">Impide que el agente invoque la skill automáticamente; solo activación manual.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ejemplo-skill-de-auditoria-de-seguridad-skillmd">Ejemplo: Skill de Auditoría de Seguridad (<code>SKILL.md</code>)<a class="headerlink" href="#ejemplo-skill-de-auditoria-de-seguridad-skillmd" title="Permanent link">&para;</a></h3>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>---
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>name: api-security-audit
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>description: Audits REST API endpoints for security vulnerabilities. Use before merging API changes.
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>allowed-tools:
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>read_file
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>grep_search
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>context: fork
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="gu">disable-model-invocation: false</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="gu">---</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="gh"># API Security Audit</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>Review all files provided for these critical vulnerabilities:
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="k">1.</span> SQL Injection: look for raw string concatenation in queries
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="k">2.</span> Missing input validation: check all route handlers for Zod/Joi schemas
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="k">3.</span> Auth bypass: verify that all protected routes check the session token
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="k">4.</span> Secrets in code: grep for hardcoded API keys or passwords
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>For each issue found, report: file path, line number, severity (critical/high/medium), and remediation.
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>Reference the accepted patterns in {file:./checklist.md}
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>La variable <code>${CLAUDE_SESSION_ID}</code> es inyectada automáticamente en el contexto de cualquier skill. Úsala en scripts de logging para correlacionar la actividad de la skill con la sesión del agente sin necesidad de configuración adicional.</p>
+</div>
+<p><em>Fuente: <a href="https://code.claude.com/docs/en/skills">Claude: Skills Guide</a></em></p>
+<h2 id="mcp-model-context-protocol">MCP (Model Context Protocol)<a class="headerlink" href="#mcp-model-context-protocol" title="Permanent link">&para;</a></h2>
+<h3 id="transportes-y-protocolos">Transportes y Protocolos<a class="headerlink" href="#transportes-y-protocolos" title="Permanent link">&para;</a></h3>
+<p>Soporta <code>Stdio</code> y <code>HTTP</code>. Implementa <code>Tools</code>, <code>Prompts</code>, <code>Resources</code> y <strong>Channels</strong> para notificaciones push asíncronas (ej. alertas de sistemas CI).</p>
+<h3 id="jerarquia-y-seguridad">Jerarquía y Seguridad<a class="headerlink" href="#jerarquia-y-seguridad" title="Permanent link">&para;</a></h3>
+<p>Sigue una configuración jerárquica: <code>Enterprise</code> (<code>managed-mcp.json</code>), <code>Local/Project</code> (<code>.mcp.json</code>) y <code>User</code> (<code>~/.claude.json</code>). Permite <code>headersHelper</code> para tokens dinámicos y restricción mediante <code>allowedMcpServers</code> y <code>deniedMcpServers</code>.</p>
+<h3 id="estructura-de-directorio">Estructura de Directorio<a class="headerlink" href="#estructura-de-directorio" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mi-proyecto/
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>└── .mcp.json
+</span></code></pre></div>
+<h3 id="ejemplo-de-configuracion-mcpjson">Ejemplo de Configuración (<code>.mcp.json</code>)<a class="headerlink" href="#ejemplo-de-configuracion-mcpjson" title="Permanent link">&para;</a></h3>
+<p><div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;mcpServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">&quot;github&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;npx&quot;</span><span class="p">,</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">      </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;-y&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;@modelcontextprotocol/server-github&quot;</span><span class="p">]</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nt">&quot;allowedMcpServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;github&quot;</span><span class="p">],</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="nt">&quot;deniedMcpServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;local-fs&quot;</span><span class="p">]</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">}</span>
+</span></code></pre></div>
+<em>Fuente: <a href="https://code.claude.com/docs/en/mcp">Claude Code: MCP Guide</a></em></p>
+<h2 id="plugins-y-extensiones">Plugins y Extensiones<a class="headerlink" href="#plugins-y-extensiones" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Consulta <strong><a href="../../concepts/plugins/">Plugins y Extensiones: Guía Técnica</a></strong> para la comparativa completa entre sistemas, schemas y ejemplos de producción.</p>
+</div>
+<p>En Claude Code, un plugin es una <strong>estructura de directorios con convención de carpetas</strong>. Claude Code detecta y carga automáticamente los componentes según el directorio en el que estén: skills desde <code>skills/</code>, subagentes desde <code>agents/</code>, hooks desde <code>hooks/hooks.json</code>, MCP desde <code>.mcp.json</code> y servidores LSP desde <code>.lsp.json</code>. El archivo <code>plugin.json</code> solo declara metadata de identificación — no lista los componentes.</p>
+<h3 id="estructura-de-directorio_1">Estructura de Directorio<a class="headerlink" href="#estructura-de-directorio_1" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>mi-plugin/
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>├── .claude-plugin/
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>│   └── plugin.json          (Solo metadata: name, version, description, author)
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>├── skills/
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>│   └── code-review/
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>│       └── SKILL.md         (Cargada por convención de directorio)
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>├── agents/
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>│   └── reviewer.md          (Cargado por convención de directorio)
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>├── hooks/
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>│   └── hooks.json           (Cargado por convención de directorio)
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>├── .mcp.json                (Servidores MCP del plugin)
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>└── .lsp.json                (Servidores LSP para code intelligence)
+</span></code></pre></div>
+<h3 id="pluginjson-metadata-y-rutas-component-path-fields"><code>plugin.json</code> — Metadata y Rutas (Component Path Fields)<a class="headerlink" href="#pluginjson-metadata-y-rutas-component-path-fields" title="Permanent link">&para;</a></h3>
+<p>El plugin funciona por convención (carpetas default), pero puede sobreescribir las rutas explícitamente en el manifiesto con punteros a directorios o archivos:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;typescript-plugin&quot;</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fullstack TS context&quot;</span><span class="p">,</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">&quot;skills&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./custom/skills/&quot;</span><span class="p">,</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="nt">&quot;agents&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./custom/agents/&quot;</span><span class="p">,</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="nt">&quot;hooks&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./config/hooks.json&quot;</span><span class="p">,</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span><span class="nt">&quot;mcpServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./mcp-config.json&quot;</span><span class="p">,</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">  </span><span class="nt">&quot;lspServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./.lsp.json&quot;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="comandos-de-gestion">Comandos de Gestión<a class="headerlink" href="#comandos-de-gestion" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Añadir marketplace (GitHub)</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>/plugin<span class="w"> </span>marketplace<span class="w"> </span>add<span class="w"> </span>anthropics/claude-code
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Instalar plugin desde marketplace</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>/plugin<span class="w"> </span>install<span class="w"> </span>commit-commands@anthropics-claude-code
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Desarrollo local — cargar sin instalar</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>claude<span class="w"> </span>--plugin-dir<span class="w"> </span>./mi-plugin
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># Recargar plugins sin reiniciar</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>/reload-plugins
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="c1"># Deshabilitar / habilitar / desinstalar</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>/plugin<span class="w"> </span>disable<span class="w"> </span>plugin-name@marketplace-name
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>/plugin<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>plugin-name@marketplace-name
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>/plugin<span class="w"> </span>uninstall<span class="w"> </span>plugin-name@marketplace-name
+</span></code></pre></div>
+<p><em>Fuentes: <a href="https://code.claude.com/docs/en/plugins">Claude Code: Create Plugins</a> | <a href="https://code.claude.com/docs/en/discover-plugins">Claude Code: Discover Plugins</a> | <a href="https://code.claude.com/docs/en/plugins-reference">Plugins Reference</a></em></p>
+<h2 id="sub-agentes-subagents">Sub-agentes (Subagents)<a class="headerlink" href="#sub-agentes-subagents" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Consulta <strong><a href="../../concepts/subagentes/">Subagentes: Arquitectura y Patrones</a></strong> para estrategias generales de orquestación, contratos de datos entre agentes y housekeeping antes de diseñar tu sistema.</p>
+</div>
+<p>Los sub-agentes son agentes especializados que operan en <strong>ventanas de contexto aisladas</strong> dentro de la misma sesión de Claude Code. El orquestador principal les delega tareas basándose en su <code>description</code>, y pueden ejecutarse en primer plano (bloqueante) o en segundo plano (concurrente con <code>Ctrl+B</code>).</p>
+<h3 id="capacidades-clave">Capacidades Clave<a class="headerlink" href="#capacidades-clave" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Delegación automática:</strong> El orquestador lee la <code>description</code> y decide cuándo delegar. También se pueden invocar explícitamente con <code>@nombre</code> o <code>--agent &lt;nombre&gt;</code>.</li>
+<li><strong>Aislamiento de herramientas:</strong> Cada sub-agente puede restringir sus <code>tools</code> a un subconjunto (allowlist) o excluir herramientas específicas con <code>disallowedTools</code>.</li>
+<li><strong>Memoria persistente:</strong> El campo <code>memory</code> (<code>user</code>, <code>project</code>, <code>local</code>) mantiene un <code>MEMORY.md</code> entre sesiones en <code>.claude/agent-memory/&lt;nombre&gt;/</code>.</li>
+<li><strong>Skills y MCP exclusivos:</strong> Pueden precargar <code>skills</code> y definir <code>mcpServers</code> con scope exclusivo (inline o por referencia).</li>
+<li><strong>Hooks propios:</strong> Soportan hooks del ciclo de vida (<code>PreToolUse</code>, <code>PostToolUse</code>, <code>Stop</code>) directamente en su frontmatter.</li>
+<li><strong>Sub-agentes Built-in:</strong> Claude Code incluye <code>Explore</code> (Haiku, solo lectura), <code>Plan</code> (modelo heredado, solo lectura) y un sub-agente de propósito general.</li>
+</ul>
+<h3 id="estructura-de-directorios_2">Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios_2" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>~/.claude/agents/                (Global — disponibles en todos los proyectos)
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    ├── researcher.md            (Sub-agente simple — archivo unico)
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    └── api-auditor/             (Sub-agente con recursos — subdirectorio)
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>        ├── api-auditor.md       (El .md raiz define al sub-agente)
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>        └── context/             (Prompts de apoyo, estándares, ejemplos)
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>            └── api-standards.md
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>mi-proyecto/
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>└── .claude/
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    ├── agents/                  (Proyecto — solo disponibles en este repo)
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    │   ├── coordinator.md
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    │   └── api-developer/
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    │       ├── api-developer.md
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>    │       └── prompts/
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>    │           └── conventions.md
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>    ├── skills/                  (Skills que los sub-agentes pueden precargar)
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>    │   └── api-conventions.md
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>    └── agent-memory/            (Memoria persistente por sub-agente)
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>        └── researcher/
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>La estructura por subdirectorios agrupa al sub-agente con sus archivos de apoyo. El <code>.md</code> cuyo nombre coincide con el directorio padre define al sub-agente; el resto son recursos de contexto inyectados automáticamente.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Important</p>
+<p><strong>Estrategia de Modelos en Orquestación:</strong> Al configurar subagentes en OpenCode, utiliza modelos <strong>Ligeros</strong> (Haiku 4.5 o GPT-5.4 mini) para las fases de descubrimiento y lectura. Reserva los modelos <strong>Pesados</strong> (Sonnet o GPT-5.3-Codex) exclusivamente para el agente <code>coder</code> final.</p>
+</div>
+<h3 id="campos-del-frontmatter-sub-agentes">Campos del Frontmatter (Sub-agentes)<a class="headerlink" href="#campos-del-frontmatter-sub-agentes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descripción</th>
+<th>Valores</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Identificador del sub-agente</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>Cuándo invocarlo (el orquestador lo lee para delegar)</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>Modelo a usar</td>
+<td><code>haiku</code>, <code>sonnet</code>, <code>opus</code>, ID completo, <code>inherit</code></td>
+</tr>
+<tr>
+<td><code>tools</code></td>
+<td>Allowlist de tools permitidas</td>
+<td><code>Read</code>, <code>Write</code>, <code>Bash</code>, <code>Agent</code>, <code>Grep</code>, etc.</td>
+</tr>
+<tr>
+<td><code>disallowedTools</code></td>
+<td>Tools a excluir del total heredado</td>
+<td>Mismos valores que <code>tools</code></td>
+</tr>
+<tr>
+<td><code>skills</code></td>
+<td>Skills a precargar en el contexto</td>
+<td>lista de nombres</td>
+</tr>
+<tr>
+<td><code>mcpServers</code></td>
+<td>Servidores MCP exclusivos (inline o por referencia)</td>
+<td>nombre o config completa</td>
+</tr>
+<tr>
+<td><code>hooks</code></td>
+<td>Hooks del ciclo de vida (<code>PreToolUse</code>, <code>PostToolUse</code>, <code>Stop</code>)</td>
+<td>objeto de hooks</td>
+</tr>
+<tr>
+<td><code>memory</code></td>
+<td>Alcance de la memoria persistente</td>
+<td><code>user</code>, <code>project</code>, <code>local</code></td>
+</tr>
+<tr>
+<td><code>permissionMode</code></td>
+<td>Modo de permisos</td>
+<td><code>default</code>, <code>acceptEdits</code>, <code>auto</code>, <code>dontAsk</code>, <code>bypassPermissions</code>, <code>plan</code></td>
+</tr>
+<tr>
+<td><code>background</code></td>
+<td>Ejecutar concurrentemente en segundo plano</td>
+<td><code>true</code> / <code>false</code></td>
+</tr>
+<tr>
+<td><code>effort</code></td>
+<td>Nivel de esfuerzo del modelo</td>
+<td><code>low</code>, <code>medium</code>, <code>high</code>, <code>max</code></td>
+</tr>
+<tr>
+<td><code>isolation</code></td>
+<td>Ejecutar en Git Worktree aislado</td>
+<td><code>worktree</code></td>
+</tr>
+<tr>
+<td><code>maxTurns</code></td>
+<td>Limite de turnos de razonamiento</td>
+<td>numero</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td>Color en la UI</td>
+<td><code>red</code>, <code>blue</code>, <code>green</code>, <code>yellow</code>, <code>purple</code>, <code>orange</code>, <code>pink</code>, <code>cyan</code></td>
+</tr>
+<tr>
+<td><code>initialPrompt</code></td>
+<td>Prompt inicial al iniciar con <code>--agent</code></td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<h4 id="referencia-de-tools-valores-para-tools-y-disallowedtools">Referencia de Tools (valores para <code>tools</code> y <code>disallowedTools</code>)<a class="headerlink" href="#referencia-de-tools-valores-para-tools-y-disallowedtools" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Categoria</th>
+<th>Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Archivos</strong></td>
+<td><code>Read</code>, <code>Write</code>, <code>Edit</code>, <code>Glob</code>, <code>Grep</code></td>
+</tr>
+<tr>
+<td><strong>Terminal</strong></td>
+<td><code>Bash</code>, <code>PowerShell</code></td>
+</tr>
+<tr>
+<td><strong>Web</strong></td>
+<td><code>WebFetch</code>, <code>WebSearch</code></td>
+</tr>
+<tr>
+<td><strong>Agentes y Skills</strong></td>
+<td><code>Agent</code>, <code>Agent(nombre)</code>, <code>Skill</code>, <code>SendMessage</code></td>
+</tr>
+<tr>
+<td><strong>Tareas asíncronas</strong></td>
+<td><code>TaskCreate</code>, <code>TaskGet</code>, <code>TaskList</code>, <code>TaskStop</code>, <code>TaskUpdate</code>, <code>TaskOutput</code></td>
+</tr>
+<tr>
+<td><strong>Modos</strong></td>
+<td><code>EnterPlanMode</code>, <code>ExitPlanMode</code>, <code>EnterWorktree</code>, <code>ExitWorktree</code></td>
+</tr>
+<tr>
+<td><strong>Cron (scheduled tasks)</strong></td>
+<td><code>CronCreate</code>, <code>CronDelete</code>, <code>CronList</code></td>
+</tr>
+<tr>
+<td><strong>Teams (experimental)</strong></td>
+<td><code>TeamCreate</code>, <code>TeamDelete</code></td>
+</tr>
+<tr>
+<td><strong>MCP</strong></td>
+<td><code>ListMcpResourcesTool</code>, <code>ReadMcpResourceTool</code>, <code>ToolSearch</code></td>
+</tr>
+<tr>
+<td><strong>Otros</strong></td>
+<td><code>TodoWrite</code>, <code>NotebookEdit</code>, <code>LSP</code>, <code>AskUserQuestion</code></td>
+</tr>
+</tbody>
+</table>
+<p><em>Fuente: <a href="https://code.claude.com/docs/en/sub-agents">Claude Code: Sub-agents</a></em></p>
+<h3 id="ejemplo-sub-agente-de-api-api-developermd">Ejemplo: Sub-agente de API (<code>api-developer.md</code>)<a class="headerlink" href="#ejemplo-sub-agente-de-api-api-developermd" title="Permanent link">&para;</a></h3>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>---
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>name: api-developer
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>description: Implements REST API endpoints following team conventions.
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>model: haiku
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>tools: Read, Glob, Grep, Write, Edit, Bash
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>skills:
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>api-conventions
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>error-handling-patterns
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>mcpServers:
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>github
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>playwright:
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>      type: stdio
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>      command: npx
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>      args: [&quot;-y&quot;, &quot;@playwright/mcp@latest&quot;]
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>memory: project
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>permissionMode: acceptEdits
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>effort: high
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="gu">color: blue</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="gu">---</span>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>Implement REST API endpoints. Follow the conventions from the preloaded skills.
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>Do not modify files outside of src/api/.
+</span></code></pre></div>
+<h3 id="ejemplo-sub-agente-con-hooks-de-validacion-db-readermd">Ejemplo: Sub-agente con Hooks de Validación (<code>db-reader.md</code>)<a class="headerlink" href="#ejemplo-sub-agente-con-hooks-de-validacion-db-readermd" title="Permanent link">&para;</a></h3>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>---
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>name: db-reader
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>description: Execute read-only database queries.
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>tools: Bash
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>hooks:
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>  PreToolUse:
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="k">-</span><span class="w"> </span>matcher: &quot;Bash&quot;
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>      hooks:
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">        </span><span class="k">-</span><span class="w"> </span>type: command
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="gu">          command: &quot;./scripts/validate-readonly-query.sh&quot;</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="gu">---</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>Only execute SELECT queries. Never modify data.
+</span></code></pre></div>
+<hr />
+<h2 id="agent-teams-equipos-de-agentes">Agent Teams (Equipos de Agentes)<a class="headerlink" href="#agent-teams-equipos-de-agentes" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Agent Teams es una funcionalidad <strong>experimental</strong>. Requiere activar el flag <code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1</code> en <code>settings.json</code> o como variable de entorno.</p>
+</div>
+<p>Los Agent Teams coordinan <strong>múltiples sesiones independientes de Claude Code</strong> trabajando en paralelo sobre un mismo proyecto. A diferencia de los sub-agentes (que operan dentro de la misma sesión), cada <em>teammate</em> es un proceso separado con su propia ventana de contexto, comunicándose mediante un sistema de mensajería y una lista de tareas compartida.</p>
+<h3 id="diferencias-con-los-sub-agentes">Diferencias con los Sub-agentes<a class="headerlink" href="#diferencias-con-los-sub-agentes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Sub-agentes</th>
+<th>Agent Teams</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Arquitectura</strong></td>
+<td>Dentro de la misma sesión</td>
+<td>Procesos separados (multi-sesión)</td>
+</tr>
+<tr>
+<td><strong>Comunicación</strong></td>
+<td>Return value al orquestador</td>
+<td>Mensajería bidireccional + task list</td>
+</tr>
+<tr>
+<td><strong>Visualización</strong></td>
+<td>Inline en el chat</td>
+<td>In-process o split panes (<code>tmux</code>)</td>
+</tr>
+<tr>
+<td><strong>Coordinación</strong></td>
+<td>Secuencial o background</td>
+<td>Paralelo real con Lead + Teammates</td>
+</tr>
+<tr>
+<td><strong>Casos de uso</strong></td>
+<td>Tareas enfocadas, delegación simple</td>
+<td>Investigación paralela, refactoring multi-capa</td>
+</tr>
+<tr>
+<td><strong>Estado</strong></td>
+<td>Estable</td>
+<td>Experimental</td>
+</tr>
+</tbody>
+</table>
+<h3 id="activacion">Activación<a class="headerlink" href="#activacion" title="Permanent link">&para;</a></h3>
+<p>Solo el Lead puede crear/destruir teammates. Las configuraciones persistentes se guardan en <code>.claude/settings.json</code>.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">{</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="nt">&quot;CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="como-funcionan">Cómo Funcionan<a class="headerlink" href="#como-funcionan" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Lead:</strong> La sesión principal que crea y gestiona al equipo. Solo el Lead puede crear/destruir teammates.</li>
+<li><strong>Teammates:</strong> Sesiones independientes que ejecutan tareas de la lista compartida. Pueden usar definiciones de sub-agentes existentes como base (<code>tools</code>, <code>model</code>, <code>skills</code>, <code>mcpServers</code>).</li>
+<li><strong>Comunicación:</strong> <code>message</code> (a un teammate específico) o <code>broadcast</code> (a todos). Los teammates notifican automáticamente al Lead cuando terminan.</li>
+<li><strong>Task list:</strong> Lista compartida donde el Lead asigna tareas y los teammates las reclaman (<em>self-claim</em>).</li>
+</ul>
+<h3 id="modos-de-visualizacion">Modos de Visualización<a class="headerlink" href="#modos-de-visualizacion" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>In-process:</strong> Todos ejecutan en la misma terminal. <code>Shift+Down</code> para navegar entre teammates. Funciona en cualquier terminal.</li>
+<li><strong>Split panes:</strong> Cada teammate en su propio panel. Requiere <code>tmux</code> o <code>iTerm2</code>.</li>
+</ul>
+<h3 id="ejemplo-de-uso">Ejemplo de Uso<a class="headerlink" href="#ejemplo-de-uso" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Create an agent team to review PR #142. Spawn three reviewers:
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a> - One focused on security implications
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a> - One checking performance impact
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a> - One validating test coverage
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>Have them each review and report findings.
+</span></code></pre></div>
+<h3 id="hooks-exclusivos-de-agent-teams">Hooks Exclusivos de Agent Teams<a class="headerlink" href="#hooks-exclusivos-de-agent-teams" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TeammateIdle</code></td>
+<td>Se ejecuta cuando un teammate va a quedar inactivo. Exit <code>2</code> lo mantiene trabajando.</td>
+</tr>
+<tr>
+<td><code>TaskCreated</code></td>
+<td>Se ejecuta al crear una tarea. Exit <code>2</code> previene la creación.</td>
+</tr>
+<tr>
+<td><code>TaskCompleted</code></td>
+<td>Se ejecuta al completar una tarea. Exit <code>2</code> previene el cierre.</td>
+</tr>
+</tbody>
+</table>
+<p><em>Fuente: <a href="https://code.claude.com/docs/en/agent-teams">Claude Code: Agent Teams</a></em></p>
+<h2 id="hooks-disparadores">Hooks (Disparadores)<a class="headerlink" href="#hooks-disparadores" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Consulta <strong><a href="../../concepts/hooks/">Hooks: Interceptación Determinista</a></strong> para la referencia completa de eventos, protocolo stdin/stdout, scripts de producción y anti-patrones.</p>
+</div>
+<p>Los hooks de Claude Code se configuran en <code>settings.json</code> bajo el objeto <code>hooks</code>. Cada entrada especifica el evento, un <code>matcher</code> opcional para filtrar por herramienta específica, y el comando externo a ejecutar. La comunicación ocurre via stdin/stdout en JSON estricto.</p>
+<h3 id="eventos-disponibles">Eventos Disponibles<a class="headerlink" href="#eventos-disponibles" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Evento</th>
+<th style="text-align: left;">Momento de Disparo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>PreToolUse</code></td>
+<td style="text-align: left;">Antes de ejecutar cualquier herramienta (con <code>matcher</code> opcional por nombre)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PostToolUse</code></td>
+<td style="text-align: left;">Después de que la herramienta retorna su resultado</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>UserPromptSubmit</code></td>
+<td style="text-align: left;">Cuando el usuario envía un mensaje al agente</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PostResponse</code></td>
+<td style="text-align: left;">Cuando el agente termina de generar su respuesta completa</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Stop</code></td>
+<td style="text-align: left;">Cuando la sesión finaliza</td>
+</tr>
+</tbody>
+</table>
+<h3 id="estructura-de-directorio_2">Estructura de Directorio<a class="headerlink" href="#estructura-de-directorio_2" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>mi-proyecto/
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>└── .claude/
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    ├── settings.json
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    └── hooks/
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>        ├── protect-files.sh
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>        └── run-linter.sh
+</span></code></pre></div>
+<h3 id="ejemplo-de-configuracion-settingsjson">Ejemplo de Configuración (<code>settings.json</code>)<a class="headerlink" href="#ejemplo-de-configuracion-settingsjson" title="Permanent link">&para;</a></h3>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="p">{</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="nt">&quot;hooks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="nt">&quot;PreToolUse&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">      </span><span class="p">{</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">        </span><span class="nt">&quot;matcher&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bash&quot;</span><span class="p">,</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">        </span><span class="nt">&quot;hooks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">          </span><span class="p">{</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;command&quot;</span><span class="p">,</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">            </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;\&quot;$CLAUDE_PROJECT_DIR\&quot;/.claude/hooks/protect-files.sh&quot;</span><span class="p">,</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">            </span><span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">          </span><span class="p">}</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">        </span><span class="p">]</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">    </span><span class="nt">&quot;PostToolUse&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">      </span><span class="p">{</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">        </span><span class="nt">&quot;matcher&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Edit|Write&quot;</span><span class="p">,</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">        </span><span class="nt">&quot;hooks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">          </span><span class="p">{</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;command&quot;</span><span class="p">,</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="w">            </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;\&quot;$CLAUDE_PROJECT_DIR\&quot;/.claude/hooks/run-linter.sh&quot;</span><span class="p">,</span>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">            </span><span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="w">          </span><span class="p">}</span>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="w">        </span><span class="p">]</span>
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a><span class="w">    </span><span class="p">]</span>
+</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="variables-de-entorno-disponibles-en-scripts">Variables de Entorno Disponibles en Scripts<a class="headerlink" href="#variables-de-entorno-disponibles-en-scripts" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>$CLAUDE_PROJECT_DIR</code></td>
+<td style="text-align: left;">Raíz del directorio del proyecto</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>$CLAUDE_TOOL_NAME</code></td>
+<td style="text-align: left;">Nombre de la herramienta que disparó el hook</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>$CLAUDE_SESSION_ID</code></td>
+<td style="text-align: left;">ID de la sesión activa</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ejemplo-proteccion-de-archivos-criticos-protect-filessh">Ejemplo: Protección de Archivos Críticos (<code>protect-files.sh</code>)<a class="headerlink" href="#ejemplo-proteccion-de-archivos-criticos-protect-filessh" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="ch">#!/usr/bin/env bash</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="c1"># Blocks writes to critical config and secret files.</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nv">INPUT</span><span class="o">=</span><span class="k">$(</span>cat<span class="k">)</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="nv">FILE</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INPUT</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.tool_input.file_path // &quot;&quot;&#39;</span><span class="k">)</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="nv">COMMAND</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INPUT</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.tool_input.command // &quot;&quot;&#39;</span><span class="k">)</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="nv">PROTECTED</span><span class="o">=(</span><span class="s2">&quot;.env&quot;</span><span class="w"> </span><span class="s2">&quot;.env.local&quot;</span><span class="w"> </span><span class="s2">&quot;.env.production&quot;</span><span class="w"> </span><span class="s2">&quot;secrets.json&quot;</span><span class="w"> </span><span class="s2">&quot;*.pem&quot;</span><span class="o">)</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="k">for</span><span class="w"> </span>PATTERN<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PROTECTED</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PATTERN</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$COMMAND</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span><span class="s1">&#39;rm -rf&#39;</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;BLOCKED: Action on protected resource &#39;</span><span class="nv">$FILE</span><span class="s2">&#39;&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">2</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">  </span><span class="k">fi</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="k">done</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Important</p>
+<p>El código de salida <code>2</code> es el mecanismo fail-closed: la herramienta es abortada y el error se retroalimenta al modelo. Usa exit <code>1</code> para errores del propio script y <code>2</code> únicamente para bloqueos intencionales de política.</p>
+</div>
+<p><em>Fuente: <a href="https://code.claude.com/docs/en/hooks-guide">Claude Code: Hooks Guide</a></em></p>
+<h2 id="automatizacion-headless-mode">Automatización (Headless Mode)<a class="headerlink" href="#automatizacion-headless-mode" title="Permanent link">&para;</a></h2>
+<p>Claude Code es la herramienta con el modo headless más completo del ecosistema. El flag <code>-p</code> convierte al agente en un proceso no interactivo que recibe el prompt por argumento y termina con código de salida <code>0</code> (éxito) o <code>1</code> (error), integrable en cualquier pipeline de CI/CD.</p>
+<h3 id="flags-de-control-de-ejecucion">Flags de Control de Ejecución<a class="headerlink" href="#flags-de-control-de-ejecucion" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Flag</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>-p "prompt"</code></td>
+<td style="text-align: left;">Activa modo headless con el prompt especificado</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--allowedTools</code></td>
+<td style="text-align: left;">Lista de herramientas aprobadas sin confirmación manual (ej. <code>Read,Write,Bash</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--disallowedTools</code></td>
+<td style="text-align: left;">Lista de herramientas bloqueadas</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--bare</code></td>
+<td style="text-align: left;">Omite configuración global, hooks y CLAUDE.md. Ideal para aislamiento total en CI</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--max-turns N</code></td>
+<td style="text-align: left;">Máximo de iteraciones antes de terminar (previene bucles infinitos)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--output-format</code></td>
+<td style="text-align: left;">Formato de salida: <code>text</code> (default), <code>json</code>, <code>stream-json</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--json-schema</code></td>
+<td style="text-align: left;">Fuerza que el output JSON cumpla un esquema específico</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--verbose</code></td>
+<td style="text-align: left;">Log detallado de cada acción del agente</td>
+</tr>
+</tbody>
+</table>
+<h3 id="formatos-de-output">Formatos de Output<a class="headerlink" href="#formatos-de-output" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Output en JSON estructurado — ideal para procesar con jq en pipelines</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>claude<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Analyze the test failures and return findings&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span>--output-format<span class="w"> </span>json<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span>--allowedTools<span class="w"> </span><span class="s2">&quot;Read,Grep,Glob&quot;</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="c1"># Stream JSON — útil para procesamiento en tiempo real</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>claude<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Generate release notes from git log since last tag&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">  </span>--output-format<span class="w"> </span>stream-json<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.content[] | select(.type==&quot;text&quot;) | .text&#39;</span>
+</span></code></pre></div>
+<h3 id="scheduled-tasks-loop">Scheduled Tasks (<code>/loop</code>)<a class="headerlink" href="#scheduled-tasks-loop" title="Permanent link">&para;</a></h3>
+<p>Claude Code soporta tareas programadas mediante el comando <code>/loop</code> con sintaxis CRON. El agente se registra para ejecutarse en el intervalo definido sin necesidad de un cronjob externo.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>/loop 0 8 * * 1-5 &quot;Generate the daily standup report from yesterday&#39;s git commits and open issues&quot;
+</span></code></pre></div>
+<h3 id="ejemplo-cicd-reactivo-github-actions">Ejemplo: CI/CD Reactivo (GitHub Actions)<a class="headerlink" href="#ejemplo-cicd-reactivo-github-actions" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AI Code Review</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nt">on</span><span class="p">:</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">develop</span><span class="p p-Indicator">]</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="nt">jobs</span><span class="p">:</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">  </span><span class="nt">ai-review</span><span class="p">:</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">          </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Review PR with Claude Code</span>
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="w">          </span><span class="no">git diff origin/${{ github.base_ref }}...HEAD &gt; changes.diff</span>
+</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>
+</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="w">          </span><span class="no">claude -p &quot;</span>
+</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="w">            </span><span class="no">Review the attached diff for:</span>
+</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="w">            </span><span class="no">1. Security vulnerabilities (injection, auth bypass, secrets)</span>
+</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="w">            </span><span class="no">2. Logic errors and unhandled edge cases</span>
+</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="w">            </span><span class="no">3. Missing test coverage for new code</span>
+</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="w">            </span><span class="no">Apply AGENTS.md conventions. Return a JSON array of findings.</span>
+</span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a><span class="w">            </span><span class="no">$(cat changes.diff)</span>
+</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="w">          </span><span class="no">&quot; \</span>
+</span><span id="__span-19-27"><a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a><span class="w">            </span><span class="no">--allowedTools &quot;Read,Grep,Glob&quot; \</span>
+</span><span id="__span-19-28"><a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a><span class="w">            </span><span class="no">--bare \</span>
+</span><span id="__span-19-29"><a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a><span class="w">            </span><span class="no">--max-turns 10 \</span>
+</span><span id="__span-19-30"><a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a><span class="w">            </span><span class="no">--output-format json &gt; review.json</span>
+</span><span id="__span-19-31"><a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>
+</span><span id="__span-19-32"><a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a><span class="w">          </span><span class="no"># Block PR on critical findings</span>
+</span><span id="__span-19-33"><a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a><span class="w">          </span><span class="no">CRITICAL=$(jq &#39;[.[] | select(.severity == &quot;critical&quot;)] | length&#39; review.json)</span>
+</span><span id="__span-19-34"><a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a><span class="w">          </span><span class="no">if [ &quot;$CRITICAL&quot; -gt &quot;0&quot; ]; then</span>
+</span><span id="__span-19-35"><a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a><span class="w">            </span><span class="no">echo &quot;Critical issues found:&quot; &amp;&amp; jq &#39;.[] | select(.severity==&quot;critical&quot;)&#39; review.json</span>
+</span><span id="__span-19-36"><a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a><span class="w">            </span><span class="no">exit 1</span>
+</span><span id="__span-19-37"><a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a><span class="w">          </span><span class="no">fi</span>
+</span><span id="__span-19-38"><a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a><span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+</span><span id="__span-19-39"><a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a><span class="w">          </span><span class="nt">ANTHROPIC_API_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.ANTHROPIC_API_KEY }}</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Usa <code>--bare</code> en pipelines de CI para evitar que configuraciones locales del desarrollador contaminen la ejecución en el servidor. Sin <code>--bare</code>, el agente carga el <code>~/.claude/CLAUDE.md</code> global del usuario que ejecuta el runner.</p>
+</div>
+<p><em>Fuentes: <a href="https://code.claude.com/docs/en/headless">Claude Code: Headless Mode</a> | <a href="https://code.claude.com/docs/en/scheduled-tasks">Claude Code: Scheduled Tasks</a></em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

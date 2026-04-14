@@ -1,0 +1,2165 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación y metodologías para el desarrollo de agentes de software AI-Native.">
+      
+      
+        <meta name="author" content="Fran">
+      
+      
+      
+      
+        <link rel="next" href="../concepts/agents/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Inicio - Guía Completa de Agentes de IA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mi-guia-de-aprendizaje-de-agentes-de-ia" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Guía Completa de Agentes de IA" class="md-header__button md-logo" aria-label="Guía Completa de Agentes de IA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guía Completa de Agentes de IA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Inicio
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Guía Completa de Agentes de IA" class="md-nav__button md-logo" aria-label="Guía Completa de Agentes de IA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guía Completa de Agentes de IA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Índice
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion-y-conceptos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción y Conceptos Básicos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-gestion-de-contexto-agentsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Gestión de Contexto (AGENTS.md)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-skills-habilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Skills (Habilidades)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Skills (Habilidades)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-son-las-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué son las Skills?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beneficios-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beneficios Clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-mcp-model-context-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. MCP (Model Context Protocol)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. MCP (Model Context Protocol)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduccion-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introducción Técnica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sus-tres-pilares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sus Tres Pilares
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-riesgo-del-server-sprawl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El Riesgo del Server Sprawl
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-plugins-y-extensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Plugins y Extensiones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Plugins y Extensiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-puede-contener-un-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué puede contener un Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuando-tiene-sentido-crear-un-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cuándo tiene sentido crear un Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sistemas-por-herramienta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sistemas por herramienta
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-hooks-disparadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Hooks (Disparadores)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Hooks (Disparadores)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-principio-fail-closed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El principio Fail-Closed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-puede-hacer-con-un-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué se puede hacer con un Hook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-no-son-los-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué NO son los Hooks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-subagentes-y-orquestacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Subagentes y Orquestación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Subagentes y Orquestación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-existen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por qué existen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-flujo-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El flujo real
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-subagentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos de subagentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impacto-real-sin-vs-con-subagentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Impacto real: sin vs. con subagentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-configuracion-varia-el-concepto-no" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La configuración varía, el concepto no
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-de-acceso-granular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control de acceso granular
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuando-crear-un-subagente-y-cuando-no" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cuándo crear un subagente (y cuándo no)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-patrones-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-patrones comunes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-automatizacion-y-scripting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Automatización y Scripting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Automatización y Scripting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cuando-tiene-sentido-automatizar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cuándo tiene sentido automatizar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-riesgo-que-no-es-opcional-ignorar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El riesgo que no es opcional ignorar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-modelos-de-ia-guia-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Modelos de IA: Guía Completa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-metodologias-de-trabajo-con-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Metodologías de trabajo con AI
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gestión de Contexto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/subagentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subagentes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/hooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelos de IA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/automatizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automatización Headless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/plugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugins y Extensiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/Metodolog%C3%ADas%20de%20Ingenier%C3%ADa%20AI-Native/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metodologías de Ingeniería AI-Native
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/cursor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cursor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/claude-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/gemini-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/antigravity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Antigravity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/opencode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/codex-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Codex CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Índice
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion-y-conceptos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción y Conceptos Básicos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-gestion-de-contexto-agentsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Gestión de Contexto (AGENTS.md)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-skills-habilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Skills (Habilidades)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Skills (Habilidades)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-son-las-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué son las Skills?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beneficios-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beneficios Clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-mcp-model-context-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. MCP (Model Context Protocol)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. MCP (Model Context Protocol)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduccion-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introducción Técnica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sus-tres-pilares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sus Tres Pilares
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-riesgo-del-server-sprawl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El Riesgo del Server Sprawl
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-plugins-y-extensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Plugins y Extensiones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Plugins y Extensiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-puede-contener-un-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué puede contener un Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuando-tiene-sentido-crear-un-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cuándo tiene sentido crear un Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sistemas-por-herramienta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sistemas por herramienta
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-hooks-disparadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Hooks (Disparadores)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Hooks (Disparadores)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-principio-fail-closed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El principio Fail-Closed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-puede-hacer-con-un-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué se puede hacer con un Hook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-no-son-los-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué NO son los Hooks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-subagentes-y-orquestacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Subagentes y Orquestación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Subagentes y Orquestación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-existen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por qué existen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-flujo-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El flujo real
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-subagentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos de subagentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impacto-real-sin-vs-con-subagentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Impacto real: sin vs. con subagentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-configuracion-varia-el-concepto-no" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La configuración varía, el concepto no
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-de-acceso-granular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control de acceso granular
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuando-crear-un-subagente-y-cuando-no" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cuándo crear un subagente (y cuándo no)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-patrones-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-patrones comunes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-automatizacion-y-scripting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Automatización y Scripting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Automatización y Scripting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cuando-tiene-sentido-automatizar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cuándo tiene sentido automatizar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-riesgo-que-no-es-opcional-ignorar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El riesgo que no es opcional ignorar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-modelos-de-ia-guia-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Modelos de IA: Guía Completa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-metodologias-de-trabajo-con-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Metodologías de trabajo con AI
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="mi-guia-de-aprendizaje-de-agentes-de-ia">Mi Guía de Aprendizaje de Agentes de IA<a class="headerlink" href="#mi-guia-de-aprendizaje-de-agentes-de-ia" title="Permanent link">&para;</a></h1>
+<p>Esta guía es una referencia fundacional y completa para el desarrollo de agentes de software potenciados por Inteligencia Artificial. Aquí encontrarás inmersiones profundas en arquitecturas modernas, mejores prácticas de ingeniería para la gestión de contexto, y evaluaciones objetivas de los modelos (LLMs) más avanzados del mercado.</p>
+<hr />
+<h2 id="indice">Índice<a class="headerlink" href="#indice" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#1-introduccion-y-conceptos-basicos">Introducción y Conceptos Básicos</a></li>
+<li><a href="#2-gestion-de-contexto-agentsmd">Gestión de Contexto (AGENTS.md)</a></li>
+<li><a href="#3-skills-habilidades">Skills (Habilidades)</a></li>
+<li><a href="#4-mcp-model-context-protocol">MCP (Model Context Protocol)</a></li>
+<li><a href="#5-plugins-y-extensiones">Plugins y Extensiones</a></li>
+<li><a href="#6-hooks-disparadores">Hooks (Disparadores)</a></li>
+<li><a href="#7-subagentes-y-orquestacion">Subagentes y Orquestación</a></li>
+<li><a href="#8-automatizacion-y-scripting">Automatización y Scripting</a></li>
+<li><a href="#9-modelos-de-ia-guia-completa">Modelos de IA: Guía Completa</a></li>
+<li><a href="#10-metodologias-de-trabajo-con-ai">Metodologías de trabajo con AI</a></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Mi Colección Personal:</strong> Muchos de los recursos mencionados los tengo implementados y los iré actualizando periódicamente. Si deseas ver mis carpetas, puedes visitar:</p>
+<ul>
+<li>🧩 <strong><a href="https://github.com/FranMT-S/AI-Agents-Guide/tree/main/src/skills/">Mis Skills</a></strong></li>
+<li>🤖 <strong><a href="https://github.com/FranMT-S/AI-Agents-Guide/tree/main/src/subagents">Mis Subagentes</a></strong></li>
+<li>🏗️ <strong><a href="https://github.com/FranMT-S/AI-Agents-Guide/tree/main/src/templates/agents">Templates para Agentes</a></strong></li>
+<li>📋 <strong><a href="https://github.com/FranMT-S/AI-Agents-Guide/tree/main/src/templates/skills">Templates para Skills</a></strong></li>
+</ul>
+</div>
+<hr />
+<h2 id="1-introduccion-y-conceptos-basicos">1. Introducción y Conceptos Básicos<a class="headerlink" href="#1-introduccion-y-conceptos-basicos" title="Permanent link">&para;</a></h2>
+<p>En el ecosistema actual de agentes de IA aplicados a la ingeniería de software, el mayor desafío técnico no es la capacidad de código del modelo, sino la <strong>limitación de la ventana de contexto</strong>. </p>
+<p>A medida que una sesión de desarrollo o una conversación progresa, el modelo base (como Claude 4.5 Haiku o GPT-5.4) consume "tokens" (fragmentos semánticos de palabras o código). Si las reglas del proyecto no están estructuradas correctamente desde el inicio, la IA sufre una degradación de atención: comienza a "olvidar" las instrucciones críticas iniciales, provocando <strong>alucinaciones</strong> o generando código que ignora las convenciones del equipo. La solución arquitectónica definitiva a este problema es la implementación de <strong>Memoria Persistente y Direccional</strong> mediante estándares como <code>AGENTS.md</code>.</p>
+<hr />
+<h2 id="2-gestion-de-contexto-agentsmd">2. Gestión de Contexto (AGENTS.md)<a class="headerlink" href="#2-gestion-de-contexto-agentsmd" title="Permanent link">&para;</a></h2>
+<p>A medida que una sesión de desarrollo avanza, el modelo base consume tokens para procesar el historial de conversación. Sin una fuente de verdad externa, el agente comienza cada sesión sin saber en qué proyecto trabaja, qué stack tecnológico usa el equipo, ni cómo compilar o testear la aplicación. La solución arquitectónica es <code>AGENTS.md</code>: un archivo Markdown que el orquestador lee e inyecta automáticamente en su <em>system prompt</em> al inicio de cada sesión, garantizando que el modelo opere con las convenciones del equipo antes de procesar el primer mensaje del usuario.</p>
+<p>Su importancia va más allá de la comodidad. Los agentes sin contexto estructurado toman decisiones arquitectónicas incorrectas, generan código que viola las convenciones del proyecto e ignoran restricciones de seguridad que el equipo considera como reglas críticas. Un <code>AGENTS.md</code> bien redactado elimina esta varianza probabilística, convirtiendo el comportamiento del agente en algo predecible y repetible.</p>
+<p>Lo que hace especialmente valioso este estándar es su <strong>compatibilidad multiplataforma</strong>. El mismo archivo que guía a Gemini CLI en la terminal guía a Cursor en el IDE. No necesitas sincronizar reglas entre herramientas; el archivo actúa como árbitro único.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Herramienta</th>
+<th style="text-align: left;">Archivo Nativo</th>
+<th style="text-align: left;">Soporta <code>AGENTS.md</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Codex CLI</strong></td>
+<td style="text-align: left;"><code>AGENTS.md</code></td>
+<td style="text-align: left;">✅ Nativo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Gemini CLI</strong></td>
+<td style="text-align: left;"><code>GEMINI.md</code></td>
+<td style="text-align: left;">✅ Sí</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Claude Code</strong></td>
+<td style="text-align: left;"><code>CLAUDE.md</code></td>
+<td style="text-align: left;">✅ Sí (alias)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GitHub Copilot</strong></td>
+<td style="text-align: left;"><code>copilot-instructions.md</code></td>
+<td style="text-align: left;">✅ Sí</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>OpenCode</strong></td>
+<td style="text-align: left;"><code>AGENTS.md</code></td>
+<td style="text-align: left;">✅ Nativo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cursor</strong></td>
+<td style="text-align: left;"><code>.cursor/rules/</code></td>
+<td style="text-align: left;">✅ Sí</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Antigravity</strong></td>
+<td style="text-align: left;"><code>AGENTS.md</code></td>
+<td style="text-align: left;">✅ Nativo</td>
+</tr>
+</tbody>
+</table>
+<p>El archivo sigue una jerarquía de tres niveles (Global → Proyecto → Módulo) donde las instrucciones más específicas tienen prioridad absoluta. Existe además un patrón crítico llamado <strong>Progressive Disclosure</strong>: en lugar de concentrar todas las reglas en un <code>AGENTS.md</code> monolítico (lo que provoca que el agente ignore instrucciones aleatoriamente por fatiga de contexto), se distribuye el conocimiento en archivos secundarios referenciados bajo demanda.</p>
+<div class="admonition tip">
+<p class="admonition-title">Important</p>
+<p>Los LLMs de frontera pueden mantener entre 150 y 200 instrucciones activas. Herramientas como Claude Code consumen ~50 instrucciones base en su <em>system prompt</em> interno. Cada regla que añades reduce la fiabilidad de todas las demás.</p>
+</div>
+<p>👉 <strong><a href="../concepts/agents/">Ver Guía Técnica Completa: AGENTS.md y Gestión de Contexto</a></strong> — incluye jerarquía de alcance, secciones recomendadas, tabla de terminología correcta, malas prácticas y ejemplo de producción completo.</p>
+<hr />
+<h2 id="3-skills-habilidades">3. Skills (Habilidades)<a class="headerlink" href="#3-skills-habilidades" title="Permanent link">&para;</a></h2>
+<h3 id="que-son-las-skills">¿Qué son las Skills?<a class="headerlink" href="#que-son-las-skills" title="Permanent link">&para;</a></h3>
+<p>Las <strong>Skills</strong> son herramientas modulares o capacidades encapsuladas que extienden drásticamente lo que un agente puede hacer. En lugar de depender de que el modelo base "sepa de memoria" cómo construir un diagrama UML o usar una API propietaria, una Skill agrupa instrucciones específicas y scripts auxiliares, dotando al agente de "músculo" especializado.</p>
+<h3 id="beneficios-clave">Beneficios Clave<a class="headerlink" href="#beneficios-clave" title="Permanent link">&para;</a></h3>
+<p>Proveen extensibilidad casi ilimitada sin comprometer el <em>context window</em> base. Una Skill permanece completamente inactiva y no satura los límites de tokens hasta que el agente evalúa su <em>trigger</em> (una descripción semántica de activación) y concluye que es la herramienta idónea para la tarea actual.</p>
+<div class="admonition tip">
+<p class="admonition-title">Important</p>
+<p>Dado que las <strong>Skills</strong> son el pilar de la automatización avanzada (involucrando metadatos complejos, aislamiento en <em>sandboxes</em> y sistemas de evaluación o <code>Evals</code>), toda la documentación técnica sobre su arquitectura se ha movido a una guía especializada en favor del principio de Revelación Progresiva.</p>
+</div>
+<p>👉 <strong><a href="../concepts/skills/">Ver Guía Técnica Completa de Skills (Habilidades)</a></strong></p>
+<p>En ese documento dedicado encontrarás el diseño de arquitecturas (Skills Simples, con Scripts, con Templates y <em>Few-Shot</em>), junto con las reglas del estándar oficial de <strong>AgentSkills.io</strong>.</p>
+<hr />
+<h2 id="4-mcp-model-context-protocol">4. MCP (Model Context Protocol)<a class="headerlink" href="#4-mcp-model-context-protocol" title="Permanent link">&para;</a></h2>
+<h3 id="introduccion-tecnica">Introducción Técnica<a class="headerlink" href="#introduccion-tecnica" title="Permanent link">&para;</a></h3>
+<p>El <strong>Model Context Protocol (MCP)</strong> es un protocolo asíncrono y universal, creado originalmente por Anthropic, que estandariza la comunicación bidireccional local/remota entre los modelos de IA (los "clientes") y las fuentes de datos (los "servidores"). </p>
+<h3 id="sus-tres-pilares">Sus Tres Pilares<a class="headerlink" href="#sus-tres-pilares" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Resources (Recursos):</strong> Datos de solo lectura expuestos desde el servidor al cliente (ej. la IA solicita leer tu esquema de base de datos en tiempo real).</li>
+<li><strong>Tools (Herramientas):</strong> Acciones ejecutables con estado que la IA puede invocar autónomamente (ej. un servidor MCP posee herramientas como <code>fetch_clickup_ticket</code> o <code>github_merge_pr</code>).</li>
+<li><strong>Prompts (Plantillas):</strong> Estructuras de interacción controladas por el servidor para tareas parametrizadas que el LLM puede cargar para estandarizar procesos.</li>
+</ol>
+<h3 id="el-riesgo-del-server-sprawl">El Riesgo del Server Sprawl<a class="headerlink" href="#el-riesgo-del-server-sprawl" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Server Sprawl:</strong> Instalar e invitar a múltiples servidores MCP indiscriminadamente contamina la experiencia del agente. Cada herramienta MCP disponible inyecta metadatos y descripciones en el <em>system prompt</em> central. Esto eleva dramáticamente el costo de inferencia por mensaje y diluye el raciocinio analítico de tu agente. </p>
+</div>
+<p>Para mitigar el Server Sprawl, cada agente moderno incorpora un mecanismo de listas blancas y negras que permite deshabilitar comandos específicos.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Agente</th>
+<th style="text-align: left;">Archivo de Configuración</th>
+<th style="text-align: left;">Método de Exclusión (Blacklist)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Cursor</strong></td>
+<td style="text-align: left;"><code>~/.cursor/mcp.json</code></td>
+<td style="text-align: left;">Desactivación Manual vía UI</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Antigravity</strong></td>
+<td style="text-align: left;"><code>mcp_config.json</code></td>
+<td style="text-align: left;">Clave JSON: <code>"disabledTools": []</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Gemini CLI</strong></td>
+<td style="text-align: left;"><code>settings.json</code></td>
+<td style="text-align: left;">Clave JSON: <code>"excludeTools": []</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Claude Code</strong></td>
+<td style="text-align: left;"><code>settings.json</code></td>
+<td style="text-align: left;">Políticas vía <code>hooks: PreToolUse</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Codex CLI</strong></td>
+<td style="text-align: left;"><code>config.toml</code></td>
+<td style="text-align: left;">Variable TOML: <code>disabled_tools</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>OpenCode</strong></td>
+<td style="text-align: left;"><code>opencode.json</code></td>
+<td style="text-align: left;">JSON Config: <code>"tools": {"*": false}</code></td>
+</tr>
+</tbody>
+</table>
+<p>👉 <strong><a href="../concepts/mcp/">Ver Guía Técnica Completa de Configuración MCP</a></strong> (Incluye configuraciones detalladas para GitHub, ClickUp, Figma y Trello).</p>
+<hr />
+<h2 id="5-plugins-y-extensiones">5. Plugins y Extensiones<a class="headerlink" href="#5-plugins-y-extensiones" title="Permanent link">&para;</a></h2>
+<p>Un desarrollador nuevo llega a un equipo. Para tener al agente de IA funcionando con las mismas capacidades que el resto del equipo — las Skills de revisión de API, los Hooks de seguridad, los servidores MCP conectados al gestor de tareas, las reglas de estilo del <code>AGENTS.md</code> del proyecto — necesita replicar manualmente toda esa configuración. Clonar repositorios, copiar JSONs de configuración, instalar dependencias de scripts, actualizar rutas. Un proceso frágil que tarda horas y termina inevitablemente en inconsistencias entre máquinas.</p>
+<p>Los <strong>Plugins</strong> resuelven exactamente esto: empaquetan todo ese ecosistema en una unidad instalable. Un solo comando instala el conjunto completo — Skills, Hooks, servidores MCP, configuración de subagentes, reglas de contexto — sin intervención manual. La analogía directa son las extensiones de VS Code: no configuras cada extensión a mano, las instalas y funcionan.</p>
+<h3 id="que-puede-contener-un-plugin">Qué puede contener un Plugin<a class="headerlink" href="#que-puede-contener-un-plugin" title="Permanent link">&para;</a></h3>
+<p>Un plugin no tiene un contenido fijo — es un contenedor que agrupa lo que el equipo o el autor del plugin decida distribuir de forma coherente:</p>
+<ul>
+<li><strong>Skills</strong>: capacidades especializadas (revisor de APIs REST, generador de tests, documentador de funciones)</li>
+<li><strong>Hooks</strong>: scripts de seguridad y calidad preconfigurados (protección de archivos, linter automático)</li>
+<li><strong>Servidores MCP</strong>: integraciones con servicios externos (GitHub, Jira, Slack, Supabase)</li>
+<li><strong>Configuración de subagentes</strong>: roles y permisos predefinidos para un tipo de proyecto</li>
+<li><strong>Reglas de contexto</strong>: fragmentos de <code>AGENTS.md</code> con convenciones del stack</li>
+</ul>
+<p>La diferencia con instalar cada uno por separado es la <strong>cohesión</strong>: el plugin garantiza que todas las piezas son compatibles entre sí, están versionadas juntas y se pueden desinstalar completamente sin dejar fragmentos huérfanos.</p>
+<h3 id="cuando-tiene-sentido-crear-un-plugin">Cuándo tiene sentido crear un Plugin<a class="headerlink" href="#cuando-tiene-sentido-crear-un-plugin" title="Permanent link">&para;</a></h3>
+<p>Un plugin es la elección correcta cuando el conjunto de configuraciones que necesitas es lo suficientemente estable para distribuir y lo suficientemente complejo para que replicarlo manualmente sea un problema real. Para experimentos personales basta con Skills individuales. Un plugin es para equipos, proyectos a largo plazo o para publicar en un marketplace.</p>
+<h3 id="sistemas-por-herramienta">Sistemas por herramienta<a class="headerlink" href="#sistemas-por-herramienta" title="Permanent link">&para;</a></h3>
+<p>Cada orquestador tiene su propio sistema de plugins con arquitecturas técnicas diferentes, pero el propósito es el mismo:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Herramienta</th>
+<th style="text-align: left;">Arquitectura</th>
+<th style="text-align: left;">Instalación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Cursor</strong></td>
+<td style="text-align: left;">Bundles con <code>plugin.json</code> (reglas + skills + agents + MCP)</td>
+<td style="text-align: left;">Marketplace UI o <code>cursor.com/marketplace</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Gemini CLI</strong></td>
+<td style="text-align: left;">Manifiestos <code>gemini-extension.json</code> con comandos TOML y skills</td>
+<td style="text-align: left;"><code>gemini extensions install &lt;URL&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Claude Code</strong></td>
+<td style="text-align: left;"><code>.claude-plugin/plugin.json</code> con skills, subagentes, hooks y MCP</td>
+<td style="text-align: left;"><code>/plugin install @scope/nombre</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>OpenCode</strong></td>
+<td style="text-align: left;">Módulos TypeScript nativos ejecutados en Bun con API de eventos</td>
+<td style="text-align: left;">Archivo <code>.ts</code> en <code>.opencode/plugins/</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Antigravity y Codex CLI no tienen un sistema de plugins formal — sus capacidades equivalentes se distribuyen como Skills individuales o configuraciones de Skills con dependencias explícitas.</p>
+</div>
+<p>👉 <strong><a href="../concepts/plugins/">Ver Guía Técnica Completa: Plugins y Extensiones</a></strong> — incluye estructuras de directorios, schemas de <code>plugin.json</code>, ejemplos de extensiones para cada herramienta y guía de publicación en marketplace.</p>
+<hr />
+<h2 id="6-hooks-disparadores">6. Hooks (Disparadores)<a class="headerlink" href="#6-hooks-disparadores" title="Permanent link">&para;</a></h2>
+<p>Pedirle a un modelo de lenguaje "no olvides ejecutar el linter antes de hacer commit" es un error arquitectónico. Los LLMs son sistemas probabilísticos — la misma instrucción puede cumplirse, ignorarse o confundirse dependiendo del contexto de la sesión, el orden del historial o la longitud de la ventana. Para las validaciones que no pueden fallar ni una sola vez, la respuesta es <strong>determinismo programático</strong>, no confianza estadística.</p>
+<p>Los <strong>Hooks</strong> son scripts externos que el orquestador ejecuta en momentos exactos del ciclo de vida del agente: antes de usar una herramienta (<code>PreToolUse</code>), después de que el agente termina (<code>PostResponse</code>), al recibir input del usuario (<code>UserPromptSubmit</code>), o antes de ejecutar un comando bash (<code>beforeShellExecution</code>). No son sugerencias al modelo — son interrupciones del sistema que ocurren independientemente de lo que el LLM haya decidido hacer.</p>
+<h3 id="el-principio-fail-closed">El principio Fail-Closed<a class="headerlink" href="#el-principio-fail-closed" title="Permanent link">&para;</a></h3>
+<p>La característica más importante de los Hooks es el comportamiento <strong>fail-closed</strong>: si el script del Hook retorna un código de salida distinto de <code>0</code> (o <code>2</code> en algunas herramientas), el orquestador <strong>aborta la acción</strong> antes de ejecutarla. El error se retroalimenta al modelo como contexto, pero la acción nunca ocurre. Esto convierte a los Hooks en barandas de seguridad que ninguna instrucción del modelo puede saltarse.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Usuario: &quot;Borra todos los logs de errores&quot;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Agente:   → Intenta ejecutar bash: rm -rf logs/
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Hook:     → pre_bash_execution.sh evalúa el comando
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>          → Detecta &quot;rm -rf&quot; sobre path protegido
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>          → exit 2 → BLOQUEADO
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Agente:   → Recibe el error, informa al usuario
+</span></code></pre></div>
+<h3 id="que-se-puede-hacer-con-un-hook">Qué se puede hacer con un Hook<a class="headerlink" href="#que-se-puede-hacer-con-un-hook" title="Permanent link">&para;</a></h3>
+<p>Los casos de uso más comunes se dividen en dos categorías:</p>
+<p><strong>Seguridad y protección</strong>:
+- Bloquear comandos bash destructivos (<code>rm -rf</code>, <code>DROP TABLE</code>, <code>git push --force</code>)
+- Impedir escritura en archivos fuera del workspace del proyecto
+- Detectar y rechazar prompts que contengan credenciales o tokens</p>
+<p><strong>Calidad y observabilidad</strong>:
+- Ejecutar el linter automáticamente antes de cualquier commit (<code>PostToolUse: git commit</code>)
+- Registrar en un log cada herramienta que el agente invoca (auditoría completa)
+- Ejecutar tests unitarios después de cada modificación de archivo, interrumpiendo si fallan</p>
+<h3 id="que-no-son-los-hooks">Qué NO son los Hooks<a class="headerlink" href="#que-no-son-los-hooks" title="Permanent link">&para;</a></h3>
+<p>Los Hooks no son subagentes ni Skills. No tienen acceso al LLM ni pueden generar texto. Son scripts de shell, Python o cualquier binario que reciben contexto via stdin y responden via stdout/exit code. Su fortaleza es exactamente esa simplicidad determinista — no fallan por alucinación ni por contexto confuso.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Un Hook que consume demasiado tiempo de CPU o que tiene bugs propios puede bloquear el flujo del agente indefinidamente o generar falsos positivos que frustran al desarrollador. Mantén los scripts de Hook simples, rápidos y bien testeados de forma independiente al agente.</p>
+</div>
+<p>👉 <strong><a href="../concepts/hooks/">Ver Guía Técnica Completa: Hooks</a></strong> — incluye tabla de eventos por herramienta, protocolo stdin/stdout, ejemplos de scripts de protección, auditoría y calidad, y la tabla de códigos de salida.</p>
+<hr />
+<h2 id="7-subagentes-y-orquestacion">7. Subagentes y Orquestación<a class="headerlink" href="#7-subagentes-y-orquestacion" title="Permanent link">&para;</a></h2>
+<p>La imagen del asistente de IA como un único agente resolviendo todo — leyendo el proyecto, diseñando la arquitectura, escribiendo el código, revisando la calidad y ejecutando los tests — es el antipatrón más costoso del ecosistema actual. La orquestación con <strong>Subagentes</strong> invierte ese enfoque: el agente primario actúa como manager y delega cada parte del trabajo a especialistas con roles y permisos acotados. No es un monólogo; es un equipo coordinado.</p>
+<p>La analogía es directa: un manager competente no redacta los contratos, implementa el código, audita la seguridad y entrega el proyecto al cliente al mismo tiempo. Convoca al especialista correcto para cada tarea, recibe su output y coordina la síntesis final. Los subagentes funcionan exactamente igual.</p>
+<h3 id="por-que-existen">Por qué existen<a class="headerlink" href="#por-que-existen" title="Permanent link">&para;</a></h3>
+<p>Cuando un modelo de lenguaje intenta resolver simultáneamente una tarea compleja — diseñar, implementar, revisar y testear una feature — su atención se divide entre contextos que compiten entre sí. El resultado es trabajo de calidad inconsistente: el diseño es sólido pero la implementación omite casos borde, o la revisión es superficial porque el modelo ya está "pensando" en los tests.</p>
+<p>La especialización resuelve esto. Un subagente <code>reviewer</code> cuyo único contexto activo sea revisar un diff de código específico produce una revisión mucho más profunda que el agente primario que acaba de escribir ese mismo código y ahora intenta autocorregirse. Además, los subagentes permiten <strong>paralelismo real</strong>: mientras <code>builder</code> escribe el código, <code>tester</code> puede preparar los fixtures y el plan de pruebas de forma simultánea.</p>
+<h3 id="el-flujo-real">El flujo real<a class="headerlink" href="#el-flujo-real" title="Permanent link">&para;</a></h3>
+<p>Un usuario pide: <em>"Crea una API REST para gestionar tareas."</em> El flujo con subagentes se ve así:</p>
+<ol>
+<li><strong>Agente primario</strong> analiza el requerimiento y decide que necesita estructurar el trabajo antes de codificar.</li>
+<li>Delega a <code>architect</code>: <em>"Diseña las rutas, modelos y esquema de base de datos para esta API."</em></li>
+<li><code>architect</code> devuelve: un plan de arquitectura en Markdown con rutas, modelos Prisma y decisiones técnicas justificadas.</li>
+<li>Agente primario delega a <code>builder</code>: <em>"Implementa esta API basándote en el plan adjunto."</em></li>
+<li><code>builder</code> devuelve: los archivos implementados según el plan.</li>
+<li>Agente primario delega a <code>reviewer</code>: <em>"Valida la seguridad y calidad de esta implementación."</em></li>
+<li><code>reviewer</code> devuelve: lista de observaciones con severidad y sugerencias de remediación.</li>
+<li>Agente primario consolida todo, aplica feedback crítico y devuelve el resultado al usuario.</li>
+</ol>
+<p>El output final no es el producto de un modelo intentando hacer todo a la vez — es el resultado de tres especialistas trabajando en secuencia con contextos limpios.</p>
+<h3 id="tipos-de-subagentes">Tipos de subagentes<a class="headerlink" href="#tipos-de-subagentes" title="Permanent link">&para;</a></h3>
+<p>Los subagentes se dividen en tres categorías prácticas:</p>
+<ul>
+<li><strong>Especializados personalizados</strong>: los que tú creas para tu workflow particular — un auditor de seguridad, un traductor de documentación, un generador de tests unitarios. Tienen el system prompt, modelo y permisos que tú defines.</li>
+<li><strong>Integrados (built-in)</strong>: vienen preconfigurados con la herramienta. OpenCode incluye <code>build</code>, <code>plan</code>, <code>explore</code> y <code>general</code>. Cursor incluye <code>Explore</code> y <code>Bash</code>. Gemini CLI incluye <code>codebase_investigator</code> y <code>browser_agent</code>. Están disponibles sin ninguna configuración adicional.</li>
+<li><strong>Híbridos</strong>: subagentes personalizados que extienden el comportamiento de uno built-in, añadiendo instrucciones específicas del proyecto al system prompt base.</li>
+</ul>
+<h3 id="impacto-real-sin-vs-con-subagentes">Impacto real: sin vs. con subagentes<a class="headerlink" href="#impacto-real-sin-vs-con-subagentes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Escenario</th>
+<th style="text-align: left;">Sin subagentes</th>
+<th style="text-align: left;">Con subagentes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">"Crea una feature completa"</td>
+<td style="text-align: left;">El agente intenta todo a la vez</td>
+<td style="text-align: left;">Architect diseña → Builder implementa → Reviewer valida</td>
+</tr>
+<tr>
+<td style="text-align: left;">Calidad del output</td>
+<td style="text-align: left;">Inconsistente (contexto dividido)</td>
+<td style="text-align: left;">Consistente (especialización por rol)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Permisos en acción</td>
+<td style="text-align: left;">El agente tiene acceso completo a todo</td>
+<td style="text-align: left;">Cada subagente solo accede a lo que necesita</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tiempo total</td>
+<td style="text-align: left;">Rápido pero impredecible</td>
+<td style="text-align: left;">A veces mayor (coordinación), mejor en paralelo</td>
+</tr>
+<tr>
+<td style="text-align: left;">Confiabilidad</td>
+<td style="text-align: left;">Variable</td>
+<td style="text-align: left;">Alta (cada especialista falla en su dominio acotado)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="la-configuracion-varia-el-concepto-no">La configuración varía, el concepto no<a class="headerlink" href="#la-configuracion-varia-el-concepto-no" title="Permanent link">&para;</a></h3>
+<p>El concepto de subagente es universal, pero cada herramienta tiene su sintaxis propia. El mismo <code>code-reviewer</code> se define de estas formas:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Herramienta</th>
+<th style="text-align: left;">Formato</th>
+<th style="text-align: left;">Directorio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>OpenCode</strong></td>
+<td style="text-align: left;">JSON en <code>opencode.json</code> o archivo <code>.md</code></td>
+<td style="text-align: left;"><code>.opencode/agents/</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cursor</strong></td>
+<td style="text-align: left;">Archivo <code>.md</code> con frontmatter YAML</td>
+<td style="text-align: left;"><code>.cursor/agents/</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Codex CLI</strong></td>
+<td style="text-align: left;">Archivo <code>.toml</code></td>
+<td style="text-align: left;"><code>.codex/agents/</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Gemini CLI</strong></td>
+<td style="text-align: left;">Archivo <code>.md</code> con frontmatter YAML</td>
+<td style="text-align: left;"><code>.gemini/agents/</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Claude Code</strong></td>
+<td style="text-align: left;">Archivo <code>.md</code> con frontmatter YAML</td>
+<td style="text-align: left;"><code>.claude/agents/</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="control-de-acceso-granular">Control de acceso granular<a class="headerlink" href="#control-de-acceso-granular" title="Permanent link">&para;</a></h3>
+<p>Los subagentes no son simplemente "copias" del agente principal con un nombre diferente — tienen permisos propios que limitan exactamente qué pueden hacer:</p>
+<ul>
+<li><strong><code>reviewer</code></strong>: lectura únicamente. No puede modificar archivos, solo leerlos y reportar.</li>
+<li><strong><code>builder</code></strong>: lectura y escritura. Puede crear y editar archivos, pero no ejecutar comandos de red.</li>
+<li><strong><code>tester</code></strong>: ejecución de comandos bash limitada y lectura. Puede correr <code>npm test</code>, no puede modificar código.</li>
+</ul>
+<p>Este modelo de permisos proporciona una protección real: si un subagente recibe instrucciones maliciosas o alucina de forma destructiva, el daño queda contenido a su dominio de permisos. Un <code>reviewer</code> que alucina no puede borrar archivos aunque lo intente.</p>
+<h3 id="cuando-crear-un-subagente-y-cuando-no">Cuándo crear un subagente (y cuándo no)<a class="headerlink" href="#cuando-crear-un-subagente-y-cuando-no" title="Permanent link">&para;</a></h3>
+<p><strong>Crea un subagente si:</strong>
+- La tarea requiere especialización real que justifique tener un modelo con contexto aislado.
+- Necesitas restringir los permisos de una fase del trabajo (auditoría de solo lectura, revisión sin escritura).
+- El modelo del subagente debe ser diferente al principal (usar Haiku para búsqueda, Sonnet para codificación).</p>
+<p><strong>No crees un subagente si:</strong>
+- El beneficio de la especialización no supera el overhead de comunicación entre agentes.
+- La tarea es simple y el agente principal puede resolverla en una sola respuesta.
+- Estarías creando un subagente que simplemente "ayuda a pensar" — eso ya lo hace el agente principal.</p>
+<p>La regla práctica: si no puedes describir en una frase clara y restrictiva qué hace el subagente y qué NO hace, probablemente no necesitas crearlo.</p>
+<h3 id="anti-patrones-comunes">Anti-patrones comunes<a class="headerlink" href="#anti-patrones-comunes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Subagente para todo</strong>: no todo problema se resuelve con más agentes. El overhead de coordinación tiene un coste real en tokens y tiempo.</li>
+<li><strong>System prompts vagos</strong>: un <code>description</code> que dice "helps with coding" no le dice al orquestador cuándo invocar al subagente ni qué esperar de él.</li>
+<li><strong>Sin límite de iteraciones</strong>: los flujos multi-agente pueden entrar en bucles recursivos infinitamente costosos si no se define un <code>max_turns</code> o <code>steps</code> explícito.</li>
+<li><strong>Escrituras paralelas</strong>: múltiples subagentes escribiendo en los mismos archivos sin coordinación secuencial genera condiciones de carrera y código corrupto.</li>
+</ul>
+<p>👉 <strong><a href="../concepts/subagentes/">Ver Configuración Técnica, Patrones y Ejemplos de Subagentes</a></strong>
+Para configuraciones específicas por herramienta, consulta <strong><a href="../tools/cursor/">Cursor</a></strong> | <strong><a href="../tools/gemini-cli/">Gemini CLI</a></strong> | <strong><a href="../tools/opencode/">OpenCode</a></strong> | <strong><a href="../tools/claude-code/">Claude Code</a></strong> | <strong><a href="../tools/codex-cli/">Codex CLI</a></strong></p>
+<hr />
+<h2 id="8-automatizacion-y-scripting">8. Automatización y Scripting<a class="headerlink" href="#8-automatizacion-y-scripting" title="Permanent link">&para;</a></h2>
+<p>Los agentes de IA no están limitados a responder en un chat. Cuando se elimina al humano del bucle interactivo, el agente se convierte en un proceso autónomo: recibe un prompt inicial, ejecuta herramientas, toma decisiones y termina retornando un código de salida estándar (<code>0</code> éxito, <code>1+</code> error). Este es el <strong>modo headless</strong> — el mismo agente que usas en el IDE corriendo desatendido en un servidor, un pipeline de CI/CD o un cronjob nocturno.</p>
+<p>El cambio de paradigma es significativo. En modo interactivo el humano supervisa cada acción. En modo headless el agente opera en ciclos completos sin intervención: lee los logs de un pipeline fallido, entiende el error, escribe el fix, abre el Pull Request y notifica por Slack — todo mientras el equipo duerme. La diferencia entre "asistente de código" y "colaborador autónomo" es exactamente esta capacidad.</p>
+<h3 id="cuando-tiene-sentido-automatizar">Cuándo tiene sentido automatizar<a class="headerlink" href="#cuando-tiene-sentido-automatizar" title="Permanent link">&para;</a></h3>
+<p>No toda tarea justifica un flujo headless. Los casos donde aporta valor real son aquellos con tres características: son repetitivos, tienen criterios de éxito medibles y no requieren juicio humano en cada iteración.</p>
+<p><strong>CI/CD reactivo</strong>: en lugar de que un pipeline falle pasivamente y el desarrollador reciba una notificación de error a revisar manualmente, el agente intercepta el output del compilador o los tests fallidos, analiza la causa raíz, aplica el fix en una rama aislada y abre un PR con la corrección y una explicación. El humano solo aprueba; no diagnostica.</p>
+<p><strong>Cron jobs cognitivos</strong>: un cronjob que se ejecuta cada madrugada puede invocar al agente para que escanee los tickets <code>good-first-issue</code> en Jira, seleccione los más urgentes, codifique en ramas independientes, ejecute los tests y deje los PRs listos para revisión a primera hora. Las tareas que antes tomaban horas de ramp-up de un contribuidor ocurren mientras el equipo no está trabajando.</p>
+<p><strong>Pre-merge automatizado</strong>: antes de que cualquier rama llegue a <code>main</code>, un agente puede ejecutar una suite de auditoría — revisión de seguridad, validación de contratos de API, verificación de cobertura de tests — y bloquear el merge si detecta problemas críticos, sin intervención humana en el proceso de validación.</p>
+<h3 id="el-riesgo-que-no-es-opcional-ignorar">El riesgo que no es opcional ignorar<a class="headerlink" href="#el-riesgo-que-no-es-opcional-ignorar" title="Permanent link">&para;</a></h3>
+<p>Un agente en modo headless con permisos de escritura irrestrictos sobre un repositorio de producción es un riesgo arquitectónico severo. Los tres vectores de fallo más comunes son:</p>
+<ul>
+<li><strong>Bucle de facturación infinita</strong>: el agente no converge en una solución, reintenta indefinidamente y consume miles de dólares en llamadas a la API sin producir output útil.</li>
+<li><strong>Borrado accidental de estado</strong>: un <code>rm -rf</code> hallucinated en el contexto equivocado, ejecutado sin sandbox, puede ser irreversible.</li>
+<li><strong>Filtración de secretos</strong>: el agente lee un <code>.env</code> con credenciales y las incluye en un log, un PR o un mensaje de Slack.</li>
+</ul>
+<p>La respuesta no es evitar la automatización — es implementarla con los controles correctos: sandboxing en contenedores efímeros, <code>max_turns</code> explícitos, permisos de bash con allowlists, y variables de entorno nunca en el contexto del agente.</p>
+<div class="admonition tip">
+<p class="admonition-title">Important</p>
+<p>Nunca ejecutes modo headless contra producción directamente. Usa contenedores Docker efímeros, permisos de solo lectura para las fases de análisis, y aprobación humana obligatoria para writes que afecten ramas protegidas.</p>
+</div>
+<p>👉 <strong><a href="../concepts/automatizacion/">Ver Guía Técnica Completa: Automatización y Headless Mode</a></strong> — incluye comandos por herramienta, ejemplos reales de GitHub Actions, configuración de sandboxing, cost caps y patrones de integración CI/CD.</p>
+<hr />
+<h2 id="9-modelos-de-ia-guia-completa">9. Modelos de IA: Guía Completa<a class="headerlink" href="#9-modelos-de-ia-guia-completa" title="Permanent link">&para;</a></h2>
+<p>Elegir el modelo incorrecto no solo desperdicia presupuesto — produce outputs de baja calidad, latencias inaceptables o facturas inesperadas. Un desarrollador que usa <code>claude-opus-4-6</code> para parsear 10,000 archivos de JSON está pagando el precio de un neurocirujano para hacer trabajo de administrativo. Un desarrollador que usa <code>gpt-5.4-nano</code> para diseñar la arquitectura de un sistema distribuido está confiando ese diseño al asistente más económico del equipo.</p>
+<p>La diferencia entre un workflow de agentes eficiente y uno costoso no suele ser el código — suele ser el modelo asignado a cada paso.</p>
+<p>Esta sección tiene dos propósitos: primero, darte el vocabulario completo para entender cualquier tabla de modelos que encuentres (tokens, context window, temperatura, thinking, naming de versiones). Segundo, organizar el catálogo actual de los tres proveedores principales por caso de uso real, no por familia de marketing.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Concepto</th>
+<th style="text-align: left;">Qué aprenderás</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Tokens</strong></td>
+<td style="text-align: left;">La moneda de cambio de los LLMs — qué son, cómo se cuentan, por qué importan al costo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Context Window</strong></td>
+<td style="text-align: left;">Cuánta información puede ver el modelo simultáneamente y qué cambia con 1M tokens</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Temperatura</strong></td>
+<td style="text-align: left;">Cómo controlar la aleatoriedad de las respuestas en tareas de código vs. creativas</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Thinking / Reasoning</strong></td>
+<td style="text-align: left;">Qué significa activar el razonamiento profundo y cuándo tiene sentido pagarlo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Naming</strong></td>
+<td style="text-align: left;">Qué significan Pro, Flash, mini, nano, Lite, Haiku, Sonnet, Codex y todos los demás sufijos</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Catálogo por proveedor</strong></td>
+<td style="text-align: left;">Los modelos activos de OpenAI, Anthropic y Google con sus context windows confirmados</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Modelos por caso de uso</strong></td>
+<td style="text-align: left;">Qué modelo usar para arquitectura, codificación, subagentes, investigación y documentos masivos</td>
+</tr>
+</tbody>
+</table>
+<p>👉 <strong><a href="../concepts/models/">Ver Guía Completa de Modelos de IA</a></strong> — incluye glosario técnico, nomenclatura de versiones, catálogo de modelos activos por proveedor, categorías de uso, guía de selección rápida y advertencias sobre modelos deprecados.</p>
+<hr />
+<h2 id="10-metodologias-de-trabajo-con-ai">10. Metodologías de trabajo con AI<a class="headerlink" href="#10-metodologias-de-trabajo-con-ai" title="Permanent link">&para;</a></h2>
+<p>En esta sección exploramos cómo estructurar el desarrollo de software cuando se integra IA, pasando de la experimentación aleatoria a flujos de trabajo deterministas y escalables.</p>
+<p>👉 <strong><a href="../concepts/Metodolog%C3%ADas%20de%20Ingenier%C3%ADa%20AI-Native/">Ver Guía Técnica Completa: Metodologías de trabajo con AI</a></strong> — incluye comparativas entre SDD, CDD, TDD+AI y workflows de agentes.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

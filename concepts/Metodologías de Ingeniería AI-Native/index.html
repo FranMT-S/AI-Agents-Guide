@@ -1,0 +1,2192 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación y metodologías para el desarrollo de agentes de software AI-Native.">
+      
+      
+        <meta name="author" content="Fran">
+      
+      
+      
+        <link rel="prev" href="../plugins/">
+      
+      
+        <link rel="next" href="../../tools/cursor/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Metodologías de Ingeniería AI-Native - Guía Completa de Agentes de IA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#metodologias-de-ingenieria-ai-native" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Guía Completa de Agentes de IA" class="md-header__button md-logo" aria-label="Guía Completa de Agentes de IA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guía Completa de Agentes de IA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Metodologías de Ingeniería AI-Native
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guía Completa de Agentes de IA" class="md-nav__button md-logo" aria-label="Guía Completa de Agentes de IA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guía Completa de Agentes de IA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai-learning-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gestión de Contexto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../subagentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subagentes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelos de IA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../automatizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automatización Headless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugins y Extensiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metodologías de Ingeniería AI-Native
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metodologías de Ingeniería AI-Native
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capa-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capa Conceptual
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Capa Conceptual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabla-comparativa-de-metodologias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla Comparativa de Metodologías
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spec-driven-development-sdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spec-Driven Development (SDD)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spec-Driven Development (SDD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventajas-analiticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventajas Analíticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas-y-desafios-tecnicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desventajas y Desafíos Técnicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paradigmas-arquitectonicos-y-gotchas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paradigmas Arquitectónicos y Gotchas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-practica-agnostica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación Práctica (Agnóstica)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-driven-development-tdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test-Driven Development (TDD)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test-Driven Development (TDD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventajas-analiticas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventajas Analíticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas-y-desafios-tecnicos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desventajas y Desafíos Técnicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paradigmas-arquitectonicos-y-gotchas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paradigmas Arquitectónicos y Gotchas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-practica-agnostica_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación Práctica (Agnóstica)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contract-driven-development-cdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contract-Driven Development (CDD)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contract-Driven Development (CDD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventajas-analiticas_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventajas Analíticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas-y-desafios-tecnicos_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desventajas y Desafíos Técnicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paradigmas-arquitectonicos-y-gotchas_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paradigmas Arquitectónicos y Gotchas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-practica-agnostica_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación Práctica (Agnóstica)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readme-driven-development-rdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Readme-Driven Development (RDD)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Readme-Driven Development (RDD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventajas-analiticas_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventajas Analíticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas-y-desafios-tecnicos_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desventajas y Desafíos Técnicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paradigmas-arquitectonicos-y-gotchas_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paradigmas Arquitectónicos y Gotchas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-practica-agnostica_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación Práctica (Agnóstica)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator-optimizer-patron-critico-actor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evaluator-Optimizer (Patrón Crítico-Actor)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evaluator-Optimizer (Patrón Crítico-Actor)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventajas-analiticas_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventajas Analíticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas-y-desafios-tecnicos_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desventajas y Desafíos Técnicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paradigmas-arquitectonicos-y-gotchas_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paradigmas Arquitectónicos y Gotchas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-practica-agnostica_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación Práctica (Agnóstica)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciclo-de-trabajo-hibrido-ejemplo-practico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ciclo de Trabajo Híbrido: Ejemplo Práctico
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ciclo de Trabajo Híbrido: Ejemplo Práctico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-definicion-y-planificacion-sdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Definición y Planificación (SDD)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-implementacion-y-validacion-continua-tdd-evaluator-optimizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Implementación y Validación Continua (TDD + Evaluator-Optimizer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matriz-de-decision-cual-metodologia-usar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matriz de Decisión: Cuál Metodología Usar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/cursor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cursor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/claude-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/gemini-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/antigravity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Antigravity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/opencode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/codex-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Codex CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capa-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capa Conceptual
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Capa Conceptual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabla-comparativa-de-metodologias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla Comparativa de Metodologías
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spec-driven-development-sdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spec-Driven Development (SDD)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spec-Driven Development (SDD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventajas-analiticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventajas Analíticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas-y-desafios-tecnicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desventajas y Desafíos Técnicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paradigmas-arquitectonicos-y-gotchas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paradigmas Arquitectónicos y Gotchas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-practica-agnostica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación Práctica (Agnóstica)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-driven-development-tdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test-Driven Development (TDD)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test-Driven Development (TDD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventajas-analiticas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventajas Analíticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas-y-desafios-tecnicos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desventajas y Desafíos Técnicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paradigmas-arquitectonicos-y-gotchas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paradigmas Arquitectónicos y Gotchas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-practica-agnostica_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación Práctica (Agnóstica)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contract-driven-development-cdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contract-Driven Development (CDD)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contract-Driven Development (CDD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventajas-analiticas_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventajas Analíticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas-y-desafios-tecnicos_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desventajas y Desafíos Técnicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paradigmas-arquitectonicos-y-gotchas_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paradigmas Arquitectónicos y Gotchas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-practica-agnostica_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación Práctica (Agnóstica)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readme-driven-development-rdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Readme-Driven Development (RDD)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Readme-Driven Development (RDD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventajas-analiticas_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventajas Analíticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas-y-desafios-tecnicos_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desventajas y Desafíos Técnicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paradigmas-arquitectonicos-y-gotchas_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paradigmas Arquitectónicos y Gotchas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-practica-agnostica_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación Práctica (Agnóstica)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluator-optimizer-patron-critico-actor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evaluator-Optimizer (Patrón Crítico-Actor)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evaluator-Optimizer (Patrón Crítico-Actor)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventajas-analiticas_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ventajas Analíticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desventajas-y-desafios-tecnicos_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desventajas y Desafíos Técnicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paradigmas-arquitectonicos-y-gotchas_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paradigmas Arquitectónicos y Gotchas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-practica-agnostica_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación Práctica (Agnóstica)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciclo-de-trabajo-hibrido-ejemplo-practico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ciclo de Trabajo Híbrido: Ejemplo Práctico
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ciclo de Trabajo Híbrido: Ejemplo Práctico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-definicion-y-planificacion-sdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Definición y Planificación (SDD)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-implementacion-y-validacion-continua-tdd-evaluator-optimizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Implementación y Validación Continua (TDD + Evaluator-Optimizer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matriz-de-decision-cual-metodologia-usar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matriz de Decisión: Cuál Metodología Usar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="metodologias-de-ingenieria-ai-native">Metodologías de Ingeniería AI-Native<a class="headerlink" href="#metodologias-de-ingenieria-ai-native" title="Permanent link">&para;</a></h1>
+<h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
+<p>Cuando trabajas con agentes de IA, el código generado tiende a <strong>alucinaciones, inconsistencias arquitectónicas y deuda técnica acumulada</strong>. El problema fundamental no es la capacidad del modelo, sino la ausencia de un contrato claro sobre la intención, el comportamiento y los límites del sistema. El desarrollo asistido por IA, cuando carece de estructura, degenera en lo que se conoce como <em>vibe coding</em>: una programación puramente intuitiva donde el desarrollador no comprende ni audita la lógica, abrazando exponenciales de generación sin evaluar la calidad técnica subyacente.</p>
+<p>Las metodologías AI-Native resuelven esto trasladando el esfuerzo desde el <em>prompting</em> conversacional efímero hacia la <strong>ingeniería de sistemas deterministas</strong>. En este paradigma, la IA actúa como un motor de generación eficiente, mientras que el desarrollador senior opera como un arquitecto que define las reglas, los contratos y los mecanismos de verificación.</p>
+<p><strong>Regla de Oro:</strong> Si no controlas la entrada (contexto estructurado) y la verificación (test runners, validadores de esquemas, críticos), tu agente generará deuda técnica a la velocidad de la luz.</p>
+<hr />
+<h2 id="capa-conceptual">Capa Conceptual<a class="headerlink" href="#capa-conceptual" title="Permanent link">&para;</a></h2>
+<p>Los siguientes conceptos son patrones de ingeniería de software validados a través del tiempo. Adaptarlos al desarrollo con IA es imperativo para garantizar la mantenibilidad y seguridad de sistemas complejos.</p>
+<h3 id="tabla-comparativa-de-metodologias">Tabla Comparativa de Metodologías<a class="headerlink" href="#tabla-comparativa-de-metodologias" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Metodología / Patrón</th>
+<th style="text-align: left;">Propósito Principal</th>
+<th style="text-align: left;">Mecanismo de Integración</th>
+<th style="text-align: left;">Limitaciones Clave</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Spec-Driven (SDD)</strong></td>
+<td style="text-align: left;">Define el <em>qué</em> y el <em>por qué</em> antes del <em>cómo</em>.</td>
+<td style="text-align: left;">Flujo estructurado: <em>Constitution → Specify → Plan</em>.</td>
+<td style="text-align: left;"><em>Overhead</em> alto para tareas menores.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Test-Driven (TDD)</strong></td>
+<td style="text-align: left;">Validación de caja negra (<em>fail-closed</em>).</td>
+<td style="text-align: left;">Integración nativa con <em>test runners</em> (ej. Vitest, Pytest).</td>
+<td style="text-align: left;">Requiere entornos de ejecución aislados.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Contract-Driven (CDD)</strong></td>
+<td style="text-align: left;">Garantiza interoperabilidad de APIs y esquemas.</td>
+<td style="text-align: left;">Repositorio central de contratos OpenAPI/JSON Schema.</td>
+<td style="text-align: left;">Exige diseño <em>schema-first</em>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Readme-Driven (RDD)</strong></td>
+<td style="text-align: left;">Orientado al consumidor y experiencia de uso.</td>
+<td style="text-align: left;"><code>README.md</code> como interfaz de usuario principal.</td>
+<td style="text-align: left;">Riesgo de especulación excesiva (scope drift).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Evaluator-Optimizer</strong></td>
+<td style="text-align: left;">Auto-corrección iterativa sin intervención humana.</td>
+<td style="text-align: left;">Agente Generador (Actor) + Agente Validador (Crítico).</td>
+<td style="text-align: left;">Alta latencia y costo operativo (tokens).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="spec-driven-development-sdd">Spec-Driven Development (SDD)<a class="headerlink" href="#spec-driven-development-sdd" title="Permanent link">&para;</a></h3>
+<p>El <strong>Spec-Driven Development (SDD)</strong> no es una metodología ágil convencional ni un <em>framework</em> prescriptivo; es un cambio de paradigma arquitectónico que traslada la "fuente de verdad" del sistema desde la implementación (código fuente) hacia la especificación (artefactos de diseño). En el contexto de agentes de IA, SDD mitiga el comportamiento no determinista —el <em>vibe coding</em>— al obligar al agente a operar dentro de restricciones explícitas.</p>
+<p>El paradigma subyacente es la <strong>Descentralización de la Fuente de Verdad</strong> (<em>Source of Truth Decentralization</em>). Al tratar la especificación como un artefacto ejecutable y versionable, el desarrollo pasa de ser una actividad de "generación impulsiva" a una de "construcción determinista".</p>
+<h4 id="ventajas-analiticas">Ventajas Analíticas<a class="headerlink" href="#ventajas-analiticas" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Aislamiento de la Intención:</strong> La especificación actúa como una capa de abstracción que protege el <em>intent</em> del desarrollador frente a las interpretaciones erróneas del agente de IA.</li>
+<li><strong>Auditabilidad Arquitectónica:</strong> Al separar la especificación de la implementación, el proceso de <em>Code Review</em> se simplifica: es posible auditar si el código resultante satisface el contrato de la especificación sin necesidad de analizar la lógica de bajo nivel del agente.</li>
+<li><strong>Reducción de Deuda Técnica "Fantasma":</strong> La IA tiende a introducir código excesivo o innecesario (<em>gold plating</em>). SDD establece un perímetro lógico que actúa como <em>fail-closed</em>, impidiendo que el agente implemente funcionalidades no solicitadas.</li>
+</ul>
+<h4 id="desventajas-y-desafios-tecnicos">Desventajas y Desafíos Técnicos<a class="headerlink" href="#desventajas-y-desafios-tecnicos" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Fricción en la Velocidad Inicial:</strong> La necesidad de documentar antes de generar incrementa el <em>time-to-first-code</em>. SDD es ineficiente en tareas de mantenimiento trivial o parches menores donde la sobrecarga documental supera el riesgo de alucinación.</li>
+<li><strong>Riesgo de <em>Spec Drift</em>:</strong> El código evoluciona más rápido que los documentos. Si la especificación no se mantiene como una "especificación viva", el sistema se vuelve inconsistente, y el agente comienza a ignorar documentos obsoletos, degradando la confianza en el sistema completo.</li>
+<li><strong>Carga Cognitiva:</strong> Requiere que el ingeniero sea capaz de proyectar la arquitectura completa antes de tocar el teclado. Si la especificación inicial es incompleta o errónea, la IA simplemente automatizará la construcción de una arquitectura defectuosa de manera más eficiente.</li>
+</ul>
+<h4 id="paradigmas-arquitectonicos-y-gotchas">Paradigmas Arquitectónicos y <em>Gotchas</em><a class="headerlink" href="#paradigmas-arquitectonicos-y-gotchas" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Convention over Configuration:</strong> La estructura del repositorio (dónde vive la spec) debe seguir convenciones estrictas para que los agentes la descubran automáticamente sin configurar rutas manualmente.</li>
+<li><strong>La trampa del "Super-Prompt":</strong> Un error común es intentar que la especificación sea un documento de 50 páginas. Las ventanas de contexto tienen límites; la especificación debe ser <strong>modular y atómica</strong>. Si la especificación es masiva, el agente sufrirá de <em>atención difusa</em> y omitirá requisitos críticos.</li>
+</ul>
+<h4 id="implementacion-practica-agnostica">Implementación Práctica (Agnóstica)<a class="headerlink" href="#implementacion-practica-agnostica" title="Permanent link">&para;</a></h4>
+<p>Esta implementación no depende de herramientas propietarias, sino de una estructura de directorios y artefactos que cualquier agente CLI puede procesar.</p>
+<p><strong>Estructura de Directorio:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/docs/
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── specs/               # Especificaciones de alto nivel (qué y por qué)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   └── feature-a.md
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── design/              # Planes técnicos (cómo)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   └── feature-a.plan.md
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>└── tasks/               # Desglose de implementación (atómico)
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    └── feature-a.tasks.md
+</span></code></pre></div></p>
+<p><strong>Esquema de la Especificación (<code>/docs/specs/feature-a.md</code>):</strong>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gh"># [Nombre del Feature]</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="gu">## Objetivos de Negocio</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">-</span><span class="w"> </span>Proporcionar [funcionalidad] para reducir [problema].
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="gu">## Contrato de Comportamiento</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">-</span><span class="w"> </span>Entrada: [Estructura/Tipo]
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">-</span><span class="w"> </span>Salida: [Estructura/Tipo]
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">-</span><span class="w"> </span>Restricciones: [Tiempo, Memoria, Seguridad]
+</span></code></pre></div></p>
+<p><strong>Ejemplo de Plan de Tareas (<code>/docs/tasks/feature-a.tasks.md</code>):</strong>
+- [ ] Definir esquemas de datos base para la entidad X.
+- [ ] Implementar middleware de validación para entradas.
+- [ ] Configurar el gestor de estados para manejar el ciclo de vida.
+- [ ] Validar flujos contra casos borde documentados.</p>
+<p><strong>Ejemplo de Comando de Trabajo (Agnóstico):</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Paso 1: Generar plan basado en el contrato de la especificación</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>agente-desarrollo<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;Analiza la especificación en /docs/specs/ y propone un diseño técnico en /docs/design/.&quot;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Paso 2: Implementación atómica basada en el plan validado</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>agente-desarrollo<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;Ejecuta las tareas definidas en /docs/tasks/feature-a.tasks.md&quot;</span>
+</span></code></pre></div></p>
+<p><em>Fuentes: <a href="https://scrummanager.com/community/spec-driven-development-qu-es-de_dnde-viene-y-por-qu-importa">Spec Driven Development: qué es y qué propone</a> | <a href="https://heeki.medium.com/using-spec-driven-development-with-claude-code-4a1ebe5d9f29">Using Spec-Driven Development with Claude Code</a> | <a href="https://developers.googleblog.com/conductor-introducing-context-driven-development-for-gemini-cli/">Conductor: Context-driven development</a></em></p>
+<hr />
+<h3 id="test-driven-development-tdd">Test-Driven Development (TDD)<a class="headerlink" href="#test-driven-development-tdd" title="Permanent link">&para;</a></h3>
+<p>El <strong>Test-Driven Development (TDD)</strong> dicta que escribes el <strong>test primero</strong>, luego haces pasar el test (Ciclo Red-Green-Refactor: <em>Red</em>, escribes test que falla; <em>Green</em>, implementas código para pasarlo; <em>Refactor</em>, mejoras el código). En la era de la IA, TDD transforma una práctica que a menudo se percibía como una carga burocrática en un acelerador masivo de la productividad y la calidad. El test actúa como el <em>referee</em> absoluto para el agente de IA, proporcionando un objetivo binario e inequívoco.</p>
+<p><strong>Paradigma Arquitectónico:</strong> <em>Fail-closed Verification</em>. La IA genera iterativamente el código para satisfacer las pruebas. Si el <em>test runner</em> falla (estado <em>Red</em>), el sistema rechaza el intento y realimenta al agente con el registro de errores. Esto fuerza al agente a auto-corregirse sin intervención humana en el ciclo inmediato, asegurando que solo se integre código verificado.</p>
+<h4 id="ventajas-analiticas_1">Ventajas Analíticas<a class="headerlink" href="#ventajas-analiticas_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Criterio de Éxito Inequívoco:</strong> Los tests proporcionan al agente de IA un contrato ejecutable y un criterio de éxito binario (pasa/falla) que elimina la ambigüedad de los prompts.</li>
+<li><strong>Auto-Corrección Dirigida:</strong> El <em>feedback</em> estructurado del <em>test runner</em> (logs de errores) permite al agente depurar y refactorizar de manera autónoma, reduciendo la necesidad de intervención humana para corregir alucinaciones sutiles.</li>
+<li><strong>Reducción de Regresiones:</strong> El código generado está continuamente validado, lo que disminuye drásticamente la introducción de regresiones y errores inesperados.</li>
+</ul>
+<h4 id="desventajas-y-desafios-tecnicos_1">Desventajas y Desafíos Técnicos<a class="headerlink" href="#desventajas-y-desafios-tecnicos_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Falsos Positivos o Negativos:</strong> Un conjunto de tests mal diseñado (tests que pasan incorrectamente o fallan en código correcto) puede llevar al agente a soluciones subóptimas o a un ciclo de depuración ineficiente.</li>
+<li><strong>Contexto de Test:</strong> Para que el agente pueda ejecutar y pasar los tests, necesita un entorno de ejecución de pruebas configurado, lo que añade una capa de complejidad al contexto inicial.</li>
+<li><strong>Acoplamiento de Tests:</strong> Si los tests están demasiado acoplados a la implementación interna, el refactor se vuelve costoso, tanto para humanos como para agentes.</li>
+</ul>
+<h4 id="paradigmas-arquitectonicos-y-gotchas_1">Paradigmas Arquitectónicos y <em>Gotchas</em><a class="headerlink" href="#paradigmas-arquitectonicos-y-gotchas_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Mocking y Aislamiento:</strong> Para tests unitarios, el agente necesita instrucciones claras sobre cómo aislar componentes usando <em>mocks</em> o <em>stubs</em> para evitar dependencias externas.</li>
+<li><strong>Test como Especificación:</strong> Un test bien escrito es una especificación ejecutable. El agente puede "aprender" el comportamiento deseado analizando el test antes de escribir una línea de código.</li>
+</ul>
+<h4 id="implementacion-practica-agnostica_1">Implementación Práctica (Agnóstica)<a class="headerlink" href="#implementacion-practica-agnostica_1" title="Permanent link">&para;</a></h4>
+<p>Esta implementación utiliza estructuras de archivos comunes para tests y mecanismos genéricos de ejecución.</p>
+<p><strong>Estructura de Directorio:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mi-proyecto/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── src/
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>│   └── logic/
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>│       └── process-data.ts    # Lógica a implementar
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>└── __tests__/
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    └── logic/
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        └── process-data.test.ts # Tests para la lógica
+</span></code></pre></div></p>
+<p><strong>Esquema de Test (<code>__tests__/logic/process-data.test.ts</code>):</strong>
+<div class="language-typescript highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;processData&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should transform data correctly for valid input&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">expected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">processedId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ID-1&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">transformedValue</span><span class="o">:</span><span class="w"> </span><span class="kt">100</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">processData</span><span class="p">(</span><span class="nx">input</span><span class="p">);</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">expected</span><span class="p">);</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should throw an error for invalid input&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;invalid&#39;</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">expect</span><span class="p">(</span><span class="nx">processData</span><span class="p">(</span><span class="nx">input</span><span class="p">)).</span><span class="nx">rejects</span><span class="p">.</span><span class="nx">toThrow</span><span class="p">(</span><span class="s1">&#39;Invalid input&#39;</span><span class="p">);</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="p">});</span>
+</span></code></pre></div></p>
+<p><strong>Ejemplo de Comando de Trabajo (Agnóstico):</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Paso 1: Iniciar agente en modo TDD, enlazado al sistema de tests</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>agente-desarrollo<span class="w"> </span>--modo<span class="w"> </span>tdd<span class="w"> </span>--comando-tests<span class="w"> </span><span class="s2">&quot;npm test -- --filter processData&quot;</span><span class="w"> </span>--comando-linter<span class="w"> </span><span class="s2">&quot;npm run lint&quot;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Paso 2: Instrucción al agente para implementar la lógica</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>agente-desarrollo<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;Implementa la función processData en src/logic/process-data.ts para pasar todos los tests definidos.&quot;</span>
+</span></code></pre></div></p>
+<p><em>Fuentes: <a href="https://www.builder.io/blog/test-driven-development-ai">Test-Driven Development with AI</a> | <a href="https://medium.com/effortless-programming/better-ai-driven-development-with-test-driven-development-d4849f67e339">Better AI-driven development with TDD</a> | <a href="https://tidyfirst.substack.com/p/augmented-coding-beyond-the-vibes">Augmented Coding: Beyond the Vibes</a> | <a href="https://www.readysetcloud.io/blog/allen.helton/tdd-with-ai/">TDD with AI</a></em></p>
+<hr />
+<h3 id="contract-driven-development-cdd">Contract-Driven Development (CDD)<a class="headerlink" href="#contract-driven-development-cdd" title="Permanent link">&para;</a></h3>
+<p>El <strong>Contract-Driven Development (CDD)</strong> prioriza la definición explícita de contratos (interfaces, esquemas, APIs) antes de la implementación. En un ecosistema de IA, la arquitectura debe ser inteligible para las máquinas, no solo para los desarrolladores humanos. Los LLMs, aunque potentes, luchan con la inferencia de la intención a través de jerarquías de clases complejas o polimorfismo, pero sobresalen cuando se les proporcionan entradas explícitas y declarativas como esquemas OpenAPI, GraphQL o JSON Schema. CDD establece una regla fundamental: <strong>contratos sobre clases</strong>.</p>
+<p><strong>Paradigma Arquitectónico:</strong> <em>Contracts as Code</em>. Los contratos son artefactos auto-descriptivos, parseables por máquinas y conscientes de las políticas de negocio (ej. autenticación, <em>rate-limiting</em>, autorización). Al centralizar estos contratos en un repositorio dedicado, se crea un punto de encuentro innegociable para consumidores y proveedores, lo que facilita la generación de <em>mocks</em>, la validación en CI/CD y el desarrollo paralelo sin bloqueos.</p>
+<h4 id="ventajas-analiticas_2">Ventajas Analíticas<a class="headerlink" href="#ventajas-analiticas_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Claridad Unívoca para Agentes:</strong> Los contratos proporcionan a los agentes una definición precisa e inambigua de los modelos de datos, las firmas de funciones y el comportamiento esperado de las APIs, eliminando alucinaciones sobre la estructura de la información.</li>
+<li><strong>Integración y Consistencia:</strong> Facilita la integración entre microservicios o componentes generados por diferentes agentes o equipos, ya que todos se adhieren al mismo contrato. Permite la validación temprana en el ciclo de desarrollo.</li>
+<li><strong>Generación de Herramientas Auxiliares:</strong> Los contratos pueden usarse para generar automáticamente clientes, <em>mocks</em>, stubs, validadores y documentación, aumentando la eficiencia y reduciendo errores manuales.</li>
+</ul>
+<h4 id="desventajas-y-desafios-tecnicos_2">Desventajas y Desafíos Técnicos<a class="headerlink" href="#desventajas-y-desafios-tecnicos_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Sobrecarga Inicial:</strong> Requiere una inversión significativa de tiempo en el diseño y la escritura de contratos antes de cualquier implementación, lo que puede ralentizar el inicio del proyecto.</li>
+<li><strong>Mantenimiento de Contratos:</strong> Los contratos deben mantenerse sincronizados con la evolución del sistema. Un <em>Contract Drift</em> (desfase entre el contrato y la implementación real) es una fuente de errores y de desconfianza.</li>
+<li><strong>Rigidez Potencial:</strong> Un diseño de contratos demasiado rígido puede dificultar la evolución y la flexibilidad del sistema si los requisitos cambian frecuentemente.</li>
+</ul>
+<h4 id="paradigmas-arquitectonicos-y-gotchas_2">Paradigmas Arquitectónicos y <em>Gotchas</em><a class="headerlink" href="#paradigmas-arquitectonicos-y-gotchas_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Schema-First Design:</strong> Este es el principio fundamental de CDD. El diseño del esquema (la forma de los datos) se define antes que la lógica de negocio que lo consume o produce.</li>
+<li><strong>Versionado de Contratos:</strong> Es crucial versionar los contratos de API y datos para manejar la compatibilidad hacia atrás y hacia adelante (ej. <code>v1</code>, <code>v2</code>).</li>
+<li><strong>Anotaciones Semánticas:</strong> Incluir metadatos o anotaciones (<code>x-zone</code>, <code>x-rate-limit</code>) en los esquemas enriquece el contexto para los agentes, permitiéndoles tomar decisiones más informadas sin inferencia.</li>
+</ul>
+<h4 id="implementacion-practica-agnostica_2">Implementación Práctica (Agnóstica)<a class="headerlink" href="#implementacion-practica-agnostica_2" title="Permanent link">&para;</a></h4>
+<p>Esta implementación se basa en el uso de archivos de esquema estandarizados y herramientas de validación.</p>
+<p><strong>Estructura de Directorio:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>mi-proyecto/
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>├── contracts/               # Repositorio central de contratos
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>│   ├── common/              # Definiciones de esquema reutilizables
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>│   │   └── base-types.yaml
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>│   └── api/                 # Contratos específicos de API
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>│       └── user-service.yaml
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>└── src/
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    └── types/               # Tipos de datos generados o manuales
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>        └── api.ts
+</span></code></pre></div></p>
+<p><strong>Esquema de Contrato (Ej. OpenAPI <code>contracts/api/user-service.yaml</code>):</strong>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">openapi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0.0</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">info</span><span class="p">:</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User Management API</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nt">paths</span><span class="p">:</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="nt">/users</span><span class="p">:</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="nt">get</span><span class="p">:</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">      </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Retrieves a list of users</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">      </span><span class="nt">responses</span><span class="p">:</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">        </span><span class="s">&#39;200&#39;</span><span class="p p-Indicator">:</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A list of user objects</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">          </span><span class="nt">content</span><span class="p">:</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">            </span><span class="nt">application/json</span><span class="p">:</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">              </span><span class="nt">schema</span><span class="p">:</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">                </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">array</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">                </span><span class="nt">items</span><span class="p">:</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">                  </span><span class="nt">$ref</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#/components/schemas/User&#39;</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="nt">components</span><span class="p">:</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">  </span><span class="nt">schemas</span><span class="p">:</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">    </span><span class="nt">User</span><span class="p">:</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">object</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">      </span><span class="nt">properties</span><span class="p">:</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">        </span><span class="nt">id</span><span class="p">:</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">          </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uuid</span>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="w">        </span><span class="nt">email</span><span class="p">:</span>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="w">          </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span>
+</span></code></pre></div></p>
+<p><strong>Ejemplos de Comandos de Trabajo (Agnóstico):</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Paso 1: Validar la conformidad del contrato con la implementación existente</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>validador-contratos<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--contrato<span class="w"> </span>contracts/api/user-service.yaml
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Paso 2: Generar un cliente SDK o un mock server a partir del contrato</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>generador-sdk<span class="w"> </span>--input<span class="w"> </span>contracts/api/user-service.yaml<span class="w"> </span>--output<span class="w"> </span>src/client/
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Paso 3: Instruir al agente para implementar una API basándose en un contrato</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>agente-desarrollo<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;Implementa el servicio /users GET API en src/services/user.ts siguiendo estrictamente el contrato en contracts/api/user-service.yaml&quot;</span>
+</span></code></pre></div></p>
+<p><em>Fuentes: <a href="https://www.infoq.com/articles/contract-driven-adoption/">Contract-Driven Development – a Real-World Adoption Journey</a> | <a href="https://medium.com/software-architecture-in-the-age-of-ai/contracts-over-classes-architecting-for-ai-understanding-not-just-developer-comfort-646882ebb93c">Contracts Over Classes: Architecting for AI Understanding</a> | <a href="https://medium.com/@ethaizone/the-power-of-contract-driven-development-and-ai-powered-coding-a-synergistic-approach-c09550a4d5fb">The Power of Contract-Driven Development and AI-Powered Coding</a></em></p>
+<hr />
+<h3 id="readme-driven-development-rdd">Readme-Driven Development (RDD)<a class="headerlink" href="#readme-driven-development-rdd" title="Permanent link">&para;</a></h3>
+<p>El <strong>Readme-Driven Development (RDD)</strong> es una metodología que exige documentar rigurosamente la interfaz pública y los escenarios de uso de una librería, componente o servicio en el archivo <code>README.md</code> <em>antes</em> de implementar la lógica subyacente. Se enfoca en la perspectiva del consumidor final del código.</p>
+<p><strong>Paradigma Arquitectónico:</strong> <em>Interface-First Design</em>. En lugar de construir una funcionalidad y luego documentarla, RDD invierte el proceso: se define cómo se usará y comportará el sistema desde fuera, y esa definición se convierte en el contrato principal para el desarrollo interno. Para un agente de IA, un <code>README.md</code> bien estructurado es una especificación de alto nivel que le permite comprender el comportamiento esperado de las APIs y generar implementaciones que satisfacen milimétricamente la experiencia de usuario documentada.</p>
+<h4 id="ventajas-analiticas_3">Ventajas Analíticas<a class="headerlink" href="#ventajas-analiticas_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Claridad del Consumidor:</strong> Fuerza a los desarrolladores y a los agentes de IA a pensar desde la perspectiva del usuario o del consumidor de la API, lo que resulta en interfaces más intuitivas y fáciles de usar.</li>
+<li><strong>Reducción de Ambigüedad:</strong> Un <code>README.md</code> detallado con ejemplos de uso y descripciones de API reduce significativamente la ambigüedad para los agentes de IA, que pueden generar código que se alinee directamente con la documentación.</li>
+<li><strong>Comunicación Simplificada:</strong> Sirve como un documento de comunicación conciso y centralizado para el equipo, explicando el <em>qué</em> y el <em>cómo usar</em> sin necesidad de sumergirse en la implementación.</li>
+</ul>
+<h4 id="desventajas-y-desafios-tecnicos_3">Desventajas y Desafíos Técnicos<a class="headerlink" href="#desventajas-y-desafios-tecnicos_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Riesgo de <em>Scope Creep</em> Temprano:</strong> Si la fase de diseño del <code>README.md</code> no está bien controlada, puede llevar a una especificación excesivamente ambiciosa o inestable antes de que la viabilidad técnica sea explorada.</li>
+<li><strong>Mantenimiento Dual:</strong> Requiere mantener el <code>README.md</code> y el código sincronizados. Un <code>README.md</code> obsoleto es peor que no tenerlo, ya que engaña tanto a humanos como a agentes.</li>
+<li><strong>Limitado a Interfaces Públicas:</strong> RDD es excelente para interfaces y comportamientos externos, pero es menos efectivo para guiar la implementación de lógicas de negocio internas o detalles arquitectónicos complejos que no se exponen directamente al consumidor.</li>
+</ul>
+<h4 id="paradigmas-arquitectonicos-y-gotchas_3">Paradigmas Arquitectónicos y <em>Gotchas</em><a class="headerlink" href="#paradigmas-arquitectonicos-y-gotchas_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Executable Documentation:</strong> El <code>README.md</code> no es solo texto; debe contener ejemplos de código ejecutables y descripciones de API que sirvan como micro-especificaciones para los agentes.</li>
+<li><strong>Reglas de Agente:</strong> Para hacer RDD efectivo con IA, es crucial configurar reglas en el agente que le exijan leer el <code>README.md</code> como fuente primaria para comprender el <em>intent</em> antes de generar código.</li>
+</ul>
+<h4 id="implementacion-practica-agnostica_3">Implementación Práctica (Agnóstica)<a class="headerlink" href="#implementacion-practica-agnostica_3" title="Permanent link">&para;</a></h4>
+<p>Esta implementación se centra en el <code>README.md</code> como un contrato ejecutable.</p>
+<p><strong>Estructura de Directorio:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>mi-proyecto/
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>├── README.md            # Especificación de uso público
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>└── .agent/              # Configuraciones específicas del agente
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    └── rules/
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>        └── rdd-compliance.mdc # Regla para forzar el seguimiento del README
+</span></code></pre></div></p>
+<p><strong>Paso 1: El Contrato (Esquema de <code>README.md</code>)</strong>
+Al emplear cuádruple "backtick", el agente entiende que este es el documento primario. Todo el comportamiento público debe ser redactado aquí primero.</p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gh"># [Nombre de la Librería/Servicio]</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="gu">## Instalación</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="sb">```bash</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>npm<span class="w"> </span>install<span class="w"> </span>my-library
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="sb">```</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="gu">## Uso</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="sb">```typescript</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">myFunction</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;my-library&#39;</span><span class="p">;</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="nx">myFunction</span><span class="p">(</span><span class="s1">&#39;argumento&#39;</span><span class="p">);</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="sb">```</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="gu">## API</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="gu">### `myFunction(param: string): void`</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>Descripción detallada de la función, sus parámetros y su comportamiento esperado.
+</span></code></pre></div>
+<p><strong>Paso 2: La Barrera (Regla de Agente)</strong>
+Se configura una regla automática (por ejemplo, en Cursor vía <code>.mdc</code> o genérica en <code>AGENTS.md</code>) para que el agente nunca ignore el contrato.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nn">---</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RDD Compliance</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Asegura que el código respeta el README.md como contrato de interfaz.</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nt">globs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;src/**/*.ts&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nn">---</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="nt">Before implementing any feature or API</span><span class="p">:</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="l l-Scalar l-Scalar-Plain">1. You MUST read `README.md` completely.</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="l l-Scalar l-Scalar-Plain">2. Ensure your implementation matches the documented public API in `README.md` exactly.</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="nt">3. Forbidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Inventing APIs, public methods, or behaviors not explicitly documented in the README.</span>
+</span></code></pre></div>
+<p><strong>Paso 3: La Delegación (Comando de Trabajo Agnóstico)</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Instruir al agente para generar el código interno que hace realidad el README</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>agente-desarrollo<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;Implementa la lógica interna de &#39;myFunction&#39; en src/index.ts. Tu única métrica de éxito es que el código finalice compliendo lo que se publicita en el README.md.&quot;</span>
+</span></code></pre></div></p>
+<p><em>Fuente: <a href="https://bensguide.substack.com/p/readme-driven-development">Readme-driven development</a></em></p>
+<hr />
+<h3 id="evaluator-optimizer-patron-critico-actor">Evaluator-Optimizer (Patrón Crítico-Actor)<a class="headerlink" href="#evaluator-optimizer-patron-critico-actor" title="Permanent link">&para;</a></h3>
+<p>El patrón <strong>Evaluator-Optimizer</strong> implementa un sistema robusto de auto-corrección sin incurrir en los costos y ataduras del <em>fine-tuning</em> de los modelos subyacentes. Se estructuran dos agentes especializados que operan en tándem: un <strong>Generador</strong> (<em>Optimizer</em> o Actor) que propone una solución, y un <strong>Crítico</strong> (<em>Evaluator</em>) que valida el resultado contra un marco de reglas estrictas. Si el Crítico encuentra fallos, el Generador se ve forzado a iterar hasta que la solución sea aceptable.</p>
+<p><strong>Paradigma Arquitectónico:</strong> <em>Iterative Self-Correction</em>. El núcleo del patrón radica en preservar inmutable el <em>intent</em> original del usuario, corrigiendo iterativamente únicamente la sintaxis o la lógica en base al <em>feedback</em> estructurado. Este bucle de retroalimentación cerrado es crucial para tareas de alta precisión donde la alucinación del modelo puede tener consecuencias graves.</p>
+<h4 id="ventajas-analiticas_4">Ventajas Analíticas<a class="headerlink" href="#ventajas-analiticas_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Precisión Elevada:</strong> Aumenta drásticamente la fiabilidad de las respuestas del modelo, especialmente en tareas críticas como la generación de código SQL, configuraciones de seguridad o análisis de vulnerabilidades.</li>
+<li><strong>Auto-Depuración Autónoma:</strong> El sistema puede identificar y corregir errores sin intervención humana, reduciendo la carga de trabajo de depuración para los desarrolladores.</li>
+<li><strong>Mitigación de Alucinaciones:</strong> Al tener un "segundo cerebro" (el Crítico) que valida las salidas del Generador, se reduce significativamente la probabilidad de alucinaciones.</li>
+</ul>
+<h4 id="desventajas-y-desafios-tecnicos_4">Desventajas y Desafíos Técnicos<a class="headerlink" href="#desventajas-y-desafios-tecnicos_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Mayor Latencia y Costo:</strong> La ejecución de dos modelos de lenguaje en tándem, con posibles múltiples iteraciones, incrementa significativamente la latencia y el consumo de <em>tokens</em>, elevando los costos de inferencia.</li>
+<li><strong>Diseño del Crítico:</strong> La efectividad del patrón depende directamente de la calidad del agente Crítico. Si el Crítico es débil o sus reglas son ambiguas, el bucle de auto-corrección será ineficiente.</li>
+<li><strong>Bucle Infinito:</strong> Existe el riesgo de que el Generador y el Crítico entren en un bucle infinito si el Generador no logra satisfacer las condiciones del Crítico o si el Crítico proporciona <em>feedback</em> contradictorio.</li>
+</ul>
+<h4 id="paradigmas-arquitectonicos-y-gotchas_4">Paradigmas Arquitectónicos y <em>Gotchas</em><a class="headerlink" href="#paradigmas-arquitectonicos-y-gotchas_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Feedback Estructurado:</strong> El Crítico debe proporcionar <em>feedback</em> en un formato estructurado (ej. JSON con hallazgos específicos) para que el Generador pueda actuar sobre él de manera determinista.</li>
+<li><strong>Reglas de Fallback:</strong> Si el Generador falla sistemáticamente, es crucial tener <em>rule-based fallbacks</em> (reglas predefinidas no basadas en LLMs) que aseguren que la consulta final sea válida y segura.</li>
+</ul>
+<h4 id="implementacion-practica-agnostica_4">Implementación Práctica (Agnóstica)<a class="headerlink" href="#implementacion-practica-agnostica_4" title="Permanent link">&para;</a></h4>
+<p>Esta implementación utiliza la orquestación de dos agentes con roles distintos.</p>
+<p><strong>Estructura de Directorio:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>mi-proyecto/
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>└── agents/                  # Definiciones de agentes especializados
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    ├── code-generator.md    # Agente Generador (Actor)
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    └── code-reviewer.md     # Agente Crítico (Evaluador)
+</span></code></pre></div></p>
+<p><strong>Ejemplo de Comando de Trabajo (Agnóstico):</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Paso 1: El agente &quot;actor&quot; propone una implementación</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>agente-orquestador<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;Genera una implementación para el endpoint /auth/login en src/auth.ts.&quot;</span><span class="w"> </span>--use-agent<span class="w"> </span>code-generator
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># Paso 2: El agente &quot;crítico&quot; audita la implementación</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>agente-orquestador<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;Audita el archivo src/auth.ts por seguridad y adherencia a las convenciones.&quot;</span><span class="w"> </span>--use-agent<span class="w"> </span>code-reviewer
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1"># Paso 3: El agente &quot;actor&quot; corrige basándose en el feedback del crítico</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>agente-orquestador<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;Corrige los problemas encontrados por el code-reviewer en src/auth.ts.&quot;</span><span class="w"> </span>--use-agent<span class="w"> </span>code-generator
+</span></code></pre></div></p>
+<p><em>Fuentes: <a href="https://dev.to/clayroach/building-self-correcting-llm-systems-the-evaluator-optimizer-pattern-169p">Building Self-Correcting LLM Systems: The Evaluator-Optimizer Pattern</a> | <a href="https://dylancastillo.co/til/evaluator-optimizer-pydantic-ai.html">Evaluator-optimizer workflow with Pydantic AI</a></em></p>
+<hr />
+<h2 id="ciclo-de-trabajo-hibrido-ejemplo-practico">Ciclo de Trabajo Híbrido: Ejemplo Práctico<a class="headerlink" href="#ciclo-de-trabajo-hibrido-ejemplo-practico" title="Permanent link">&para;</a></h2>
+<p>Para mostrar cómo funciona en la práctica un ciclo híbrido estructurado, consideremos el desarrollo de un módulo de carrito de compras que integra varias de estas metodologías.</p>
+<h3 id="1-definicion-y-planificacion-sdd">1. Definición y Planificación (SDD)<a class="headerlink" href="#1-definicion-y-planificacion-sdd" title="Permanent link">&para;</a></h3>
+<p>Se inicia con una especificación detallada en <code>docs/spec.md</code>, que un agente de planificación transforma en un plan técnico (<code>docs/plan.md</code>) y un desglose de tareas (<code>docs/tasks.md</code>).</p>
+<p><strong>Esquema de <code>docs/spec.md</code>:</strong>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gh"># Spec: Carrito de Compras</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="gu">## Requerimientos Funcionales</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="k">- [ ]</span> Agregar productos (máx. 5 unidades por producto).
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="k">- [ ]</span> Calcular subtotal, impuestos (15%) y total.
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="k">- [ ]</span> Aplicar códigos de descuento (solo uno por pedido).
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="gu">## Casos Borde Críticos</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="k">-</span><span class="w"> </span>Comportamiento si el stock disminuye durante el checkout.
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="k">-</span><span class="w"> </span>Prevenir la aplicación de múltiples descuentos simultáneamente.
+</span></code></pre></div></p>
+<p><strong>Esquema de <code>docs/plan.md</code>:</strong>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gh"># Plan Técnico: Módulo de Carrito</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="gu">## Componentes</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">-</span><span class="w"> </span><span class="sb">`src/cart/store.ts`</span>: Gestor de estado del carrito.
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="k">-</span><span class="w"> </span><span class="sb">`src/cart/types.ts`</span>: Definiciones de tipos para ítems y estado.
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="k">-</span><span class="w"> </span><span class="sb">`src/cart/api.ts`</span>: Interfaz con servicios externos (stock, descuentos).
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="gu">## Lógica Clave</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="k">-</span><span class="w"> </span>Función <span class="sb">`addItem`</span>: Valida cantidad máxima por producto (5).
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="k">-</span><span class="w"> </span>Función <span class="sb">`applyDiscount`</span>: Valida que solo un descuento esté activo.
+</span></code></pre></div></p>
+<h3 id="2-implementacion-y-validacion-continua-tdd-evaluator-optimizer">2. Implementación y Validación Continua (TDD + Evaluator-Optimizer)<a class="headerlink" href="#2-implementacion-y-validacion-continua-tdd-evaluator-optimizer" title="Permanent link">&para;</a></h3>
+<p>Cada tarea del plan se aborda con un enfoque TDD, donde los tests son escritos antes del código. Un agente generador implementa la lógica, y un agente crítico valida el resultado.</p>
+<p><strong>Esquema de <code>__tests__/cart/store.test.ts</code> (TDD):</strong>
+<div class="language-typescript highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;CartStore&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should not exceed 5 units per product when adding multiple times&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">CartStore</span><span class="p">();</span><span class="w"> </span><span class="c1">// Instancia agnóstica del gestor de estado</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="nx">store</span><span class="p">.</span><span class="nx">addItem</span><span class="p">({</span><span class="w"> </span><span class="nx">productId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">quantity</span><span class="o">:</span><span class="w"> </span><span class="kt">3</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span><span class="nx">store</span><span class="p">.</span><span class="nx">addItem</span><span class="p">({</span><span class="w"> </span><span class="nx">productId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">quantity</span><span class="o">:</span><span class="w"> </span><span class="kt">4</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="c1">// Añade 4 más, pero el límite es 5</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">store</span><span class="p">.</span><span class="nx">getItemQuantity</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">5</span><span class="p">);</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">  </span><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should only apply one discount code&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">CartStore</span><span class="p">();</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">    </span><span class="nx">store</span><span class="p">.</span><span class="nx">applyDiscount</span><span class="p">(</span><span class="s1">&#39;CODE10&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">    </span><span class="nx">store</span><span class="p">.</span><span class="nx">applyDiscount</span><span class="p">(</span><span class="s1">&#39;CODE20&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">);</span><span class="w"> </span><span class="c1">// Este no debería aplicarse</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">store</span><span class="p">.</span><span class="nx">getCurrentDiscount</span><span class="p">()).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">10</span><span class="p">);</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="p">});</span>
+</span></code></pre></div></p>
+<p><strong>Ejemplo de Flujo de Agentes (TDD + Evaluator-Optimizer):</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># 1. Agente genera implementación basada en tests</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>agente-orquestador<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;Implementa el gestor de estado del carrito en src/cart/store.ts para que pase todos los tests en __tests__/cart/store.test.ts.&quot;</span><span class="w"> </span>--use-agent<span class="w"> </span>code-generator
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1"># 2. Agente crítico valida el código generado</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>agente-orquestador<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;Revisa el código en src/cart/store.ts por adherencia a las specs, bugs y seguridad.&quot;</span><span class="w"> </span>--use-agent<span class="w"> </span>code-reviewer
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="c1"># (Si el crítico encuentra problemas, el orquestador re-alimenta al generador)</span>
+</span></code></pre></div></p>
+<hr />
+<h2 id="matriz-de-decision-cual-metodologia-usar">Matriz de Decisión: Cuál Metodología Usar<a class="headerlink" href="#matriz-de-decision-cual-metodologia-usar" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Situación</th>
+<th style="text-align: left;">Recomendación</th>
+<th style="text-align: left;">Por Qué</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Inicio de un <em>feature</em> o épica de producto</strong></td>
+<td style="text-align: left;"><strong>SDD</strong></td>
+<td style="text-align: left;">Restringe la autonomía del modelo, asegura que el agente opere sobre un documento versionable y auditable.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Lógica de negocio altamente algorítmica y refactorización</strong></td>
+<td style="text-align: left;"><strong>TDD</strong></td>
+<td style="text-align: left;">Establece una validación de caja negra (<em>fail-closed</em>) que fuerza la corrección sintáctica del agente en tiempo real.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Diseño y orquestación de APIs o microservicios</strong></td>
+<td style="text-align: left;"><strong>CDD</strong></td>
+<td style="text-align: left;">Mitiga alucinaciones en modelos de datos. Provee un punto de anclaje estático y verificable para el ecosistema.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Desarrollo de librerías, SDKs o herramientas CLI</strong></td>
+<td style="text-align: left;"><strong>RDD</strong></td>
+<td style="text-align: left;">Define el contrato de usuario y orienta la estructura arquitectónica puramente a la experiencia del consumidor externo.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Generación dinámica de consultas complejas (ej. SQL) o validación E2E</strong></td>
+<td style="text-align: left;"><strong>Evaluator-Optimizer</strong></td>
+<td style="text-align: left;">Garantiza precisión extrema a costa de latencia mediante un tándem de agentes en evaluación continua (<em>feedback loop</em> cerrado).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Proyectos con complejidad media-alta y equipo distribuido</strong></td>
+<td style="text-align: left;"><strong>Combinación SDD + TDD + CDD</strong></td>
+<td style="text-align: left;">Permite una especificación robusta, una implementación verificable y contratos claros entre servicios.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Important</p>
+<p>El éxito del desarrollo de software en la era de la IA reside en entender que <strong>la IA no reemplaza la arquitectura de sistemas; la hace más estricta</strong>. Si quieres escalabilidad, exige validaciones, contratos explícitos y revela el contexto de forma progresiva. Las metodologías AI-Native no son inventadas por proveedores específicos; son patrones de ingeniería adaptados al hecho de que ahora tienes un "compañero" que genera código.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
