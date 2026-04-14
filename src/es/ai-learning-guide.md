@@ -5,15 +5,23 @@ Esta guía es una referencia fundacional y completa para el desarrollo de agente
 ---
 
 ## Índice
-1. [Introducción y Conceptos Básicos](#introducción-y-conceptos-básicos)
-2. [Gestión de Contexto (AGENTS.md)](#gestión-de-contexto-agentsmd)
-3. [Skills (Habilidades)](#skills-habilidades)
-4. [MCP (Model Context Protocol)](#mcp-model-context-protocol)
-5. [Plugins y Extensiones](#plugins-y-extensiones)
-6. [Hooks (Disparadores)](#hooks-disparadores)
-7. [Subagentes](#subagentes)
-8. [Automatización y Scripting](#automatización-y-scripting)
-9. [Modelos de IA: Guía Completa](#modelos-de-ia-guía-completa)
+1. [Introducción y Conceptos Básicos](#1-introduccion-y-conceptos-basicos)
+2. [Gestión de Contexto (AGENTS.md)](#2-gestion-de-contexto-agentsmd)
+3. [Skills (Habilidades)](#3-skills-habilidades)
+4. [MCP (Model Context Protocol)](#4-mcp-model-context-protocol)
+5. [Plugins y Extensiones](#5-plugins-y-extensiones)
+6. [Hooks (Disparadores)](#6-hooks-disparadores)
+7. [Subagentes y Orquestación](#7-subagentes-y-orquestacion)
+8. [Automatización y Scripting](#8-automatizacion-y-scripting)
+9. [Modelos de IA: Guía Completa](#9-modelos-de-ia-guia-completa)
+10. [Metodologías de trabajo con AI](#10-metodologias-de-trabajo-con-ai)
+
+> [!NOTE]
+> **Mi Colección Personal:** Muchos de los recursos mencionados los tengo implementados y los iré actualizando periódicamente. Si deseas ver mis carpetas, puedes visitar:
+> - 🧩 **[Mis Skills](https://github.com/FranMT-S/AI-Agents-Guide/tree/main/src/skills/)**
+> - 🤖 **[Mis Subagentes](https://github.com/FranMT-S/AI-Agents-Guide/tree/main/src/subagents)**
+> - 🏗️ **[Templates para Agentes](https://github.com/FranMT-S/AI-Agents-Guide/tree/main/src/templates/agents)**
+> - 📋 **[Templates para Skills](https://github.com/FranMT-S/AI-Agents-Guide/tree/main/src/templates/skills)**
 
 ---
 
