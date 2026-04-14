@@ -54,15 +54,15 @@ plugins:
 nav:
   - Inicio: ai-learning-guide.md
   - Concepts:
-    - AI-Native Engineering: "concepts/Metodologías de Ingeniería AI-Native.md"
     - Gestión de Contexto: concepts/agents.md
-    - Modelos de IA: concepts/models.md
     - MCP: concepts/mcp.md
     - Skills: concepts/skills.md
     - Subagentes: concepts/subagentes.md
     - Hooks: concepts/hooks.md
+    - Modelos de IA: concepts/models.md
     - Automatización Headless: concepts/automatizacion.md
     - Plugins y Extensiones: concepts/plugins.md
+    - Metodologías de Ingeniería AI-Native: "concepts/Metodologías de Ingeniería AI-Native.md"
   - Tools:
     - Cursor: tools/cursor.md
     - Claude Code: tools/claude-code.md
