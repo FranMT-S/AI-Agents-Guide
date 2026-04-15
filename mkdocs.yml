@@ -56,9 +56,9 @@ plugins:
 nav:
   - Inicio: index.md
   - Concepts:
-    - Gestión de Contexto: concepts/agents.md
-    - MCP: concepts/mcp.md
+    - Contexto: concepts/agents.md
     - Skills: concepts/skills.md
+    - MCP: concepts/mcp.md
     - Subagentes: concepts/subagentes.md
     - Hooks: concepts/hooks.md
     - Modelos de IA: concepts/models.md

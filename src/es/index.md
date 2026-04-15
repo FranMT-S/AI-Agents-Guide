@@ -56,7 +56,7 @@ El archivo sigue una jerarquía de tres niveles (Global → Proyecto → Módulo
 > [!IMPORTANT]
 > Los LLMs de frontera pueden mantener entre 150 y 200 instrucciones activas. Herramientas como Claude Code consumen ~50 instrucciones base en su *system prompt* interno. Cada regla que añades reduce la fiabilidad de todas las demás.
 
-👉 **[Ver Guía Técnica Completa: AGENTS.md y Gestión de Contexto](concepts/agents.md)** — incluye jerarquía de alcance, secciones recomendadas, tabla de terminología correcta, malas prácticas y ejemplo de producción completo.
+👉 **[Ver Guía Técnica Completa: AGENTS.md y Gestión de Contexto](concepts/agents-context.md)** — incluye jerarquía de alcance, secciones recomendadas, tabla de terminología correcta, malas prácticas y ejemplo de producción completo.
 
 ---
 
