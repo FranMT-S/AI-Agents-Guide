@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://FranMT-S.github.io/AI-Agents-Guide/concepts/agents-context/">
       
       
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../skills/">
       
       
         
@@ -25,7 +29,7 @@
     
     
       
-        <title>Contexto: La Base del Agente Senior - Guía Completa de Agentes de IA</title>
+        <title>Contexto - Guía Completa de Agentes de IA</title>
       
     
     
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Contexto: La Base del Agente Senior
+              Contexto
             
           </span>
         </div>
@@ -284,8 +288,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -296,11 +302,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
@@ -321,7 +327,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -336,10 +342,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../agents.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contexto
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -355,6 +388,142 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#menos-alucinacion-y-mas-direccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menos alucinación y más dirección
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jerarquia-de-autoridad-quien-manda-aqui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jerarquía de Autoridad: ¿Quién manda aquí?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#si-quieres-un-agente-tonto-ponle-un-agentsmd-gigante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Si quieres un agente tonto, ponle un AGENTS.md gigante
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Si quieres un agente tonto, ponle un AGENTS.md gigante">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-estructura-desacoplada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Estructura Desacoplada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sintaxis-de-referenciacion-dinamica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sintaxis de Referenciación Dinámica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anatomia-de-un-agentsmd-de-alto-rendimiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anatomía de un AGENTS.md de Alto Rendimiento
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingenieria-de-instrucciones-el-arte-de-la-precision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ingeniería de Instrucciones: El Arte de la Precisión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plantilla-de-referencia-para-configuracion-a-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plantilla de Referencia para Configuración a Producción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#antipatrones-lo-que-bloquea-tu-escalabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Antipatrones: Lo que bloquea tu escalabilidad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#soporte-y-equivalencias-por-ecosistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soporte y Equivalencias por Ecosistema
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
