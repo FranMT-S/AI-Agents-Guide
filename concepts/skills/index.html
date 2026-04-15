@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://FranMT-S.github.io/AI-Agents-Guide/concepts/skills/">
       
       
-        <link rel="prev" href="../mcp/">
+        <link rel="prev" href="../..">
       
       
-        <link rel="next" href="../subagentes/">
+        <link rel="next" href="../mcp/">
       
       
         
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#skills-habilidades" class="md-skip">
+        <a href="#skill-no-escribas-codigo-inyecta-capacidades" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -345,42 +345,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../agents/" class="md-nav__link">
+      <a href="../agents.md" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Gestión de Contexto
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../mcp/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    MCP
+    Contexto
   
 
     
@@ -461,22 +433,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-consejos-de-diseno" class="md-nav__link">
+  <a href="#vamos-a-construir-tu-primera-skill" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Consejos de Diseño
+        ¡Vamos a construir tu primera Skill!
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Consejos de Diseño">
+    <nav class="md-nav" aria-label="¡Vamos a construir tu primera Skill!">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#proposito-unico-y-caja-negra" class="md-nav__link">
+  <a href="#ejemplo-una-skill-simple-saludo-agente" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Propósito Único y Caja Negra
+        Ejemplo: Una Skill Simple (saludo-agente)
       
     </span>
   </a>
@@ -484,10 +456,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#metadata-y-triggers" class="md-nav__link">
+  <a href="#principios-de-diseno" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Metadata y Triggers
+        Principios de Diseño
       
     </span>
   </a>
@@ -500,22 +472,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-metadatos-de-una-skill-frontmatter" class="md-nav__link">
+  <a href="#2-el-cerebro-de-la-skill-metadatos-y-frontmatter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Metadatos de una Skill (Frontmatter)
+        2. El Cerebro de la Skill: Metadatos y Frontmatter
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Metadatos de una Skill (Frontmatter)">
+    <nav class="md-nav" aria-label="2. El Cerebro de la Skill: Metadatos y Frontmatter">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#atributos-de-identificacion" class="md-nav__link">
+  <a href="#a-metadatos-obligatorios-activacion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Atributos de Identificación
+        A. Metadatos Obligatorios (Activación)
       
     </span>
   </a>
@@ -523,30 +495,24 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#control-de-invocacion-y-herramientas" class="md-nav__link">
+  <a href="#b-metadatos-opcionales-control-y-seguridad" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Control de Invocación y Herramientas
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Control de Invocación y Herramientas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ejemplo-frontmatter-avanzado" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ejemplo: Frontmatter Avanzado
+        B. Metadatos Opcionales (Control y Seguridad)
       
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#ejemplo-configuracion-avanzada-con-todos-los-campos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Configuración avanzada con todos los campos
+      
+    </span>
+  </a>
   
 </li>
         
@@ -556,15 +522,126 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-estructuras-y-templates-de-referencia" class="md-nav__link">
+  <a href="#3-mejores-practicas-estandar-agentskillsio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Estructuras y Templates de Referencia
+        3 Mejores Prácticas (Estándar AgentSkills.io)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Estructuras y Templates de Referencia">
+    <nav class="md-nav" aria-label="3 Mejores Prácticas (Estándar AgentSkills.io)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-optimizacion-del-motor-de-descubrimiento-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Optimización del Motor de Descubrimiento (Triggers)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-diseno-de-instrucciones-resilientes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Diseño de Instrucciones Resilientes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-sistema-de-evaluacion-integral-evals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Sistema de Evaluación Integral (Evals)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-errores-comunes-antipatrones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Errores Comunes (Antipatrones)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Errores Comunes (Antipatrones)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-triggers-genericos-o-ambiguos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Triggers Genéricos o Ambiguos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-el-skillmd-monolitico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. El SKILL.md Monolítico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-reglas-globales-dentro-de-una-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Reglas Globales dentro de una Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-automatizacion-critica-sin-manejo-de-errores-infinite-loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Automatización Crítica sin Manejo de Errores (Infinite Loops)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-patrones-de-diseno-estandariza-la-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Patrones de Diseño: Estandariza la Ejecución
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Patrones de Diseño: Estandariza la Ejecución">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -690,15 +767,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-modelos-de-organizacion-avanzados" class="md-nav__link">
+  <a href="#6-modelos-de-organizacion-avanzados" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Modelos de Organización Avanzados
+        6. Modelos de Organización Avanzados
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. Modelos de Organización Avanzados">
+    <nav class="md-nav" aria-label="6. Modelos de Organización Avanzados">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -765,117 +842,6 @@
         
       </ul>
     </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-mejores-practicas-estandar-agentskillsio" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Mejores Prácticas (Estándar AgentSkills.io)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Mejores Prácticas (Estándar AgentSkills.io)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#51-optimizacion-del-motor-de-descubrimiento-triggers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5.1. Optimización del Motor de Descubrimiento (Triggers)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#52-diseno-de-instrucciones-resilientes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5.2. Diseño de Instrucciones Resilientes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#53-sistema-de-evaluacion-integral-evals" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5.3. Sistema de Evaluación Integral (Evals)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-errores-comunes-antipatrones" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Errores Comunes (Antipatrones)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="6. Errores Comunes (Antipatrones)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-triggers-genericos-o-ambiguos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Triggers Genéricos o Ambiguos
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-el-skillmd-monolitico" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. El SKILL.md Monolítico
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-reglas-globales-dentro-de-una-skill" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Reglas Globales dentro de una Skill
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-automatizacion-critica-sin-manejo-de-errores-infinite-loops" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Automatización Crítica sin Manejo de Errores (Infinite Loops)
-      
-    </span>
-  </a>
   
 </li>
         
@@ -988,6 +954,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1422,22 +1416,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-consejos-de-diseno" class="md-nav__link">
+  <a href="#vamos-a-construir-tu-primera-skill" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Consejos de Diseño
+        ¡Vamos a construir tu primera Skill!
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Consejos de Diseño">
+    <nav class="md-nav" aria-label="¡Vamos a construir tu primera Skill!">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#proposito-unico-y-caja-negra" class="md-nav__link">
+  <a href="#ejemplo-una-skill-simple-saludo-agente" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Propósito Único y Caja Negra
+        Ejemplo: Una Skill Simple (saludo-agente)
       
     </span>
   </a>
@@ -1445,10 +1439,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#metadata-y-triggers" class="md-nav__link">
+  <a href="#principios-de-diseno" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Metadata y Triggers
+        Principios de Diseño
       
     </span>
   </a>
@@ -1461,22 +1455,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-metadatos-de-una-skill-frontmatter" class="md-nav__link">
+  <a href="#2-el-cerebro-de-la-skill-metadatos-y-frontmatter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Metadatos de una Skill (Frontmatter)
+        2. El Cerebro de la Skill: Metadatos y Frontmatter
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Metadatos de una Skill (Frontmatter)">
+    <nav class="md-nav" aria-label="2. El Cerebro de la Skill: Metadatos y Frontmatter">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#atributos-de-identificacion" class="md-nav__link">
+  <a href="#a-metadatos-obligatorios-activacion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Atributos de Identificación
+        A. Metadatos Obligatorios (Activación)
       
     </span>
   </a>
@@ -1484,30 +1478,24 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#control-de-invocacion-y-herramientas" class="md-nav__link">
+  <a href="#b-metadatos-opcionales-control-y-seguridad" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Control de Invocación y Herramientas
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Control de Invocación y Herramientas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ejemplo-frontmatter-avanzado" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ejemplo: Frontmatter Avanzado
+        B. Metadatos Opcionales (Control y Seguridad)
       
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#ejemplo-configuracion-avanzada-con-todos-los-campos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Configuración avanzada con todos los campos
+      
+    </span>
+  </a>
   
 </li>
         
@@ -1517,15 +1505,126 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-estructuras-y-templates-de-referencia" class="md-nav__link">
+  <a href="#3-mejores-practicas-estandar-agentskillsio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Estructuras y Templates de Referencia
+        3 Mejores Prácticas (Estándar AgentSkills.io)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Estructuras y Templates de Referencia">
+    <nav class="md-nav" aria-label="3 Mejores Prácticas (Estándar AgentSkills.io)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-optimizacion-del-motor-de-descubrimiento-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Optimización del Motor de Descubrimiento (Triggers)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-diseno-de-instrucciones-resilientes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Diseño de Instrucciones Resilientes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-sistema-de-evaluacion-integral-evals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Sistema de Evaluación Integral (Evals)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-errores-comunes-antipatrones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Errores Comunes (Antipatrones)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Errores Comunes (Antipatrones)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-triggers-genericos-o-ambiguos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Triggers Genéricos o Ambiguos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-el-skillmd-monolitico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. El SKILL.md Monolítico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-reglas-globales-dentro-de-una-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Reglas Globales dentro de una Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-automatizacion-critica-sin-manejo-de-errores-infinite-loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Automatización Crítica sin Manejo de Errores (Infinite Loops)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-patrones-de-diseno-estandariza-la-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Patrones de Diseño: Estandariza la Ejecución
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Patrones de Diseño: Estandariza la Ejecución">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1651,15 +1750,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-modelos-de-organizacion-avanzados" class="md-nav__link">
+  <a href="#6-modelos-de-organizacion-avanzados" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Modelos de Organización Avanzados
+        6. Modelos de Organización Avanzados
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. Modelos de Organización Avanzados">
+    <nav class="md-nav" aria-label="6. Modelos de Organización Avanzados">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1726,117 +1825,6 @@
         
       </ul>
     </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-mejores-practicas-estandar-agentskillsio" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Mejores Prácticas (Estándar AgentSkills.io)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Mejores Prácticas (Estándar AgentSkills.io)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#51-optimizacion-del-motor-de-descubrimiento-triggers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5.1. Optimización del Motor de Descubrimiento (Triggers)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#52-diseno-de-instrucciones-resilientes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5.2. Diseño de Instrucciones Resilientes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#53-sistema-de-evaluacion-integral-evals" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5.3. Sistema de Evaluación Integral (Evals)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-errores-comunes-antipatrones" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Errores Comunes (Antipatrones)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="6. Errores Comunes (Antipatrones)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-triggers-genericos-o-ambiguos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Triggers Genéricos o Ambiguos
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-el-skillmd-monolitico" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. El SKILL.md Monolítico
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-reglas-globales-dentro-de-una-skill" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Reglas Globales dentro de una Skill
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-automatizacion-critica-sin-manejo-de-errores-infinite-loops" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Automatización Crítica sin Manejo de Errores (Infinite Loops)
-      
-    </span>
-  </a>
   
 </li>
         
@@ -1965,206 +1953,123 @@
   
 
 
-<h1 id="skills-habilidades">Skills (Habilidades)<a class="headerlink" href="#skills-habilidades" title="Permanent link">&para;</a></h1>
-<p><img alt="Skills Header" src="../../attachments/skillsh.png" /></p>
-<p>Las <strong>Skills</strong> son paquetes de <strong>experiencia bajo demanda</strong>. A diferencia del contexto general (<code>AGENTS.md</code>) que siempre está activo, las habilidades contienen instrucciones, scripts auxiliares, plantillas (templates) y recursos que el agente solo carga mediante <strong>progressive disclosure</strong> (revelación progresiva). </p>
-<p>¿Qué significa esto? El agente solo inyectará esta información en su contexto cuando detecte que la tarea actual coincide con la descripción de la skill. Esto evita saturar la memoria con información irrelevante y permite dotar al agente de roles técnicos muy específicos.</p>
-<h2 id="1-consejos-de-diseno">1. Consejos de Diseño<a class="headerlink" href="#1-consejos-de-diseno" title="Permanent link">&para;</a></h2>
-<h3 id="proposito-unico-y-caja-negra">Propósito Único y Caja Negra<a class="headerlink" href="#proposito-unico-y-caja-negra" title="Permanent link">&para;</a></h3>
-<p>Una skill debe resolver un solo problema. No pidas al agente que escriba scripts complejos al vuelo; utiliza scripts ya existentes dentro de la carpeta de la skill.</p>
-<h3 id="metadata-y-triggers">Metadata y Triggers<a class="headerlink" href="#metadata-y-triggers" title="Permanent link">&para;</a></h3>
-<p>El agente activa la skill basándose en la descripción y los triggers. Si son vagos, la activación será errática o incorrecta.</p>
+<h1 id="skill-no-escribas-codigo-inyecta-capacidades">Skill: No escribas código, inyecta capacidades<a class="headerlink" href="#skill-no-escribas-codigo-inyecta-capacidades" title="Permanent link">&para;</a></h1>
+<p>Las <strong>Skills</strong> son el motor de extensión modular de nuestros agentes. Mientras que el <code>AGENTS.md</code> define la identidad base y las reglas de convivencia del proyecto, las <em>Skills</em> actúan como <strong>paquetes de ejecución especializada</strong>. Su función es inyectar conocimientos, scripts, <em>templates</em> y recursos técnicos en la memoria de trabajo del agente <strong>exclusivamente cuando la tarea lo requiere</strong>.</p>
+<p>Esta es la forma definitiva de implementar la <strong>Revelación Progresiva (Progressive Disclosure)</strong>: el agente permanece ágil y eficiente porque mantiene su "ventana de atención" limpia de información irrelevante hasta que el contexto específico de la tarea activa la habilidad correspondiente.</p>
 <hr />
-<h2 id="2-metadatos-de-una-skill-frontmatter">2. Metadatos de una Skill (Frontmatter)<a class="headerlink" href="#2-metadatos-de-una-skill-frontmatter" title="Permanent link">&para;</a></h2>
-<h3 id="atributos-de-identificacion">Atributos de Identificación<a class="headerlink" href="#atributos-de-identificacion" title="Permanent link">&para;</a></h3>
-<p>El archivo <code>SKILL.md</code> utiliza YAML frontmatter para controlar el comportamiento del modelo.</p>
-<ul>
-<li><code>name</code> <em>(Requerido)</em>: Identificador único, corto y en minúsculas (ej. <code>api-auditor</code>).</li>
-<li><code>description</code> <em>(Requerido)</em>: Explicación detallada. Señal principal para la activación.</li>
-<li><code>trigger</code>: Frases exactas de activación (ej. <code>"auditar api"</code>).</li>
-</ul>
-<h3 id="control-de-invocacion-y-herramientas">Control de Invocación y Herramientas<a class="headerlink" href="#control-de-invocacion-y-herramientas" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>allowed-tools</code>: Lista estricta de herramientas permitidas.</li>
-<li><code>context</code>: Configuración <code>fork</code> para aislamiento en subagentes.</li>
-<li><code>dependencies</code>: Servidores MCP obligatorios.</li>
-<li><code>allow_implicit_invocation</code>: Define si el modelo puede activarla solo o requiere comando manual.</li>
-</ul>
-<h4 id="ejemplo-frontmatter-avanzado">Ejemplo: Frontmatter Avanzado<a class="headerlink" href="#ejemplo-frontmatter-avanzado" title="Permanent link">&para;</a></h4>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nn">---</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auditor-seguridad</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Experto en auditoría de seguridad para APIs REST. Actívalo para buscar vulnerabilidades OWASP.</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;auditar</span><span class="nv"> </span><span class="s">api&quot;</span><span class="err">,</span><span class="w"> </span><span class="s">&quot;seguridad</span><span class="nv"> </span><span class="s">endpoint&quot;</span><span class="err">,</span><span class="w"> </span><span class="s">&quot;revisar</span><span class="nv"> </span><span class="s">vulnerabilidades&quot;</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nt">allowed-tools</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;read_file&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;run_shell_command&quot;</span><span class="p p-Indicator">]</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fork</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nt">dependencies</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;github-mcp&quot;</span><span class="p p-Indicator">]</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nt">allow_implicit_invocation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nn">---</span>
+<h2 id="vamos-a-construir-tu-primera-skill">¡Vamos a construir tu primera Skill!<a class="headerlink" href="#vamos-a-construir-tu-primera-skill" title="Permanent link">&para;</a></h2>
+<p>No te limites a entender cómo funcionan; crea tu propia capacidad especializada. Cada habilidad que diseñes debe ser una "caja negra" autónoma. Si tu agente necesita ejecutar tareas complejas, no debe improvisar: debe invocar la infraestructura predefinida (scripts y plantillas) que tú mismo vas a definir en la estructura de su carpeta.</p>
+<h3 id="ejemplo-una-skill-simple-saludo-agente">Ejemplo: Una Skill Simple (saludo-agente)<a class="headerlink" href="#ejemplo-una-skill-simple-saludo-agente" title="Permanent link">&para;</a></h3>
+<p>Para crear una skill básica, solo necesitas el archivo de especificación <code>SKILL.md</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>src/skills/
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>└── saludo-agente/
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    └── SKILL.md
 </span></code></pre></div>
-<hr />
-<h2 id="3-estructuras-y-templates-de-referencia">3. Estructuras y Templates de Referencia<a class="headerlink" href="#3-estructuras-y-templates-de-referencia" title="Permanent link">&para;</a></h2>
-<h3 id="estructura-de-directorios-proyecto">Estructura de Directorios (Proyecto)<a class="headerlink" href="#estructura-de-directorios-proyecto" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>📁 mi-proyecto/
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── 📁 .agents/                 (O .gemini/ o .claude/)
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   └── 📁 skills/
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│       ├── 📁 python-reviewer/ (Skill Simple)
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│       │   └── 📄 SKILL.md
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│       │
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│       ├── 📁 video-optimizer/ (Skill + Scripts)
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│       │   ├── 📄 SKILL.md
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│       │   └── 📁 scripts/
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│       │       ├── 📄 optimizer.js
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│       │       └── 📄 validate.py
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│       │
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│       └── 📁 tech-reporter/   (Skill + Templates)
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│           ├── 📄 SKILL.md
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│           └── 📁 templates/
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│               └── 📄 design-record.md
-</span></code></pre></div>
-<h3 id="ejemplo-a-skill-con-scripts-logica-compleja">Ejemplo A: Skill con Scripts (Lógica Compleja)<a class="headerlink" href="#ejemplo-a-skill-con-scripts-logica-compleja" title="Permanent link">&para;</a></h3>
-<p>Ideal cuando la skill necesita procesar datos mediante herramientas externas.</p>
-<h4 id="estructura-de-directorios">Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios" title="Permanent link">&para;</a></h4>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>skills/video-tool/
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── SKILL.md
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>└── scripts/
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    └── optimizer.js
-</span></code></pre></div>
-<h4 id="ejemplo-definicion-de-skill-skillmd">Ejemplo: Definición de Skill (<code>SKILL.md</code>)<a class="headerlink" href="#ejemplo-definicion-de-skill-skillmd" title="Permanent link">&para;</a></h4>
-<div class="language-markdown highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>---
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>name: video-optimizer
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>description: Usa esta skill cuando el usuario necesite comprimir o convertir archivos de video MP4 usando herramientas CLI.
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>trigger: &quot;optimizar video&quot;, &quot;ffmpeg&quot;, &quot;convertir mp4&quot;
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="gu">allowed-tools: [&quot;run_shell_command&quot;]</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="gu">---</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="gh"># Goal</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>Ejecutar el script de validación incluido para procesar videos según los parámetros del proyecto.
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="gh"># Logic (Scripts)</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>Para optimizar archivos de video, debes ejecutar el script adjunto: <span class="sb">`node $SKILL_DIR/scripts/optimizer.js &lt;input&gt;`</span>. No intentes escribir el comando <span class="sb">`ffmpeg`</span> tú mismo.
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="gh"># Steps</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="k">1.</span> <span class="gs">**Plan:**</span> Analiza la petición del usuario y determina los parámetros de compresión.
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="k">2.</span> <span class="gs">**Execute:**</span> Ejecuta el script de optimización. Analiza el <span class="sb">`stdout`</span> del script para dar la respuesta final.
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="k">3.</span> Si el script falla (exit code != 0), lee el mensaje de error y ajusta los parámetros en un bucle hasta que pase la validación. NO hagas preguntas interactivas.
-</span></code></pre></div>
-<h3 id="ejemplo-b-skill-con-templates-documentacion">Ejemplo B: Skill con Templates (Documentación)<a class="headerlink" href="#ejemplo-b-skill-con-templates-documentacion" title="Permanent link">&para;</a></h3>
-<p>Asegura que el agente siempre responda con un formato estandarizado.</p>
-<h4 id="estructura-de-directorios_1">Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios_1" title="Permanent link">&para;</a></h4>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>skills/arch-doc/
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>├── SKILL.md
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>└── templates/
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    └── design-record.md
-</span></code></pre></div>
-<h4 id="ejemplo-template-design-recordmd">Ejemplo: Template (<code>design-record.md</code>)<a class="headerlink" href="#ejemplo-template-design-recordmd" title="Permanent link">&para;</a></h4>
-<div class="language-markdown highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gh"># Reporte de Arquitectura: {{title}}</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="gs">**Fecha:**</span> {{date}}
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="gs">**Autor:**</span> AI Agent
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="gu">## Hallazgos</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>{{findings}}
-</span></code></pre></div>
-<p><strong>Contenido completo de <code>tech-reporter/SKILL.md</code>:</strong>
-<div class="language-markdown highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>---
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>name: tech-reporter
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>description: Usa esta skill para generar reportes técnicos estandarizados, resúmenes de PR o informes de arquitectura.
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="gu">trigger: &quot;generar reporte&quot;, &quot;resumen técnico&quot;, &quot;informe de arquitectura&quot;</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="gu">---</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="gh"># Goal</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>Crear un documento Markdown siguiendo estrictamente la estructura definida en nuestras plantillas internas.
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="gh"># Output Format (Templates)</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>Al generar el reporte, debes leer obligatoriamente el archivo <span class="sb">`$SKILL_DIR/templates/design-record.md`</span>. Copia su estructura exacta y rellena las variables <span class="sb">`{{title}}`</span>, <span class="sb">`{{date}}`</span> y <span class="sb">`{{findings}}`</span>. Nunca inventes un formato nuevo.
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="gh"># Steps</span>
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="k">1.</span> Recopilar datos del contexto actual usando las herramientas disponibles.
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="k">2.</span> Rellenar el template sin alterar su estructura base.
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="k">3.</span> Guardar el resultado en la carpeta <span class="sb">`/reports`</span>.
+<p><strong>Definición de <code>SKILL.md</code>:</strong>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>---
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>name: saludo-agente
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>description: Skill simple para saludar al usuario usando un formato corporativo.
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>trigger: &quot;saludar usuario&quot;, &quot;bienvenida&quot;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="gu">allow_implicit_invocation: true</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="gu">---</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="gh"># Goal</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Cuando el usuario pida saludar, responde siempre con el siguiente formato:
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>&quot;Hola, soy el agente [NOMBRE] y estoy listo para procesar tu solicitud.&quot;
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="gh"># Steps</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">1.</span> Identifica el nombre del agente en el contexto.
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="k">2.</span> Responde con el saludo estándar.
 </span></code></pre></div></p>
-<h3 id="ejemplo-c-integracion-con-servidores-mcp">Ejemplo C: Integración con Servidores MCP<a class="headerlink" href="#ejemplo-c-integracion-con-servidores-mcp" title="Permanent link">&para;</a></h3>
-<p>Ideal para extender las capacidades del agente con herramientas de red o bases de datos.</p>
-<h4 id="ejemplo-referencia-a-mcp-skillmd">Ejemplo: Referencia a MCP (<code>SKILL.md</code>)<a class="headerlink" href="#ejemplo-referencia-a-mcp-skillmd" title="Permanent link">&para;</a></h4>
-<div class="language-markdown highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>---
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>name: doc-search-helper
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>description: Úsalo para buscar información en la documentación técnica oficial cuando el usuario pregunte sobre APIs.
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="gu">dependencies: [&quot;mi-mcp-server&quot;]</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="gu">---</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="gh"># Asistente de Documentación</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>Utiliza la herramienta disponible del servidor MCP para buscar en la documentación.
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="k">1.</span>  No inventes APIs.
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="k">2.</span>  Usa la herramienta <span class="sb">`search_docs`</span> proporcionada por el servidor MCP.
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="k">3.</span>  Cita la URL fuente devuelta por la herramienta.
-</span></code></pre></div>
-<h2 id="4-modelos-de-organizacion-avanzados">4. Modelos de Organización Avanzados<a class="headerlink" href="#4-modelos-de-organizacion-avanzados" title="Permanent link">&para;</a></h2>
-<h3 id="monorepo-de-skills">Monorepo de Skills<a class="headerlink" href="#monorepo-de-skills" title="Permanent link">&para;</a></h3>
-<p>Cuando varias skills comparten recursos o utilidades comunes.</p>
-<h4 id="estructura-de-directorios_2">Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios_2" title="Permanent link">&para;</a></h4>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>my-project/
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>├── skills/
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>│   ├── summarize/
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>│   │   └── SKILL.md
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>│   ├── translate/
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>│   │   └── SKILL.md
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>│   └── extract/
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>│       └── SKILL.md
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>├── shared/
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>│   └── utils.ts
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>└── README.md
-</span></code></pre></div>
-<strong>Cuándo usarla:</strong> Proyecto de skills reutilizables, tipo librería interna o monorepo de agentes.</p>
-<h3 id="skill-con-ejemplos-few-shot">Skill con Ejemplos (Few-Shot)<a class="headerlink" href="#skill-con-ejemplos-few-shot" title="Permanent link">&para;</a></h3>
-<p>Los ejemplos muestran al agente el output exacto esperado mediante archivos de referencia.</p>
-<h4 id="estructura-de-directorios_3">Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios_3" title="Permanent link">&para;</a></h4>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>my-project/
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>├── skill/
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>│   └── SKILL.md
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>├── examples/
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>│   ├── input-1.txt
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>│   ├── output-1.txt
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>│   ├── input-2.txt
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>│   └── output-2.txt
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>└── README.md
-</span></code></pre></div>
-<strong>Cuándo usarla:</strong> La skill produce outputs complejos o con formato muy específico. Los ejemplos prácticos (few-shot) son mucho más efectivos que describirlo en palabras.</p>
-<h4 id="ejemplo-instrucciones-few-shot">Ejemplo: Instrucciones Few-Shot<a class="headerlink" href="#ejemplo-instrucciones-few-shot" title="Permanent link">&para;</a></h4>
-<div class="language-markdown highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>---
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>name: data-extractor
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>description: Usa esta skill para extraer información estructurada (JSON) a partir de logs crudos.
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="gu">trigger: &quot;extraer datos&quot;, &quot;parsear logs&quot;</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="gu">---</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="gh"># Goal</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>Convertir el texto crudo del usuario en un JSON válido según nuestro esquema interno.
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
-</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="gh"># Examples</span>
-</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>Para entender el formato exacto que debes devolver, lee los siguientes ejemplos en la carpeta de la skill:
-</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="k">-</span><span class="w"> </span>Ejemplo 1: Lee <span class="sb">`$SKILL_DIR/examples/input-1.txt`</span> y compáralo con el resultado esperado en <span class="sb">`$SKILL_DIR/examples/output-1.txt`</span>.
-</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="k">-</span><span class="w"> </span>Ejemplo 2: Lee <span class="sb">`$SKILL_DIR/examples/input-2.txt`</span> y compáralo con el resultado esperado en <span class="sb">`$SKILL_DIR/examples/output-2.txt`</span>.
-</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>
-</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="gh"># Steps</span>
-</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="k">1.</span> Recibe el texto del usuario.
-</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="k">2.</span> Basándote ESTRICTAMENTE en los patrones vistos en los archivos <span class="sb">`examples/`</span>, genera el JSON.
-</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="k">3.</span> Devuelve únicamente el JSON, sin texto explicativo adicional.
+<h3 id="principios-de-diseno">Principios de Diseño<a class="headerlink" href="#principios-de-diseno" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Unicidad de Dominio:</strong> Cada <em>skill</em> debe resolver un problema concreto (ej. auditoría de seguridad, gestión de tareas o generación de reportes). Evita agrupar funcionalidades dispares.</li>
+<li><strong>Activadores Deterministas:</strong> La activación de la <em>skill</em> depende de la precisión de sus <code>triggers</code>. Reglas ambiguas causan activaciones erráticas; definiciones claras garantizan una carga de contexto infalible.</li>
+<li><strong>Máxima Resiliencia:</strong> El agente debe actuar como un orquestador, no como un improvisador. Si tu skill requiere lógica compleja, externalízala a recursos predefinidos (scripts o plantillas) en lugar de pedirle al agente que invente la lógica en cada ejecución.</li>
+</ol>
+<hr />
+<h2 id="2-el-cerebro-de-la-skill-metadatos-y-frontmatter">2. El Cerebro de la Skill: Metadatos y Frontmatter<a class="headerlink" href="#2-el-cerebro-de-la-skill-metadatos-y-frontmatter" title="Permanent link">&para;</a></h2>
+<p>El bloque de <code>YAML Frontmatter</code> no es una simple configuración; es la <strong>interfaz de control</strong> que dicta cómo, cuándo y bajo qué privilegios se despierta tu habilidad. Definir este bloque con precisión es lo que separa a una herramienta versátil de un agente que dispara comandos al azar.</p>
+<h3 id="a-metadatos-obligatorios-activacion">A. Metadatos Obligatorios (Activación)<a class="headerlink" href="#a-metadatos-obligatorios-activacion" title="Permanent link">&para;</a></h3>
+<p>Sin estos campos, la skill es invisible o no puede ser identificada por el orquestador.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Atributo</th>
+<th style="text-align: left;">Función Técnica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;">Identificador único del paquete.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>description</code></td>
+<td style="text-align: left;"><strong>Motor de Inferencia:</strong> Es la señal principal que usa el orquestador para decidir si tu skill es relevante.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b-metadatos-opcionales-control-y-seguridad">B. Metadatos Opcionales (Control y Seguridad)<a class="headerlink" href="#b-metadatos-opcionales-control-y-seguridad" title="Permanent link">&para;</a></h3>
+<p>Utiliza estos campos para ajustar la autonomía, el aislamiento y los privilegios de tu skill.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Atributo</th>
+<th style="text-align: left;">Función Técnica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>trigger</code></td>
+<td style="text-align: left;"><strong>Disparador Semántico:</strong> Define los <em>keywords</em> exactos para una activación inmediata.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>allowed-tools</code></td>
+<td style="text-align: left;"><strong>Sandboxing:</strong> Reduce la superficie de ataque limitando las capacidades del agente.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>context</code></td>
+<td style="text-align: left;"><strong>Aislamiento:</strong> Decide si la skill corre en el contexto principal o en un <em>sandbox</em> paralelo (fork).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>dependencies</code></td>
+<td style="text-align: left;"><strong>Infraestructura:</strong> Servidores MCP externos necesarios para operar.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>allow_implicit_invocation</code></td>
+<td style="text-align: left;"><strong>Autonomía:</strong> Política de ejecución manual o automática.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ejemplo-configuracion-avanzada-con-todos-los-campos">Ejemplo: Configuración avanzada con todos los campos<a class="headerlink" href="#ejemplo-configuracion-avanzada-con-todos-los-campos" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nn">---</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auditor-seguridad</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Experto en auditoría de seguridad para APIs REST. Actívalo para buscar vulnerabilidades OWASP.</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;auditar</span><span class="nv"> </span><span class="s">api&quot;</span><span class="err">,</span><span class="w"> </span><span class="s">&quot;seguridad</span><span class="nv"> </span><span class="s">endpoint&quot;</span><span class="err">,</span><span class="w"> </span><span class="s">&quot;revisar</span><span class="nv"> </span><span class="s">vulnerabilidades&quot;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nt">allowed-tools</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;read_file&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;run_shell_command&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fork</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nt">dependencies</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;github-mcp&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nt">allow_implicit_invocation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nn">---</span>
 </span></code></pre></div>
 <hr />
-<h2 id="5-mejores-practicas-estandar-agentskillsio">5. Mejores Prácticas (Estándar AgentSkills.io)<a class="headerlink" href="#5-mejores-practicas-estandar-agentskillsio" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="3-mejores-practicas-estandar-agentskillsio">3 Mejores Prácticas (Estándar AgentSkills.io)<a class="headerlink" href="#3-mejores-practicas-estandar-agentskillsio" title="Permanent link">&para;</a></h2>
 <p>El diseño de una Skill determina directamente su tasa de éxito y eficiencia en costos. Siguiendo las normativas del estándar AgentSkills, aquí tienes las heurísticas de diseño para una arquitectura robusta:</p>
-<h3 id="51-optimizacion-del-motor-de-descubrimiento-triggers">5.1. Optimización del Motor de Descubrimiento (Triggers)<a class="headerlink" href="#51-optimizacion-del-motor-de-descubrimiento-triggers" title="Permanent link">&para;</a></h3>
+<h3 id="31-optimizacion-del-motor-de-descubrimiento-triggers">3.1. Optimización del Motor de Descubrimiento (Triggers)<a class="headerlink" href="#31-optimizacion-del-motor-de-descubrimiento-triggers" title="Permanent link">&para;</a></h3>
 <p>El atributo <code>description</code> y los <code>triggers</code> no son comentarios pasivos; representan el <strong>motor semántico</strong> mediante el cual un orquestador decide inyectar o ignorar la habilidad en su contexto.</p>
 <ul>
 <li><strong>Firma Accionable:</strong> Utiliza verbos imperativos exactos (ej. "Valida", "Transforma", "Despliega") en lugar de sustantivos abstractos.</li>
 <li><strong>Señales Negativas:</strong> Especifica explícitamente <strong>cuándo NO</strong> usar la skill dentro de la propia descripción (ej. <em>"No la actives para revisiones de sintaxis frontend"</em>). Esto previene que el agente se distraiga en tareas superpuestas.</li>
 </ul>
-<h3 id="52-diseno-de-instrucciones-resilientes">5.2. Diseño de Instrucciones Resilientes<a class="headerlink" href="#52-diseno-de-instrucciones-resilientes" title="Permanent link">&para;</a></h3>
+<h3 id="32-diseno-de-instrucciones-resilientes">3.2. Diseño de Instrucciones Resilientes<a class="headerlink" href="#32-diseno-de-instrucciones-resilientes" title="Permanent link">&para;</a></h3>
 <p>Los modelos de lenguaje son sistemas probabilísticos. Para forzar resultados deterministas dentro de tu Skill, debes guiar su raciocinio algorítmicamente.</p>
 <ul>
 <li><strong>Control de Flujo Numérico:</strong> Para procesos delicados (ej. publicación de paquetes NPM, migraciones de base de datos), desglosa las acciones en checklists secuenciales estrictos.</li>
 <li><strong>El Bucle Plan-Validate-Execute:</strong> Obliga al agente a documentar su plan, validarlo contra una regla de negocio y solo entonces ejecutar comandos potencialmente destructivos o escrituras finales.</li>
 </ul>
-<h3 id="53-sistema-de-evaluacion-integral-evals">5.3. Sistema de Evaluación Integral (Evals)<a class="headerlink" href="#53-sistema-de-evaluacion-integral-evals" title="Permanent link">&para;</a></h3>
+<h3 id="33-sistema-de-evaluacion-integral-evals">3.3. Sistema de Evaluación Integral (Evals)<a class="headerlink" href="#33-sistema-de-evaluacion-integral-evals" title="Permanent link">&para;</a></h3>
 <p>Nunca distribuyas una Skill para tu equipo sin probarla en múltiples escenarios. Desarrollar Skills es desarrollo de software; el <em>System Prompt</em> es código compilado por redes neuronales.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2175,7 +2080,7 @@
 2. <strong>Aserciones Categóricas:</strong> Aléjate de evaluaciones difusas y relativas. Aplica aserciones binarias inmutables: <em>"¿El compilador arroja exit 0?"</em>, <em>"¿El archivo final está estructurado estrictamente en JSON válido?"</em>.
 3. <strong>Traza Cognitiva (Traceability):</strong> Revisa las transcripciones del razonamiento (lo que el modelo "piensa" antes de usar la herramienta) para descubrir la línea exacta donde ignoró tu <code>SKILL.md</code> y recalibra la instrucción o el script subyacente.</p>
 <hr />
-<h2 id="6-errores-comunes-antipatrones">6. Errores Comunes (Antipatrones)<a class="headerlink" href="#6-errores-comunes-antipatrones" title="Permanent link">&para;</a></h2>
+<h2 id="4-errores-comunes-antipatrones">4. Errores Comunes (Antipatrones)<a class="headerlink" href="#4-errores-comunes-antipatrones" title="Permanent link">&para;</a></h2>
 <p>La creación de Skills puede fallar si no se respeta el diseño de <strong>Revelación Progresiva (Progressive Disclosure)</strong> o si se confunde el propósito de una Skill con el contexto global de todo el repositorio. Evita los siguientes antipatrones críticos para mantener a tus agentes rápidos y eficaces:</p>
 <h3 id="1-triggers-genericos-o-ambiguos">1. Triggers Genéricos o Ambiguos<a class="headerlink" href="#1-triggers-genericos-o-ambiguos" title="Permanent link">&para;</a></h3>
 <p>Configurar triggers demasiado comunes provoca <strong>falsos positivos</strong> (la skill se inyecta en la memoria del agente cuando no hace falta, consumiendo valiosos tokens de contexto y robando la atención del modelo).
@@ -2195,6 +2100,158 @@
 <h3 id="4-automatizacion-critica-sin-manejo-de-errores-infinite-loops">4. Automatización Crítica sin Manejo de Errores (Infinite Loops)<a class="headerlink" href="#4-automatizacion-critica-sin-manejo-de-errores-infinite-loops" title="Permanent link">&para;</a></h3>
 <p>Dejar que el agente ejecute un script (ej. <code>$SKILL_DIR/scripts/deploy.js</code>) sin darle instrucciones de qué hacer si falla, provoca un antipatrón donde el agente entra en pánico y reintenta la orden en bucle hasta agotar sus <em>max turns</em> o el saldo de la API.
 * <strong>La Solución:</strong> Instruye resiliencia determinista: <em>"Si el script falla (exit code != 0), lee los errores de <code>stdout</code>, diseña una propuesta de solución y </em><em>ESPERA</em><em> confirmación humana antes de volver a ejecutarlo"</em>.</p>
+<h2 id="5-patrones-de-diseno-estandariza-la-ejecucion">5. Patrones de Diseño: Estandariza la Ejecución<a class="headerlink" href="#5-patrones-de-diseno-estandariza-la-ejecucion" title="Permanent link">&para;</a></h2>
+<h3 id="estructura-de-directorios-proyecto">Estructura de Directorios (Proyecto)<a class="headerlink" href="#estructura-de-directorios-proyecto" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>📁 mi-proyecto/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── 📁 .agents/                 (O .gemini/ o .claude/)
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>│   └── 📁 skills/
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>│       ├── 📁 python-reviewer/ (Skill Simple)
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>│       │   └── 📄 SKILL.md
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>│       │
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>│       ├── 📁 video-optimizer/ (Skill + Scripts)
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>│       │   ├── 📄 SKILL.md
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>│       │   └── 📁 scripts/
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>│       │       ├── 📄 optimizer.js
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>│       │       └── 📄 validate.py
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>│       │
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>│       └── 📁 tech-reporter/   (Skill + Templates)
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>│           ├── 📄 SKILL.md
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>│           └── 📁 templates/
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>│               └── 📄 design-record.md
+</span></code></pre></div>
+<hr />
+<h3 id="ejemplo-a-skill-con-scripts-logica-compleja">Ejemplo A: Skill con Scripts (Lógica Compleja)<a class="headerlink" href="#ejemplo-a-skill-con-scripts-logica-compleja" title="Permanent link">&para;</a></h3>
+<p>Ideal cuando la skill necesita procesar datos mediante herramientas externas.</p>
+<h4 id="estructura-de-directorios">Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>skills/video-tool/
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>├── SKILL.md
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>└── scripts/
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    └── optimizer.js
+</span></code></pre></div>
+<h4 id="ejemplo-definicion-de-skill-skillmd">Ejemplo: Definición de Skill (<code>SKILL.md</code>)<a class="headerlink" href="#ejemplo-definicion-de-skill-skillmd" title="Permanent link">&para;</a></h4>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>---
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>name: video-optimizer
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>description: Usa esta skill cuando el usuario necesite comprimir o convertir archivos de video MP4 usando herramientas CLI.
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>trigger: &quot;optimizar video&quot;, &quot;ffmpeg&quot;, &quot;convertir mp4&quot;
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="gu">allowed-tools: [&quot;run_shell_command&quot;]</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="gu">---</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="gh"># Goal</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>Ejecutar el script de validación incluido para procesar videos según los parámetros del proyecto.
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="gh"># Logic (Scripts)</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>Para optimizar archivos de video, debes ejecutar el script adjunto: <span class="sb">`node $SKILL_DIR/scripts/optimizer.js &lt;input&gt;`</span>. No intentes escribir el comando <span class="sb">`ffmpeg`</span> tú mismo.
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="gh"># Steps</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="k">1.</span> <span class="gs">**Plan:**</span> Analiza la petición del usuario y determina los parámetros de compresión.
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="k">2.</span> <span class="gs">**Execute:**</span> Ejecuta el script de optimización. Analiza el <span class="sb">`stdout`</span> del script para dar la respuesta final.
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="k">3.</span> Si el script falla (exit code != 0), lee el mensaje de error y ajusta los parámetros en un bucle hasta que pase la validación. NO hagas preguntas interactivas.
+</span></code></pre></div>
+<hr />
+<h3 id="ejemplo-b-skill-con-templates-documentacion">Ejemplo B: Skill con Templates (Documentación)<a class="headerlink" href="#ejemplo-b-skill-con-templates-documentacion" title="Permanent link">&para;</a></h3>
+<p>Asegura que el agente siempre responda con un formato estandarizado.</p>
+<h4 id="estructura-de-directorios_1">Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios_1" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>skills/arch-doc/
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>├── SKILL.md
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>└── templates/
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    └── design-record.md
+</span></code></pre></div>
+<h4 id="ejemplo-template-design-recordmd">Ejemplo: Template (<code>design-record.md</code>)<a class="headerlink" href="#ejemplo-template-design-recordmd" title="Permanent link">&para;</a></h4>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gh"># Reporte de Arquitectura: {{title}}</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="gs">**Fecha:**</span> {{date}}
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="gs">**Autor:**</span> AI Agent
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="gu">## Hallazgos</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>{{findings}}
+</span></code></pre></div>
+<p><strong>Contenido completo de <code>tech-reporter/SKILL.md</code>:</strong>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>---
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>name: tech-reporter
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>description: Usa esta skill para generar reportes técnicos estandarizados, resúmenes de PR o informes de arquitectura.
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="gu">trigger: &quot;generar reporte&quot;, &quot;resumen técnico&quot;, &quot;informe de arquitectura&quot;</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="gu">---</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="gh"># Goal</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>Crear un documento Markdown siguiendo estrictamente la estructura definida en nuestras plantillas internas.
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="gh"># Output Format (Templates)</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>Al generar el reporte, debes leer obligatoriamente el archivo <span class="sb">`$SKILL_DIR/templates/design-record.md`</span>. Copia su estructura exacta y rellena las variables <span class="sb">`{{title}}`</span>, <span class="sb">`{{date}}`</span> y <span class="sb">`{{findings}}`</span>. Nunca inventes un formato nuevo.
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="gh"># Steps</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="k">1.</span> Recopilar datos del contexto actual usando las herramientas disponibles.
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="k">2.</span> Rellenar el template sin alterar su estructura base.
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="k">3.</span> Guardar el resultado en la carpeta <span class="sb">`/reports`</span>.
+</span></code></pre></div></p>
+<hr />
+<h3 id="ejemplo-c-integracion-con-servidores-mcp">Ejemplo C: Integración con Servidores MCP<a class="headerlink" href="#ejemplo-c-integracion-con-servidores-mcp" title="Permanent link">&para;</a></h3>
+<p>Ideal para extender las capacidades del agente con herramientas de red o bases de datos.</p>
+<h4 id="ejemplo-referencia-a-mcp-skillmd">Ejemplo: Referencia a MCP (<code>SKILL.md</code>)<a class="headerlink" href="#ejemplo-referencia-a-mcp-skillmd" title="Permanent link">&para;</a></h4>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>---
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>name: doc-search-helper
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>description: Úsalo para buscar información en la documentación técnica oficial cuando el usuario pregunte sobre APIs.
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="gu">dependencies: [&quot;mi-mcp-server&quot;]</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="gu">---</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="gh"># Asistente de Documentación</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>Utiliza la herramienta disponible del servidor MCP para buscar en la documentación.
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="k">1.</span>  No inventes APIs.
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="k">2.</span>  Usa la herramienta <span class="sb">`search_docs`</span> proporcionada por el servidor MCP.
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="k">3.</span>  Cita la URL fuente devuelta por la herramienta.
+</span></code></pre></div>
+<hr />
+<h2 id="6-modelos-de-organizacion-avanzados">6. Modelos de Organización Avanzados<a class="headerlink" href="#6-modelos-de-organizacion-avanzados" title="Permanent link">&para;</a></h2>
+<h3 id="monorepo-de-skills">Monorepo de Skills<a class="headerlink" href="#monorepo-de-skills" title="Permanent link">&para;</a></h3>
+<p>Cuando varias skills comparten recursos o utilidades comunes.</p>
+<h4 id="estructura-de-directorios_2">Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios_2" title="Permanent link">&para;</a></h4>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>my-project/
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>├── skills/
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>│   ├── summarize/
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>│   │   └── SKILL.md
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>│   ├── translate/
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>│   │   └── SKILL.md
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>│   └── extract/
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>│       └── SKILL.md
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>├── shared/
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>│   └── utils.ts
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>└── README.md
+</span></code></pre></div>
+<strong>Cuándo usarla:</strong> Proyecto de skills reutilizables, tipo librería interna o monorepo de agentes.</p>
+<hr />
+<h3 id="skill-con-ejemplos-few-shot">Skill con Ejemplos (Few-Shot)<a class="headerlink" href="#skill-con-ejemplos-few-shot" title="Permanent link">&para;</a></h3>
+<p>Los ejemplos muestran al agente el output exacto esperado mediante archivos de referencia.</p>
+<h4 id="estructura-de-directorios_3">Estructura de Directorios<a class="headerlink" href="#estructura-de-directorios_3" title="Permanent link">&para;</a></h4>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>my-project/
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>├── skill/
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>│   └── SKILL.md
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>├── examples/
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>│   ├── input-1.txt
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>│   ├── output-1.txt
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>│   ├── input-2.txt
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>│   └── output-2.txt
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>└── README.md
+</span></code></pre></div>
+<strong>Cuándo usarla:</strong> La skill produce outputs complejos o con formato muy específico. Los ejemplos prácticos (few-shot) son mucho más efectivos que describirlo en palabras.</p>
+<h4 id="ejemplo-instrucciones-few-shot">Ejemplo: Instrucciones Few-Shot<a class="headerlink" href="#ejemplo-instrucciones-few-shot" title="Permanent link">&para;</a></h4>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>---
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>name: data-extractor
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>description: Usa esta skill para extraer información estructurada (JSON) a partir de logs crudos.
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="gu">trigger: &quot;extraer datos&quot;, &quot;parsear logs&quot;</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="gu">---</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="gh"># Goal</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>Convertir el texto crudo del usuario en un JSON válido según nuestro esquema interno.
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="gh"># Examples</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>Para entender el formato exacto que debes devolver, lee los siguientes ejemplos en la carpeta de la skill:
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="k">-</span><span class="w"> </span>Ejemplo 1: Lee <span class="sb">`$SKILL_DIR/examples/input-1.txt`</span> y compáralo con el resultado esperado en <span class="sb">`$SKILL_DIR/examples/output-1.txt`</span>.
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="k">-</span><span class="w"> </span>Ejemplo 2: Lee <span class="sb">`$SKILL_DIR/examples/input-2.txt`</span> y compáralo con el resultado esperado en <span class="sb">`$SKILL_DIR/examples/output-2.txt`</span>.
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="gh"># Steps</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="k">1.</span> Recibe el texto del usuario.
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="k">2.</span> Basándote ESTRICTAMENTE en los patrones vistos en los archivos <span class="sb">`examples/`</span>, genera el JSON.
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="k">3.</span> Devuelve únicamente el JSON, sin texto explicativo adicional.
+</span></code></pre></div>
 <hr />
 <h2 id="7-colecciones-y-recomendaciones-discovery">7. Colecciones y Recomendaciones (Discovery)<a class="headerlink" href="#7-colecciones-y-recomendaciones-discovery" title="Permanent link">&para;</a></h2>
 <h3 id="coleccion-personal-franmt-s">Colección Personal (FranMT-S)<a class="headerlink" href="#coleccion-personal-franmt-s" title="Permanent link">&para;</a></h3>
@@ -2215,24 +2272,24 @@
 <p>Alternativa al servidor MCP cuando se requiere mayor control sobre la lógica de gestión de tareas.
 1. Copia <code>.env.template</code> a <code>.env</code> en la ruta de la skill (usualmente <code>~/.agents/skills/clickup</code>) y añade tu <code>CLICKUP_API_TOKEN</code>.
 2. Instala dependencias internamente:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cd</span><span class="w"> </span>~/.agents/skills/clickup<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>install
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">cd</span><span class="w"> </span>~/.agents/skills/clickup<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>install
 </span></code></pre></div>
 3. O instálala vía CLI:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>npx<span class="w"> </span>skills<span class="w"> </span>add<span class="w"> </span>https://github.com/civitai/civitai<span class="w"> </span>--skill<span class="w"> </span>clickup
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>npx<span class="w"> </span>skills<span class="w"> </span>add<span class="w"> </span>https://github.com/civitai/civitai<span class="w"> </span>--skill<span class="w"> </span>clickup
 </span></code></pre></div>
 Si falta el <code>package.json</code>, puedes definir uno básico (o pedirle a la IA que lo deduzca):
-<div class="language-json highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">{</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clickup-skill&quot;</span><span class="p">,</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ClickUp skill for Agents&quot;</span><span class="p">,</span>
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;module&quot;</span><span class="p">,</span>
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="nt">&quot;unified&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^11.0.4&quot;</span><span class="p">,</span>
-</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">    </span><span class="nt">&quot;remark-parse&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^11.0.0&quot;</span><span class="p">,</span>
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">    </span><span class="nt">&quot;dotenv&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^16.3.1&quot;</span><span class="p">,</span>
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">    </span><span class="nt">&quot;node-fetch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^3.3.2&quot;</span>
-</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="p">}</span>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="p">{</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clickup-skill&quot;</span><span class="p">,</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ClickUp skill for Agents&quot;</span><span class="p">,</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;module&quot;</span><span class="p">,</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">  </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">    </span><span class="nt">&quot;unified&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^11.0.4&quot;</span><span class="p">,</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">    </span><span class="nt">&quot;remark-parse&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^11.0.0&quot;</span><span class="p">,</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">    </span><span class="nt">&quot;dotenv&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^16.3.1&quot;</span><span class="p">,</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">    </span><span class="nt">&quot;node-fetch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^3.3.2&quot;</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="p">}</span>
 </span></code></pre></div></p>
 <hr />
 <h2 id="8-rutas-globales-y-scopes">8. Rutas Globales y Scopes<a class="headerlink" href="#8-rutas-globales-y-scopes" title="Permanent link">&para;</a></h2>

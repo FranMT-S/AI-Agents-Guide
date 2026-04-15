@@ -12,13 +12,9 @@
         <meta name="author" content="FranMT-S">
       
       
-        <link rel="canonical" href="https://FranMT-S.github.io/AI-Agents-Guide/concepts/agents/">
+        <link rel="canonical" href="https://FranMT-S.github.io/AI-Agents-Guide/concepts/agents-context/">
       
       
-        <link rel="prev" href="../..">
-      
-      
-        <link rel="next" href="../mcp/">
       
       
         
@@ -29,7 +25,7 @@
     
     
       
-        <title>Gestión de Contexto - Guía Completa de Agentes de IA</title>
+        <title>Contexto: La Base del Agente Senior - Guía Completa de Agentes de IA</title>
       
     
     
@@ -80,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gestion-de-contexto-agentsmd-y-archivos-de-reglas" class="md-skip">
+        <a href="#contexto-la-base-del-agente-senior" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -116,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Gestión de Contexto
+              Contexto: La Base del Agente Senior
             
           </span>
         </div>
@@ -288,8 +284,6 @@
       
   
   
-    
-  
   
   
     
@@ -302,11 +296,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
@@ -327,7 +321,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -342,208 +336,17 @@
                 
   
   
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Gestión de Contexto
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Gestión de Contexto
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#el-rol-fundamental-de-agentsmd" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        El Rol Fundamental de AGENTS.md
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#jerarquia-de-archivos-y-resolucion-de-conflictos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Jerarquía de Archivos y Resolución de Conflictos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#limites-cognitivos-y-revelacion-progresiva-progressive-disclosure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Límites Cognitivos y Revelación Progresiva (Progressive Disclosure)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Límites Cognitivos y Revelación Progresiva (Progressive Disclosure)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ejemplo-de-estructura-desacoplada" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ejemplo de Estructura Desacoplada
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sintaxis-de-referenciacion-dinamica" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sintaxis de Referenciación Dinámica
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anatomia-de-un-archivo-agentsmd-eficiente" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anatomía de un Archivo AGENTS.md Eficiente
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#redaccion-de-instrucciones-heuristicas-y-antipatrones" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Redacción de Instrucciones: Heurísticas y Antipatrones
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#plantilla-de-referencia-para-configuracion-a-produccion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Plantilla de Referencia para Configuración a Producción
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#errores-comunes-en-la-ingenieria-de-contexto" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Errores Comunes en la Ingeniería de Contexto
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#soporte-y-equivalencias-por-ecosistema" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Soporte y Equivalencias por Ecosistema
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
   
   
     <li class="md-nav__item">
-      <a href="../mcp/" class="md-nav__link">
+      <a href="../agents.md" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    MCP
+    Contexto
   
 
     
@@ -572,6 +375,34 @@
     
   
     Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP
   
 
     
@@ -1014,10 +845,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#el-rol-fundamental-de-agentsmd" class="md-nav__link">
+  <a href="#menos-alucinacion-y-mas-direccion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        El Rol Fundamental de AGENTS.md
+        Menos alucinación y más dirección
       
     </span>
   </a>
@@ -1025,10 +856,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#jerarquia-de-archivos-y-resolucion-de-conflictos" class="md-nav__link">
+  <a href="#jerarquia-de-autoridad-quien-manda-aqui" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Jerarquía de Archivos y Resolución de Conflictos
+        Jerarquía de Autoridad: ¿Quién manda aquí?
       
     </span>
   </a>
@@ -1036,15 +867,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#limites-cognitivos-y-revelacion-progresiva-progressive-disclosure" class="md-nav__link">
+  <a href="#si-quieres-un-agente-tonto-ponle-un-agentsmd-gigante" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Límites Cognitivos y Revelación Progresiva (Progressive Disclosure)
+        Si quieres un agente tonto, ponle un AGENTS.md gigante
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Límites Cognitivos y Revelación Progresiva (Progressive Disclosure)">
+    <nav class="md-nav" aria-label="Si quieres un agente tonto, ponle un AGENTS.md gigante">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1075,10 +906,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#anatomia-de-un-archivo-agentsmd-eficiente" class="md-nav__link">
+  <a href="#anatomia-de-un-agentsmd-de-alto-rendimiento" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Anatomía de un Archivo AGENTS.md Eficiente
+        Anatomía de un AGENTS.md de Alto Rendimiento
       
     </span>
   </a>
@@ -1086,10 +917,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#redaccion-de-instrucciones-heuristicas-y-antipatrones" class="md-nav__link">
+  <a href="#ingenieria-de-instrucciones-el-arte-de-la-precision" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Redacción de Instrucciones: Heurísticas y Antipatrones
+        Ingeniería de Instrucciones: El Arte de la Precisión
       
     </span>
   </a>
@@ -1108,10 +939,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#errores-comunes-en-la-ingenieria-de-contexto" class="md-nav__link">
+  <a href="#antipatrones-lo-que-bloquea-tu-escalabilidad" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Errores Comunes en la Ingeniería de Contexto
+        Antipatrones: Lo que bloquea tu escalabilidad
       
     </span>
   </a>
@@ -1149,8 +980,9 @@
   
 
 
-<h1 id="gestion-de-contexto-agentsmd-y-archivos-de-reglas">Gestión de Contexto: AGENTS.md y Archivos de Reglas<a class="headerlink" href="#gestion-de-contexto-agentsmd-y-archivos-de-reglas" title="Permanent link">&para;</a></h1>
-<p>La base de cualquier flujo de trabajo con agentes de IA es la <strong>persistencia del contexto</strong>. Sin un mecanismo de memoria externa, cada sesión comienza desde cero: el agente no sabe en qué proyecto trabaja, qué convenciones sigue el equipo, ni qué comandos usar para compilar y testear. Los archivos de reglas — encabezados por el estándar <code>AGENTS.md</code> — resuelven este problema fundacional inyectando conocimiento estructurado en el sistema del agente antes de procesar cualquier petición.</p>
+<h1 id="contexto-la-base-del-agente-senior">Contexto: La Base del Agente Senior<a class="headerlink" href="#contexto-la-base-del-agente-senior" title="Permanent link">&para;</a></h1>
+<p>La base de cualquier flujo de trabajo con agentes de IA es la <strong>persistencia del contexto</strong>. <strong><em>Sin un mecanismo de memoria externa, cada sesión comienza desde cero</em></strong>: el agente no sabe en qué proyecto trabaja, qué convenciones sigue el equipo, ni qué comandos usar para compilar y testear. </p>
+<p>Los archivos de reglas —  <code>AGENTS.md</code> — resuelven este problema fundacional inyectando conocimiento estructurado en el sistema del agente antes de procesar cualquier petición.</p>
 <hr />
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1158,64 +990,61 @@
 🏗️ <strong><a href="https://github.com/FranMT-S/AI-Agents-Guide/tree/main/src/templates/agents">Templates para Agentes</a></strong></p>
 </div>
 <hr />
-<h2 id="el-rol-fundamental-de-agentsmd">El Rol Fundamental de AGENTS.md<a class="headerlink" href="#el-rol-fundamental-de-agentsmd" title="Permanent link">&para;</a></h2>
-<p><code>AGENTS.md</code> es el estándar multiplataforma de facto para gestionar el contexto de los agentes de IA dentro de un repositorio de código. Funciona como un <code>README</code> exclusivo para agentes: un documento predecible que el orquestador lee e inyecta automáticamente en el <em>system prompt</em> al inicio de cada sesión. Su importancia radica en tres factores:</p>
+<h2 id="menos-alucinacion-y-mas-direccion">Menos alucinación y más dirección<a class="headerlink" href="#menos-alucinacion-y-mas-direccion" title="Permanent link">&para;</a></h2>
+<p><code>AGENTS.md</code> no es solo un archivo de texto; es el contrato que garantiza que tu agente y tú habléis el mismo idioma desde el primer segundo. Actúa como el <em>System Prompt</em> dinámico que elimina las conjeturas del agente antes de que empiecen.</p>
+<p>Al definir claramente este documento, logramos tres pilares clave para la eficiencia:</p>
 <ol>
-<li><strong>Elimina la ambigüedad del modelo base.</strong> Sin este archivo, el agente infiere (a menudo incorrectamente) el stack tecnológico, la convención de nombres y los comandos de build. Con él, estas asunciones se convierten en certezas.</li>
-<li><strong>Habilita el ahorro de latencia y costo.</strong> El modelo no necesita explorar el repositorio a ciegas para entender cómo compilar o testear la aplicación. El conocimiento estático ya está pre-cargado.</li>
-<li><strong>Ofrece portabilidad entre sistemas.</strong> Un desarrollador puede usar Cursor IDE y otro la CLI de Claude Code. Ambas herramientas respetarán las mismas directrices al leer este contrato universal.</li>
+<li><strong>Eliminación de la adivinación:</strong> Sin reglas claras, el agente intenta "adivinar" tu stack, las convenciones de nombres o qué comando ejecutar para compilar. Con este archivo, transformas la incertidumbre en instrucciones blindadas.</li>
+<li><strong>Contexto On-Demand:</strong> El agente no pierde tiempo (ni tokens) explorando el repositorio a ciegas. El conocimiento crítico está pre-cargado, marcando el camino óptimo desde el inicio.</li>
+<li><strong>Estándar Universal:</strong> Ya sea que uses Cursor, Claude Code o Gemini CLI, este archivo actúa como un lenguaje común. Tus directrices son portables y se respetan en cualquier herramienta, evitando que el proyecto se fragmente.</li>
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">Important</p>
-<p>Este estándar es soportado nativamente por <strong>Codex</strong>, <strong>Gemini CLI</strong>, <strong>Claude Code</strong> (bajo el alias <code>CLAUDE.md</code>), <strong>GitHub Copilot</strong>, <strong>OpenCode</strong>, <strong>Cursor</strong> y <strong>Antigravity</strong>. Un único <code>AGENTS.md</code> en la raíz unifica a todas las herramientas.</p>
+<p><code>AGENTS.md</code> es el estándar multiplataforma soportado nativamente por <strong>Codex</strong>, <strong>Gemini CLI</strong>, <strong>Claude Code</strong> (vía <code>CLAUDE.md</code>), <strong>GitHub Copilot</strong>, <strong>OpenCode</strong>, <strong>Cursor</strong> y <strong>Antigravity</strong>. Un solo archivo en tu raíz garantiza coherencia operativa en todo tu flujo de trabajo.</p>
 </div>
 <hr />
-<h2 id="jerarquia-de-archivos-y-resolucion-de-conflictos">Jerarquía de Archivos y Resolución de Conflictos<a class="headerlink" href="#jerarquia-de-archivos-y-resolucion-de-conflictos" title="Permanent link">&para;</a></h2>
-<p>Los agentes aplican una estricta jerarquía de niveles para resolver colisiones de conocimiento. Las instrucciones albergadas en un subdirectorio tienen prioridad y sobreescriben a las ubicadas en el directorio padre o globales.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>~/.gemini/GEMINI.md              (Global — preferencias universales del usuario)
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>mi-proyecto/
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── AGENTS.md                    (Proyecto — estándares base del repositorio)
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── src/
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   └── auth/
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│       └── AGENTS.md            (Módulo — instrucciones prioritarias para este directorio)
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── legacy/
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    └── AGENTS.override.md       (solo Codex, Override — reemplaza TODAS las instrucciones padre, )
+<h2 id="jerarquia-de-autoridad-quien-manda-aqui">Jerarquía de Autoridad: ¿Quién manda aquí?<a class="headerlink" href="#jerarquia-de-autoridad-quien-manda-aqui" title="Permanent link">&para;</a></h2>
+<p>Los agentes resuelven conflictos de información mediante una jerarquía de <strong>"especificidad creciente"</strong>. Las reglas definidas en subdirectorios profundos tienen autoridad absoluta sobre las globales.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>~/.gemini/      (Nivel Global: Tus preferencias universales)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>└── mi-proyecto/
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    ├── AGENTS.md        (Nivel Proyecto: Estándares compartidos)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    └── src/auth/
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        └── AGENTS.md    (Nivel Módulo: Instrucciones de máxima prioridad aquí)
 </span></code></pre></div>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Nivel</th>
+<th style="text-align: left;">Prioridad</th>
 <th style="text-align: left;">Alcance</th>
-<th style="text-align: left;">Propósito</th>
+<th style="text-align: left;">Cuándo usarlo</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Global</strong></td>
-<td style="text-align: left;">Usuario</td>
-<td style="text-align: left;">Idioma, estilo de respuesta, preferencias personales de Output.</td>
+<td style="text-align: left;"><strong>Alta</strong></td>
+<td style="text-align: left;">Módulo local</td>
+<td style="text-align: left;">Aislamiento de código legacy o microservicios únicos.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Proyecto</strong></td>
-<td style="text-align: left;">Repositorio</td>
-<td style="text-align: left;">Stack tecnológico, comandos de compilación, arquitectura.</td>
+<td style="text-align: left;"><strong>Media</strong></td>
+<td style="text-align: left;">Proyecto</td>
+<td style="text-align: left;">Stack tecnológico, arquitectura y convenciones de equipo.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Módulo</strong></td>
-<td style="text-align: left;">Subdirectorio</td>
-<td style="text-align: left;">Reglas restrictivas o aislamiento funcional de un <em>microservicio</em>.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Override</strong></td>
-<td style="text-align: left;">Reemplazo total</td>
-<td style="text-align: left;">Monorepos donde paquetes legacy exigen convenciones radicalmente distintas.</td>
+<td style="text-align: left;"><strong>Baja</strong></td>
+<td style="text-align: left;">Global</td>
+<td style="text-align: left;">Estilo personal, idioma y preferencias de formato del usuario.</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>No te compliques:</strong> En el 90% de los casos, un único <code>AGENTS.md</code> en la raíz es suficiente. Utiliza archivos locales solo cuando un módulo requiera una convención que rompa radicalmente con el resto del proyecto.</p>
+</div>
 <hr />
-<h2 id="limites-cognitivos-y-revelacion-progresiva-progressive-disclosure">Límites Cognitivos y Revelación Progresiva (Progressive Disclosure)<a class="headerlink" href="#limites-cognitivos-y-revelacion-progresiva-progressive-disclosure" title="Permanent link">&para;</a></h2>
-<p>Un archivo <code>AGENTS.md</code> que crece ilimitadamente no mejora la precisión analítica del agente; la degenera. A diferencia de un lector humano, si el agente recibe demasiada información irrelevante, no ignora simplemente la información del final del documento, sino que pierde la capacidad de priorizar de forma <strong>uniforme y aleatoria</strong> a lo largo de todo su contexto de atención.</p>
-<p>La solución arquitectónica a este problema es aplicar el <strong>Principio de Progressive Disclosure</strong> (Revelación Progresiva). Esto consiste en concentrar en el <code>AGENTS.md</code> raíz única y exclusivamente el contexto fundacional indispensable, distribuyendo todo el conocimiento profundo en archivos secundarios que el agente inyectará en su memoria sólo si la tarea actual lo exige.</p>
+<h2 id="si-quieres-un-agente-tonto-ponle-un-agentsmd-gigante">Si quieres un agente tonto, ponle un AGENTS.md gigante<a class="headerlink" href="#si-quieres-un-agente-tonto-ponle-un-agentsmd-gigante" title="Permanent link">&para;</a></h2>
+<p>Un <code>AGENTS.md</code> inflado no es una ventaja competitiva; es un <strong>sabotaje arquitectónico</strong>. Al saturar al modelo con datos innecesarios, no estás "dándole más información", estás provocando una atrofia cognitiva: el agente pierde la capacidad de distinguir la señal del ruido, diluyendo su atención y convirtiendo una inteligencia capaz en un sistema errático y perezoso. La IA no sabe filtrar lo obsoleto; si se lo das, lo procesa con el mismo costo de recursos que la instrucción crítica.</p>
+<p>La solución es el <strong>Principio de Revelación Progresiva</strong>. El <code>AGENTS.md</code> raíz debe actuar como un "filtro de alta densidad" que contenga exclusivamente el ADN fundacional del proyecto. Todo lo demás —especificaciones técnicas, guías de estilo, o pruebas— debe residir en archivos secundarios. Estos solo se activan mediante una arquitectura de inyección bajo demanda, garantizando que el agente opere siempre con una <strong>atención quirúrgica</strong>: máxima precisión, cero carga basura.</p>
 <h3 id="ejemplo-de-estructura-desacoplada">Ejemplo de Estructura Desacoplada<a class="headerlink" href="#ejemplo-de-estructura-desacoplada" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mi-proyecto/
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── AGENTS.md                        (Raíz — mínimo indispensable + descriptores semánticos)
@@ -1241,79 +1070,85 @@
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p><strong>El Presupuesto Crítico de Instrucción (Attention Window):</strong>
-Los LLMs de la actual generación pueden sostener alta fidelidad computacional al manejar entre <strong>150 y 200 intenciones activas</strong>. Considera que el <em>System Prompt</em> nativo de tu orquestador (ej. Cursor o Claude) ya consume base ~50 instrucciones iniciales. Cada regla redundante merma matemáticamente la eficacia de todo tu sistema.</p>
+<p><strong>El Límite de Atención: Por qué tu agente ignora tus reglas</strong>
+Los modelos de IA tienen un límite en la cantidad de instrucciones que pueden mantener activas en su "memoria de trabajo". Si le das 5 directrices, las cumplirá a la perfección. Si le das 200 reglas de golpe, se saturará y empezará a ignorar muchas de ellas (especialmente las que están en medio del documento).</p>
+<p>Ten en cuenta que herramientas como Cursor o Claude ya consumen parte de este límite con sus propias instrucciones internas (el <em>System Prompt</em> base). Cada regla innecesaria o redundante que añadas a tu <code>AGENTS.md</code> compite por la atención del modelo, aumentando la probabilidad de que pase por alto las instrucciones de seguridad verdaderamente críticas.</p>
 </div>
 <hr />
-<h2 id="anatomia-de-un-archivo-agentsmd-eficiente">Anatomía de un Archivo AGENTS.md Eficiente<a class="headerlink" href="#anatomia-de-un-archivo-agentsmd-eficiente" title="Permanent link">&para;</a></h2>
-<p>Un documento configurado magistralmente restringe su contenido únicamente a aquellas métricas que un Linter o Compilador interno es incapaz de salvaguardar:</p>
+<h2 id="anatomia-de-un-agentsmd-de-alto-rendimiento">Anatomía de un <code>AGENTS.md</code> de Alto Rendimiento<a class="headerlink" href="#anatomia-de-un-agentsmd-de-alto-rendimiento" title="Permanent link">&para;</a></h2>
+<p>Un <code>AGENTS.md</code> no es un manual de usuario, es un <strong>contrato de comportamiento</strong>. Si el Linter o el Compilador ya pueden detectar un error, no lo escribas aquí. Este archivo debe restringirse exclusivamente a las <strong>decisiones de diseño</strong> que el código, por sí solo, no puede explicar.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Bloque Semántico</th>
-<th style="text-align: left;">Función Práctica</th>
-<th style="text-align: left;">Ejemplo Práctico</th>
+<th style="text-align: left;">Capa de Conocimiento</th>
+<th style="text-align: left;">¿Por qué es vital?</th>
+<th style="text-align: left;">Directriz Estratégica</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Project Overview</strong></td>
-<td style="text-align: left;">El contexto general en 1 sola frase.</td>
-<td style="text-align: left;"><em>"This is a Next.js e-commerce storefront for B2B wholesale."</em></td>
+<td style="text-align: left;"><strong>Identidad del Proyecto</strong></td>
+<td style="text-align: left;">Evita que el agente asuma un contexto erróneo.</td>
+<td style="text-align: left;">Define qué es el proyecto y qué problema resuelve.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Core Tech Stack</strong></td>
-<td style="text-align: left;">Versiones rígidas y el framework subyacente.</td>
-<td style="text-align: left;"><em>"Use pnpm. Next.js App Router, React 19, Tailwind CSS v4."</em></td>
+<td style="text-align: left;"><strong>Stack y Runtime</strong></td>
+<td style="text-align: left;">Bloquea al agente para que no use librerías obsoletas.</td>
+<td style="text-align: left;">Versiones exactas de Node, framework y gestor de paquetes.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Build &amp; Test Macros</strong></td>
-<td style="text-align: left;">Los comandos exactos que la IA usará.</td>
-<td style="text-align: left;"><em>"To test: <code>pnpm vitest</code>. To build: <code>pnpm run build</code>."</em></td>
+<td style="text-align: left;"><strong>Macros de Ejecución</strong></td>
+<td style="text-align: left;">Garantiza que el agente ejecute los comandos correctos.</td>
+<td style="text-align: left;">Alias o comandos únicos de build, test y linting.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Code Style Guidelines</strong></td>
-<td style="text-align: left;">Convenciones que el linter no atrapa.</td>
-<td style="text-align: left;"><em>"Prefer Early Returns. Order imports: external first, relative last."</em></td>
+<td style="text-align: left;"><strong>Criterios de Estilo</strong></td>
+<td style="text-align: left;">Captura la "filosofía" que el linter ignora.</td>
+<td style="text-align: left;">Ej: "Preferir Early Returns", "Order imports".</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Architecture Guards</strong></td>
-<td style="text-align: left;">Fronteras entre carpetas críticas.</td>
-<td style="text-align: left;"><em>"The <code>src/components/</code> folder CANNOT import from <code>src/database/</code>."</em></td>
+<td style="text-align: left;"><strong>Fronteras (Guards)</strong></td>
+<td style="text-align: left;">Impide que el agente cree una arquitectura espagueti.</td>
+<td style="text-align: left;">Define qué carpetas tienen prohibido hablar entre sí.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Security Policies</strong></td>
-<td style="text-align: left;">Advertencias inesquivables antes de picar código.</td>
-<td style="text-align: left;"><em>"Never write raw SQL. Always use Prisma ORM to prevent injections."</em></td>
+<td style="text-align: left;"><strong>Seguridad Innegociable</strong></td>
+<td style="text-align: left;">Evita vulnerabilidades por defecto.</td>
+<td style="text-align: left;">"Never write raw SQL", "All secrets in <code>.env</code>".</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="redaccion-de-instrucciones-heuristicas-y-antipatrones">Redacción de Instrucciones: Heurísticas y Antipatrones<a class="headerlink" href="#redaccion-de-instrucciones-heuristicas-y-antipatrones" title="Permanent link">&para;</a></h2>
-<p>La retórica aplicada en tus instrucciones altera contundentemente la obediencia probabilística del motor. Aleja tus directivas de prohibiciones abstractas hacia macros accionables:</p>
+<h2 id="ingenieria-de-instrucciones-el-arte-de-la-precision">Ingeniería de Instrucciones: El Arte de la Precisión<a class="headerlink" href="#ingenieria-de-instrucciones-el-arte-de-la-precision" title="Permanent link">&para;</a></h2>
+<p>La forma en que redactas tus reglas determina si el agente actuará como un ingeniero senior o como un becario confundido. Olvida las sugerencias abstractas; el LLM necesita <strong>macros accionables</strong> que reduzcan su espacio de búsqueda de soluciones.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">❌ Antipatrón Burocrático</th>
-<th style="text-align: left;">✅ Estándar Accionable</th>
+<th style="text-align: left;">❌ El Error (Ambigüedad)</th>
+<th style="text-align: left;">✅ La Solución (Acción)</th>
+<th style="text-align: left;">¿Por qué funciona?</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align: left;"><code>ALWAYS use async/await</code></td>
-<td style="text-align: left;"><code>Use async/await over promise chains</code></td>
+<td style="text-align: left;"><code>Prefer async/await over Promises</code></td>
+<td style="text-align: left;">Elimina la ambigüedad en el encadenamiento.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>NEVER commit without tests</code></td>
-<td style="text-align: left;"><code>Run tests before committing: npm test</code></td>
+<td style="text-align: left;"><code>Run: pnpm test</code></td>
+<td style="text-align: left;">Fuerza la ejecución inmediata de la verificación.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>Write clean code</code></td>
-<td style="text-align: left;"><code>Use named exports. Prefer functional components.</code></td>
+<td style="text-align: left;"><code>Use named exports; functional components only.</code></td>
+<td style="text-align: left;">Dicta una estructura sintáctica innegociable.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>Be careful with the database</code></td>
-<td style="text-align: left;"><code>Validate all inputs server-side. Use Prisma for queries.</code></td>
+<td style="text-align: left;"><code>Validate inputs via Zod; use Prisma ORM.</code></td>
+<td style="text-align: left;">Define la herramienta y el método de seguridad.</td>
 </tr>
 </tbody>
 </table>
@@ -1360,40 +1195,36 @@ Los LLMs de la actual generación pueden sostener alta fidelidad computacional a
 </span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="k">-</span><span class="w"> </span>Database schema: docs/DATABASE_SCHEMA.md
 </span></code></pre></div>
 <hr />
-<h2 id="errores-comunes-en-la-ingenieria-de-contexto">Errores Comunes en la Ingeniería de Contexto<a class="headerlink" href="#errores-comunes-en-la-ingenieria-de-contexto" title="Permanent link">&para;</a></h2>
+<h2 id="antipatrones-lo-que-bloquea-tu-escalabilidad">Antipatrones: Lo que bloquea tu escalabilidad<a class="headerlink" href="#antipatrones-lo-que-bloquea-tu-escalabilidad" title="Permanent link">&para;</a></h2>
+<p>La arquitectura de contexto no es estática. Si cometes estos errores, tu <code>AGENTS.md</code> dejará de ser una ventaja y se convertirá en un cuello de botella.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Falla Estructural</th>
-<th style="text-align: left;">Impacto Negativo (El Riesgo)</th>
-<th style="text-align: left;">Alternativa Correcta (La Solución)</th>
+<th style="text-align: left;">Antipatrón</th>
+<th style="text-align: left;">El Impacto Real</th>
+<th style="text-align: left;">La Estrategia Correcta</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">Hardcodear rutas de archivos absolutas (<code>src/utils/math.ts</code>)</td>
-<td style="text-align: left;">El LLM se atasca y alucina código si el archivo fue movido o renombrado.</td>
-<td style="text-align: left;">Describe <strong>fronteras de carpetas</strong>: <em>"Archivos de lógica pura están bajo <code>src/utils/</code>"</em>.</td>
+<td style="text-align: left;"><strong>Hardcoding de rutas</strong></td>
+<td style="text-align: left;">Fragilidad total si mueves un archivo.</td>
+<td style="text-align: left;">Define <strong>fronteras lógicas</strong> (ej. "Toda la lógica de negocio vive en <code>src/core/</code>").</td>
 </tr>
 <tr>
-<td style="text-align: left;">Consolidar 500 líneas en el AGENTS.md raíz</td>
-<td style="text-align: left;">Quiebre del <em>Attention Window</em>. El modelo ignorará las directrices de mayor seguridad aleatoriamente.</td>
-<td style="text-align: left;">Aplica el principio de <strong>Progressive Disclosure</strong>. Mueve reglas específicas a <code>/docs/*.md</code>.</td>
+<td style="text-align: left;"><strong>Contexto Monolítico</strong></td>
+<td style="text-align: left;">Saturación y pérdida de prioridad (Attention Decay).</td>
+<td style="text-align: left;"><strong>Revelación Progresiva:</strong> externaliza guías a <code>/docs/*.md</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;">Incoherencias directas entre un AGS local y el global</td>
-<td style="text-align: left;">El sub-agente intentará lidiar con lógica cruzada y generará deuda arquitectónica.</td>
-<td style="text-align: left;">Escribe un <strong>bloque de Override explícito</strong> si un paquete local debe anular las reglas padres.</td>
+<td style="text-align: left;"><strong>Conflictos de Jerarquía</strong></td>
+<td style="text-align: left;">Comportamiento impredecible del agente.</td>
+<td style="text-align: left;"><strong>Override explícito:</strong> aisla reglas en módulos específicos.</td>
 </tr>
 <tr>
-<td style="text-align: left;">Omitir el archivo del repositorio (ej. en <code>.gitignore</code>)</td>
-<td style="text-align: left;">Diferentes humanos y agentes en distintos ordenadores programarán guiados por convenciones rotas.</td>
-<td style="text-align: left;">Trata al AGENTS.md como código crítico. Házle <strong><code>git commit</code></strong> siempre para la fuente compartida.</td>
-</tr>
-<tr>
-<td style="text-align: left;">Acumular Secrets, contraseñas o IPs en texto plano</td>
-<td style="text-align: left;">Un LLM conversacional que reflexiona sobre el archivo puede filtrar los tokens por error o enviarlos a sus nubes de guardado temporal.</td>
-<td style="text-align: left;">Enmascara la inyección usando reglas como: <strong>"Todos los secretos cargan desde un <code>.env</code> a nivel Root"</strong>.</td>
+<td style="text-align: left;"><strong>Ignorar el Control de Versiones</strong></td>
+<td style="text-align: left;">Incoherencia entre miembros del equipo/agentes.</td>
+<td style="text-align: left;"><strong><code>git commit</code> obligatorio:</strong> el <code>AGENTS.md</code> es código crítico.</td>
 </tr>
 </tbody>
 </table>
@@ -1453,11 +1284,6 @@ Los LLMs de la actual generación pueden sostener alta fidelidad computacional a
 </tr>
 </tbody>
 </table>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p><strong>Compatibilidad Absoluta para Monorepos Agudos:</strong> 
-Genera tu <code>AGENTS.md</code> monolítico en la raíz topológica y utiliza un <em>symlink</em> virtual de cara al resto de utilidades, por ejemplo: <code>ln -s AGENTS.md CLAUDE.md</code>. Esto afianza inmutabilidad sin tener que clonar los manuales manualmente.</p>
-</div>
 <p><em>Fuentes Oficiales Adicionales: <a href="https://github.com/agentsmd/agents.md">AGENTS.md Open Standard</a> | <a href="https://www.aihero.dev/a-complete-guide-to-agents-md">A Complete Guide to AGENTS.md</a> | <a href="https://www.humanlayer.dev/blog/writing-a-good-claude-md">Writing a Good CLAUDE.md</a></em></p>
 
 
