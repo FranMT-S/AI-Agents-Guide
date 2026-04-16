@@ -85,23 +85,23 @@ allow_implicit_invocation: false
 
 ---
 
-## 3 Mejores Prácticas (Estándar AgentSkills.io)
+##  Mejores Prácticas (Estándar AgentSkills.io)
 
 El diseño de una Skill determina directamente su tasa de éxito y eficiencia en costos. Siguiendo las normativas del estándar AgentSkills, aquí tienes las heurísticas de diseño para una arquitectura robusta:
 
-### 3.1. Optimización del Motor de Descubrimiento (Triggers)
+### Optimización del Motor de Descubrimiento (Triggers)
 El atributo `description` y los `triggers` no son comentarios pasivos; representan el **motor semántico** mediante el cual un orquestador decide inyectar o ignorar la habilidad en su contexto.
 
 - **Firma Accionable:** Utiliza verbos imperativos exactos (ej. "Valida", "Transforma", "Despliega") en lugar de sustantivos abstractos.
 - **Señales Negativas:** Especifica explícitamente **cuándo NO** usar la skill dentro de la propia descripción (ej. *"No la actives para revisiones de sintaxis frontend"*). Esto previene que el agente se distraiga en tareas superpuestas.
 
-### 3.2. Diseño de Instrucciones Resilientes
+### Diseño de Instrucciones Resilientes
 Los modelos de lenguaje son sistemas probabilísticos. Para forzar resultados deterministas dentro de tu Skill, debes guiar su raciocinio algorítmicamente.
 
 - **Control de Flujo Numérico:** Para procesos delicados (ej. publicación de paquetes NPM, migraciones de base de datos), desglosa las acciones en checklists secuenciales estrictos.
 - **El Bucle Plan-Validate-Execute:** Obliga al agente a documentar su plan, validarlo contra una regla de negocio y solo entonces ejecutar comandos potencialmente destructivos o escrituras finales.
 
-### 3.4. Implementación de Confirmation Feedback Loops
+### Implementación de Confirmation Feedback Loops
 En tareas críticas (escritura de archivos, despliegues, llamadas a APIs externas), no confíes en la ejecución automática. Implementa un bucle de confirmación explícito donde el agente deba presentar su propuesta y esperar un comando específico del usuario.
 
 - **Comando de Validación:** Define un disparador inmutable (ej. `CONFIRMAR_EJECUCION`) que el usuario deba escribir para proceder.
@@ -127,7 +127,7 @@ Configurar triggers demasiado comunes provoca **falsos positivos** (la skill se 
 Una skill nunca debe contener 500 líneas de reglas ni enormes JSONs incrustados en su archivo principal. Si obligas al agente a leer todo eso, se quedará sin ventana de contexto antes de empezar.
 * **La Solución:** Utiliza estructuras multi-archivo. Si requieres que el agente entienda una gran estructura de datos, usa referencias: *"Lee estrictamente el esquema de referencia ubicado en `$SKILL_DIR/templates/schema.json` y basa tu trabajo en él"*.
 
-### 4.3. Reglas Globales dentro de una Skill
+### Reglas Globales dentro de una Skill
 Una skill no es el lugar para definir el stack tecnológico de todo el equipo. 
 * **Incorrecto:** Escribir en un `SKILL.md`: *"En este proyecto programamos usando TypeScript Estricto y TailwindCSS"*.
 * **La Solución:** Las directrices a nivel repositorio pertenecen única y exclusivamente al archivo `AGENTS.md`. Las Skills son herramientas especializadas; su función es ejecutar tareas, no definir el marco de desarrollo.
@@ -135,7 +135,7 @@ Una skill no es el lugar para definir el stack tecnológico de todo el equipo.
 > [!WARNING]
 > **Consecuencia letal:** Si pones la regla de usar TypeScript dentro de la skill `"auditar api"`, el agente perderá esa instrucción y volverá a escribir código inseguro en cuanto la skill se descargue de su memoria activa al terminar la auditoría.
 
-### 4.4 Automatización Crítica sin Manejo de Errores (Infinite Loops)
+### Automatización Crítica sin Manejo de Errores (Infinite Loops)
 Dejar que el agente ejecute un script (ej. `$SKILL_DIR/scripts/deploy.js`) sin darle instrucciones de qué hacer si falla, provoca un antipatrón donde el agente entra en pánico y reintenta la orden en bucle hasta agotar sus *max turns* o el saldo de la API.
 * **La Solución:** Instruye resiliencia determinista: *"Si el script falla (exit code != 0), lee los errores de `stdout`, diseña una propuesta de solución y **ESPERA** confirmación humana antes de volver a ejecutarlo"*.
 
