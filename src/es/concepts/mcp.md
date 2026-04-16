@@ -9,7 +9,7 @@ El **Model Context Protocol (MCP)** es el estándar de comunicación que permite
 
 ---
 
-## 1. Arquitectura y Componentes
+## Arquitectura y Componentes
 
 ### Tools, Resources y Prompts
 Un servidor MCP expone tres tipos de recursos al modelo:
@@ -33,7 +33,7 @@ Define cómo se comunican el cliente (IDE) e el servidor:
 
 ---
 
-## 2. Archivos de Configuración por Agente
+## Archivos de Configuración por Agente
 
 ### Rutas de Configuración (Windows)
 ```text
@@ -49,7 +49,7 @@ Claude Code   -> <project>\.mcp.json          |   ~/.claude.json (global)
 
 ---
 
-## 3. Buenas Prácticas
+## Buenas Prácticas
 
 ### Principio de Menor Privilegio
 Desactiva tools innecesarias para ahorrar tokens y mejorar la precisión del modelo.
@@ -94,9 +94,9 @@ Levantar un servidor con `docker run` en cada IDE consume recursos excesivos. La
 
 ---
 
-## 4. Colección de MCPs
+## Colección de MCPs
 
-### 4.1 MCPs Oficiales
+### MCPs Oficiales
 Servidores publicados y mantenidos por los proveedores oficiales.
 
 #### GitHub MCP
@@ -208,7 +208,7 @@ gemini extensions install https://github.com/figma/figma-gemini-cli-extension
 
 ---
 
-### 4.2 MCPs de Terceros (Community)
+### MCPs de Terceros (Community)
 Servidores mantenidos por la comunidad que cubren casos no oficiales.
 
 #### Figma Console MCP
@@ -399,7 +399,7 @@ Generarlas en: [trello.com/power-ups/admin](https://trello.com/power-ups/admin)
 
 ---
 
-## 5. Recursos Adicionales
+## Recursos Adicionales
 
 ### Directorios y Hubs
 Recursos para descubrir y configurar nuevos servidores MCP.

@@ -56,7 +56,7 @@ plugins:
 nav:
   - Inicio: index.md
   - Concepts:
-    - Contexto: concepts/agents.md
+    - Contexto: concepts/agents-context.md
     - Skills: concepts/skills.md
     - MCP: concepts/mcp.md
     - Subagentes: concepts/subagentes.md

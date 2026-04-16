@@ -6,7 +6,7 @@ Esta guía explica desde cero qué son los modelos de lenguaje que alimentan a l
 
 ---
 
-## 1. ¿Qué es un modelo de lenguaje?
+## ¿Qué es un modelo de lenguaje?
 
 Un modelo de lenguaje (LLM, *Large Language Model*) es el motor de razonamiento que está detrás del agente. Cuando escribes un prompt y el agente responde, ese procesamiento ocurre dentro del modelo. Los agentes (Claude Code, Gemini CLI, Cursor, etc.) son la interfaz — el modelo es la inteligencia.
 
@@ -23,7 +23,7 @@ Actualmente los proveedores dominantes en el ecosistema de agentes de software s
 
 ---
 
-## 2. Conceptos universales: el vocabulario base
+## Conceptos universales: el vocabulario base
 
 Antes de comparar modelos, necesitas entender los términos que aparecen en toda la documentación.
 
@@ -86,7 +86,7 @@ El beneficio es significativo: el modelo puede descomponer problemas complejos p
 
 ---
 
-## 3. El concepto de "Thinking" (Razonamiento profundo)
+## El concepto de "Thinking" (Razonamiento profundo)
 
 El término *thinking* aparece en la documentación de los principales proveedores y se refiere a distintas implementaciones del mismo principio: darle al modelo tiempo computacional adicional para razonar antes de responder.
 
@@ -147,7 +147,7 @@ Claude implementa el razonamiento como *extended thinking*. Cuando está activo,
 
 ---
 
-## 4. Ventana de contexto larga: qué cambia con 1 millón de tokens
+## Ventana de contexto larga: qué cambia con 1 millón de tokens
 
 Con ventanas pequeñas, los agentes necesitaban técnicas como RAG (*Retrieval Augmented Generation*) para procesar documentos grandes: el sistema buscaba los fragmentos relevantes y los inyectaba en el prompt. Con ventanas de 1M tokens, ese overhead de arquitectura ya no es obligatorio para muchos casos.
 
@@ -172,9 +172,9 @@ La ventana grande tiene alta precisión para encontrar un dato específico en un
 
 ---
 
-## 5. Modelos por proveedor: catálogo activo
+## Modelos por proveedor: catálogo activo
 
-### 5.1 OpenAI — Familia GPT-5
+### OpenAI — Familia GPT-5
 
 La familia GPT-5 unifica en un solo modelo lo que antes estaba separado entre modelos de chat y modelos de razonamiento (la serie o-series).
 
@@ -220,7 +220,7 @@ La familia GPT-5 unifica en un solo modelo lo que antes estaba separado entre mo
 
 ---
 
-### 5.2 Anthropic — Familia Claude 4
+### Anthropic — Familia Claude 4
 
 Anthropic nombra sus modelos con tres rangos: **Haiku** (más rápido y económico) → **Sonnet** (equilibrado) → **Opus** (más capaz). El número después del nombre indica la generación.
 
@@ -241,7 +241,7 @@ Anthropic nombra sus modelos con tres rangos: **Haiku** (más rápido y económi
 
 ---
 
-### 5.3 Google — Familia Gemini 2.5 y 3.x
+### Google — Familia Gemini 2.5 y 3.x
 
 Google tiene la oferta más amplia, con modelos de texto, imagen, video, audio y robótica. Para agentes de software, los modelos de texto son los relevantes.
 
@@ -282,7 +282,7 @@ Google tiene la oferta más amplia, con modelos de texto, imagen, video, audio y
 
 ---
 
-## 6. Qué modelo usar según tu tarea: referencia cruzada entre proveedores
+## Qué modelo usar según tu tarea: referencia cruzada entre proveedores
 
 Esta es la sección práctica. Aquí los modelos están agrupados por lo que necesitas hacer, sin importar el proveedor.
 
@@ -361,7 +361,7 @@ Generar suites de tests unitarios, de integración, snapshots, fixtures, y valid
 
 ---
 
-## 7. Guía de selección rápida
+## Guía de selección rápida
 
 Si no sabes por dónde empezar:
 
@@ -390,7 +390,7 @@ Genero o reviso una suite de tests
 
 ---
 
-## 8. Modelos que ya no debes usar
+## Modelos que ya no debes usar
 
 Los siguientes modelos aún aparecen en configuraciones antiguas, scripts de CI/CD o tutoriales desactualizados. Si los ves en tu proyecto, migra antes de que rompan tu pipeline.
 
@@ -410,7 +410,7 @@ Los siguientes modelos aún aparecen en configuraciones antiguas, scripts de CI/
 
 ---
 
-## 9. Benchmarks y Evaluación de Modelos
+## Benchmarks y Evaluación de Modelos
 
 Para facilitar la evaluación de los modelos —indispensable para orquestar agentes que optimicen coste, velocidad y latencia— los dividimos en dos visiones: comparativa cruzada (todos los modelos bajo las mismas categorías de uso) y comparativa interna por proveedor (para cuando necesitas quedarte con una sola familia).
 
@@ -426,7 +426,7 @@ Para facilitar la evaluación de los modelos —indispensable para orquestar age
 
 ---
 
-### 9.1 Comparativa por Categoría (Todos los modelos)
+### Comparativa por Categoría (Todos los modelos)
 
 Las tablas están divididas por grupo de acción para facilitar la lectura.
 
@@ -498,7 +498,7 @@ Tool Use/MCP: precisión al invocar herramientas, function calling, llamadas enc
 
 ---
 
-### 9.2 Comparativa Interna por Proveedor
+### Comparativa Interna por Proveedor
 
 #### OpenAI — Familia GPT-5
 
@@ -608,7 +608,7 @@ Tool Use/MCP: precisión al invocar herramientas, function calling, llamadas enc
 
 ---
 
-### 9.3 Comparativa Visual entre Modelos
+### Comparativa Visual entre Modelos
 
 Escala numérica: **1 = Muy Malo · 2 = Malo · 3 = Regular · 4 = Bueno · 5 = Excelente**.
 Los modelos están agrupados por su perfil de uso real — no por proveedor.
@@ -715,7 +715,7 @@ xychart-beta
 
 ---
 
-### 9.4 Benchmarks por Categoría Especializada
+### Benchmarks por Categoría Especializada
 
 Esta sección documenta tres capacidades adicionales que no entran en la comparativa de código: **Agentes autónomos**, **Escritura y seguimiento de instrucciones**, y **Multimodalidad**. Incluye los benchmarks verificados y una advertencia explícita sobre cuáles NO son confiables.
 
