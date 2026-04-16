@@ -59,7 +59,7 @@ If you have Python installed, you can serve the entire website on your machine w
 
 ```bash
 # 1. Install dependencies
-pip install mkdocs-material mkdocs-roamlinks-plugin mkdocs-callouts
+pip install -r requirements.txt
 
 # 2. Start the local server
 python -m mkdocs serve
