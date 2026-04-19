@@ -1,6 +1,6 @@
-# MCP (Model Context Protocol)
+# MCP: Dale "manos y ojos" a tu Agente (Model Context Protocol)
 
-El **Model Context Protocol (MCP)** es el estándar de comunicación que permite a los modelos de IA interactuar con el mundo real. Actúa como un puente entre la lógica del LLM y herramientas externas: bases de datos, APIs, navegadores, servicios de diseño, gestores de proyectos, etc.
+El **Model Context Protocol (MCP)** es el sistema nervioso que conecta la lógica de un LLM estático con tu infraestructura dinámica. En lugar de limitarse a generar y predecir texto, el MCP estandariza la comunicación para que tu agente interactúe de forma segura con el "mundo real": consultar bases de datos, consumir APIs empresariales, manipular navegadores o gestionar tickets en Jira/ClickUp. Es el puente definitivo que transforma una IA conversacional en un ingeniero que ejecuta acciones reales.
 
 ![MCP Arquitectura](../attachments/mcp_01.png)
 
@@ -9,25 +9,28 @@ El **Model Context Protocol (MCP)** es el estándar de comunicación que permite
 
 ---
 
-## Arquitectura y Componentes
+## Anatomía de un Servidor MCP: ¿Qué hay dentro?
 
-### Tools, Resources y Prompts
-Un servidor MCP expone tres tipos de recursos al modelo:
+La arquitectura del protocolo se basa en exponer capacidades empaquetadas. Un servidor no es una caja negra; de acuerdo a la documentación oficial, le otorga tres "superpoderes" fundamentales al modelo de lenguaje:
 
-| Componente   | Descripción                                                                 |
-| :----------- | :-------------------------------------------------------------------------- |
-| **Tools**    | Funciones que el modelo puede "llamar" (ej. `get_pull_request`, `list_tasks`) |
-| **Resources**| Datos estáticos o dinámicos que el modelo puede leer (ej. logs en tiempo real) |
-| **Prompts**  | Instrucciones predefinidas que se pueden invocar como slash commands          |
+| Superpoder (Componente) | ¿Qué le permite hacer al agente? | Ejemplo Práctico |
+| :--- | :--- | :--- |
+| **Tools** (Herramientas) | **Actuar:** Ejecutar acciones y alterar el estado del sistema. | `create_github_issue`, `drop_database` |
+| **Resources** (Recursos) | **Leer:** Consumir datos de solo lectura para nutrir su contexto. | Archivos estáticos, un `schema.sql` en vivo, o *logs* del servidor. |
+| **Prompts** (Plantillas) | **Contextualizar:** Flujos pre-armados para no empezar de cero. | `/review_code` (inyecta parámetros y reglas de revisión de forma automática). |
 
-### Transportes y Protocolos
-Define cómo se comunican el cliente (IDE) e el servidor:
+*Fuentes Oficiales: [MCP Tools](https://modelcontextprotocol.io/docs/concepts/tools) | [MCP Resources](https://modelcontextprotocol.io/docs/concepts/resources) | [MCP Prompts](https://modelcontextprotocol.io/docs/concepts/prompts)*
 
-| Transporte        | Cuándo usarlo                                                    |
-| :---------------- | :--------------------------------------------------------------- |
-| `stdio`           | Proceso local. Más simple, sin red. Recomendado para desarrollo. |
-| `SSE`             | HTTP con streaming. Para servers remotos o en Docker.            |
-| `Streamable HTTP` | Variante moderna de SSE. Preferida en producción.                |
+### Canales de Transporte: ¿Cómo hablan entre ellos?
+Para que el cliente (tu IDE o CLI) interactúe con el servidor MCP, necesitan un protocolo de comunicación base. El estándar define tres vías:
+
+| Capa de Transporte | Nivel de Complejidad | Caso de Uso Ideal |
+| :--- | :--- | :--- |
+| **`stdio`** *(Standard I/O)*| 🟢 Bajo (Proceso local) | El más rápido y habitual. Ideal para scripts locales (`npx`, `python`) sin abrir puertos HTTP de forma insegura. |
+| **`SSE`** *(Server-Sent)*| 🟡 Medio (Red/HTTP) | Múltiples aplicaciones conectadas al mismo servidor remoto o contenedores Docker virtualizados en la nube. |
+| **`Streamable HTTP`** | 🔵 Alto (Full Duplex) | La variante más moderna para infraestructuras Cloud complejas de producción. |
+
+*Fuente Oficial: [MCP Transports](https://modelcontextprotocol.io/docs/concepts/transports)*
 
 ![MCP Transportes](../attachments/mcp_02.jpg)
 
@@ -42,20 +45,23 @@ Gemini CLI    -> C:\Users\<USER>\.gemini\settings.json
 Codex CLI     -> C:\Users\<USER>\.codex\config.toml
 Cursor        -> <project>\.cursor\mcp.json   |   ~/.cursor/mcp.json (global)
 Claude Code   -> <project>\.mcp.json          |   ~/.claude.json (global)
+OpenCode      -> <project>\opencode.json      |   ~/.config/opencode/opencode.json (global)
 ```
+
+
 
 > [!TIP]
 > Si el OAuth de Antigravity se corrompe en algún MCP, se puede resetear eliminando los archivos de `~/.mcp-auth`.
 
 ---
 
-## Buenas Prácticas
+## Diseño Estratégico y Optimización
 
-### Principio de Menor Privilegio
-Desactiva tools innecesarias para ahorrar tokens y mejorar la precisión del modelo.
+### El Principio del Menor Privilegio 
+Exponer 50 herramientas a un agente no lo hace más inteligente; lo hace errático. Cada tool innecesaria consume tu valiosa ventana de contexto y, peor aún, amplía el margen de error probabilístico del modelo, incrementando las alucinaciones. **Desactiva cualquier herramienta que no sea estrictamente necesaria.**
 
-### Patrones de Exclusión por Agente
-Activa únicamente las tools que realmente vas a usar. Revisa la documentación de cada MCP y construye una lista de exclusiones.
+### Control Quirúrgico (Lista Negra)
+No asumas que las configuraciones de origen vienen optimizadas. Audita la lista de herramientas de cada servidor y restringe el acceso mediante exclusiones (`disabledTools`). Si integras Figma solo para leer tokens de diseño, bloquea rotundamente las funciones de dibujo o manipulación del canvas. Esta poda estratégica te garantiza velocidad, menor coste y un agente hiper-enfocado.
 
 #### Ejemplo: Configuración JSON (Exclusiones)
 ```json
@@ -78,10 +84,14 @@ args = ["..."]
 disabled_tools = ["tool_peligrosa"]
 ```
 
-### Docker: Persistencia vs Eficiencia
-Levantar un servidor con `docker run` en cada IDE consume recursos excesivos. La mejor práctica es usar un contenedor persistente y conectar los IDEs vía `exec -i`.
+### Docker: Persistencia vs. Saturación de Memoria
+Configurar MCPs basados en Docker (como GitHub o bases de datos) con el comando `docker run --rm` directamente en los ajustes del agente es la vía más sencilla y recomendada para empezar. Sin embargo, tiene un costo a escala: **cada vez que abras tu IDE o una nueva terminal**, se levantará un contenedor nuevo. Si tienes varios proyectos abiertos, estarás duplicando recursos y consumiendo RAM en exceso.
 
-#### Ejemplo: Configuración Shared Container
+Una **alternativa** para evitar esta saturación es optar por un enfoque de **Contenedor Compartido**:
+1. Eres responsable de levantar el contenedor **manualmente** a nivel del sistema y dejarlo en *background* (`docker run -d --name mcp-hub ...`).
+2. Configuras a tus agentes para que se conecten al proceso vivo mediante `exec -i`.
+
+#### Ejemplo: Configuración (Shared Container)
 ```json
 {
   "command": "docker",
@@ -89,8 +99,26 @@ Levantar un servidor con `docker run` en cada IDE consume recursos excesivos. La
 }
 ```
 
-> [!WARNING]
-> Si usas `docker run` (con `--rm`) en cada IDE, cada ventana levanta su propio contenedor. Siempre que puedas, usa el patrón `exec -i` con un contenedor con nombre compartido.
+> [!TIP]
+> **El Trade-off:** Usar `exec -i` ahorra muchísima memoria al reusar una única instancia para todos tus IDEs. La desventaja es que pierdes la automatización inicial; el servidor no funcionará si olvidas levantar el contenedor original antes de abrir el editor de código.
+
+### MCP vs. Skills: Tecnologías Complementarias
+Un error de diseño común es asumir que el Model Context Protocol reemplaza la necesidad de crear *Skills* o *Prompt Tools* propias. Análisis de la industria distinguen que operan en diferentes capas del sistema agentico:
+- **MCP (La Conexión):** Unifica la forma en que los LLMs se comunican con el mundo (APIs, Bases de datos). Te da la herramienta "en crudo" sin que programes un cliente propio, pero no le da contexto de negocio al modelo.
+- **Skills (La Orquestación):** Es la guía procedimental. Dicta las reglas de tu compañía sobre *cómo* se deben usar esas herramientas.
+
+**Caso de Uso Práctico:** Utilizas el servidor MCP oficial de GitHub para tener la función `create_pull_request`. Simultáneamente, escribes una *Skill* local (`pr_reviewer.md`) que instruye al modelo a revisar convenciones de código y pasar un linter estructurado *antes* de atreverse a invocar la herramienta del MCP. No son enemigos, son complementos simbióticos.
+*Fuentes Evaluadas:* [Anthropic: MCP Introduction](https://www.anthropic.com/news/model-context-protocol)
+
+### Model Routing: Optimizando Costos y Latencia en Consultas MCP
+El protocolo MCP suele devolver volúmenes masivos de información (como JSONs completos de tareas o logs). Usar modelos de razonamiento "Frontier" (como Claude 3.5 Opus o Gemini 3 Pro) para filtrar estos datos es ineficiente y costoso.
+
+**La Solución: Ruteo Dinámico a "Subagentes"**
+La arquitectura de ruteo dicta delegar la extracción simple a modelos ligeros y económicos (como **Gemini 3 Pro Flash** o **Claude 3.5 Haiku**). Estos actúan como "subagentes de recuperación": consultan el MCP, limpian el ruido y entregan solo la información relevante al modelo principal. Esto reduce drásticamente el consumo de tokens y la latencia total del sistema.
+
+*Fuente: [LogRocket: LLM routing in production — Choosing the right model for every request](https://blog.logrocket.com/llm-routing/)*
+
+
 
 ---
 
@@ -100,9 +128,16 @@ Levantar un servidor con `docker run` en cada IDE consume recursos excesivos. La
 Servidores publicados y mantenidos por los proveedores oficiales.
 
 #### GitHub MCP
-Permite operar sobre repositorios, pull requests e issues. Requiere un `GITHUB_PERSONAL_ACCESS_TOKEN`.
+Permite al agente operar directamente sobre repositorios como si fuera un humano: buscar código, crear ramas, abrir PRs y leer issues.
 
-**Requisito:** Variable de entorno `GITHUB_PERSONAL_ACCESS_TOKEN` configurada en el sistema.
+[Repositorio Oficial](https://github.com/modelcontextprotocol/servers/tree/main/src/github)
+
+**Casos de uso (Tools destacadas):**
+- **`create_pull_request`**: Automatizar la apertura de PRs inyectando plantillas predefinidas.
+- **`get_file_contents` / `search_code`**: Extraer contexto de repositorios masivos sin tener que clonarlos en tu máquina.
+- **`push_files`**: Que tu agente modifique archivos y los suba directamente vía API remota.
+
+**Requisito:** Variable de entorno `GITHUB_PERSONAL_ACCESS_TOKEN` configurada localmente (o inyectada en el Docker).
 
 **Configuración recomendada — contenedor único compartido:**
 
@@ -146,9 +181,14 @@ GITHUB_PERSONAL_ACCESS_TOKEN = "<YOUR_TOKEN>"
 ---
 
 #### ClickUp MCP (Oficial)
-Servidor oficial para gestionar tareas y documentos. Usa autenticación **OAuth**.
+Servidor oficial para gestionar tu tracker de tareas. Ideal para sincronizar tu flujo de código con tus tableros sin salir del editor. Usa autenticación **OAuth** (el CLI/IDE abre un navegador para autorizar).
 
-Servidor MCP oficial de ClickUp. La autenticación es por **OAuth** — al configurarlo, el agente abrirá una ventana del navegador para autorizar el acceso.
+**Integración Oficial:** [ClickUp MCP Docs](https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server)
+
+**Casos de uso (Tools destacadas):**
+- **`get_task`**: El agente lee los criterios de aceptación del ticket antes de empezar a programar para no obviar requerimientos.
+- **`update_task`**: Mover automáticamente el estado de la tarea a "En Revisión" o "Completado" una vez terminas el código.
+- **`add_comment`**: Documentar hallazgos técnicos directamente en el hilo del ticket de ClickUp.
 
 > [!WARNING]
 > Si el agente no responde correctamente después de activar ClickUp MCP, deshabilita la tool `clickup_get_workspace_hierarchy`. Esta tool descarga la jerarquía completa del workspace y puede saturar la ventana de contexto.
@@ -188,14 +228,14 @@ url = "https://mcp.clickup.com/mcp"
 ---
 
 #### Figma MCP (Oficial)
-Permite leer estilos, colores y componentes de archivos Figma. Requiere **Dev Mode** y OAuth.
+Servidor MCP oficial que permite al agente leer estilos, colores, extraer componentes y entender el diseño *UX/UI*. La autenticación es manejada vía **OAuth**.
 
-Servidor MCP oficial de Figma. Permite al agente leer estilos, colores, tipografías y componentes de un archivo. La autenticación es por **OAuth**.
+**Sitio Oficial:** [Figma MCP](https://developer.figma.com/docs/mcp/introduction/) | **Extensión:** [figma-gemini-cli-extension](https://github.com/figma/figma-gemini-cli-extension)
 
 > [!WARNING]
-> Antigravity solo soporta el MCP oficial de Figma a través del **Dev Mode**, que requiere una cuenta de pago (Pro o superior).
+> Antigravity solo soporta el MCP oficial de Figma a través del **Dev Mode**, que requiere una cuenta de pago (Pro o superior) activa en Figma.
 
-**Instalación en Gemini CLI (via Extension):**
+**Instalación en Gemini CLI:**
 
 ```shell
 gemini extensions install https://github.com/figma/figma-gemini-cli-extension
@@ -212,11 +252,14 @@ gemini extensions install https://github.com/figma/figma-gemini-cli-extension
 Servidores mantenidos por la comunidad que cubren casos no oficiales.
 
 #### Figma Console MCP
-Alternativa comunitaria que se comunica con Figma Desktop sin depender de cuenta Pro.
+Alternativa comunitaria hiper-eficiente que extrae información leyendo directamente tu aplicación de Figma Desktop mediante un plugin local, eliminando la necesidad del Dev Mode de pago.
+
+**Casos de uso (Tools destacadas):**
+- **`figma_get_selection`**: Pídele al agente: "Extrae el CSS del botón que tengo seleccionado ahora mismo en Figma".
+- **`figma_get_styles` / `figma_get_variables`**: Leer todo el *Design System* y auto-generar un archivo `tailwind.config.js` sin copiar y pegar colores a mano.
+- **`figma_audit_component_accessibility`**: Auditar si los colores de un frame cumplen con el contraste WCAG directamente desde terminal.
 
 **Repositorio:** [github.com/southleft/figma-console-mcp](https://github.com/southleft/figma-console-mcp)
-
-Alternativa community al MCP oficial de Figma. Se comunica con Figma Desktop a través de un plugin local, sin depender de servidor remoto ni de cuenta Pro.
 
 > [!NOTE]
 > Requiere la **aplicación desktop de Figma** instalada y activa. Ejecuta el siguiente comando para obtener la ruta del manifest del plugin: `npx figma-console-mcp@latest --print-path`
@@ -358,11 +401,13 @@ Lista de tools que no son para Developers, ni Designers.
 ---
 
 #### Trello MCP
-Gestión de tableros y tarjetas. Requiere `TRELLO_API_KEY` y `TRELLO_TOKEN`.
+Servidor comunitario para integrar directamente la gestión de tableros Kanban.
+
+**Casos de uso (Tools destacadas):**
+- **`get_board_cards`**: Analizar rápidamente qué tareas tienes asignadas en "Doing" para el sprint actual sin abrir el navegador.
+- **`move_card` / `create_card`**: Actuar como intermediario automático para crear subtareas o mover de lista (ej. pasar tarjeta a "Code Review") tras un commit.
 
 **Repositorio:** [npmjs.com/package/mcp-server-trello](https://www.npmjs.com/package/mcp-server-trello)
-
-Permite al agente leer y gestionar tableros, listas y tarjetas de Trello.
 
 **Requisitos:** Variables de entorno `TRELLO_API_KEY` y `TRELLO_TOKEN`.
 Generarlas en: [trello.com/power-ups/admin](https://trello.com/power-ups/admin)
