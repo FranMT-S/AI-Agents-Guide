@@ -23,80 +23,87 @@ Actualmente los proveedores dominantes en el ecosistema de agentes de software s
 
 ---
 
-## Conceptos universales: el vocabulario base
+## El Vocabulario que Todo el Mundo Asume que Ya Sabes
 
-Antes de comparar modelos, necesitas entender los términos que aparecen en toda la documentación.
+Antes de evaluar qué modelo elegir, es fundamental dominar el vocabulario técnico universal que define cómo "piensan" y operan estas IAs.
 
-### Tokens
+### Tokens: Por Qué Cada Palabra que le Escribes a tu Agente Tiene un Precio
 
-Un **token** es la unidad de procesamiento del modelo. No es exactamente una palabra ni un caracter — es un fragmento semántico producido por el tokenizador del modelo.
+Un **token** no es estrictamente una letra, ni una sílaba, ni una palabra entera. Es la **unidad subatómica de procesamiento** que el modelo utiliza para asimilar el código y el lenguaje. El modelo no lee párrafos; lee secuencias de tokens generadas por su *tokenizador* interno.
 
-Como referencia práctica:
-- ~1 palabra en inglés = ~1.3 tokens
-- ~750 palabras = ~1,000 tokens
-- 1,000 líneas de código Python ≈ 3,000–4,000 tokens
+Para tener una noción matemática en escenarios reales:
+- **Texto:** ~1 palabra en inglés equivale a ~1.3 tokens.
+- **Documentación:** ~750 palabras consumen cerca de 1,000 tokens.
+- **Software:** 1,000 líneas de código en Python o TypeScript rondan entre 3,000 y 4,000 tokens.
 
-Los tokens importan por dos razones directas:
-1. **Costo**: se paga por millón de tokens de entrada + por millón de tokens de salida.
-2. **Límite**: el modelo tiene un tope de cuántos puede procesar en un solo intercambio (la *ventana de contexto*).
+Dominar el concepto de token es vital porque impacta directamente en la arquitectura de tus agentes por dos razones:
+1. **Facturación (Costo):** Los proveedores calculan el precio basándose en dos métricas: tarifa por millón de tokens de entrada (*input*) y tarifa por millón de tokens de salida (*output*).
+2. **Capacidad (Límite):** Todo modelo posee una restricción arquitectónica sobre cuántos tokens puede procesar en una sola interacción fluida. A esto se le llama **Ventana de Contexto** (*Context Window*).
 
-### Ventana de contexto (*Context Window*)
+### Ventana de Contexto: Por Qué tu Agente se Vuelve más Tonto Cuanto más le Hablas
 
-La ventana de contexto es la cantidad total de tokens que el modelo puede "ver" en un solo intercambio: el system prompt + el historial + los archivos adjuntos + la respuesta que genera.
+La **Ventana de Contexto** (*Context Window*) es el volumen máximo de tokens que el modelo puede retener y analizar simultáneamente en una sola interacción. Es el sumatorio estricto de múltiples componentes: el *System Prompt* oculto de tu agente + el historial de la conversación + los archivos que adjuntas + la propia respuesta que el modelo está generando.
 
 ```text
-Evolucion historica de ventanas de contexto:
+Evolución de las Ventanas de Contexto (2022-2026):
 
 GPT-3.5 (2022)         :  4K tokens   = ~3,000 palabras
 GPT-4 8K (2023)        :  8K tokens   = ~6,000 palabras
 Claude 1 (2023)        : 100K tokens  = ~75,000 palabras
-Gemini 1.5 Pro (2024)  :   1M tokens  = un monorepo completo
-GPT-5.4 (2026)         :   1M tokens  = analisis de codebases enteras
-Gemini 3.1 Pro (2026)  :   1M tokens+ = documentos, video, audio y codigo a la vez
+Gemini 1.5 Pro (2024)  :   1M tokens  = Un monorepo de código base
+GPT-5.4 (2026)         :   1M tokens  = Análisis estructural de codebases
+Gemini 3.1 Pro (2026)  :   1M+ tokens = Fusión multimodal (documentos, video, audio y código)
 ```
+
+#### ¿Qué sucede cuando saturas la Ventana de Contexto?
+
+Uno de los errores más comunes al trabajar con agentes es creer que "adjuntar más archivos siempre es mejor". Cuando comienzas a llenar o rebasar el límite de la ventana, el sistema no suele fallar con un error obvio; en su lugar, sufre una **degradación silenciosa**:
+
+1. **Pérdida de Atención (Attention Decay):** Los LLMs sufren del efecto *"Lost in the Middle"*. Si le envías 100 archivos, el modelo recordará perfectamente el primero y el último, pero ignorará las instrucciones críticas atrapadas en el medio.
+2. **Alucinación Inducida:** Al saturar su capacidad de análisis, el agente "olvida" las normativas de tu proyecto (como qué versión de React usas) y empieza a inventar código genérico basado en sus datos de entrenamiento.
+3. **Truncamiento (Recorte):** En herramientas modernas, cuando alcanzas el límite, el agente orquestador elimina automáticamente los mensajes más antiguos del historial para que el nuevo mensaje quepa. Esto causa que el agente olvide por qué estaban debatiendo cierto error hace 5 interacciones.
+4. **Hemorragia de Costos:** Cada vez que le pides corregir un typo a tu agente, el sistema *re-envía* todo el historial anterior sumado a los archivos adjuntos. Si tu contexto es gigante de forma innecesaria, facturarás miles de tokens extras por una tarea trivial.
 
 > [!IMPORTANT]
-> No confundas ventana de contexto con memoria persistente. La ventana es temporal — existe solo durante la sesión activa. Sin mecanismos de memoria externa (`AGENTS.md`, caché), cada nueva sesión comienza desde cero.
+> **No confundas la Ventana de Contexto con Memoria Persistente.** La Ventana de Contexto es estrictamente episódica; se desvanece en cuanto cierras la sesión. Sin mecanismos de arquitectura de contexto (como inyectar un archivo `AGENTS.md` o usar cachés), tu agente sufre de amnesia severa y comienza cada nueva sesión sin conocimiento previo de tu repositorio.
 
-### Temperatura
+### Temperatura: El Parámetro que Convierte un Programador en Poeta (y Arruina tu CI/CD)
 
-La temperatura controla qué tan predecible o variable es la respuesta del modelo:
+La **Temperatura** es el parámetro que ajusta el nivel de aleatoriedad (entropía) en la selección de tokens que realiza el modelo. Técnicamente, altera la distribución de probabilidades antes de que el motor decida cuál es el siguiente fragmento, aplanando o intensificando la creatividad de la respuesta.
 
 ```text
-temperatura = 0.0  →  Siempre la misma respuesta para el mismo input (maxima precision)
-temperatura = 0.7  →  Respuestas naturales, ligera variacion (default habitual)
-temperatura = 1.5  →  Alta variedad, respuestas mas creativas e inesperadas
+Escala Práctica de Temperatura:
+
+0.0 a 0.2  → Determinismo extremo. El modelo prioriza el token más probable. Obligatorio para código, matemáticas y parsing estricto de JSON.
+0.5 a 0.7  → Equilibrio (Default). Lenguaje natural, fluido pero coherente. Excelente para documentación técnica y resúmenes de PRs.
+1.0 a 1.5+ → Alta entropía. Caminos lógicos divergentes. Excelente para brainstorming, pero letal para la programación algorítmica.
 ```
 
-Para tareas de código y agentes, temperatura baja (0.0–0.3) produce resultados predecibles. Para generación de contenido creativo, 0.7–1.2 es el rango habitual.
+En orquestación de agentes operativos o workflows *headless* (CI/CD), utilizar una **temperatura en cero absoluto (0.0)** garantiza que, ante el mismo prompt y contexto, el agente aplicará el parche exactamente de la misma manera en cada ejecución, eliminando variabilidad estadística.
 
 > [!NOTE]
-> En los modelos GPT-5.x con reasoning activado (cualquier nivel distinto de `none`), el parámetro `temperature` no está disponible — se reemplaza por `reasoning.effort`.
+> **La Desaparición de la Temperatura:** En las familias modernas enfocadas exclusivamente al razonamiento profundo (como los modelos GPT-5.x cuando su configuración *thinking* está activa), el parámetro `temperature` **no puede ser alterado manualmente**. La exploración heurística requerida para la lógica algorítmica es controlada automáticamente por el motor interno y se parametriza a través de `reasoning.effort`.
 
 *Fuente: [OpenAI: GPT-5.4 Parameter Compatibility](https://developers.openai.com/api/docs/guides/latest-model#gpt-54-parameter-compatibility)*
 
-### Tokens de razonamiento (*Thinking Tokens*)
 
-Los modelos modernos generan tokens "internos" antes de producir la respuesta visible. Este proceso — llamado *chain of thought* (CoT) o *thinking* — no llega al usuario directamente, pero consume tokens y tiempo de cómputo.
+## Thinking: Por Qué el Mismo Modelo Falla un Bug Fácil y Resuelve uno Imposible
 
-El beneficio es significativo: el modelo puede descomponer problemas complejos paso a paso antes de responder, produciendo outputs de calidad muy superior en tareas de lógica, código y matemáticas.
+Imagina pedirle a un ingeniero que diseñe una arquitectura compleja hablando muy rápido y sin dejarle anotar nada en un papel. Probablemente el resultado esté lleno de fallos estructurales o callejones sin salida. Sin embargo, si le das una hora, papel y la libertad de tachar y volver a calcular antes de darte los planos finales, el diseño será un éxito.
 
-> [!TIP]
-> Cuando ves `thinking_level: "high"` o `reasoning.effort: "medium"` en una configuración, estás activando este proceso. En tareas simples de búsqueda o formateo de JSON, desactivarlo reduce la latencia y el costo sin impactar la calidad.
+Esto es exactamente lo que hace el concepto de **Thinking** (Razonamiento). En lugar de "escupir" el primer pedazo de código que se le viene a la red neuronal, los modelos modernos generan un "borrador privado" oculto. En este borrador, la IA analiza el problema paso a paso, diagrama opciones lógicas, e **incluso detecta y corrige sus propios errores antes de mostrarte la respuesta final**. 
 
----
+Es una "voz interior" que incrementa brutalmente la calidad y la precisión geométrica del código que te entrega el agente.
 
-## El concepto de "Thinking" (Razonamiento profundo)
+Los niveles de thinking mas comunes son: `low`, `medium`, `hight`, muchos agentes usualmente ya traen preconfigurada un nivel thinking `medium` en el llm.
 
-El término *thinking* aparece en la documentación de los principales proveedores y se refiere a distintas implementaciones del mismo principio: darle al modelo tiempo computacional adicional para razonar antes de responder.
+### Niveles de Thinking por Proveedor
 
-### ¿Por qué existe?
+Para que tu agente utilice este "tiempo de reflexión adicional", necesitas habilitarlo explícitamente en tu archivo de configuración (como tu `settings.json` o parámetro de red). Cada proveedor expone este mecanismo con nombres distintos, pero el principio de "cuaderno de borrador" es el mismo.
 
-Los LLMs generan tokens de izquierda a derecha, sin anticipar los pasos siguientes. Para problemas que requieren planificación (como debuggear un bug que cruza varios archivos), el modelo sin thinking suele equivocarse porque no tiene un "borrador" del plan. El thinking resuelve esto: el modelo genera un razonamiento interno, lo valida, y luego produce la respuesta visible.
+Aquí tienes la configuración técnica de cada uno:
 
-### Niveles de thinking por proveedor
-
-**OpenAI (GPT-5.x) — parámetro `reasoning.effort`:**
+**OpenAI (GPT-5.x) — `reasoning.effort`**
 
 ```json
 {
@@ -107,17 +114,22 @@ Los LLMs generan tokens de izquierda a derecha, sin anticipar los pasos siguient
 }
 ```
 
-| Nivel | Cuándo usarlo |
-| :--- | :--- |
-| `none` | Formateo, parsing de datos, respuestas simples y rapidas |
-| `low` | Codificacion simple, completar templates predecibles |
-| `medium` | Uso general diario: implementar features, revisar PRs (default) |
-| `high` | Bugs complejos que cruzan multiples archivos, diseño de arquitectura |
-| `xhigh` | Solo en GPT-5.3-Codex. Problemas extremadamente complejos |
+| Nivel | Escenario de uso | Impacto en latencia |
+| :--- | :--- | :--- |
+| `none` | Formateo, parsing de datos, respuestas directas | Sin overhead |
+| `low` | Completar templates, generación de código predecible | Bajo |
+| `medium` | Codificación diaria, revisión de PRs, documentación (default) | Moderado |
+| `high` | Bugs con múltiples archivos involucrados, diseño de arquitectura | Alto |
+| `xhigh` | Solo disponible en GPT-5.3-Codex. Problemas de máxima complejidad algorítmica | Muy alto |
+
+> [!NOTE]
+> Con `reasoning.effort` activo en cualquier nivel distinto de `none`, el parámetro `temperature` queda bloqueado. El motor de reasoning gestiona la variabilidad internamente.
 
 *Fuente: [OpenAI: Latest Model Guide – Reasoning Effort](https://developers.openai.com/api/docs/guides/latest-model)*
 
-**Google (Gemini 3.x) — parámetro `thinking_level`:**
+---
+
+**Google (Gemini 3.x) — `thinkingConfig.thinkingLevel`**
 
 ```json
 {
@@ -130,18 +142,26 @@ Los LLMs generan tokens de izquierda a derecha, sin anticipar los pasos siguient
 }
 ```
 
-| Nivel | Cuándo usarlo |
-| :--- | :--- |
-| `minimal` | Respuestas rapidas, bajo costo, tareas triviales |
-| `low` | Consultas simples, resumen de texto corto |
-| `medium` | Codificacion general, analisis de documentos |
-| `high` | Default de Gemini 3. Razonamiento profundo, agentic workflows |
+| Nivel | Escenario de uso | Impacto en latencia |
+| :--- | :--- | :--- |
+| `minimal` | Respuestas instantáneas de alto volumen, tareas triviales | Mínimo |
+| `low` | Consultas simples, resúmenes de texto corto | Bajo |
+| `medium` | Codificación general, análisis de documentos | Moderado |
+| `high` | Default de Gemini 3. Agentic workflows, razonamiento complejo | Alto |
+
+> [!NOTE]
+> Gemini 3 activa `high` por defecto en todos sus modelos Pro. Esto es relevante para pipelines de Tool Use encadenado, ya que el overhead de *thinking* incrementa la latencia entre herramientas consecutivas.
 
 *Fuente: [Google: Gemini 3 Developer Guide – Thinking Level](https://ai.google.dev/gemini-api/docs/gemini-3)*
 
-**Anthropic (Claude 4.x) — Extended Thinking:**
+---
 
-Claude implementa el razonamiento como *extended thinking*. Cuando está activo, la respuesta incluye un bloque `thinking` con el razonamiento generado, además de la respuesta final. La variante *adaptive thinking* ajusta automáticamente la profundidad según la complejidad de cada prompt.
+**Anthropic (Claude 4.x) — Extended Thinking**
+
+Claude diferencia entre dos modalidades de *thinking*. Ambas son transparentes al usuario en el formato de respuesta, que incluye un bloque `thinking` separado del bloque de respuesta final:
+
+- **Extended Thinking:** El modelo siempre genera un bloque de razonamiento de profundidad máxima antes de responder. Ideal para tareas con alta complejidad estructural donde la consistencia del razonamiento es crítica.
+- **Adaptive Thinking:** El modelo evalúa la complejidad del prompt y ajusta automáticamente la profundidad del bloque de razonamiento. Más eficiente en términos de costos para sesiones de trabajo mixto donde se alternan tareas simples y complejas.
 
 *Fuentes: [Anthropic: Extended Thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) | [Anthropic: Adaptive Thinking](https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking)*
 
