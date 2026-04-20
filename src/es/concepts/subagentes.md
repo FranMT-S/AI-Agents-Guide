@@ -1,12 +1,12 @@
-# Subagentes: Arquitectura, Configuración y Patrones
+# Subagentes: Por Qué un Solo Agente Siempre Llega al Límite
 
-La orquestación con subagentes es el patrón de diseño más avanzado del ecosistema de agentes de IA actual. Permite transformar un único agente monolítico — que intenta diseñar, codificar, revisar y testear al mismo tiempo — en un equipo de especialistas coordinados donde cada miembro tiene un rol claro, un contexto acotado y permisos específicos. Este archivo documenta la arquitectura técnica, los esquemas de configuración por herramienta y los patrones de diseño probados en producción.
+Imagina que contratas a un solo ingeniero para diseñar la arquitectura, escribir el código, revisar su propio trabajo y documentarlo al mismo tiempo. El resultado es predecible: el contexto se contamina, la calidad baja y los errores pasan desapercibidos porque quien revisa es el mismo que cometió el error. Los subagentes existen exactamente para eliminar ese problema. Permiten transformar un único agente monolítico en un equipo de especialistas coordinados, donde cada miembro tiene un rol claro, un contexto acotado y permisos específicos. Este archivo documenta la arquitectura técnica, los esquemas de configuración por herramienta y los patrones de diseño probados en producción.
 
 ---
 
-## Anatomía de un Subagente
+## Anatomía de un Subagente: Lo Que Lo Hace Diferente al Agente Principal
 
-Un subagente es una instancia secundaria de un modelo de lenguaje que el agente primario instancia bajo demanda. A diferencia del agente principal, un subagente posee tres características técnicas fundamentales:
+Un subagente es una instancia secundaria de un modelo de lenguaje que el agente primario instancia bajo demanda. A diferencia del agente principal, un subagente posee tres características técnicas que lo hacen estructuralmente diferente:
 
 1. **Contexto aislado**: solo recibe los fragmentos de código, reglas y documentación relevantes para su microtarea, previniendo la degradación por exceso de contexto.
 2. **Herramientas restringidas**: su arsenal de tools y llamadas MCP está limitado a lo que su rol necesita. Un `code-reviewer` puede tener acceso a `read_file` y `git diff`, pero no a `write_file` ni `bash`.
@@ -27,13 +27,9 @@ Cada delegación incluye únicamente el contexto necesario para esa fase. El `ar
 
 ---
 
-> [!NOTE]
-> **Mi Colección Personal:** Estoy organizando una colección de subagentes para diferentes propósitos. Si deseas verlos como guía para estructurar a tu equipo delegativo, puedes visitar:
-> 🤖 **[Directorio de Subagentes (GitHub)](https://github.com/FranMT-S/AI-Agents-Guide/tree/main/src/subagents)**
+## Tipos de Subagentes: Cuándo Construir y Cuándo Reutilizar
 
----
-
-## Tipos de Subagentes
+Conocer los tres tipos de subagentes define si estás perdiendo el tiempo configurando algo que ya existe o aprovechando lo que la herramienta ofrece de fábrica.
 
 ### Especializados personalizados
 
@@ -62,89 +58,28 @@ Subagentes personalizados que extienden el comportamiento de un built-in añadie
 
 ---
 
-## Comunicación entre Subagentes
-
-### Contratos de Datos (el error más común)
-
-La comunicación entre subagentes **no debe ser prosa conversacional**. Cuando el `architect` le entrega su diseño al `builder`, debe hacerlo en un formato estructurado que el `builder` pueda consumir sin ambigüedad:
-
-```markdown
-ARCHITECTURE_PLAN:
-routes:
-  - POST /api/tasks → src/routes/tasks.ts
-  - GET /api/tasks/:id → src/routes/tasks.ts
-models:
-  - Task: { id: uuid, title: string, status: enum(todo|done), userId: uuid }
-db_schema: prisma/schema.prisma
-```
-
-El agente primario captura este bloque e inyecta exactamente ese formato en el prompt del `builder`. No parafrasea ni resume — entrega el contrato de datos íntegro. Esto elimina las tergiversaciones que ocurren cuando el modelo interpreta libremente el output del agente anterior.
-
-### Flujo de Errores y Fallbacks
-
-Cuando un subagente falla, el agente primario debe recibir un error estructurado:
-
-```json
-{
-  "status": "failed",
-  "agent": "builder",
-  "reason": "prisma_schema_conflict",
-  "message": "Cannot add field 'userId' — migration conflict in 003_add_users.sql",
-  "retry_possible": true
-}
-```
-
-El orquestador evalúa si el error es recuperable (`retry_possible: true`) y decide entre reintentar, escalar al usuario o invocar un subagente de diagnóstico.
-
----
-
-## Control de Iteraciones y Recursión
-
-> [!WARNING]
-> El mayor riesgo técnico en orquestación multi-agente es el bucle infinito: el `builder` produce código con errores, el `reviewer` lo rechaza, el `builder` reintenta incorrectamente — y este ciclo se repite facturando miles de tokens sin progreso.
-
-Todas las herramientas implementan un campo de límite de iteraciones:
-
-| Herramienta | Campo | Default |
-| :--- | :--- | :--- |
-| **OpenCode** | `steps` | Sin límite (definir explícitamente) |
-| **Cursor** | `maxTurns` (en frontmatter del agente) | Heredado del sistema |
-| **Gemini CLI** | `max_turns` | 30 |
-| **Claude Code** | `maxTurns` | Sin límite |
-| **Codex CLI** | `--max-steps` (flag CLI) | Sin límite |
-
-**Regla práctica**: define siempre `max_turns` entre 5 y 15 para subagentes de revisión y entre 10 y 25 para subagentes de implementación. Más iteraciones raramente producen mejores resultados; indican un system prompt insuficientemente específico.
-
----
-
-## Permisos por Rol
-
-El sistema de permisos es lo que convierte los subagentes de una conveniencia en una herramienta de seguridad real. Cada subagente debe tener solo los permisos que su rol requiere:
-
-| Rol | `edit` | `bash` | `webfetch` | Propósito |
-| :--- | :--- | :--- | :--- | :--- |
-| `architect` | `deny` | `deny` | `deny` | Solo lee y planifica |
-| `builder` | `allow` | `ask` (selectivo) | `deny` | Escribe código, bash con confirmación |
-| `reviewer` | `deny` | `allow: git diff, git log` | `deny` | Lee diffs, no modifica |
-| `tester` | `deny` | `allow: npm test, pytest` | `deny` | Ejecuta tests, no codifica |
-| `doc-writer` | `allow: *.md` | `deny` | `allow` | Escribe docs, puede consultar web |
+> [!TIP]
+> **Colección de subagentes de referencia:** Si deseas ver ejemplos reales de subagentes organizados por propósito para estructurar tu propio equipo delegativo, puedes visitarlos aquí:
+> **[Directorio de Subagentes (GitHub)](https://github.com/FranMT-S/AI-Agents-Guide/tree/main/src/subagents)**
 
 ---
 
 ## Configuración por Herramienta
 
-### OpenCode
+Con la base conceptual clara, el siguiente paso es entender cómo se declara un subagente en cada herramienta. La sintaxis difiere entre ellas, pero la estructura mental es la misma: un archivo de definición con el rol, el modelo, las herramientas permitidas y el system prompt.
 
-OpenCode soporta dos métodos de configuración. El método Markdown es el más legible y recomendado para subagentes personalizados.
+### OpenCode: Dos Métodos, Un Solo Ganador
+
+OpenCode soporta dos métodos de configuración. El método Markdown es el más legible y recomendado para subagentes personalizados, ya que permite combinar frontmatter YAML con el system prompt en un solo archivo versionable.
 
 **Estructura de Directorio:**
 ```text
-~/.config/opencode/agents/      (Global — disponibles en todos los proyectos)
+~/.config/opencode/agents/      (Global — available in all projects)
     └── security-auditor.md
 
 mi-proyecto/
 └── .opencode/
-    └── agents/                 (Proyecto — compartidos via git)
+    └── agents/                 (Project — shared via git)
         ├── architect.md
         ├── builder.md
         └── code-reviewer/
@@ -207,17 +142,19 @@ Return a JSON array of findings:
 
 ---
 
-### Cursor
+### Cursor: Agentes de Solo Lectura por Defecto
+
+En Cursor, los subagentes se definen como archivos Markdown en `.cursor/agents/`. La propiedad `readonly: true` garantiza que el agente no puede modificar archivos, lo que lo convierte en el mecanismo preferido para roles de revisión y análisis donde una escritura accidental sería un error crítico.
 
 **Estructura de Directorio:**
 ```text
-~/.cursor/agents/               (Global — disponibles en todos los proyectos)
+~/.cursor/agents/               (Global — available in all projects)
     └── researcher.md
 
 mi-proyecto/
 ├── AGENTS.md
 └── .cursor/
-    └── agents/                 (Proyecto — compartidos via git)
+    └── agents/                 (Project — shared via git)
         ├── architect.md
         └── code-reviewer.md
 ```
@@ -260,16 +197,18 @@ Do not approve the change if critical issues exist.
 
 ---
 
-### Gemini CLI
+### Gemini CLI: El AgentRegistry Como Barrera de Recursión
+
+En Gemini CLI, los subagentes son archivos Markdown con frontmatter YAML que viven en `.gemini/agents/`. Lo que distingue a Gemini CLI de otras herramientas es su `AgentRegistry`: un mecanismo que oculta por defecto todos los agentes disponibles al agente invocador, a menos que estén declarados explícitamente en el campo `tools`. Esto previene la recursión no controlada donde un subagente invoca a otro que a su vez invoca al primero.
 
 **Estructura de Directorios:**
 ```text
-~/.gemini/agents/               (Global — personales, no compartidos con el equipo)
+~/.gemini/agents/               (Global — personal, not shared with the team)
     └── security-auditor.md
 
 mi-proyecto/
 └── .gemini/
-    └── agents/                 (Proyecto — compartidos via git)
+    └── agents/                 (Project — shared via git)
         ├── dev-orchestrator.md
         ├── code-writer.md
         └── code-reviewer.md
@@ -303,8 +242,8 @@ Rules:
 tools:
   - read_file
   - write_file
-  - mcp_github_*        # Todas las herramientas del MCP de GitHub
-  - code-reviewer       # Puede invocar al subagente code-reviewer
+  - mcp_github_*        # All tools from the GitHub MCP server
+  - code-reviewer       # Can invoke the code-reviewer subagent
 ```
 
 > [!WARNING]
@@ -314,16 +253,18 @@ tools:
 
 ---
 
-### Claude Code
+### Claude Code: La Declaración `Agent()` que Determina Quién Puede Llamar a Quién
+
+En Claude Code, los subagentes se configuran en `.claude/agents/` y siguen la misma estructura de frontmatter Markdown del resto del ecosistema. La diferencia crítica está en el campo `tools`: para que un subagente pueda invocar a otro, el invocador debe declarar `Agent(nombre)` explícitamente. Sin esta declaración, la instanciación falla en silencio y el coordinador no puede delegar el trabajo.
 
 **Estructura de Directorios:**
 ```text
-~/.claude/agents/               (Global — disponibles en todos los proyectos)
+~/.claude/agents/               (Global — available in all projects)
     └── researcher.md
 
 mi-proyecto/
 └── .claude/
-    └── agents/                 (Proyecto — compartidos via git)
+    └── agents/                 (Project — shared via git)
         ├── coordinator.md
         └── api-developer/
             ├── api-developer.md
@@ -362,7 +303,9 @@ Workflow:
 
 ---
 
-### Codex CLI
+### Codex CLI: TOML en Lugar de Markdown, Sandboxing en Lugar de Permisos
+
+Codex CLI es el único agente del ecosistema que usa formato TOML para sus subagentes en lugar de Markdown con frontmatter YAML. El campo equivalente al `permission` de otras herramientas es `sandbox_mode`, que acepta valores predefinidos (`workspace-write`, `read-only`, `network-allowed`) en lugar de listas de comandos explícitas.
 
 **Estructura de Directorio:**
 ```text
@@ -414,40 +357,115 @@ Return findings as a structured list: file, line, severity (critical/high/medium
 
 ---
 
-## Patrones Avanzados
+## Permisos por Rol: El Sistema Que Convierte los Subagentes en una Herramienta de Seguridad Real
 
-### Lecturas Paralelas, Escrituras Secuenciales
+Ahora que conoces cómo se declara un subagente en cada herramienta, el siguiente paso es entender qué puede hacer cada uno. Un subagente sin restricciones de permisos es simplemente un agente con un nombre diferente. El poder de los subagentes está en el principio de mínimo privilegio: cada rol recibe exactamente lo que necesita y nada más. Un `reviewer` que puede escribir archivos ya no es un revisor — es un agente con acceso sin restricciones al repositorio:
 
-Para tareas de análisis (leer documentación, escanear logs, revisar dependencias), instancia múltiples subagentes de lectura en paralelo. Para fases de escritura, fuerza secuencialidad estricta para evitar condiciones de carrera.
+| Rol | `edit` | `bash` | `webfetch` | Propósito |
+| :--- | :--- | :--- | :--- | :--- |
+| `architect` | `deny` | `deny` | `deny` | Solo lee y planifica |
+| `builder` | `allow` | `ask` (selectivo) | `deny` | Escribe código, bash con confirmación |
+| `reviewer` | `deny` | `allow: git diff, git log` | `deny` | Lee diffs, no modifica |
+| `tester` | `deny` | `allow: npm test, pytest` | `deny` | Ejecuta tests, no codifica |
+| `doc-writer` | `allow: *.md` | `deny` | `allow` | Escribe docs, puede consultar web |
 
-```text
-PARALLEL (lectura):
-  ├── security-auditor  → lee src/auth/
-  ├── perf-auditor      → lee src/db/
-  └── api-auditor       → lee src/routes/
+---
 
-SEQUENTIAL (escritura, en orden):
-  1. builder   → implementa cambios
-  2. tester    → ejecuta suite
-  3. doc-writer → actualiza documentación
+## Comunicación entre Subagentes: El Error que Arruina Todo el Pipeline
+
+Con los agentes declarados y sus permisos definidos, el siguiente problema es cómo se pasan información entre sí. Aquí es donde la mayoría de los pipelines fallan: no en la configuración, sino en el formato del mensaje que un agente le envía al siguiente.
+
+### Contratos de Datos: Por Qué la Prosa Libre Destruye la Orquestación
+
+La comunicación entre subagentes **no debe ser prosa conversacional**. Cuando el `architect` le entrega su diseño al `builder`, debe hacerlo en un formato estructurado que el `builder` pueda consumir sin ambigüedad. Si el orquestador parafrasea o resume el output del agente anterior, introduce exactamente el tipo de ambigüedad que los subagentes existen para eliminar:
+
+```markdown
+ARCHITECTURE_PLAN:
+routes:
+  - POST /api/tasks → src/routes/tasks.ts
+  - GET /api/tasks/:id → src/routes/tasks.ts
+models:
+  - Task: { id: uuid, title: string, status: enum(todo|done), userId: uuid }
+db_schema: prisma/schema.prisma
 ```
 
-### Anidación Controlada
+El agente primario captura este bloque e inyecta exactamente ese formato en el prompt del `builder`. No parafrasea ni resume — entrega el contrato de datos íntegro.
+
+### Flujo de Errores y Fallbacks: Qué Hace el Orquestador Cuando un Especialista Falla
+
+Cuando un subagente falla, el agente primario debe recibir un error estructurado que le permita decidir si reintentar, escalar al usuario o invocar un subagente de diagnóstico:
+
+```json
+{
+  "status": "failed",
+  "agent": "builder",
+  "reason": "prisma_schema_conflict",
+  "message": "Cannot add field 'userId' — migration conflict in 003_add_users.sql",
+  "retry_possible": true
+}
+```
+
+El orquestador evalúa si el error es recuperable (`retry_possible: true`) y actúa en consecuencia. Sin este contrato de error definido, el orquestador no puede distinguir un fallo transitorio de un bloqueo permanente.
+
+---
+
+## Control de Iteraciones: Cómo Evitar que tu Pipeline Facture Tokens en un Bucle Sin Fin
+
+La comunicación estructurada entre agentes resuelve la ambigüedad, pero no elimina el riesgo de que ese intercambio se repita indefinidamente. Los bucles infinitos son la consecuencia directa de contratos de error mal definidos combinados con límites de iteración sin configurar.
+
+> [!WARNING]
+> El mayor riesgo técnico en orquestación multi-agente es el bucle infinito: el `builder` produce código con errores, el `reviewer` lo rechaza, el `builder` reintenta incorrectamente — y este ciclo se repite facturando miles de tokens sin progreso.
+
+Todas las herramientas implementan un campo de límite de iteraciones. Definirlo explícitamente no es opcional para equipos que trabajan en producción:
+
+| Herramienta | Campo | Default |
+| :--- | :--- | :--- |
+| **OpenCode** | `steps` | Sin límite (definir explícitamente) |
+| **Cursor** | `maxTurns` (en frontmatter del agente) | Heredado del sistema |
+| **Gemini CLI** | `max_turns` | 30 |
+| **Claude Code** | `maxTurns` | Sin límite |
+| **Codex CLI** | `--max-steps` (flag CLI) | Sin límite |
+
+**Regla práctica**: define siempre `max_turns` entre 5 y 15 para subagentes de revisión y entre 10 y 25 para subagentes de implementación. Más iteraciones raramente producen mejores resultados; indican un system prompt insuficientemente específico.
+
+---
+
+## Patrones Avanzados: Cómo los Equipos que Ya Fallaron en Producción Estructuran su Orquestación
+
+Con la configuración, los permisos y la comunicación bajo control, lo que separa un pipeline funcional de uno robusto son los patrones de coordinación. Estos son los tres que resuelven los problemas que aparecen después del primer despliegue real.
+
+### Lecturas Paralelas, Escrituras Secuenciales: El Patrón que Multiplica la Velocidad Sin Crear Condiciones de Carrera
+
+Para tareas de análisis — leer documentación, escanear logs, revisar dependencias — instancia múltiples subagentes de lectura en paralelo. Para fases de escritura, fuerza secuencialidad estricta para evitar que dos agentes modifiquen el mismo archivo simultáneamente:
+
+```text
+PARALLEL (read phase):
+  ├── security-auditor  → reads src/auth/
+  ├── perf-auditor      → reads src/db/
+  └── api-auditor       → reads src/routes/
+
+SEQUENTIAL (write phase, in order):
+  1. builder   → implements changes
+  2. tester    → runs test suite
+  3. doc-writer → updates documentation
+```
+
+### Anidación Controlada: Hasta Dónde Puede Ir la Especialización Antes de Volverse Inmanejable
 
 Un subagente puede invocar a otro si su schema lo permite explícitamente. Esto permite patrones de especialización de dos niveles:
 
 ```text
 dev-orchestrator
   └── api-developer
-        └── db-schema-designer  (sub-sub-agente, instanciado por api-developer)
+        └── db-schema-designer  (sub-sub-agent, instantiated by api-developer)
 ```
 
 > [!WARNING]
 > Limita la anidación a máximo dos niveles. Tres o más niveles de recursión generan contextos imposibles de depurar y multiplican el coste de tokens exponencialmente.
 
-### Housekeeping Obligatorio
+### Housekeeping Obligatorio: Por Qué Todo Subagente que Modifica Estado Necesita un Plan de Rollback
 
-Todo subagente que modifica estado (archivos, ramas Git, recursos externos) debe incluir instrucciones explícitas de limpieza ante fallo:
+Todo subagente que modifica estado — archivos, ramas Git, recursos externos — debe incluir instrucciones explícitas de limpieza ante fallo. Un subagente que falla a mitad de una implementación y deja el working tree en estado parcial es más peligroso que uno que no hizo nada:
 
 ```markdown
 If any step fails, before returning control to the coordinator:
@@ -458,7 +476,7 @@ If any step fails, before returning control to the coordinator:
 
 ---
 
-## Checklist de Producción
+## Checklist de Producción: Lo Que Debes Verificar Antes de que tu Pipeline Multi-Agente Toque Código Real
 
 Antes de desplegar un sistema multi-agente en un repositorio real, verifica:
 

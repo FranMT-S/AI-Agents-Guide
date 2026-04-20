@@ -1,12 +1,12 @@
-# Automatización y Headless Mode
+# Automatización y Headless Mode: Cuando el Agente Trabaja Solo Mientras Tú Duermes
 
 El modo headless es la capacidad de un agente de IA para ejecutarse como proceso autónomo sin interfaz de usuario interactiva. En lugar de responder a mensajes en un chat, el agente recibe un prompt inicial por stdin o como argumento de CLI, ejecuta todas las herramientas necesarias y termina con un código de salida estándar (`0` éxito, `1+` error). Esta característica lo convierte en un componente legítimo dentro de pipelines de CI/CD, cronjobs y workflows de automatización empresarial.
 
 ---
 
-## Comandos por Herramienta
+## Cómo Invocar Cada Herramienta en Modo No Interactivo
 
-Cada orquestador expone el modo headless con una sintaxis ligeramente diferente. El principio es el mismo en todos: el prompt inicial va como argumento o stdin, y el agente opera en modo no interactivo.
+Cada orquestador expone el modo headless con una sintaxis ligeramente diferente. El principio es el mismo en todos: el prompt inicial va como argumento o stdin, y el agente opera sin esperar confirmaciones del usuario.
 
 | Herramienta | Comando Headless | Flag Autónomo |
 | :--- | :--- | :--- |
@@ -43,7 +43,7 @@ echo "Audit all API endpoints in src/routes/ for missing authentication middlewa
 
 ---
 
-## Patrones de Integración CI/CD
+## Patrones de Integración CI/CD: Los Tres Escenarios que Justifican la Automatización
 
 ### Patrón 1: Auto-corrección Reactiva (GitHub Actions)
 
@@ -172,13 +172,13 @@ jobs:
 
 ---
 
-## Sandboxing y Permisos
+## Operación Segura en Producción: Las Tres Capas que Separan un Pipeline Robusto de uno Peligroso
 
-### Por qué el Sandboxing No Es Opcional
+Un agente headless que funciona en local no es lo mismo que uno que corre desatendido en producción. Sin supervisión humana, tres vectores de riesgo se vuelven críticos: el acceso sin restricciones al sistema de archivos y a la red, el consumo ilimitado de tokens cuando el agente no converge, y la exposición accidental de credenciales que están en el contexto del agente. Cada una de las siguientes secciones aborda una de estas capas.
 
-Un agente headless con acceso irrestricto puede ejecutar cualquier comando bash que el modelo genere. Los LLMs, incluso los más avanzados, pueden alucinar comandos destructivos al razonar bajo presión de contexto largo. Sin sandboxing, un `rm -rf /` hallucinated no tiene freno.
+### Sandboxing: Por Qué un Agente con `bash: "*"` en Producción Es un Accidente Esperando Ocurrir
 
-### Niveles de Sandboxing
+Un agente headless con acceso irrestricto puede ejecutar cualquier comando bash que el modelo genere. Los LLMs, incluso los más avanzados, pueden alucinar comandos destructivos al razonar bajo presión de contexto largo. Sin sandboxing, un `rm -rf /` alucinado no tiene freno.
 
 **Contenedor efímero (máxima seguridad):**
 ```bash
@@ -196,15 +196,14 @@ docker run --rm \
     --max-turns 10
 ```
 
-**Sandbox de workspace (escritura limitada):**
+**Sandbox de workspace (escritura limitada al proyecto):**
 ```bash
-# Codex CLI con sandbox de escritura solo en el workspace
 codex exec "Implement the feature described in TASK.md" \
   --full-auto \
-  --sandbox workspace-write  # Solo puede escribir dentro del proyecto
+  --sandbox workspace-write
 ```
 
-### Tabla de Riesgos por Nivel de Acceso
+**Tabla de riesgos por nivel de acceso:**
 
 | Acceso | Riesgo | Mitigación |
 | :--- | :--- | :--- |
@@ -213,13 +212,9 @@ codex exec "Implement the feature described in TASK.md" \
 | Solo `read_file, grep` | Bajo — solo lee, no modifica | Ideal para auditorías |
 | Sin bash | Mínimo | Análisis y generación de código únicamente |
 
----
+### Control de Costes: Cómo Poner un Techo al Gasto Cuando el Agente No Converge
 
-## Control de Costes (Cost Caps)
-
-El mayor riesgo económico del modo headless es el bucle infinito: el agente no converge, reintenta indefinidamente y consume miles de dólares en llamadas a la API.
-
-### Campos de Límite por Herramienta
+El mayor riesgo económico del modo headless es el bucle infinito: el agente no converge, reintenta indefinidamente y consume miles de dólares en llamadas a la API. Todas las herramientas exponen un campo de límite de iteraciones — definirlo no es opcional.
 
 **Claude Code:**
 ```bash
@@ -254,43 +249,39 @@ codex exec "prompt" --full-auto --max-steps 25
 > [!WARNING]
 > Define siempre `max_turns` entre 10 y 30 dependiendo de la complejidad de la tarea. Tareas simples (análisis, reportes) → 5-10. Tareas de implementación → 15-25. Nunca dejes el campo sin definir en modo headless.
 
----
+### Secretos y Variables de Entorno: Lo Que el Agente No Debe Ver Nunca en Su Contexto
 
-## Variables de Entorno y Secretos
-
-### Lo que Nunca Debe Estar en el Contexto del Agente
-
-El agente puede incluir en su output cualquier información que esté en su ventana de contexto. Si un archivo `.env` se carga en el contexto (via `@.env` o `Read`), las credenciales pueden aparecer en un PR, un log o un comentario.
+El agente puede incluir en su output cualquier información que esté en su ventana de contexto. Si un archivo `.env` se carga en el contexto (via `@.env` o `Read`), las credenciales pueden aparecer en un PR, un log o un comentario generado automáticamente. La regla es simple: los secretos van como variables de entorno del proceso, nunca como texto dentro del prompt.
 
 ```bash
-# INCORRECTO: El .env puede entrar al contexto si el agente lee el directorio
+# INCORRECT: The agent reads the directory and .env can enter its context
 claude -p "Review all files in ./" --allowedTools "Read"
 
-# CORRECTO: Excluye explícitamente archivos sensibles del scope
+# CORRECT: Restrict scope to source files only and exclude sensitive files
 claude -p "Review all TypeScript files in src/" \
   --allowedTools "Read,Glob" \
   --ignore ".env,.env.*,*.key,*.pem"
 ```
 
-### Patrón de Inyección Segura de Secretos
+**Patrón de inyección segura de secretos en CI/CD:**
 
 ```yaml
 - name: Run agent
   run: |
-    # API keys como variables de entorno, no como texto en el prompt
+    # API keys as environment variables, never as text in the prompt
     claude -p "Deploy the staging environment using the configured credentials." \
       --allowedTools "Bash" \
       --max-turns 10
   env:
     ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
     DATABASE_URL: ${{ secrets.DATABASE_URL }}
-    # The agent can use these via process.env in scripts,
+    # The agent accesses these via process.env in scripts,
     # but they are never injected as text into the prompt
 ```
 
 ---
 
-## Checklist de Producción
+## Checklist de Producción: Lo Que Debes Verificar Antes de Ejecutar un Agente Sin Supervisión
 
 Antes de desplegar cualquier flujo headless, verifica:
 
