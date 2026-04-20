@@ -68,7 +68,8 @@ AI-Agents-Guide/
 - **English Technical Terms:** Code snippets, terminal commands, file names, configuration keys (JSON/YAML), and industry terms (e.g., *Hooks*, *Skills*, *Headless Mode*, *Subagents*) MUST remain in English.
 - **Code Comments:** Comments inside any code block (including configuration examples) MUST be in English.
 - **No Emojis:** Never use emojis in code comments or serious technical writing, unless they are specific visual indicators requested for tables (e.g., ✅, ⚠️, ❌).
-- **Educational and Objective Tone:** The tone must be direct, conversational, yet highly technical and objective. Avoid excessive praise or promotional language. Be specific about what each tool or model excels at.
+- **Narrative Hooks for Titles:** Never use sterile, academic titles like "Reasoning Tokens". You MUST use narrative hooks that communicate a practical consequence, value, or danger (e.g., "Reasoning Tokens: Why Expensive Models Are Worth Every Penny").
+- **Engaging Technical Explanations:** Avoid dry Wikipedia-style definitions. When explaining complex architectural concepts, always use relatable human analogies (e.g., "Imagine asking an engineer to design an architecture without a notepad..."). The text must be direct, conversational, and make the user feel they have something practical to lose or gain. Never sound like an academic paper.
 
 ---
 
@@ -96,11 +97,11 @@ Always use native Obsidian callouts to highlight information:
 
 Use **Comparative Tables** to show differences between agents or models. Example:
 
-| Herramienta    | Archivo de Contexto            | Lógica de Precedencia                         |
+| Tool           | Context File                   | Precedence Logic                              |
 | :------------- | :----------------------------- | :-------------------------------------------- |
-| **Cursor**     | `.cursor/rules/*.mdc`          | Activación por patrones `glob`.               |
-| **Gemini CLI** | `GEMINI.md`, `AGENTS.md`       | Escaneo recursivo hacia arriba hasta `.git`.  |
-| **Claude Code**| `CLAUDE.md`, `AGENTS.md`       | Importa automáticamente archivos de `src/`.   |
+| **Cursor**     | `.cursor/rules/*.mdc`          | Activation via `glob` patterns.               |
+| **Gemini CLI** | `GEMINI.md`, `AGENTS.md`       | Recursive scan upward until `.git`.           |
+| **Claude Code**| `CLAUDE.md`, `AGENTS.md`       | Auto-imports files from `src/`.               |
 
 ### Role of the Main Guide vs. Tool Files
 
@@ -120,7 +121,7 @@ When modifying or creating any file in `src/es/` (e.g., `src/es/gemini-cli.md`, 
 **2. A `text` Directory Tree** showing exactly where the configuration file lives:
 
 ```text
-mi-proyecto/
+my-project/
 └── .gemini/
     └── settings.json
 ```
@@ -142,7 +143,7 @@ mi-proyecto/
 **4. An italic source line** with the official documentation link:
 
 ```markdown
-*Fuente: [Gemini CLI: MCP Server Setup](https://geminicli.com/docs/tools/mcp-server/)*
+*Source: [Gemini CLI: MCP Server Setup](https://geminicli.com/docs/tools/mcp-server/)*
 ```
 
 ---
@@ -152,20 +153,22 @@ mi-proyecto/
 The following is a well-formed section. Use it as the gold standard when writing or reviewing any concept in `src/`:
 
 ```markdown
-## Hooks (Disparadores)
+## Hooks: How to Make Your Agent Run Scripts Without Being Asked
 
-Los hooks permiten ejecutar scripts en respuesta a eventos del ciclo de vida del agente.
-Se configuran en el objeto `hooks` dentro de `settings.json` y se comunican
-via `stdin`/`stdout` con JSON estricto.
+Imagine that every time your agent is about to modify a file, an invisible guard
+runs your validation script and blocks the operation if something doesn't add up.
+That's exactly what **Hooks** do: automatic triggers that respond to lifecycle
+events in the agent, configured in `settings.json` and communicated
+via `stdin`/`stdout` with strict JSON.
 
-**Estructura de Directorio:**
+**Directory Structure:**
 ```text
-mi-proyecto/
+my-project/
 └── .gemini/
     └── settings.json
 ```
 
-**Ejemplo de Configuración (`settings.json`):**
+**Configuration Example (`settings.json`):**
 ```json
 {
   "hooks": {
@@ -178,7 +181,7 @@ mi-proyecto/
 }
 ```
 
-**Ejemplo de Input recibido por el hook (`stdin`):**
+**Example Input received by the hook (`stdin`):**
 ```json
 {
   "session_id": "string",
@@ -188,7 +191,7 @@ mi-proyecto/
 }
 ```
 
-*Fuente: [Gemini CLI: Hooks Reference](https://geminicli.com/docs/hooks/reference/)*
+*Source: [Gemini CLI: Hooks Reference](https://geminicli.com/docs/hooks/reference/)*
 ```
 
 ---
@@ -233,10 +236,10 @@ Templates live in `src/templates/agents/`. Secondary doc files (inside `docs/`) 
 - **Reference URLs:** At the end of each major concept or section, add the official source using this exact format:
 
 ```markdown
-*Fuente: [Tool Name: Section Title](https://official.url/path)*
+*Source: [Tool Name: Section Title](https://official.url/path)*
 ```
 
 Multiple sources:
 ```markdown
-*Fuentes: [Title One](https://url1) | [Title Two](https://url2)*
+*Sources: [Title One](https://url1) | [Title Two](https://url2)*
 ```
